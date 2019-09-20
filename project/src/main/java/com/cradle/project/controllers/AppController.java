@@ -10,4 +10,10 @@ public class AppController {
         System.out.println("test");
         return "index";
     }
+
+    @RequestMapping("/patient-view")
+    public String patient_view() {
+        System.out.println("test for patient view");
+        return "patient-view";
+    }
 }

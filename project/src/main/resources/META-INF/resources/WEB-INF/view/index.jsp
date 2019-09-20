@@ -282,7 +282,7 @@
         </div>
         <ul class="navbar">
             <li class="nav-item">
-                <a class="nav-link" href=#>HOME </a> </li>
+                <a class="nav-link" href="patient-view">HOME </a> </li>
             <li class="nav-item">
                 <a class="nav-link" href=#>PAGE </a> </li>
             <li class="nav-item">
