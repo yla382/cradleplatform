@@ -17,9 +17,11 @@
         </div>
         <ul class="navbar">
             <li class="nav-item">
-                <a class="nav-link" href=#>HOME </a> </li>
+                <a class="nav-link" href="/">HOME </a> </li>
             <li class="nav-item">
                 <a class="nav-link" href=#>PAGE </a> </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/index">ADMIN </a> </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">ABOUT US</a>
             </li>
@@ -40,10 +42,10 @@
                         </div>
 
                         <div id="welcome-title-desc" class="fade horizontal-translate">
-                            This is our placeholder msg.
+                            Welcome to Mercury's Group Project!
                         </div>
 
-                        <button class="welcome-title-btn" type="button">Sign in</button>
+                        <button class="welcome-title-btn" type="button" onclick="window.location.href='/login'">Sign in</button>
                         <button class="welcome-title-btn" type="button">Register</button>
 
                         <i class="welcome-arrow-d"></i>

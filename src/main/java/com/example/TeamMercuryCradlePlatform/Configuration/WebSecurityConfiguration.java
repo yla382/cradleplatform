@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -48,14 +49,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override //HTTP authentication based on role
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity    .authorizeRequests()
-                .antMatchers("/index/**").permitAll()
-                //.antMatchers("/index/**").hasRole("ADMIN")
+        httpSecurity
+            .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHC")
                 .and()
-                .httpBasic()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
                 .and()
-                .logout()
-                .permitAll();
-    }
+            .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .permitAll();    }
 }
