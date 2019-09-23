@@ -49,8 +49,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override //HTTP authentication based on role
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity    .authorizeRequests()
-                //.antMatchers("/index/**").permitAll()
-                .antMatchers("/index/**").hasRole("ADMIN")
+                .antMatchers("/index/**").permitAll()
+                //.antMatchers("/index/**").hasRole("ADMIN")
                 .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHC")
                 .and()
                 .httpBasic()
