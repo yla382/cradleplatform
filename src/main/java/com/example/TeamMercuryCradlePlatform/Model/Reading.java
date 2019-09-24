@@ -333,6 +333,10 @@ public class Reading {
         this.symptoms = symptoms;
     }
 
+//    public void setGestationalAgeUnit(GestationalAgeUnit gestationalAgeUnit){
+//        this.gestationalAgeUnit = gestationalAgeUnit;
+//    }
+
     public void setGestationalAgeUnit(String gestationalAgeUnit) {
         if(gestationalAgeUnit.compareTo("Weeks") == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS;

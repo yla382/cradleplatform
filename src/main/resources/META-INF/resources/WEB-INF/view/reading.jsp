@@ -13,7 +13,7 @@
     <body>
     <div class="container w-100">
 
-        <form action="${pageContext.request.contextPath}/ajax/submitReading" method="post" id="patientForm">
+        <form action="${pageContext.request.contextPath}/submitReading" method="post">
             <div class="form-group">
                 <label for="patientId">ID number</label>
                 <input required type="text" class="form-control" id="patientId" name="patientId">
@@ -66,9 +66,11 @@
                 <label for="heartRateBPM">Heart rate</label>
                 <input required type="number" min="40" max="200" class="form-control" id="heartRateBPM" name="heartRateBPM">
             </div>
-            <input type="submit" value="Submit" id="submitButton" onclick="sendData()">
+            <input type="submit" value="Submit" id="submitButton">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
+        <label for="backButtonState"></label>
         <input id="backButtonState" type="text" value="0" style="display:none;" />
     </div>
 
@@ -77,28 +79,12 @@
 
 <script>
 
-        // TODO: fix this function. js sucks
-        function symptomSelectionChange() {
-            var symptomSelected = $('#symptomsSelector').val();
-            // alert(symptomSelected[0]);
-            if(symptomSelected[0] === "No Symptoms (patient healthy)"){
-                alert("No symptoms selected");
-                symptomSelected[1].selected = true;
-            //     for(var i = 1; i < symptomSelected.length; i++){
-            //         symptomSelected[i].selected = false;
-            //     }
-            // }
-            // else {
-            //     symptomSelected[0].selected = false;
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
             var backButton = document.getElementById("backButtonState");
             if (backButton.value === "0") {
                 backButton.value = "1";
             } else {
-                // Back button has been fired.. Do Something different..
+                // Back button pressed
                 gestationalAgeUnitChange();
             }
         }, false);

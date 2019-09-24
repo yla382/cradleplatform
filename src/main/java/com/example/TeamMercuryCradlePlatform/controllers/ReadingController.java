@@ -2,6 +2,7 @@ package com.example.TeamMercuryCradlePlatform.controllers;
 
 import com.example.TeamMercuryCradlePlatform.Model.Reading;
 import com.example.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,6 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("ajax")
 public class ReadingController {
 
     @RequestMapping(value = "/reading", method = RequestMethod.GET)
@@ -24,10 +24,14 @@ public class ReadingController {
     }
 
 
-    @RequestMapping(value = "/submitReading", method = {RequestMethod.POST, RequestMethod.GET})
-    public @ResponseBody String testFunction(Reading reading) {
-        System.out.println("Reading: " + reading.patientId + reading.patientName + reading.bpSystolic);
-        return "";
+    @RequestMapping(value = "/submitReading", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView readingAnalysisPage(Reading reading) {
+
+        reading.dateTimeTaken = ZonedDateTime.now();
+        System.out.println("reading" + reading.toString());
+        ModelAndView modelAndView = new ModelAndView("/addReading");
+        modelAndView.addAllObjects(createReadingModelMap(reading));
+        return modelAndView;
     }
 
 //    @RequestMapping(value = "/submitReading", method = RequestMethod.POST)
@@ -84,7 +88,7 @@ public class ReadingController {
 
         modelMap.put("personalInfo", reading.patientName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString());
         modelMap.put("patientId", reading.patientId);
-        modelMap.put("symptomks", reading.getSymptomsString());
+        modelMap.put("symptoms", reading.getSymptomsString());
         modelMap.put("timeTaken", reading.getGestationTimeInAmPm());
         modelMap.put("analysis", readingAnalysis.getAnalysisText());
         modelMap.put("bp", reading.bpSystolic + "/" + reading.bpDiastolic);
