@@ -27,9 +27,10 @@ public class PatientController {
     }
 
     @RequestMapping("/all")
-    public Iterable<Patient> getAllPatients() {
+    public String getAllPatients() {
 
-        return patientRepository.findAll();
+        //return patientRepository.findAll();
+        return "PatientTable";
     }
 
     @GetMapping(path="filter/{firstName}")

@@ -28,6 +28,14 @@ public class Patient {
     private String drugHistory = null;
     private String medicalHistory = null;
 
+    public Patient() {
+    }
+
+    public Patient(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Integer getPatientId() {
         return patientId;
     }
