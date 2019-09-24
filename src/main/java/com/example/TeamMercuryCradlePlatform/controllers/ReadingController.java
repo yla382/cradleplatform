@@ -25,9 +25,21 @@ public class ReadingController {
 
 
     @RequestMapping(value = "/submitReading", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView readingAnalysisPage(Reading reading) {
+    public @ResponseBody ModelAndView readingAnalysisPage(
+            Reading reading,
+            @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
 
         reading.dateTimeTaken = ZonedDateTime.now();
+
+        if(reading.symptoms.size() == 0){
+            reading.symptoms.add("No Symptoms (patient healthy)");
+        }
+        else{
+            if(!otherSymptoms.isEmpty()){
+                reading.symptoms.add(otherSymptoms);
+            }
+        }
+
         ReadingAnalysis analysis = ReadingAnalysis.analyze(reading);
 
         ModelAndView modelAndView = new ModelAndView("/addReading");

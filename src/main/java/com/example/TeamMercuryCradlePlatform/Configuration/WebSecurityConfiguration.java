@@ -44,23 +44,30 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override //data-base authentication
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth    .authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(authenticationProvider());
     }
 
 
-    @Override //HTTP authentication based on role
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-            .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHC")
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-            .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-                .permitAll();    }
+//    @Override //HTTP authentication based on role
+//    protected void configure(HttpSecurity httpSecurity) throws Exception {
+//        httpSecurity
+//            .authorizeRequests()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHC")
+//                .and()
+//            .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+//                .and()
+//            .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+//                .permitAll();    }
+
+    @Override
+    protected void configure(HttpSecurity httpSecurity)throws Exception{
+
+        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
+
+    }
 
 }

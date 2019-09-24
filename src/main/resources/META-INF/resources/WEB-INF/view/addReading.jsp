@@ -15,24 +15,23 @@
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
     <body>
 
-        <%@ include file="navbar.jspf" %>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
+        <%@ include file="navbar.jspf" %>
         <div class="container w-100">
 
             <h2> <%= reading.patientName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
             <p>  <%= reading.patientId%></p>
             <p> <%= reading.getSymptomsString()%></p>
-            <h2> <%= reading.getGestationTimeInAmPm() + " : " + analysis.getAnalysisText()%></h2>
-            <p> <%= reading.bpSystolic + "/" + reading.bpDiastolic%></p>
-            <p> <%= reading.heartRateBPM %></p>
+            <h2> <%= reading.getGestationTimeInAmPm() + ": " + analysis.getAnalysisText()%></h2>
+            <p> <%= "BP: " + reading.bpSystolic + "/" + reading.bpDiastolic%></p>
+            <p> <%= "HR: " + reading.heartRateBPM %></p>
 
-            <img src="../resources/drawable/<%=trafficLight%>.png" alt="<%=trafficLight%>">
+            <img src="../resources/static/images/status_red.png" alt="<%=trafficLight%>">
             <c:if test="<%= arrowDirection != null %>">
-                <img src="../resources/drawable/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
+                <img src="../drawable/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
             </c:if>
 
 
@@ -61,7 +60,6 @@
 
             <button type="button" onclick="editButton()"> Edit </button>
             <button type="button" onclick="saveButton()"> Save </button>
-
         </div>
     </body>
 
