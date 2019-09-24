@@ -11,24 +11,26 @@
 
 </head>
     <body>
-    <div class="container w-100">
+
+        <%@ include file="navbar.jspf" %>
+        <div class="container w-100" style="padding: 10px">
 
         <form action="${pageContext.request.contextPath}/submitReading" method="post">
             <div class="form-group">
                 <label for="patientId">ID number</label>
-                <input required type="text" class="form-control" id="patientId" name="patientId">
+                <input required type="text" class="form-control" id="patientId" name="patientId" style="width: 25%">
             </div>
             <div class="form-group">
                 <label for="patientName">Initials</label>
-                <input required type="text" class="form-control" id="patientName" name="patientName">
+                <input required type="text" class="form-control" id="patientName" name="patientName" style="width: 25%">
             </div>
             <div class="form-group">
                 <label for="ageYears">Age</label>
-                <input required type="number" min="0" class="form-control" id="ageYears" name="ageYears">
+                <input required type="number" min="0" class="form-control" id="ageYears" name="ageYears" style="width: 25%">
             </div>
             <div class="form-group">
                 <label for="gestationalAgeValue">Gestational Age</label>
-                <input required type="number" min="0" class="form-control" id="gestationalAgeValue" name="gestationalAgeValue">
+                <input required type="number" min="0" class="form-control" id="gestationalAgeValue" name="gestationalAgeValue" style="width: 25%">
             </div>
             <div class="form-group">
                 <label for="gestationalAgeUnit"></label>
@@ -73,7 +75,6 @@
         <label for="backButtonState"></label>
         <input id="backButtonState" type="text" value="0" style="display:none;" />
     </div>
-
     </body>
 
 
@@ -95,41 +96,6 @@
             document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
         }
 
-
-        <%--function sendData(){--%>
-
-        <%--    var patientId = $("#patientId").val();--%>
-        <%--    var patientName = $("#patientName").val();--%>
-        <%--    var ageYears = $("#ageYears").val();--%>
-        <%--    var symptoms = $("#symptomsSelector").val() + $("#otherSymptoms").val();--%>
-        <%--    var gestationalAgeUnit = $("#gestationalAgeUnit").val();--%>
-        <%--    var gestationalAgeValue = $("#gestationalAgeValue").val();--%>
-        <%--    var bpSystolic = $("#bpSystolic").val();--%>
-        <%--    var bpDiastolic = $("#bpDiastolic").val();--%>
-        <%--    var heartRateBPM = $("#heartRateBPM").val();--%>
-
-        <%--    var patientInfo = {--%>
-        <%--        patientId : patientId,--%>
-        <%--        patientName : patientName,--%>
-        <%--        ageYears : ageYears,--%>
-        <%--        symptoms : symptoms,--%>
-        <%--        gestationalAgeUnit : gestationalAgeUnit,--%>
-        <%--        gestationalAgeValue : gestationalAgeValue,--%>
-        <%--        bpSystolic : bpSystolic,--%>
-        <%--        bpDiastolic : bpDiastolic,--%>
-        <%--        heartRateBPM : heartRateBPM--%>
-        <%--    };--%>
-
-        <%--    $.ajax({--%>
-        <%--        url : '${pageContext.request.contextPath}/ajax/submitReading',--%>
-        <%--        type : 'POST',--%>
-        <%--        data : JSON.stringify(patientInfo),--%>
-        <%--        dataType : 'json',--%>
-        <%--        success: function(){--%>
-        <%--            alert("ajax")--%>
-        <%--        }--%>
-        <%--    });--%>
-        <%--}--%>
 
     </script>
 

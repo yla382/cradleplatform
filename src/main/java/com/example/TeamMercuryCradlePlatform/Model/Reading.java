@@ -317,6 +317,38 @@ public class Reading {
         temporaryFlags = 0;
     }
 
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public Integer getAgeYears() {
+        return ageYears;
+    }
+
+    public List<String> getSymptoms() {
+        return symptoms;
+    }
+
+    public String getGestationalAgeValue() {
+        return gestationalAgeValue;
+    }
+
+    public Integer getBpSystolic() {
+        return bpSystolic;
+    }
+
+    public Integer getBpDiastolic() {
+        return bpDiastolic;
+    }
+
+    public Integer getHeartRateBPM() {
+        return heartRateBPM;
+    }
+
     public void setPatientId(String patientId) {
         this.patientId = patientId;
     }
@@ -333,9 +365,7 @@ public class Reading {
         this.symptoms = symptoms;
     }
 
-//    public void setGestationalAgeUnit(GestationalAgeUnit gestationalAgeUnit){
-//        this.gestationalAgeUnit = gestationalAgeUnit;
-//    }
+
 
     public void setGestationalAgeUnit(String gestationalAgeUnit) {
         if(gestationalAgeUnit.compareTo("Weeks") == 0){

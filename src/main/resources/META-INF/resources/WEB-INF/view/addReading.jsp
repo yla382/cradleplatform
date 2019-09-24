@@ -1,30 +1,43 @@
+<%@ page import="com.example.TeamMercuryCradlePlatform.Model.Reading" %>
+<%@ page import="com.example.TeamMercuryCradlePlatform.Model.ReadingAnalysis" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
+
+    <%
+       Reading reading = (Reading)request.getAttribute("reading");
+       ReadingAnalysis analysis = (ReadingAnalysis)request.getAttribute("analysis");
+       String trafficLight = (String)request.getAttribute("trafficLight");
+       String arrowDirection = (String) request.getAttribute("arrowDirection");
+    %>
 
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
     <body>
+
+        <%@ include file="navbar.jspf" %>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
         <div class="container w-100">
 
-            <h2> ${personalInfo}</h2>
-            <p> ${patientId}</p>
-            <p> ${symptoms}</p>
-            <h2> ${timeTaken}: ${analysis}</h2>
-            <p> ${bp}</p>
-            <p> ${hr}</p>
+            <h2> <%= reading.patientName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
+            <p>  <%= reading.patientId%></p>
+            <p> <%= reading.getSymptomsString()%></p>
+            <h2> <%= reading.getGestationTimeInAmPm() + " : " + analysis.getAnalysisText()%></h2>
+            <p> <%= reading.bpSystolic + "/" + reading.bpDiastolic%></p>
+            <p> <%= reading.heartRateBPM %></p>
 
-            <img src="../resources/drawable/${trafficLight}.png" alt="Traffic light image">
-            <c:if test="${!arrowDirection.equals(null)}">
-                <img src="../resources/drawable/${arrowDirection}.png" alt="Arrow direction image">
+            <img src="../resources/drawable/<%=trafficLight%>.png" alt="<%=trafficLight%>">
+            <c:if test="<%= arrowDirection != null %>">
+                <img src="../resources/drawable/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
             </c:if>
 
 
             <h2> Advice</h2>
-            <p> ${briefText}</p>
+            <p> <%=analysis.getBriefText()%></p>
 
             <div class="custom-control custom-switch">
                 <input checked type="checkbox" class="custom-control-input" id="recheckVitalsNow">
@@ -38,13 +51,13 @@
 
 
             <h2> Not referred</h2>
-            <p> ${referralRecommended == "true"? "Referral recommened" : "Referral not recommended"} <button type="button">Send referral</button> </p>
+            <p> <%= analysis.isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%> <button type="button">Send referral</button> </p>
 
             <div class="custom-control custom-switch">
                 <input checked type="checkbox" class="custom-control-input" id="followUp">
                 <label class="custom-control-label" for="followUp"> Follow-up needed (another day)</label>
             </div>
-            <p> Follow-up ${isFollowUp == "true"? "recommended" : "not recommended"}</p>
+            <p> Follow-up <%= reading.isFlaggedForFollowup()? "recommended" : "not recommended"%></p>
 
             <button type="button" onclick="editButton()"> Edit </button>
             <button type="button" onclick="saveButton()"> Save </button>
@@ -58,6 +71,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
+
 
         function editButton() {
             window.history.back();
