@@ -17,16 +17,20 @@
 
         <form action="${pageContext.request.contextPath}/submitReading" method="post">
             <div class="form-group">
-                <label for="patientId">ID number</label>
-                <input required type="text" class="form-control" id="patientId" name="patientId" style="width: 25%">
-            </div>
-            <div class="form-group">
-                <label for="patientName">Initials</label>
-                <input required type="text" class="form-control" id="patientName" name="patientName" style="width: 25%">
-            </div>
-            <div class="form-group">
-                <label for="ageYears">Age</label>
-                <input required type="number" min="0" class="form-control" id="ageYears" name="ageYears" style="width: 25%">
+                <div class="row">
+                    <div class="col">
+                        <label for="patientId">ID number</label>
+                        <input required type="text" class="form-control" id="patientId" name="patientId">
+                    </div>
+                    <div class="col">
+                        <label for="patientName">Initials</label>
+                        <input required type="text" class="form-control" id="patientName" name="patientName" style="width: 25%">
+                    </div>
+                    <div class="col">
+                        <label for="ageYears">Age</label>
+                        <input required type="number" min="0" class="form-control" id="ageYears" name="ageYears" style="width: 25%">
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="gestationalAgeValue">Gestational Age</label>
