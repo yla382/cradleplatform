@@ -23,14 +23,14 @@
                         <div class="card-body">
                             <form action="${pageContext.request.contextPath}/admin/submitRegistration" method = "post">
                                 <div class="form-group row">
-                                    <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
+                                    <label for="firstName" class="col-md-4 col-form-label text-md-right">First Name</label>
                                     <div class="col-md-6">
                                         <input type="text" id="firstName" class="form-control" name="firstName">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
+                                    <label for="lastName" class="col-md-4 col-form-label text-md-right">Last Name</label>
                                     <div class="col-md-6">
                                         <input type="text" id="lastName" class="form-control" name="lastName">
                                     </div>
@@ -50,14 +50,14 @@
                                             <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck1" value="VTH">
                                             <label class="form-check-label" for="inlineCheck1">VHT</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck2" value="HEALTHWORKER">
-                                            <label class="form-check-label" for="inlineCheck2">Health Worker</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck3" value="ADMIN">
-                                            <label class="form-check-label" for="inlineCheck3">Admin</label>
-                                        </div>
+<%--                                        <div class="form-check form-check-inline">--%>
+<%--                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck2" value="HEALTHWORKER">--%>
+<%--                                            <label class="form-check-label" for="inlineCheck2">Health Worker</label>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="form-check form-check-inline">--%>
+<%--                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck3" value="ADMIN">--%>
+<%--                                            <label class="form-check-label" for="inlineCheck3">Admin</label>--%>
+<%--                                        </div>--%>
                                     </div>
                                 </div>
                                 <div class="col-md-6 offset-md-4">

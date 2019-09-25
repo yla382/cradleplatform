@@ -39,9 +39,17 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitRegistration(User user) {
-        userRepository.save(user);
-        System.out.println(user.getFirstName());
+    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String roles) {
+        User temp = new User(user);
+        String Test = roles;
+        System.out.println("firstName " + temp.getFirstName());
+        System.out.println("lastName " + temp.getLastName());
+        //temp.setRole("role");
+        System.out.println("pas " + temp.getFirstName());
+        System.out.println("roles from paraem:" + roles);
+        temp.setRole(Test);
+        System.out.println("roles " + temp.getRole());
+        userRepository.save(temp);
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("user", user);
         return modelAndView;
