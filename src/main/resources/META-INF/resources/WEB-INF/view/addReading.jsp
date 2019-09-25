@@ -29,7 +29,7 @@
             <p> <%= "BP: " + reading.bpSystolic + "/" + reading.bpDiastolic%></p>
             <p> <%= "HR: " + reading.heartRateBPM %></p>
 
-            <img src="../resources/static/images/status_red.png" alt="<%=trafficLight%>">
+            <img src="/images/<%=trafficLight%>.png" alt="<%=trafficLight%>">
             <c:if test="<%= arrowDirection != null %>">
                 <img src="../drawable/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
             </c:if>
