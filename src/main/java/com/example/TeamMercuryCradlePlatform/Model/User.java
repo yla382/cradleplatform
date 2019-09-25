@@ -13,7 +13,7 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
 
-    protected User() {
+    public User() {
 
     }
 

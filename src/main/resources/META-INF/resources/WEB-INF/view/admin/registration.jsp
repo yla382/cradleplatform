@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,7 +12,6 @@
 <body>
 
 <%@ include file="../navbar.jspf" %>
-
 <main class="my-form">
     <div class="container">
         <br>
@@ -19,53 +20,25 @@
                 <div class="card">
                     <div class="card-header">Register a new user</div>
                         <div class="card-body">
-                            <form name="my-form" onsubmit="" method="POST">
+                            <form action="${pageContext.request.contextPath}/submitRegistration" method = "post">
                                 <div class="form-group row">
                                     <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="first_name" class="form-control" name="first_name">
+                                        <input type="text" id="firstName" class="form-control" name="firstName">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="last_name" class="form-control" name="last_name">
+                                        <input type="text" id="lastName" class="form-control" name="lastName">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="user_id" class="col-md-4 col-form-label text-md-right">User ID</label>
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                     <div class="col-md-6">
-                                        <input type="text" id="user_id" class="form-control" name="username">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="address" class="form-control" name="address">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone Number</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="phone_number" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-4 col-form-label text-md-right">Gender</label>
-                                    <div class="col-md-6 col-form-label">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                            <label class="form-check-label" for="inlineRadio1">Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <label class="form-check-label" for="inlineRadio2">Female</label>
-                                        </div>
+                                        <input type="text" id="password" class="form-control" name="password">
                                     </div>
                                 </div>
 
@@ -73,15 +46,15 @@
                                     <label class="col-md-4 col-form-label text-md-right">User Roles</label>
                                     <div class="col-md-6 col-form-label">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineCheck1" value="option1">
+                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck1" value="VTH">
                                             <label class="form-check-label" for="inlineCheck1">VHT</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineCheck2" value="option2">
+                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck2" value="HEALTHWORKER">
                                             <label class="form-check-label" for="inlineCheck2">Health Worker</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineCheck3" value="option3">
+                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck3" value="ADMIN">
                                             <label class="form-check-label" for="inlineCheck3">Admin</label>
                                         </div>
                                     </div>
