@@ -1,4 +1,4 @@
-package com.example.TeamMercuryCradlePlatform.Controller;
+package com.example.TeamMercuryCradlePlatform.controllers;
 
 import com.example.TeamMercuryCradlePlatform.Model.Patient;
 import com.example.TeamMercuryCradlePlatform.Repository.PatientRepository;
