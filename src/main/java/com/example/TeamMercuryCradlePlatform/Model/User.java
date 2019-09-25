@@ -1,5 +1,7 @@
 package com.example.TeamMercuryCradlePlatform.Model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,14 +21,14 @@ public class User {
 
     public User(User user) {
         this.userId = user.userId;
-        this.password = user.password;
+        this.password = encodePassword(user.password);
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.roles = user.roles;
     }
 
     public User(String password, String firstName, String lastName, String roles) {
-        this.password = password;
+        this.password = encodePassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.roles = roles;
@@ -73,7 +75,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = encodePassword(password);
     }
 
     public String getFirstName() {
@@ -106,6 +108,11 @@ public class User {
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public String encodePassword(String password) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.encode(password);
     }
 }
 

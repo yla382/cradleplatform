@@ -39,12 +39,10 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitRegistration(@RequestParam String firstName, @RequestParam String lastName,
-                                                         @RequestParam String password, @RequestParam String roles) {
-        User user = new User(bCryptPasswordEncoder.encode(password), firstName, lastName, roles);
+    public @ResponseBody ModelAndView submitRegistration(User user) {
         userRepository.save(user);
         System.out.println(user.getFirstName());
-        ModelAndView modelAndView = new ModelAndView("admin/registration");
+        ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("user", user);
         return modelAndView;
     }

@@ -12,6 +12,7 @@
 <body>
 
 <%@ include file="../navbar.jspf" %>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 <main class="my-form">
     <div class="container">
         <br>
@@ -20,7 +21,7 @@
                 <div class="card">
                     <div class="card-header">Register a new user</div>
                         <div class="card-body">
-                            <form action="${pageContext.request.contextPath}/submitRegistration" method = "post">
+                            <form action="${pageContext.request.contextPath}/admin/submitRegistration" method = "post">
                                 <div class="form-group row">
                                     <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
                                     <div class="col-md-6">
@@ -64,6 +65,7 @@
                                         Register
                                     </button>
                                 </div>
+                                <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
                         </div>
                     </div>
