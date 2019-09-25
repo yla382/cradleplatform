@@ -41,6 +41,18 @@ body {
     float: right;
 }
 
+.nav-out {
+     text-decoration: none;
+     color: #931406;
+     font-weight: lighter;
+     font-size: 20px;
+     padding-right: 20px;
+ }
+
+.nav-out:hover {
+     color: #490a03;
+}
+
 .nav-link {
     text-decoration: none;
     color: white;
