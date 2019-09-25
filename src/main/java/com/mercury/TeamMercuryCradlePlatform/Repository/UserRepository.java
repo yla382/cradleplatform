@@ -1,6 +1,6 @@
-package com.example.TeamMercuryCradlePlatform.Repository;
+package com.mercury.TeamMercuryCradlePlatform.Repository;
 
-import com.example.TeamMercuryCradlePlatform.Model.User;
+import com.mercury.TeamMercuryCradlePlatform.Model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

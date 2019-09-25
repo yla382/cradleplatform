@@ -1,4 +1,4 @@
-package com.example.TeamMercuryCradlePlatform.Model;
+package com.mercury.TeamMercuryCradlePlatform.Model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -108,4 +108,3 @@ public class User {
         }
     }
 }
-
