@@ -31,7 +31,7 @@
 
             <img src="/images/<%=trafficLight%>.png" alt="<%=trafficLight%>">
             <c:if test="<%= arrowDirection != null %>">
-                <img src="../drawable/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
+                <img src="/images/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
             </c:if>
 
 
