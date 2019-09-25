@@ -11,11 +11,14 @@
 <body>
 
 <%@ include file="navbar.jspf" %>
-<div>
-    UserID: ${UserID} <br>
-    FirstName: ${FirstName} <br>
-    LastName: ${LastName} <br>
-    Role: ${Role} <br>
+
+<div class="list-group">
+    <ul class="list-group">
+        <li class="list-group-item">UserID: ${UserId}</li>
+        <li class="list-group-item">FirstName: ${FirstName}</li>
+        <li class="list-group-item">LastName: ${LastName}</li>
+        <li class="list-group-item">Role: ${Role}</li>
+    </ul>
 </div>
 
 
