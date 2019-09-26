@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.List;
 
 @Controller
@@ -46,5 +45,15 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("user", user);
         return modelAndView;
+    }
+
+    @GetMapping("/{id}/profile")
+    public String getUserInfo(@PathVariable("id") Integer id, Model model) {
+        User user = userRepository.findByUserId(id);
+        model.addAttribute("UserId", id);
+        model.addAttribute("FirstName", user.getFirstName());
+        model.addAttribute("LastName", user.getLastName());
+        model.addAttribute("Role", user.getRole());
+        return "profile";
     }
 }
