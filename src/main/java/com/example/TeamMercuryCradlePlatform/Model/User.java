@@ -25,6 +25,7 @@ public class User {
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.roles = user.roles;
+        this.email = user.email;
     }
 
     public User(String password, String firstName, String lastName, String roles) {
@@ -34,9 +35,9 @@ public class User {
         this.roles = roles;
     }
 
-    //@Column(name = "email")
+    @Column(name = "email")
     //@NotEmpty(message = "Email must be provided")
-    //private String email = null;
+    private String email = null;
 
     @Column(name = "password")
     //@Length(min = 6, message = "Password must be at least 6 characters")
@@ -62,13 +63,13 @@ public class User {
         this.userId = userId;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
+    public String getEmail() {
+        return email;
+    }
 
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getPassword() {
         return password;
