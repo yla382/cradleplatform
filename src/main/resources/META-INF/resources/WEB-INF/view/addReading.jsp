@@ -26,14 +26,28 @@
             <p>  <%= reading.patientId%></p>
             <p> <%= reading.getSymptomsString()%></p>
             <h2> <%= reading.getGestationTimeInAmPm() + ": " + analysis.getAnalysisText()%></h2>
-            <p> <%= "BP: " + reading.bpSystolic + "/" + reading.bpDiastolic%></p>
-            <p> <%= "HR: " + reading.heartRateBPM %></p>
 
-            <img src="/images/<%=trafficLight%>.png" alt="<%=trafficLight%>">
-            <c:if test="<%= arrowDirection != null %>">
-                <img src="/images/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
-            </c:if>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <p> <%= "BP: " + reading.bpSystolic + "/" + reading.bpDiastolic%></p>
+                        <p> <%= "HR: " + reading.heartRateBPM %></p>
 
+                    </div>
+                    <div class="col-sm">
+                        <div class="row">
+                            <div class="col-xs">
+                                <img src="/images/<%=trafficLight%>.png" alt="<%=trafficLight%>">
+                            </div>
+                            <div class="col-xs">
+                                <c:if test="<%= arrowDirection != null %>">
+                                    <img src="/images/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <h2> Advice</h2>
             <p> <%=analysis.getBriefText()%></p>
