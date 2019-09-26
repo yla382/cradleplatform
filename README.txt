@@ -1,8 +1,71 @@
 = CRADLE VSA SUPPORT APP =
 
-INTRODUCTION
+OVERVIEW ===
 
-From the Cradle site: "The Microlife CRADLE VSA [is a device to] accurately
-measure blood pressure and heart rate and uses these values to calculate whether
-the women is at risk of developing shock."
-[Credit: http://cradletrial.com/the-device/
+"The Microlife CRADLE VSA [is a device to] accurately measure blood pressure
+and heart rate and uses these values to calculate whether the women is at risk
+of developing shock." [Credit: http://cradletrial.com/the-device/] VHT
+(Village Health Team) Workers use the device to read their patients and, based
+on the patient's status (denoted by a "red, yellow, green light" system), VHTs
+will then make a referral to the appropriate medical facility.
+
+The purpose of this application is to serve as a companion Android app for VHTs
+to record their readings on the field into a central database, as well as a
+web app for medical workers in proper medical facilities to quickly access the
+data that VHTs send, and a database to store the information VHTs enter, as
+well as any follow-up information the medical workers enter; this repository
+holds the web app as well as the database.
+
+FEATURES ===
+
+Referral Tool:
+- Sync readings from VHTs in real-time for health facility workers to access
+- Allow health workers to enter readings, diagnoses or treatements and the
+  follow-up required by the VHTi
+- Show most appropriate management for patient from decision algorithm, based
+  on patient status (age, pregnancy status, ethnicity, suspected diagnosis,
+  etc.)
+
+Individual Patient Monitoring:
+- Store multiple readings for individual patients; allow viewing the data
+  trends over time via graphs
+- Record medications, as well as date started, date discontinued (if
+  applicable), dosage, and side effects
+- Alert health workers if readings are abnormal
+
+VHT Monthly Reports:
+- For any referral, VHTs and health workers will be able to view the health
+  centre referred to, the distance to the health facility, and the method of
+  transportation
+
+Educational Tools:
+- Videos with advice for health care workers
+
+DIRECTORY STRUCTURE ===
+./
+ |- .mvn/                       Build files
+ |  |- 
+ |- src/                        Source code
+ |  |- main                     Main source code
+ |  |  |- java
+ |  |  |- 
+ |  |- test                     Unit tests
+ |- LICENSE.txt                 Project license
+ |- README.txt                  Project Readme (this file)
+ |- mvnw
+ |- mvnw.cmd
+ |- pom.xml
+
+
+DEPENDENCIES ===
+
+- JDK 1.8+
+- Maven 3+
+- MySQL
+
+BUILD INSTRUCTIONS ===
+
+LICENSE ===
+
+This project is licensed under the 3-Clause "New" BSD License; see LICENSE.txt
+for more details.
