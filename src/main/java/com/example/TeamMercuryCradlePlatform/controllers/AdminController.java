@@ -56,4 +56,12 @@ public class AdminController {
         model.addAttribute("Role", user.getRole());
         return "profile";
     }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ModelAndView getAllUsers(){
+
+        ModelAndView modelAndView = new ModelAndView("/admin/users");
+        modelAndView.addObject("users", this.userRepository.findAll());
+        return modelAndView;
+    }
 }
