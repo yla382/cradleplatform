@@ -1,5 +1,5 @@
-<%@ page import="com.example.TeamMercuryCradlePlatform.Model.Reading" %>
-<%@ page import="com.example.TeamMercuryCradlePlatform.Model.ReadingAnalysis" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.Model.Reading" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.Model.ReadingAnalysis" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
