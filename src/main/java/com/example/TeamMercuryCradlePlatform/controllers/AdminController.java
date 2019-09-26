@@ -2,8 +2,13 @@ package com.example.TeamMercuryCradlePlatform.controllers;
 
 import com.example.TeamMercuryCradlePlatform.Model.User;
 import com.example.TeamMercuryCradlePlatform.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +17,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
+@SessionAttributes("user")
 public class AdminController {
+    @Autowired
     private UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public AdminController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -24,9 +32,19 @@ public class AdminController {
         return (List<User>) this.userRepository.findAll();
     }
 
-    @GetMapping("/registration")
-    public String register(){
-        return "admin/registration";
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public @ResponseBody ModelAndView registrationPage() {
+        return new ModelAndView("admin/registration");
+    }
+
+    @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String roles) {
+        User temp = new User(user);
+        temp.setRole(roles);
+        userRepository.save(temp);
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @GetMapping("/{id}/profile")

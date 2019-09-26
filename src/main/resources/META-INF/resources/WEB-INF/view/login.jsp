@@ -21,7 +21,7 @@
         <div class="card-block" style="padding: 24px;">
             <form method="POST" action="${pageContext.request.contextPath}/login" class="form-signin">
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username">ID:</label>
                     <input id="username" name="username" type="text" class="form-control" placeholder="Username" autofocus/>
 
                     <label for="password">Password:</label>
