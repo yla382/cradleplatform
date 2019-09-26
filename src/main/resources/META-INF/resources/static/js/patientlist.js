@@ -22,10 +22,10 @@ var txt = '{"patients":[' +
     '"uploadImages":true}]' +
     '}';
 patientsObjects = JSON.parse(txt);
-var patientsList = [];
+const patientlist = [];
 for (var i = 0; i < patientsObjects.patients.length; i++)
 {
-    patientsList[i] =
+    patientlist[i] =
         patientsObjects.patients[i].ageYears + " " + patientsObjects.patients[i].bpDiastolic;
 }
-document.getElementById("list-of-patients").innerHTML = patientsList.join('<br>');
+document.getElementById("list-of-patients").innerHTML = "test";//patientlist.join('<br>');

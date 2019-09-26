@@ -23,4 +23,11 @@ public class AppController {
         return "login";
     }
 
+
+    @GetMapping("/patientlist")
+    public String patientlist() {
+        return "patientlist";
+    }
+
+
 }

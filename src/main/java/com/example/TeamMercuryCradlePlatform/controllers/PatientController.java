@@ -38,4 +38,10 @@ public class PatientController {
     List<Patient> findAllPatientByFirstName(@PathVariable(value="firstName") String firstName){
         return patientRepository.findAllByFirstNameLike(firstName);
     }
+
+    @GetMapping(path="filter/{lastName}")
+    public @ResponseBody
+    List<Patient> findAllPatientByLastName(@PathVariable(value="lastName") String lastName){
+        return patientRepository.findAllByLastNameLike(lastName);
+    }
 }
