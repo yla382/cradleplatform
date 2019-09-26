@@ -1,7 +1,7 @@
-package com.example.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.controllers;
 
-import com.example.TeamMercuryCradlePlatform.Model.Reading;
-import com.example.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
+import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
+import com.mercury.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
