@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <meta charset="utf-8">
@@ -26,6 +26,7 @@
             <th scope="col">Last name</th>
             <th scope="col">E-mail</th>
             <th scope="col">Roles</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +37,18 @@
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
                 <td>${user.email}</td>
-                <td>${user.roles}</td>
+                <td>
+                    <c:forEach items="${user.roles}" var = "role">
+                        ${role}
+                    </c:forEach>
+                </td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/admin/users/${user.userId}" method="get">
+                        <button type="submit" class="btn btn-secondary">Edit</button>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </td>
+
             </tr>
         </c:forEach>
         </tbody>

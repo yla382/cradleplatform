@@ -26,7 +26,7 @@ public class DataInit implements CommandLineRunner {
     @Override
     public void run(String... args) {
         User admin = new User("1234", "John", "Lee", "ADMIN");
-        User vhc = new User("1234", "Yoon", "Lee", "VHC");
+        User vhc = new User("1234", "Yoon", "Lee", "VHT");
         User healthWorker = new User("1234", "Megan", "Fox", "HEALTHWORKER");
 
         List<User> users = Arrays.asList(admin, vhc, healthWorker);

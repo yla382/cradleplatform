@@ -115,5 +115,23 @@ public class User {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(password);
     }
+
+    public boolean isVHT(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("VHT"));
+    }
+
+    public boolean isHealthWorker(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("HEALTHWORKER"));
+    }
+
+    public boolean isAdmin(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("ADMIN"));
+    }
+
+    @Override
+    public String toString(){
+        return "Name: " + firstName + " " +  lastName + "\nEmail: " + email + "\nRoles:" + roles;
+    }
+
 }
 
