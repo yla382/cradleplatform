@@ -44,8 +44,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override //data-base authentication
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth    .authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(authenticationProvider());
     }
+
 
     @Override //HTTP authentication based on role
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -63,4 +64,5 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                 .permitAll();    }
+
 }
