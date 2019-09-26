@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Log in</title>
+    <title>Users</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -25,18 +25,17 @@
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">E-mail</th>
-            <th scope="col">Password</th>
             <th scope="col">Roles</th>
         </tr>
         </thead>
         <tbody>
+        <jsp:useBean id="users" scope="request" type="java.util.List"/>
         <c:forEach items="${users}" var = "user">
             <tr>
-                <th scope="row">${user.userId}</th>
+                <th>${user.userId}</th>
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
                 <td>${user.email}</td>
-                <td>${user.password}</td>
                 <td>${user.roles}</td>
             </tr>
         </c:forEach>
