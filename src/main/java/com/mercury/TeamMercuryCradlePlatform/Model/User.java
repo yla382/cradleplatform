@@ -28,10 +28,11 @@ public class User {
         this.email = user.email;
     }
 
-    public User(String password, String firstName, String lastName, String roles) {
+    public User(String password, String firstName, String lastName, String email, String roles) {
         this.password = encodePassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.roles = roles;
     }
 

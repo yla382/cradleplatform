@@ -61,10 +61,10 @@
                                             <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck2" value="HEALTHWORKER">
                                             <label class="form-check-label" for="inlineCheck2">Health Worker</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck3" value="ADMIN">
-                                            <label class="form-check-label" for="inlineCheck3">Admin</label>
-                                        </div>
+<%--                                        <div class="form-check form-check-inline">--%>
+<%--                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck3" value="ADMIN">--%>
+<%--                                            <label class="form-check-label" for="inlineCheck3">Admin</label>--%>
+<%--                                        </div>--%>
                                     </div>
                                 </div>
                                 <div class="col-md-6 offset-md-4">

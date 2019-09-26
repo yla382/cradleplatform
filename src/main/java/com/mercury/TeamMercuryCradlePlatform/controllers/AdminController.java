@@ -57,16 +57,19 @@ public class AdminController {
         return "profile";
     }
 
-    @RequestMapping(value = "/users", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView getAllUsers(User user){
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ModelAndView getAllUsers(){
 
-        if(user == null){
-            // just get
-        } else {
-            // post stuff
-        }
+        ModelAndView modelAndView = new ModelAndView("/admin/users");
+        modelAndView.addObject("users", this.userRepository.findAll());
+        return modelAndView;
+    }
 
-        System.out.println(user.toString());
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
+
+        user.setRole(roles);
+        this.userRepository.save(user);
         ModelAndView modelAndView = new ModelAndView("/admin/users");
         modelAndView.addObject("users", this.userRepository.findAll());
         return modelAndView;
@@ -78,17 +81,8 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView("/admin/editUser");
 
         User user = this.userRepository.findByUserId(id);
-        modelAndView.addObject("user", user);
+        modelAndView.addObject("postUser", user);
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/users/editUser", method = RequestMethod.POST)
-//    public ModelAndView saveUser(User user){
-//
-//        System.out.println(user.toString());
-//        System.out.println("password:" + user.getPassword());
-////        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-////        this.userRepository.save(user);
-//        return getAllUsers();
-//    }
 }

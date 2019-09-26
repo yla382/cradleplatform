@@ -40,6 +40,7 @@
                 <td>
                     <c:forEach items="${user.roles}" var = "role">
                         ${role}
+                        <br>
                     </c:forEach>
                 </td>
                 <td>
