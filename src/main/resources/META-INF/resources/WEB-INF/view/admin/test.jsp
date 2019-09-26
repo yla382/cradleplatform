@@ -1,3 +1,5 @@
+<%--THIS IS A TEST PAGE TO TEST AUTHENTICATION--%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,36 +12,19 @@
 
 <body>
 
-<%@ include file="navbar.jspf" %>
+<%@ include file="../navbar.jspf" %>
 
 <div class="container">
     <br>
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-user"></i> Please Login
+            <i class="fa fa-user"></i> Test Page
         </div>
         <div class="card-block" style="padding: 24px;">
-            <form method="POST" action="${pageContext.request.contextPath}/login" class="form-signin">
-                <div class="form-group">
-                    <label for="username">ID:</label>
-                    <input id="username" name="username" type="text" class="form-control" placeholder="Username" autofocus/>
-
-                    <label for="password">Password:</label>
-                    <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
-
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-                    <div class="form-actions" style="margin-top: 12px">
-                        <button class="btn btn-success" type="submit">Log In</button>
-                    </div>
-                </div>
-            </form>
-
+            <h1> You have authentication! </h1>
         </div>
     </div>
 </div>
-
-
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -25,9 +25,9 @@ public class DataInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User admin = new User(passwordEncoder.encode("1234"), "John", "Lee", "ADMIN");
-        User vhc = new User(passwordEncoder.encode("1234"), "Yoon", "Lee", "VHC");
-        User healthWorker = new User(passwordEncoder.encode("1234"), "Megan", "Fox", "HEALTHWORKER");
+        User admin = new User("1234", "John", "Lee", "ADMIN");
+        User vhc = new User("1234", "Yoon", "Lee", "VHC");
+        User healthWorker = new User("1234", "Megan", "Fox", "HEALTHWORKER");
 
         List<User> users = Arrays.asList(admin, vhc, healthWorker);
         userRepository.saveAll(users);

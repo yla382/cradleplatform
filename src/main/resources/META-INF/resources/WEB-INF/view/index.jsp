@@ -46,7 +46,7 @@
                         </div>
 
                         <button class="welcome-title-btn" type="button" onclick="window.location.href='/login'">Sign in</button>
-                        <button class="welcome-title-btn" type="button">Register</button>
+                        <button class="welcome-title-btn" type="button" onclick="window.location.href='/admin/registration'">Register</button>
 
                         <i class="welcome-arrow-d"></i>
                     </div>

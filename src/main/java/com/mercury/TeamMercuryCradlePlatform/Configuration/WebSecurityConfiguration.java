@@ -43,14 +43,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override //data-base authentication
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth    .authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(authenticationProvider());
     }
+
 
     @Override //HTTP authentication based on role
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
             .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/vhc/**").hasRole("VHC")
+                .antMatchers("/healthworker/**").hasRole("HEALTHWORKER")
                 .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHC")
                 .and()
             .formLogin()
@@ -60,4 +63,5 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                 .permitAll();    }
+
 }
