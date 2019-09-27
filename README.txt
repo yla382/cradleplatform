@@ -44,7 +44,6 @@ Educational Tools:
 DIRECTORY STRUCTURE ===
 ./
  |- .mvn/                       Build files
- |  |- 
  |- src/                        Source code
  |  |- main                     Main source code
  |  |  |- java                  Java source files
@@ -71,6 +70,13 @@ DEPENDENCIES ===
 
 BUILD/RUN INSTRUCTIONS ===
 
+If hosting MySQL on a remote server, edit the following values in
+[src/main/resources/application.properties] as necessary:
+
+spring.datasource.url=jdbc:mysql:[url:port/database]
+spring.datasource.username=[username]
+spring.datasource.password=[password]
+
 Change into cloned directory and run:
 --------------------------------------------------------------------------------
 
@@ -78,7 +84,7 @@ $ mvn package
 
 --------------------------------------------------------------------------------
 
-The .jar will be built to ./target/; to run from the cloned directory, run:
+The .jar will be built to [./target/]; to run from the cloned directory, run:
 --------------------------------------------------------------------------------
 
 $ java -jar ./target/TeamMercuryCradlePlatform-0.0.1-SNAPSHOT.jar
