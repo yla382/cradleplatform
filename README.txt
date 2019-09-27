@@ -47,8 +47,14 @@ DIRECTORY STRUCTURE ===
  |  |- 
  |- src/                        Source code
  |  |- main                     Main source code
- |  |  |- java
- |  |  |- 
+ |  |  |- java                  Java source files
+ |  |  |- resources             HTML/CSS/Javascript + other app resources
+ |  |     |- static
+ |  |     |  |- css             CSS files
+ |  |     |  |- images          Image resources
+ |  |     |  |- js              Javascript files
+ |  |     |- WEB-INF
+ |  |        |- view            JSP files
  |  |- test                     Unit tests
  |- LICENSE.txt                 Project license
  |- README.txt                  Project Readme (this file)
@@ -63,7 +69,21 @@ DEPENDENCIES ===
 - Maven 3+
 - MySQL
 
-BUILD INSTRUCTIONS ===
+BUILD/RUN INSTRUCTIONS ===
+
+Change into cloned directory and run:
+--------------------------------------------------------------------------------
+
+$ mvn package
+
+--------------------------------------------------------------------------------
+
+The .jar will be built to ./target/; to run from the cloned directory, run:
+--------------------------------------------------------------------------------
+
+$ java -jar ./target/TeamMercuryCradlePlatform-0.0.1-SNAPSHOT.jar
+
+--------------------------------------------------------------------------------
 
 LICENSE ===
 
