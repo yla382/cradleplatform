@@ -1,9 +1,11 @@
-package com.example.TeamMercuryCradlePlatform.Model;
+package com.mercury.TeamMercuryCradlePlatform.Model;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import java.util.List;
 import java.util.Set;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Patient {

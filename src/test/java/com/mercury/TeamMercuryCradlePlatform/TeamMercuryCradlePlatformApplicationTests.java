@@ -1,4 +1,4 @@
-package com.example.TeamMercuryCradlePlatform;
+package com.mercury.TeamMercuryCradlePlatform;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

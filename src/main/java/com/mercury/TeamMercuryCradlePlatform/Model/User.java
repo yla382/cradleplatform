@@ -1,4 +1,4 @@
-package com.example.TeamMercuryCradlePlatform.Model;
+package com.mercury.TeamMercuryCradlePlatform.Model;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -116,4 +116,3 @@ public class User {
         return bCryptPasswordEncoder.encode(password);
     }
 }
-
