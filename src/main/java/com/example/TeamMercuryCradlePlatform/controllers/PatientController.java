@@ -4,12 +4,14 @@ import com.example.TeamMercuryCradlePlatform.Model.Patient;
 import com.example.TeamMercuryCradlePlatform.Repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
+@Service
 @RequestMapping(path="/patient")
 public class PatientController {
     @Autowired
