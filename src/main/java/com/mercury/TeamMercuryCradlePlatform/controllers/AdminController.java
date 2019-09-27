@@ -1,8 +1,11 @@
 package com.mercury.TeamMercuryCradlePlatform.controllers;
 
+import com.mercury.TeamMercuryCradlePlatform.Model.EmailAdmin;
 import com.mercury.TeamMercuryCradlePlatform.Model.User;
 import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +24,11 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private EmailAdmin emailAdmin;
 
-    public AdminController(UserRepository userRepository) {
+    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin) {
         this.userRepository = userRepository;
+        this.emailAdmin = emailAdmin;
     }
 
     @GetMapping("/index")
@@ -42,6 +46,21 @@ public class AdminController {
         User temp = new User(user);
         temp.setRole(roles);
         userRepository.save(temp);
+
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        javaMailSender.setHost(this.emailAdmin.getEmailHost());
+        javaMailSender.setPort(this.emailAdmin.getPort());
+        javaMailSender.setUsername(this.emailAdmin.getUsername());
+        javaMailSender.setPassword(this.emailAdmin.getPassword());
+
+        SimpleMailMessage  simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom(this.emailAdmin.getUsername());
+        simpleMailMessage.setTo(temp.getEmail());
+        simpleMailMessage.setSubject("New Cradle account created");
+        simpleMailMessage.setText("Hello, " + temp.getFirstName() + " thank you for joining our organization" +
+                ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + temp.getPassword());
+
+        javaMailSender.send(simpleMailMessage);
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("user", user);
         return modelAndView;
