@@ -7,25 +7,38 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/patients">Patients</a>
+                <a class="nav-link" href="/login">Login</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/${pageContext.request.userPrincipal.name}/profile">Profile</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/patient">Patients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/${pageContext.request.userPrincipal.name}/profile">Profile</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="/logout">
-            <%
-                if (request.getRemoteUser()!= null) {%>
-            <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+            <%if (request.getRemoteUser()!= null) {%>
+                <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+            <%} else {%>
+                <button class="btn btn-success my-2 my-sm-0 btn-sm" type="button"
+                        onclick="window.location.href='/login'">Login</button>
             <%}%>
 
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
+        <script type="text/javascript">
+            // Add active class to current page
+            $(document).ready(function () {
+                var url = window.location.pathname;
+                $('ul.navbar-nav a[href="'+ url + '"]').parent().addClass('active');
+                $('ul.navbar-nav a').filter(function() {
+                    return this.href == url;
+                }).parent().addClass('active')
+            });
+        </script>
     </div>
 </nav>
+
