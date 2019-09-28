@@ -4,53 +4,75 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cradle Admin</title>
+    <!-- Native scripts -->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+
+    <!-- Imported scripts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
 <body>
 
-<!--NAVBAR-->
-    <div class="navbar-container">
-        <div class="navbar-title">
-            cradle
-        </div>
+<%@ include file="../navbar_admin.jspf" %>
 
-        <ul class="navbar">
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/index">ADMIN </a> </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">ABOUT US</a>
-            </li>
-            <li class="nav-item">
-               <form id="logout_form" method="post" action="/logout">
-                    <%
-                          if (request.getRemoteUser()!= null) {%>
-                              <a class="nav-out" href="#" onclick="document.getElementById('logout_form').submit()">LOGOUT</a>
-                           <%}%>
-
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                </form>
-            </li>
-        </ul>
-
-    </div>
-<!--END of NAVBAR-->
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
-    <br>
-    <br>
-    <br>
-    <div class="card">
-        <div class="card-header">
-            <i class="fa fa-user"></i> Test Page
+    <div class="card-deck">
+
+    <a href="${pageContext.request.contextPath}/patients/index" class="custom-card">
+      <div class="card bg-light">
+      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+        <div class="card-body text-center">
+          <p class="card-text">PATIENTS</p>
+          <a href="${pageContext.request.contextPath}/admin/index" class="stretched-link"></a>
         </div>
-        <div class="card-block" style="padding: 24px;">
-            <h1> You have authentication! </h1>
+      </div>
+
+      <a href="${pageContext.request.contextPath}/" class="custom-card">
+      <div class="card bg-warning text-white">
+      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+        <div class="card-body text-center">
+          <p class="card-text">MONTHLY REPORTS</p>
+          <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>
         </div>
+      </div>
+
+      <a href="${pageContext.request.contextPath}/" class="custom-card">
+      <div class="card bg-warning text-white">
+      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+        <div class="card-body text-center">
+          <p class="card-text">MIGRATE PATIENTS</p>
+          <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>
+        </div>
+      </div>
+
+      <a href="${pageContext.request.contextPath}/" class="custom-card">
+      <div class="card bg-info text-white">
+      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+        <div class="card-body text-center">
+          <p class="card-text">ADD USER</p>
+          <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>
+        </div>
+      </div>
+
+      <a href="${pageContext.request.contextPath}/" class="custom-card">
+      <div class="card bg-info text-white">
+      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+       <div class="card-body text-center">
+         <p class="card-text">ASSIGN ROLES</p>
+         <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>
+        </div>
+      </div>
     </div>
 </div>
 

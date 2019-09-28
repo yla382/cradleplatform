@@ -32,6 +32,10 @@ body {
     color: white;
 }
 
+.navbar-title:hover {
+    color: white;
+}
+
 .navbar li {
     display: inline;
 }
@@ -229,4 +233,9 @@ body {
 
 .vertical-translate {
     margin-bottom: -50%;
+}
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
 }
