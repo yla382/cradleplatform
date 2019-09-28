@@ -1,11 +1,10 @@
-package com.example.TeamMercuryCradlePlatform.Authentication;
+package com.mercury.TeamMercuryCradlePlatform.Authentication;
 
-import com.example.TeamMercuryCradlePlatform.Model.User;
-import com.example.TeamMercuryCradlePlatform.Repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.Model.User;
+import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +17,7 @@ public class UserLoginDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = this.userRepository.findByUserId(Integer.parseInt(s));
+        User user = this.userRepository.findByUserId(Integer.valueOf(s));
         UserLogin userLogin = new UserLogin(user);
 
         return userLogin;

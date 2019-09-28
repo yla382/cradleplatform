@@ -1,9 +1,9 @@
-package com.example.TeamMercuryCradlePlatform;
+package com.mercury.TeamMercuryCradlePlatform;
 
-import com.example.TeamMercuryCradlePlatform.Model.Patient;
-import com.example.TeamMercuryCradlePlatform.Model.User;
-import com.example.TeamMercuryCradlePlatform.Repository.PatientRepository;
-import com.example.TeamMercuryCradlePlatform.Repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.Model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.Model.User;
+import com.mercury.TeamMercuryCradlePlatform.Repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,9 +25,9 @@ public class DataInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User admin = new User("1234", "John", "Lee", "ADMIN");
-        User vhc = new User("1234", "Yoon", "Lee", "VHC");
-        User healthWorker = new User("1234", "Megan", "Fox", "HEALTHWORKER");
+        User admin = new User("1234", "John", "Lee", "test@test.com", "ADMIN");
+        User vhc = new User("1234", "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER");
+        User healthWorker = new User("1234", "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER");
 
         List<User> users = Arrays.asList(admin, vhc, healthWorker);
         userRepository.saveAll(users);

@@ -1,6 +1,5 @@
-package com.example.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.controllers;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;

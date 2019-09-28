@@ -1,7 +1,7 @@
-package com.example.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.controllers;
 
-import com.example.TeamMercuryCradlePlatform.Model.User;
-import com.example.TeamMercuryCradlePlatform.Repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.Model.User;
+import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -56,4 +56,32 @@ public class AdminController {
         model.addAttribute("Role", user.getRole());
         return "profile";
     }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ModelAndView getAllUsers(){
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+    }
+
+    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
+    public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
+
+        user.setRole(roles);
+        this.userRepository.save(user);
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+
+    }
+
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    public ModelAndView getUserWithId(@PathVariable int id){
+
+        User user = this.userRepository.findByUserId(id);
+        return new ModelAndView("/admin/editUser").addObject("postUser", user);
+    }
+
+    @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.POST)
+    public ModelAndView deleteUserWithId(@PathVariable int id){
+        this.userRepository.delete(this.userRepository.findByUserId(id));
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+    }
+
 }

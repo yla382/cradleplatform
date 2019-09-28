@@ -41,6 +41,7 @@
                                     <div class="col-md-6">
                                         <input type="text" id="password" class="form-control" name="password">
                                     </div>
+                                    <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </div>
 
                                 <div class="form-group row">
@@ -61,10 +62,10 @@
                                             <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck2" value="HEALTHWORKER">
                                             <label class="form-check-label" for="inlineCheck2">Health Worker</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck3" value="ADMIN">
-                                            <label class="form-check-label" for="inlineCheck3">Admin</label>
-                                        </div>
+<%--                                        <div class="form-check form-check-inline">--%>
+<%--                                            <input class="form-check-input" type="checkbox" name="roles" id="inlineCheck3" value="ADMIN">--%>
+<%--                                            <label class="form-check-label" for="inlineCheck3">Admin</label>--%>
+<%--                                        </div>--%>
                                     </div>
                                 </div>
                                 <div class="col-md-6 offset-md-4">
@@ -72,7 +73,6 @@
                                         Register
                                     </button>
                                 </div>
-                                <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
                         </div>
                     </div>
