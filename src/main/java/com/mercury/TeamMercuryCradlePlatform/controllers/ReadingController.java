@@ -2,6 +2,8 @@ package com.mercury.TeamMercuryCradlePlatform.controllers;
 
 import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
+import com.mercury.TeamMercuryCradlePlatform.Repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.Repository.ReadingRepository;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/reading")
 public class ReadingController {
+
+    private PatientRepository patientRepository;
+    private ReadingRepository readingRepository;
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView readingPage(){
@@ -55,9 +60,10 @@ public class ReadingController {
     }
 
     @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
-    public String readingAnalysisPage(@RequestParam(value = "") Reading reading) {
+    public String readingAnalysisPage(Reading reading) {
 
-        System.out.println("reading: " + reading);
+        reading.dateTimeTaken = ZonedDateTime.now();
+        System.out.println("reading: " + reading.dateTimeTaken);
         return "test";
 
     }

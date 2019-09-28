@@ -24,8 +24,12 @@
                             <input required type="text" class="form-control" id="patientId" name="patientId">
                         </div>
                         <div class="col">
-                            <label for="patientName">Initials</label>
-                            <input required type="text" class="form-control" id="patientName" name="patientName">
+                            <label for="firstName">First Name</label>
+                            <input required type="text" class="form-control" id="firstName" name="firstName">
+                        </div>
+                        <div class="col">
+                            <label for="lastName">Last Name</label>
+                            <input required type="text" class="form-control" id="lastName" name="lastName">
                         </div>
                         <div class="col">
                             <label for="ageYears">Age</label>

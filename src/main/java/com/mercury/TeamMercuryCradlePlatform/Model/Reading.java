@@ -66,7 +66,8 @@ public class Reading {
 
     // patient info
     @Transient public String patientId;
-    @Column(name = "patient_name") public String patientName;
+    @Column(name = "first_name") public String firstName;
+    @Column(name = "last_name") public String lastName;
     @Column(name = "age_years") public Integer ageYears;
     @Transient public List<String> symptoms = new ArrayList<>();
     @Column(name = "symptoms") String symptomsString = null;
@@ -122,7 +123,8 @@ public class Reading {
         // copy fields
         Reading r = Reading.makeNewReading(now);
         r.patientId = source.patientId;
-        r.patientName = source.patientName;
+        r.firstName = source.firstName;
+        r.lastName = source.lastName;
         r.ageYears = source.ageYears;
         r.symptoms = source.symptoms;
         r.symptoms.addAll(source.symptoms);
@@ -275,37 +277,8 @@ public class Reading {
         return description;
     }
 
-    // manual vitals edits
-    public void clearManualChangeOcrResultsFlags() {
-        manuallyChangeOcrResults = 0;
-    }
-    public void setAManualChangeOcrResultsFlags(int flagMask) {
-        manuallyChangeOcrResults |= flagMask;
-    }
-    public int getManualChangeOcrResults() {
-        return manuallyChangeOcrResults;
-    }
 
     // check for required data
-    public boolean isMissingRequiredData() {
-        boolean missing = false;
-        missing |= patientId == null;
-        missing |= patientName == null;
-        missing |= ageYears == null;
-        missing |= gestationalAgeUnit == null;
-        missing |= (gestationalAgeValue == null
-                && gestationalAgeUnit != GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE);
-        missing |= heartRateBPM == null;
-        missing |= bpDiastolic == null;
-        missing |= bpSystolic == null;
-        missing |= isMissingRequiredSymptoms();
-        return missing;
-    }
-
-    public boolean isMissingRequiredSymptoms() {
-        return symptoms.isEmpty() && !userHasSelectedNoSymptoms && dateLastSaved == null;
-    }
-
     public static class ComparatorByDateReverse implements Comparator <Reading>{
         @Override
         public int compare(Reading r1, Reading r2) {
@@ -333,8 +306,12 @@ public class Reading {
         return patientId;
     }
 
-    public String getPatientName() {
-        return patientName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Integer getAgeYears() {
@@ -363,10 +340,6 @@ public class Reading {
 
     public void setPatientId(String patientId) {
         this.patientId = patientId;
-    }
-
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
     }
 
     public void setAgeYears(Integer ageYears) {

@@ -12,11 +12,11 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer patientId;
-    private String country = null;
-    private String location = null;
     private String firstName = null;
     private String lastName = null;
-    private String trafficLight = null; //Green, Yellow, Red
+    private Integer ageYears = null;
+    private String country = null;
+    private String location = null;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private Set<Reading> readings;
@@ -49,10 +49,13 @@ public class Patient {
         return lastName;
     }
 
-    public String getTrafficLight() {
-        return trafficLight;
+    public Integer getAgeYears() {
+        return ageYears;
     }
 
+    public void setAgeYears(Integer ageYears) {
+        this.ageYears = ageYears;
+    }
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
@@ -74,10 +77,7 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public void setTrafficLight(String trafficLight) {
-        this.trafficLight = trafficLight;
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
     }
-
-
-
 }
