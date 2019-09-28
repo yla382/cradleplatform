@@ -5,47 +5,29 @@
     <title>Patients</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script ></script>
-    <style>
-        h1 {color: blue;}
-        .center {
-            text-align: center;
-        }
-
-        #patients td, #patients tr {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #patients td:hover {
-            background-color: #ddd;
-        }
-
-        #patients th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #1b56cc;
-            color: white;
-        }
-
-    </style>
 </head>
 <body>
 <%@ include file="../navbar.jspf" %>
 
 </body>
-
+    <main role="main" class="container">
+        <div>
+            <br>
+            <h1>List of Patients</h1>
+            <table id="patients" class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Diastolic</th>
+                    <th scope="col">Needs Followup</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </main>
 <body>
-<div class="center">
-<h1>List of Patients</h1>
-<table id="patients">
-    <tr>
-        <td> Name </td>
-        <td> Diastolic </td>
-        <td> Need Followup </td>
-    </tr>
-</table>
+
 <script>
     var txt = '{"patients":[' +
         '{"ageYears":22,"appVersion":"15 = Beta 0.015","bpDiastolic":99,"bpSystolic":141,' +
@@ -73,19 +55,24 @@
     patientsObjects = JSON.parse(txt);
 
     var table = document.getElementById("patients");
-    const attributeRowOffset = 1;
+    var attributeRowOffset = 1;
     for (var i = 0; i < patientsObjects.patients.length; i++)
     {
         var row = table.insertRow(i + attributeRowOffset);
-        var nameCell = row.insertCell(0);
-        var bpDiastolicCell = row.insertCell(1);
-        var isFlaggedForFollowupCell = row.insertCell(2);
+        var ptid = row.insertCell(0);
+        var nameCell = row.insertCell(1);
+        var bpDiastolicCell = row.insertCell(2);
+        var isFlaggedForFollowupCell = row.insertCell(3);
 
+        ptid.innerHTML = patientsObjects.patients[i].patientId;
         nameCell.innerHTML = patientsObjects.patients[i].patientName;
         bpDiastolicCell.innerHTML = patientsObjects.patients[i].bpDiastolic;
         isFlaggedForFollowupCell.innerHTML = patientsObjects.patients[i].isFlaggedForFollowup;
     }
 </script>
-</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>
