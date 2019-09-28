@@ -21,7 +21,7 @@ public class User {
 
     public User(User user) {
         this.userId = user.userId;
-        this.password = encodePassword(user.password);
+        this.password = user.password;
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.roles = user.roles;
