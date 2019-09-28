@@ -87,18 +87,18 @@
         </div>
 
         <!-- Description of followup care needed -->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <ol type="1">
-                    <li>
-                        <input class="form-control" type="text">
-                    </li>
-                    <li>
-                        <input class="form-control" type="text">
-                    </li>
-                </ol>
-            </div>
+        <div class="form-group">
+            <div class="col-sm-4">Description of follow-up care needed</div>
+            <ol type = "1">
+                <li>
+                    <input class="form-control" type="text">
+                </li>
+                <li>
+                    <input class="form-control" type="text">
+                </li>
+            </ol>
         </div>
+
 
         <!-- Diagnosis -->
         <div class="form-group">
@@ -107,42 +107,74 @@
         </div>
 
         <!-- Blood Pressure -->
+        <div class="form-row">
+            <div class="col-sm-2">Blood Pressure</div>
+                <input type="number", name="systolicBloodPressure", min="1", max="300"> /
+                <input type="number", name="diastolicBloodPressure", min="1", max="300">
+        </div>
 
         <!-- Heart Rate -->
-        <!-- Date when the patient should return -->
-        <!-- Name of Health Worker -->
-        <div class="form-group row">
-            <div class="col-sm-2">Checkbox</div>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                    <label class="form-check-label" for="gridCheck1">
-                        Example checkbox
-                    </label>
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col-sm-2">Heart Rate</div>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridHeartRate" id="gridHeartRate1" value="option1" checked>
+                        <label class="form-check-label" for="gridHeartRate1">
+                            <p class="text-success">Green</p>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridHeartRate" id="gridHeartRate2" value="option2">
+                        <label class="form-check-label" for="gridHeartRate2">
+                            <p class="text-warning">Yellow &#8593</p>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridHeartRate" id="gridHeartRate3" value="option3">
+                        <label class="form-check-label" for="gridHeartRate3">
+                            <p class="text-warning">Yellow &#8595</p>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridHeartRate" id="gridHeartRate4" value="option4">
+                        <label class="form-check-label" for="gridHeartRate4">
+                            <p class="text-danger">Red &#8593</p>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridHeartRate" id="gridHeartRate5" value="option5">
+                        <label class="form-check-label" for="gridHeartRate5">
+                            <p class="text-danger">Red &#8595</p>
+                        </label>
+                    </div>
                 </div>
+
+            </div>
+        </fieldset>
+
+        <!-- Date when the patient should return -->
+        <div class="form-group row">
+            <label for="example-date-input" class="col-2 col-form-label">Date</label>
+            <div class="col-10">
+                <input class="form-control" type="date" id="example-date-input">
+            </div>
+        </div>
+
+        <!-- Name of Health Worker -->
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputNameHealthWorker">Name of the health worker</label>
+                <input type="text" class="form-control" id="inputNameHealthWorker">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputHealthWorkerSignature">Signature</label>
+                <input type="text" class="form-control" id="inputHealthWorkerSignature">
             </div>
         </div>
 
 
-
-        <button type="button" onclick="saveButton()"> Save </button>
-
     </form>
 </body>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<script>
-
-
-    // TODO: implement save when database is done
-    function saveButton() {
-
-    }
-
-</script>
 
 </html>
