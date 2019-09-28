@@ -19,7 +19,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">HOME </a> </li>
             <li class="nav-item">
-                <a class="nav-link" href="/patients">PATIENTS</a> </li>
+                <a class="nav-link" href="/patient/patientlist">PATIENTS</a> </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/index">ADMIN </a> </li>
             <li class="nav-item">

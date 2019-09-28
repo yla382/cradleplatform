@@ -24,10 +24,6 @@ public class AppController {
     }
 
 
-    @GetMapping("/patientlist")
-    public String patientlist() {
-        return "patientlist";
-    }
 
 
 }

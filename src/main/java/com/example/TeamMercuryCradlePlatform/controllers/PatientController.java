@@ -15,6 +15,11 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
+    @GetMapping("/patientlist")
+    public String patientlist() {
+        return "patient/patientlist";
+    }
+
     @PostMapping(path="/add")
     public @ResponseBody
     String addNewPatient (@RequestParam String firstName,

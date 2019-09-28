@@ -13,7 +13,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/patientlist">Patients</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/patients/patientlist">Patients</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="${pageContext.request.contextPath}/${pageContext.request.userPrincipal.name}/profile">Profile</a>

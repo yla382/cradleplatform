@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-<%@ include file="navbar.jspf" %>
+<%@ include file="../navbar.jspf" %>
 
 </body>
 
