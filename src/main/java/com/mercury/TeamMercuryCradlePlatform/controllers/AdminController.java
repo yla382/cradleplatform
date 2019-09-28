@@ -43,7 +43,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String roles) {
+    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password, @RequestParam String roles) {
         User temp = new User(user);
         temp.setRole(roles);
         userRepository.save(temp);
@@ -62,7 +62,7 @@ public class AdminController {
         simpleMailMessage.setTo(temp.getEmail());
         simpleMailMessage.setSubject("New Cradle account created");
         simpleMailMessage.setText("Hello, " + temp.getFirstName() + " thank you for joining our organization" +
-                ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + temp.getPassword());
+                ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + password);
 
         javaMailSender.send(simpleMailMessage);
         ModelAndView modelAndView = new ModelAndView("index");
