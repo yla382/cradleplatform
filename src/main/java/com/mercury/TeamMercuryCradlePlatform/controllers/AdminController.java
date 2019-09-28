@@ -59,30 +59,29 @@ public class AdminController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getAllUsers(){
-
-        ModelAndView modelAndView = new ModelAndView("/admin/users");
-        modelAndView.addObject("users", this.userRepository.findAll());
-        return modelAndView;
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
     public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
 
         user.setRole(roles);
         this.userRepository.save(user);
-        ModelAndView modelAndView = new ModelAndView("/admin/users");
-        modelAndView.addObject("users", this.userRepository.findAll());
-        return modelAndView;
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ModelAndView getUserWithId(@PathVariable int id){
 
-        ModelAndView modelAndView = new ModelAndView("/admin/editUser");
-
         User user = this.userRepository.findByUserId(id);
-        modelAndView.addObject("postUser", user);
-        return modelAndView;
+        return new ModelAndView("/admin/editUser").addObject("postUser", user);
+    }
+
+    @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.POST)
+    public ModelAndView deleteUserWithId(@PathVariable int id){
+        this.userRepository.delete(this.userRepository.findByUserId(id));
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
 }

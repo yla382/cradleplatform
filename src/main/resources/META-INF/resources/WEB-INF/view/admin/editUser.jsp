@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header">Edit User</div>
                 <div class="card-body">
-                    <form action="${pageContext.request.contextPath}/admin/users" method = "post">
+                    <form id="editForm" action="${pageContext.request.contextPath}/admin/users/edit" method = "post">
                         <label>
                             <input hidden required type="text" name="userId" value="<%=postUser.getUserId()%>">
                         </label>
@@ -91,19 +91,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" onclick="return rolesCheckbox()" class="btn btn-primary">
+                        <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                    <div class="row col-md-6 offset-md-4">
+                        <div class="col mr-2">
+                            <form id="deleteForm" action="${pageContext.request.contextPath}/admin/users/delete/<%=postUser.getUserId()%>" method = "post">
+                                <button type="submit" form="deleteForm" onclick="return deleteAlertBox()" class="btn btn-danger">
+                                    Delete
+                                </button>
+                                <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </form>
+                        </div>
+                        <div class="col ml-2">
+                            <button type="submit" form="editForm" onclick="return rolesCheckbox()" class="btn btn-primary">
                                 Save
                             </button>
                         </div>
-                        <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -120,12 +130,16 @@
                 isChecked = true;
             }
         }
-        if ( isChecked ) {
+        if (isChecked) {
             return true
         } else {
-            alert( 'Select at least one role' );
+            alert('Please select at least one role');
             return false;
         }
+    }
+
+    function deleteAlertBox() {
+        return confirm("Are you sure you want to delete this user?");
     }
 
 </script>

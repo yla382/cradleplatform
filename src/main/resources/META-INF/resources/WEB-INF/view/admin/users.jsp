@@ -1,8 +1,14 @@
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.Model.User" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
+
+<%
+    List<User> userList = (List<User>) request.getAttribute("users");
+%>
 
 <head>
     <meta charset="utf-8">
@@ -30,8 +36,7 @@
         </tr>
         </thead>
         <tbody>
-        <jsp:useBean id="users" scope="request" type="java.util.List"/>
-        <c:forEach items="${users}" var = "user">
+        <c:forEach items="<%=userList%>" var = "user">
             <tr>
                 <th>${user.userId}</th>
                 <td>${user.firstName}</td>
