@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Properties;
 
 @Controller
 @RequestMapping("/admin")
@@ -52,6 +53,9 @@ public class AdminController {
         javaMailSender.setPort(this.emailAdmin.getPort());
         javaMailSender.setUsername(this.emailAdmin.getUsername());
         javaMailSender.setPassword(this.emailAdmin.getPassword());
+
+        Properties properties = javaMailSender.getJavaMailProperties();
+        properties.put("mail.smtp.starttls.enable", "true");
 
         SimpleMailMessage  simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(this.emailAdmin.getUsername());
