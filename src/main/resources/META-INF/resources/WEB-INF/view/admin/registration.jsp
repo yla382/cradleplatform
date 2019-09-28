@@ -41,6 +41,7 @@
                                     <div class="col-md-6">
                                         <input type="text" id="password" class="form-control" name="password">
                                     </div>
+                                    <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </div>
 
                                 <div class="form-group row">
@@ -72,7 +73,6 @@
                                         Register
                                     </button>
                                 </div>
-                                <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
                         </div>
                     </div>
