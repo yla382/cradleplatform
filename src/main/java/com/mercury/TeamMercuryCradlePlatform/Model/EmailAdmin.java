@@ -5,16 +5,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EmailAdmin {
-    @Value("${spring.mail.host}")
+    @Value("${spring.mail.host}") //Retrieved from application.properties
     private String emailHost;
 
-    @Value("${spring.mail.port}")
+    @Value("${spring.mail.port}") //Retrieved from application.properties
     private int port;
 
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.username}") //Retrieved from application.properties
     private String username;
 
-    @Value("${spring.mail.password}")
+    @Value("${spring.mail.password}") //Retrieved from application.properties
     private String password;
 
     public String getEmailHost() {
