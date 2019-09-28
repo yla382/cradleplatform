@@ -9,5 +9,4 @@ public class TeamMercuryCradlePlatformApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TeamMercuryCradlePlatformApplication.class, args);
 	}
-
 }
