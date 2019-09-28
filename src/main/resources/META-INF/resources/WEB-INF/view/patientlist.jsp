@@ -6,6 +6,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script ></script>
+    <style>
+        h1 {color: blue;}
+        .center {
+            text-align: center;
+        }
+
+        #patients td, #patients tr {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #patients td:hover {
+            background-color: #ddd;
+        }
+
+        #patients th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1b56cc;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 <%@ include file="navbar.jspf" %>
@@ -13,8 +37,15 @@
 </body>
 
 <body>
+<div class="center">
 <h1>List of Patients</h1>
-<p id="list-of-patients"></p>
+<table id="patients">
+    <tr>
+        <td> Name </td>
+        <td> Diastolic </td>
+        <td> Need Followup </td>
+    </tr>
+</table>
 <script>
     var txt = '{"patients":[' +
         '{"ageYears":22,"appVersion":"15 = Beta 0.015","bpDiastolic":99,"bpSystolic":141,' +
@@ -40,13 +71,21 @@
         '"uploadImages":true}]' +
         '}';
     patientsObjects = JSON.parse(txt);
-    const patientlist = [];
+
+    var table = document.getElementById("patients");
+    const attributeRowOffset = 1;
     for (var i = 0; i < patientsObjects.patients.length; i++)
     {
-        patientlist[i] =
-            patientsObjects.patients[i].patientName + " " + patientsObjects.patients[i].bpDiastolic;
+        var row = table.insertRow(i + attributeRowOffset);
+        var nameCell = row.insertCell(0);
+        var bpDiastolicCell = row.insertCell(1);
+        var isFlaggedForFollowupCell = row.insertCell(2);
+
+        nameCell.innerHTML = patientsObjects.patients[i].patientName;
+        bpDiastolicCell.innerHTML = patientsObjects.patients[i].bpDiastolic;
+        isFlaggedForFollowupCell.innerHTML = patientsObjects.patients[i].isFlaggedForFollowup;
     }
-    document.getElementById("list-of-patients").innerHTML = patientlist.join('<br>');
 </script>
+</div>
 </body>
 </html>
