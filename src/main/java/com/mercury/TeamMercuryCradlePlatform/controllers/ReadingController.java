@@ -16,15 +16,16 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/reading")
 public class ReadingController {
 
-    @RequestMapping(value = "/reading", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView readingPage(){
-        return new ModelAndView("/reading");
+        return new ModelAndView("/reading/create");
     }
 
 
-    @RequestMapping(value = "/submitReading", method = RequestMethod.POST)
+    @RequestMapping(value = "/analysis", method = RequestMethod.POST)
     public @ResponseBody ModelAndView readingAnalysisPage(
             Reading reading,
             @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
@@ -42,7 +43,7 @@ public class ReadingController {
 
         ReadingAnalysis analysis = ReadingAnalysis.analyze(reading);
 
-        ModelAndView modelAndView = new ModelAndView("/addReading");
+        ModelAndView modelAndView = new ModelAndView("/reading/analysis");
 
         modelAndView.addObject("reading", reading);
         modelAndView.addObject("analysis", analysis);
@@ -52,6 +53,15 @@ public class ReadingController {
         return modelAndView;
 
     }
+
+    @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
+    public String readingAnalysisPage(@RequestParam(value = "") Reading reading) {
+
+        System.out.println("reading: " + reading);
+        return "test";
+
+    }
+
 
     private String getTrafficLightImg(ReadingAnalysis readingAnalysis){
 

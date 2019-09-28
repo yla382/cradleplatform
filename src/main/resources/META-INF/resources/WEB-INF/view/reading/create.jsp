@@ -12,11 +12,11 @@
 </head>
     <body>
 
-        <%@ include file="navbar.jspf" %>
+        <%@ include file="../navbar.jspf" %>
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="container w-100" style="padding: 10px">
-            <form action="${pageContext.request.contextPath}/submitReading" method="post">
+            <form action="${pageContext.request.contextPath}/reading/analysis" method="post">
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
@@ -109,15 +109,15 @@
         }, false);
 
         function healthChange() {
-            var e = document.getElementById("health");
-            var strUser = e.options[e.selectedIndex].value;
+            const e = document.getElementById("health");
+            const strUser = e.options[e.selectedIndex].value;
             document.getElementById("symptomsSelector").disabled = strUser === "2";
             document.getElementById("otherSymptoms").disabled = strUser === "2";
         }
 
         function gestationalAgeUnitChange() {
-            var e = document.getElementById("gestationalAgeUnit");
-            var strUser = e.options[e.selectedIndex].value;
+            const e = document.getElementById("gestationalAgeUnit");
+            const strUser = e.options[e.selectedIndex].value;
             document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
         }
 

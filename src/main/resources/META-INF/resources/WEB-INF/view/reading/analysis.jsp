@@ -19,7 +19,7 @@
 
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-        <%@ include file="navbar.jspf" %>
+        <%@ include file="../navbar.jspf" %>
         <div class="container w-100">
 
             <h2> <%= reading.patientName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
@@ -73,7 +73,11 @@
             <p> Follow-up <%= reading.isFlaggedForFollowup()? "recommended" : "not recommended"%></p>
 
             <button type="button" onclick="editButton()"> Edit </button>
-            <button type="button" onclick="saveButton()"> Save </button>
+            <form action="${pageContext.request.contextPath}/reading/analysis/save" method="post">
+                <button type="submit"> Save </button>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+            </form>
         </div>
     </body>
 
@@ -87,11 +91,6 @@
 
         function editButton() {
             window.history.back();
-        }
-
-        // TODO: implement save when database is done
-        function saveButton() {
-
         }
 
     </script>
