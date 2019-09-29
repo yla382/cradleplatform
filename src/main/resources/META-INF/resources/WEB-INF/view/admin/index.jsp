@@ -1,5 +1,3 @@
-<%--THIS IS A TEST PAGE TO TEST AUTHENTICATION--%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,12 +46,12 @@
         </div>
       </div>
 
-      <a href="${pageContext.request.contextPath}/vht/migration" class="custom-card">
+      <a href="${pageContext.request.contextPath}/vht/allocation" class="custom-card">
       <div class="card bg-warning text-white">
       <img class="card-img-top" src="../images/migration.jpg" width="196" height="131" alt="Card migration">
         <div class="card-body text-center">
-          <p class="card-text">MIGRATE PATIENTS</p>
-          <a href="${pageContext.request.contextPath}/vht/migration" class="stretched-link"></a>
+          <p class="card-text">ALLOCATE PATIENTS</p>
+          <a href="${pageContext.request.contextPath}/vht/allocation" class="stretched-link"></a>
         </div>
       </div>
 

@@ -10,9 +10,9 @@ import java.util.List;
 @Controller
 public class VHTController {
 
-    @GetMapping("/vht/migration")
+    @GetMapping("/vht/allocation")
     public String migration() {
-        return "vht/migration";
+        return "vht/allocation";
     }
 
     @GetMapping("/vht/report")

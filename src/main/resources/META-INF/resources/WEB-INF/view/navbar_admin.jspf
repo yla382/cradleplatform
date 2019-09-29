@@ -15,7 +15,7 @@
               <span class="nav-link">VHT</span>
               <div class="dropdown-content">
                  <a class="nav-link" href="${pageContext.request.contextPath}/vht/report">VIEW REPORTS</a>
-                 <a class="nav-link" href="${pageContext.request.contextPath}/vht/migration">MIGRATE PATIENTS</a>
+                 <a class="nav-link" href="${pageContext.request.contextPath}/vht/allocation">ALLOCATE PATIENTS</a>
               </div>
             </div>
             </li>
