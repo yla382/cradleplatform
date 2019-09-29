@@ -17,7 +17,7 @@
 
 <body>
 
-<%@ include file="../navbar_admin.jspf" %>
+<%@ include file="../navbar.jspf" %>
 
 <br>
 <br>
@@ -28,12 +28,12 @@
 <div class="container">
     <div class="card-deck">
 
-    <a href="${pageContext.request.contextPath}/patients/index" class="custom-card">
+    <a href="${pageContext.request.contextPath}/patient/patientlist" class="custom-card">
       <div class="card bg-light">
       <img class="card-img-top" src="../images/patient.jpg" width="196" height="131" alt="Card patient">
         <div class="card-body text-center">
           <p class="card-text">PATIENTS</p>
-          <a href="${pageContext.request.contextPath}/patients/index" class="stretched-link"></a>
+          <a href="${pageContext.request.contextPath}/patient/patientlist" class="stretched-link"></a>
         </div>
       </div>
 
