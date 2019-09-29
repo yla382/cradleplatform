@@ -59,10 +59,9 @@ public class ReadingController {
     }
 
     @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
-    public String readingAnalysisPage(Reading reading) {
+    public ModelAndView readingAnalysisPage(Reading reading) {
 
         reading.dateTimeTaken = ZonedDateTime.now();
-        //Patient patient = new Patient();
         Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
 
         if(patient != null){
@@ -74,7 +73,7 @@ public class ReadingController {
             readingRepository.save(reading);
         }
 
-        return "test";
+        return new ModelAndView("/reading/saved");
 
     }
 
