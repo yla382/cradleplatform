@@ -1,4 +1,4 @@
-package com.mercury.TeamMercuryCradlePlatform.Model;
+package com.mercury.TeamMercuryCradlePlatform.model;
 
 import javax.persistence.*;
 import javax.persistence.Entity;

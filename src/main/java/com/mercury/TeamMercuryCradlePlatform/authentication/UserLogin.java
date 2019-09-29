@@ -1,6 +1,6 @@
-package com.mercury.TeamMercuryCradlePlatform.Authentication;
+package com.mercury.TeamMercuryCradlePlatform.authentication;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.User;
+import com.mercury.TeamMercuryCradlePlatform.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

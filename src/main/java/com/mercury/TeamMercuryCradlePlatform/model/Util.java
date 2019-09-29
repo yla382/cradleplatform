@@ -1,4 +1,4 @@
-package com.mercury.TeamMercuryCradlePlatform.Model;
+package com.mercury.TeamMercuryCradlePlatform.model;
 
 import java.io.File;
 import java.util.List;

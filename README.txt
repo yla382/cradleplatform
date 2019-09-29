@@ -80,7 +80,7 @@ spring.datasource.password=[password]
 Change into cloned directory and run:
 --------------------------------------------------------------------------------
 
-$ mvn package
+$ ./mvnw package
 
 --------------------------------------------------------------------------------
 
