@@ -1,13 +1,16 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
 import com.mercury.TeamMercuryCradlePlatform.Model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.Model.User;
 import com.mercury.TeamMercuryCradlePlatform.Repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.Repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,11 +19,13 @@ public class DataInit implements CommandLineRunner {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private PatientRepository patientRepository;
+    private ReadingRepository readingRepository;
 
-    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository) {
+    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
+        this.readingRepository = readingRepository;
     }
 
     @Override
@@ -32,8 +37,18 @@ public class DataInit implements CommandLineRunner {
         List<User> users = Arrays.asList(admin, vhc, healthWorker);
         userRepository.saveAll(users);
 
-        Patient A = new Patient("A", "B");
-        Patient B = new Patient("C", "D");
-        Patient c = new Patient("E", "F");
+        Patient patient1 = new Patient("A", "B", 20);
+        Patient patient2 = new Patient("C", "D", 21);
+        Patient patient3 = new Patient("E", "F", 22);
+
+        Reading reading = new Reading
+                ("A", "B", 20, "Healthy",
+                        Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "0",
+                        90, 60 ,60, ZonedDateTime.now());
+        Patient patientWithReading = new Patient(reading);
+
+        patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3, patientWithReading));
+        //reading.patientId = patientWithReading.getPatientId();
+        readingRepository.save(reading);
     }
 }

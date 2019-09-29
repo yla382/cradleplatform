@@ -1,5 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.Model;
 
+import org.hibernate.engine.internal.Cascade;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
@@ -60,12 +61,19 @@ public class Reading {
     @Column(name = "reading_id") public Long readingId;
     public ZonedDateTime dateLastSaved;
 
-    @ManyToOne
-    @JoinColumn(name = "patient_Id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "patient_Id", referencedColumnName = "patient_Id")
     private Patient patient;
 
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
     // patient info
-    @Transient public String patientId;
     @Column(name = "first_name") public String firstName;
     @Column(name = "last_name") public String lastName;
     @Column(name = "age_years") public Integer ageYears;
@@ -112,6 +120,32 @@ public class Reading {
         // for JSON only
     }
 
+    public Reading(Reading reading){
+        this.firstName = reading.firstName;
+        this.lastName = reading.lastName;
+        this.ageYears = reading.ageYears;
+        this.symptomsString = reading.symptomsString;
+        this.gestationalAgeUnit = reading.gestationalAgeUnit;
+        this.gestationalAgeValue = reading.gestationalAgeValue;
+        this.bpSystolic = reading.bpSystolic;
+        this.bpDiastolic = reading.bpDiastolic;
+        this.heartRateBPM = reading.heartRateBPM;
+        this.dateTimeTaken = reading.dateTimeTaken;
+    }
+
+    public Reading(String firstName, String lastName, Integer ageYears, String symptomsString, GestationalAgeUnit gestationalAgeUnit, String gestationalAgeValue, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM, ZonedDateTime dateTimeTaken) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ageYears = ageYears;
+        this.symptomsString = symptomsString;
+        this.gestationalAgeUnit = gestationalAgeUnit;
+        this.gestationalAgeValue = gestationalAgeValue;
+        this.bpSystolic = bpSystolic;
+        this.bpDiastolic = bpDiastolic;
+        this.heartRateBPM = heartRateBPM;
+        this.dateTimeTaken = dateTimeTaken;
+    }
+
     public static Reading makeNewReading(ZonedDateTime now) {
         // setup basic info
         Reading r = new Reading();
@@ -122,7 +156,7 @@ public class Reading {
     public static Reading makeToConfirmReading(Reading source, ZonedDateTime now) {
         // copy fields
         Reading r = Reading.makeNewReading(now);
-        r.patientId = source.patientId;
+//        r.patientId = source.patientId;
         r.firstName = source.firstName;
         r.lastName = source.lastName;
         r.ageYears = source.ageYears;
@@ -302,9 +336,9 @@ public class Reading {
         temporaryFlags = 0;
     }
 
-    public String getPatientId() {
-        return patientId;
-    }
+//    public Integer getPatientId() {
+//        return patientId;
+//    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -338,9 +372,9 @@ public class Reading {
         return heartRateBPM;
     }
 
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
-    }
+//    public void setPatientId(Integer patientId) {
+//        this.patientId = patientId;
+//    }
 
     public void setAgeYears(Integer ageYears) {
         this.ageYears = ageYears;

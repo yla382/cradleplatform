@@ -1,5 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.controllers;
 
+import com.mercury.TeamMercuryCradlePlatform.Model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
 import com.mercury.TeamMercuryCradlePlatform.Repository.PatientRepository;
@@ -23,6 +24,11 @@ public class ReadingController {
 
     private PatientRepository patientRepository;
     private ReadingRepository readingRepository;
+
+    ReadingController(PatientRepository patientRepository, ReadingRepository readingRepository){
+        this.patientRepository = patientRepository;
+        this.readingRepository = readingRepository;
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView readingPage(){
@@ -63,11 +69,32 @@ public class ReadingController {
     public String readingAnalysisPage(Reading reading) {
 
         reading.dateTimeTaken = ZonedDateTime.now();
-        System.out.println("reading: " + reading.dateTimeTaken);
+        //Patient patient = new Patient();
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
+        reading.setPatient(patient);
+        readingRepository.save(reading);
+
+
+        // If a patient exists with the same first name, last name and age, add reading to that patient
+//        if(patientRepository.existsByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears)){
+//            //Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
+//            //patient.addReading(reading);
+//            //patientRepository.save(patient);
+//            readingRepository.save(reading);
+//        }
+//        // If patient doesnt exist create new patient;
+//        else{
+//            Patient patient = new Patient(reading);
+//            patientRepository.save(patient);
+////            Patient p = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
+////            reading.patientId = p.getPatientId();
+////            System.out.println(p.getPatientId());
+////            readingRepository.save(reading);
+//        }
+//        System.out.println("reading: " + reading.dateTimeTaken);
         return "test";
 
     }
-
 
     private String getTrafficLightImg(ReadingAnalysis readingAnalysis){
 

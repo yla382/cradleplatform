@@ -23,7 +23,7 @@
         <div class="container w-100">
 
             <h2> <%= reading.firstName + " " + reading.lastName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
-            <p>  <%= reading.patientId%></p>
+            <p>  <%= reading.readingId%></p>
             <p> <%= reading.getSymptomsString()%></p>
             <h2> <%= reading.getGestationTimeInAmPm() + ": " + analysis.getAnalysisText()%></h2>
 
@@ -74,7 +74,6 @@
 
             <button type="button" onclick="editButton()"> Edit </button>
             <form action="${pageContext.request.contextPath}/reading/analysis/save" method="post">
-                <input type="hidden" name="patientId" value="<%=reading.patientId%>"/>
                 <input type="hidden" name="firstName" value="<%=reading.firstName%>"/>
                 <input type="hidden" name="lastName" value="<%=reading.lastName%>"/>
                 <input type="hidden" name="ageYears" value="<%=reading.ageYears%>"/>
