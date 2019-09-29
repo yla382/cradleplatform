@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<s:global-method-security pre-post-annotations="enabled"/>
 <html lang="en">
 <head>
     <meta charset="utf-8">

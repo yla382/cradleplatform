@@ -69,16 +69,6 @@ public class AdminController {
         return modelAndView;
     }
 
-    @GetMapping("/{id}/profile")
-    public String getUserInfo(@PathVariable("id") Integer id, Model model) {
-        User user = userRepository.findByUserId(id);
-        model.addAttribute("UserId", id);
-        model.addAttribute("FirstName", user.getFirstName());
-        model.addAttribute("LastName", user.getLastName());
-        model.addAttribute("Role", user.getRole());
-        return "profile";
-    }
-
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getAllUsers(){
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
