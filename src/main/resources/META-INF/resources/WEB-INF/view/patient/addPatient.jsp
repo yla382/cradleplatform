@@ -32,16 +32,25 @@
         <div class="container w-100" style="padding: 10px">
             <div class="form-group">
                 <label for="firstName">First name: </label>
-                <input type="text" class="form-control" id="firstName"><br>
+                <input type="text" class="form-control" id="firstName" name="firstName"><br>
             </div>
             <div class="form-group">
                 <label for="lastName">Last name: </label>
-                <input type="text" class="form-control" id="lastName"><br>
+                <input type="text" class="form-control" id="lastName" name="lastName"><br>
+            </div>
+            <div class="form-group">
+                <label for="country">Country: </label>
+                <input type="text" class="form-control" id="country" name="country"><br>
+            </div>
+            <div class="form-group">
+                <label for="location">Location: </label>
+                <input type="text" class="form-control" id="location" name="location"><br>
             </div>
             <button type="submit" value="Submit"> Create </button>
             <p id="status"></p>
             <p id="patientInfo"></p>
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 </body>
 

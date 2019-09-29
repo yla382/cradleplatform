@@ -31,8 +31,9 @@ public class PatientController {
         return new ModelAndView("/patient/addPatient");
     }
 
+
     @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView patientAnalysisPage(Patient patient) {
+    public @ResponseBody ModelAndView confirmPatientPage(Patient patient) {
 
         ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
         modelAndView.addObject("patient", patient);
