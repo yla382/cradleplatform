@@ -17,12 +17,15 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
-    @RequestMapping(value = "/patientlist", method = RequestMethod.GET)
-    public ModelAndView patientlistPage(){
-        Iterable<Patient> patientlist = patientRepository.findAll();
-        ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
-        modelAndView.addObject("patient", patientlist);
+    public PatientController(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
 
+    @RequestMapping(value = "/patientlist", method = RequestMethod.GET)
+    public ModelAndView patientlistPage() {
+        List<Patient> patientlist = this.patientRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
+        modelAndView.addObject("patientList", patientlist);
         return modelAndView;
     }
 
