@@ -1,12 +1,12 @@
-package com.example.TeamMercuryCradlePlatform.Configuration;
+package com.mercury.TeamMercuryCradlePlatform.Configuration;
 
-import com.example.TeamMercuryCradlePlatform.Authentication.UserLoginDetailsService;
+import com.mercury.TeamMercuryCradlePlatform.Authentication.UserLoginDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserLoginDetailsService userLoginDetailsService;
@@ -44,16 +45,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override //data-base authentication
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth    .authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(authenticationProvider());
     }
+
 
     @Override //HTTP authentication based on role
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
             .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/vht/**").hasRole("ADMIN")
-                .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHC")
+                .antMatchers("/vht/**").hasRole("VHT")
+                .antMatchers("/healthworker/**").hasRole("HEALTHWORKER")
+                .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHT")
                 .and()
             .formLogin()
                 .loginPage("/login")
@@ -61,5 +64,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-                .permitAll();    }
+                .permitAll();
+    }
+
 }

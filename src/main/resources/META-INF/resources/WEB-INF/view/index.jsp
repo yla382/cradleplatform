@@ -19,7 +19,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">HOME </a> </li>
             <li class="nav-item">
-                <a class="nav-link" href=#>PAGE </a> </li>
+                <a class="nav-link" href="/patient/patientlist">PATIENTS</a> </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/index">ADMIN </a> </li>
             <li class="nav-item">
@@ -46,7 +46,7 @@
                         </div>
 
                         <button class="welcome-title-btn" type="button" onclick="window.location.href='/login'">Sign in</button>
-                        <button class="welcome-title-btn" type="button">Register</button>
+                        <button class="welcome-title-btn" type="button" onclick="window.location.href='/admin/registration'">Register</button>
 
                         <i class="welcome-arrow-d"></i>
                     </div>

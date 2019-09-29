@@ -1,6 +1,6 @@
-package com.example.TeamMercuryCradlePlatform.Authentication;
+package com.mercury.TeamMercuryCradlePlatform.Authentication;
 
-import com.example.TeamMercuryCradlePlatform.Model.User;
+import com.mercury.TeamMercuryCradlePlatform.Model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +15,8 @@ public class UserLogin implements UserDetails {
     public UserLogin(User user) {
         this.user = user;
     }
-    @Override
+
+    @Override //Grants users authorities based on his/her roles
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> roles = new ArrayList<>();
         this.user.getRoles().forEach(p -> {
@@ -33,6 +34,10 @@ public class UserLogin implements UserDetails {
     @Override
     public String getUsername() {
         return this.user.getUserId().toString();
+    }
+
+    public Integer getUserId() {
+        return this.user.getUserId();
     }
 
     @Override

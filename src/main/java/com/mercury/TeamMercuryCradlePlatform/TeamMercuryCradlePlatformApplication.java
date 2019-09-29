@@ -1,4 +1,4 @@
-package com.example.TeamMercuryCradlePlatform;
+package com.mercury.TeamMercuryCradlePlatform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class TeamMercuryCradlePlatformApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TeamMercuryCradlePlatformApplication.class, args);
 	}
-
 }
