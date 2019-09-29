@@ -15,7 +15,8 @@ public class UserLogin implements UserDetails {
     public UserLogin(User user) {
         this.user = user;
     }
-    @Override
+
+    @Override //Grants users authorities based on his/her roles
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> roles = new ArrayList<>();
         this.user.getRoles().forEach(p -> {
