@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@Table(name = "user")               //Role = ADMIN, HEALTH WORKER, VHC
+@Table(name = "user")               //Role = ADMIN, HEALTH WORKER, VHT
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
