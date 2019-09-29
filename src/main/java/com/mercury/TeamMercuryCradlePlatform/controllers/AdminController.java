@@ -6,6 +6,7 @@ import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +26,12 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
     private EmailAdmin emailAdmin;
+    private PasswordEncoder passwordEncoder;
 
-    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin) {
+    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.emailAdmin = emailAdmin;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/index")
@@ -45,6 +48,7 @@ public class AdminController {
     public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password, @RequestParam String roles) {
         User temp = new User(user);
         temp.setRole(roles);
+        temp.setEncodedPassword(password);
         userRepository.save(temp);
 
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
@@ -78,6 +82,7 @@ public class AdminController {
     public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
 
         user.setRole(roles);
+        //user.setPassword(user.getPassword());
         this.userRepository.save(user);
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
 
