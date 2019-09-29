@@ -1,4 +1,4 @@
-package com.mercury.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.Controller;
 
 import com.mercury.TeamMercuryCradlePlatform.Model.EmailAdmin;
 import com.mercury.TeamMercuryCradlePlatform.Model.User;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 

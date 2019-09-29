@@ -1,4 +1,4 @@
-package com.mercury.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.Controller;
 
 import com.mercury.TeamMercuryCradlePlatform.Model.User;
 import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
