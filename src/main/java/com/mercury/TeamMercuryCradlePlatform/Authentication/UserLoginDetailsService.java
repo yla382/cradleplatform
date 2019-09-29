@@ -15,7 +15,7 @@ public class UserLoginDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    @Override  //Returns users with matching ID
+    @Override  //Finds user with matching ID
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = this.userRepository.findByUserId(Integer.valueOf(s));
         UserLogin userLogin = new UserLogin(user);
