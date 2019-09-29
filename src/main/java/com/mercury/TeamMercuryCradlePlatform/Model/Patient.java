@@ -77,7 +77,4 @@ public class Patient {
     public void setTrafficLight(String trafficLight) {
         this.trafficLight = trafficLight;
     }
-
-
-
 }
