@@ -41,14 +41,7 @@ public class DataInit implements CommandLineRunner {
         Patient patient2 = new Patient("C", "D", 21);
         Patient patient3 = new Patient("E", "F", 22);
 
-        Reading reading = new Reading
-                ("A", "B", 20, "Healthy",
-                        Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "0",
-                        90, 60 ,60, ZonedDateTime.now());
-        Patient patientWithReading = new Patient(reading);
+        patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
 
-        patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3, patientWithReading));
-        //reading.patientId = patientWithReading.getPatientId();
-        readingRepository.save(reading);
     }
 }
