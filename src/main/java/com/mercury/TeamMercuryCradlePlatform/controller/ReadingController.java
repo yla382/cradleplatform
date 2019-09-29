@@ -1,7 +1,7 @@
-package com.mercury.TeamMercuryCradlePlatform.Controller;
+package com.mercury.TeamMercuryCradlePlatform.controller;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
+import com.mercury.TeamMercuryCradlePlatform.model.Reading;
+import com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

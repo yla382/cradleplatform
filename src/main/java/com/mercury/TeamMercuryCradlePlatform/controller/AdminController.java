@@ -1,8 +1,8 @@
-package com.mercury.TeamMercuryCradlePlatform.Controller;
+package com.mercury.TeamMercuryCradlePlatform.controller;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.EmailAdmin;
-import com.mercury.TeamMercuryCradlePlatform.Model.User;
-import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
+import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
