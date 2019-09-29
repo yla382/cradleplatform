@@ -19,4 +19,9 @@ public class VHTController {
     public String report() {
         return "vht/report";
     }
+
+    @GetMapping("/vht/genreport")
+    public String genreport() {
+        return "vht/genreport";
+    }
 }
