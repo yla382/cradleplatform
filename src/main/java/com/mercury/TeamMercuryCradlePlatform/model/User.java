@@ -29,7 +29,7 @@ public class User {
     }
 
     public User(String password, String firstName, String lastName, String email, String roles) {
-        this.password = encodePassword(password);
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -77,6 +77,10 @@ public class User {
     }
 
     public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEncodedPassword(String password) {
         this.password = encodePassword(password);
     }
 
