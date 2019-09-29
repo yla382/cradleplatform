@@ -1,7 +1,7 @@
-package com.mercury.TeamMercuryCradlePlatform.Repository;
+package com.mercury.TeamMercuryCradlePlatform.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.mercury.TeamMercuryCradlePlatform.Model.User;
+import com.mercury.TeamMercuryCradlePlatform.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

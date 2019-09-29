@@ -1,4 +1,4 @@
-<%@ page import="com.mercury.TeamMercuryCradlePlatform.Model.User" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.User" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>

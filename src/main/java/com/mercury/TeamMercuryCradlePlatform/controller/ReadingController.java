@@ -1,19 +1,12 @@
-package com.mercury.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.controller;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
-import org.springframework.security.access.annotation.Secured;
+import com.mercury.TeamMercuryCradlePlatform.model.Reading;
+import com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.ParseException;
 import java.time.ZonedDateTime;
-import java.time.temporal.TemporalField;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class ReadingController {

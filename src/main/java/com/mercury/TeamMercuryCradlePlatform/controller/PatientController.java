@@ -1,7 +1,7 @@
-package com.mercury.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.controller;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.Repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
