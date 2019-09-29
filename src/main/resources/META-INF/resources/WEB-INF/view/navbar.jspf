@@ -13,10 +13,10 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/patients">Patients</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/patient/patientlist">Patients</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/${pageContext.request.userPrincipal.name}/profile">Profile</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/${pageContext.request.userPrincipal.name}/profile">Profile</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="/logout">

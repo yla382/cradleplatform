@@ -28,10 +28,11 @@ public class User {
         this.email = user.email;
     }
 
-    public User(String password, String firstName, String lastName, String roles) {
+    public User(String password, String firstName, String lastName, String email, String roles) {
         this.password = encodePassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.roles = roles;
     }
 
@@ -115,4 +116,22 @@ public class User {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(password);
     }
+
+    public boolean isVHT(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("VHT"));
+    }
+
+    public boolean isHealthWorker(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("HEALTHWORKER"));
+    }
+
+    public boolean isAdmin(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("ADMIN"));
+    }
+
+    @Override
+    public String toString(){
+        return "Name: " + firstName + " " +  lastName + "\nEmail: " + email + "\nRoles:" + roles;
+    }
+
 }
