@@ -1,5 +1,8 @@
 package com.mercury.TeamMercuryCradlePlatform.Model;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
@@ -14,17 +17,18 @@ import java.util.List;
  *
  * For format and processing ideas, see: https://www.hl7.org/fhir/overview-dev.html
  */
+@Entity
+@Table(name = "reading")
 public class Reading {
 
     /**
      * Constants
      */
-    private static final int DAYS_PER_MONTH = 30;
-    private static final int DAYS_PER_WEEK = 7;
-
-    public static final int MANUAL_USER_ENTRY_SYSTOLIC = 1;
-    public static final int MANUAL_USER_ENTRY_DIASTOLIC = 2;
-    public static final int MANUAL_USER_ENTRY_HEARTRATE = 4;
+    @Transient private static final int DAYS_PER_MONTH = 30;
+    @Transient private static final int DAYS_PER_WEEK = 7;
+    @Transient public static final int MANUAL_USER_ENTRY_SYSTOLIC = 1;
+    @Transient public static final int MANUAL_USER_ENTRY_DIASTOLIC = 2;
+    @Transient public static final int MANUAL_USER_ENTRY_HEARTRATE = 4;
 
 
     /**
@@ -50,46 +54,53 @@ public class Reading {
      * Stored Values
      */
     // db
-    public Long readingId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "reading_id") public Long readingId;
     public ZonedDateTime dateLastSaved;
 
+    @ManyToOne
+    @JoinColumn(name = "patient_Id")
+    private Patient patient;
+
     // patient info
-    public String patientId;
-    public String patientName;
-    public Integer ageYears;
-    public List<String> symptoms = new ArrayList<>();
-    public GestationalAgeUnit gestationalAgeUnit;
-    public String gestationalAgeValue;
+    @Transient public String patientId;
+    @Column(name = "patient_name") public String patientName;
+    @Column(name = "age_years") public Integer ageYears;
+    @Transient public List<String> symptoms = new ArrayList<>();
+    @Column(name = "symptoms") String symptomsString = null;
+    @Column(name = "gestational_age_unit") public GestationalAgeUnit gestationalAgeUnit;
+    @Column(name = "gestational_age_value") public String gestationalAgeValue;
 
     // reading
-    public String pathToPhoto;
-    public Integer bpSystolic;  // first number (top)
-    public Integer bpDiastolic; // second number (bottom)
-    public Integer heartRateBPM;
+    @Transient public String pathToPhoto;
+    @Column(name = "bp_systolic") public Integer bpSystolic;  // first number (top)
+    @Column(name = "by_diastolic") public Integer bpDiastolic; // second number (bottom)
+    @Column(name = "hear_rate_bpm") public Integer heartRateBPM;
 
-    public ZonedDateTime dateTimeTaken;
-    public String gpsLocationOfReading;
-    public ZonedDateTime dateUploadedToServer;
+    @Column(name = "data_time_taken") public ZonedDateTime dateTimeTaken;
+    @Transient public String gpsLocationOfReading;
+    @Transient public ZonedDateTime dateUploadedToServer;
 
     // retest & follow-up
-    public List<Long> retestOfPreviousReadingIds;   // oldest first
-    public ZonedDateTime dateRecheckVitalsNeeded;
-    private Boolean isFlaggedForFollowup;
+    @Transient public List<Long> retestOfPreviousReadingIds;   // oldest first
+    @Transient public ZonedDateTime dateRecheckVitalsNeeded;
+    @Transient private Boolean isFlaggedForFollowup;
 
     // referrals
-    public ZonedDateTime referralMessageSendTime;
-    public String referralHealthCentre;
-    public String referralComment;
+    @Transient public ZonedDateTime referralMessageSendTime;
+    @Transient public String referralHealthCentre;
+    @Transient public String referralComment;
 
     // app metrics
-    public String appVersion;
-    public String deviceInfo;
-    public float totalOcrSeconds;
-    private int manuallyChangeOcrResults; // constants above
+    @Transient public String appVersion;
+    @Transient public String deviceInfo;
+    @Transient public float totalOcrSeconds;
+    @Transient private int manuallyChangeOcrResults; // constants above
 
     // temporary values
-    transient private long temporaryFlags = 0;
-    transient public boolean userHasSelectedNoSymptoms;
+    @Transient transient private long temporaryFlags = 0;
+    @Transient transient public boolean userHasSelectedNoSymptoms;
 
 
     /**
@@ -112,7 +123,7 @@ public class Reading {
         r.patientId = source.patientId;
         r.patientName = source.patientName;
         r.ageYears = source.ageYears;
-        r.symptoms = new ArrayList<>();
+        r.symptoms = source.symptoms;
         r.symptoms.addAll(source.symptoms);
         r.gestationalAgeUnit = source.gestationalAgeUnit;
         r.gestationalAgeValue = source.gestationalAgeValue;

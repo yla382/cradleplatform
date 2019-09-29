@@ -25,11 +25,11 @@ public class DataInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User admin = new User("1234", "John", "Lee", "ADMIN");
-        User vhc = new User("1234", "Yoon", "Lee", "VHC");
-        User healthWorker = new User("1234", "Megan", "Fox", "HEALTHWORKER");
+        User admin = new User("1234", "John", "Lee", "test@test.com", "ADMIN");
+        User vht = new User("1234", "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER");
+        User healthWorker = new User("1234", "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER");
 
-        List<User> users = Arrays.asList(admin, vhc, healthWorker);
+        List<User> users = Arrays.asList(admin, vht, healthWorker);
         userRepository.saveAll(users);
 
         Patient A = new Patient("A", "B");

@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@Table(name = "user")               //Role = ADMIN, HEALTH WORKER, VHC
+@Table(name = "user")               //Role = ADMIN, HEALTH WORKER, VHT
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,17 +21,18 @@ public class User {
 
     public User(User user) {
         this.userId = user.userId;
-        this.password = encodePassword(user.password);
+        this.password = user.password;
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.roles = user.roles;
         this.email = user.email;
     }
 
-    public User(String password, String firstName, String lastName, String roles) {
+    public User(String password, String firstName, String lastName, String email, String roles) {
         this.password = encodePassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.roles = roles;
     }
 
@@ -115,4 +116,22 @@ public class User {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(password);
     }
+
+    public boolean isVHT(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("VHT"));
+    }
+
+    public boolean isHealthWorker(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("HEALTHWORKER"));
+    }
+
+    public boolean isAdmin(){
+        return getRoles().stream().anyMatch(str -> str.trim().equals("ADMIN"));
+    }
+
+    @Override
+    public String toString(){
+        return "Name: " + firstName + " " +  lastName + "\nEmail: " + email + "\nRoles:" + roles;
+    }
+
 }

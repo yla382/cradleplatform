@@ -35,6 +35,10 @@ public class UserLogin implements UserDetails {
         return this.user.getUserId().toString();
     }
 
+    public Integer getUserId() {
+        return this.user.getUserId();
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
