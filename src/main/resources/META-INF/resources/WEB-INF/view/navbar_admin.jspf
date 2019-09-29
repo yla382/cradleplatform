@@ -11,10 +11,23 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/patients/index">PATIENTS</a>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href="${pageContext.request.contextPath}/">VHT</a>
+            <div class="dropdown">
+              <span class="nav-link">VHT</span>
+              <div class="dropdown-content">
+                 <a class="nav-link" href="${pageContext.request.contextPath}/vht/report">VIEW REPORTS</a>
+                 <a class="nav-link" href="${pageContext.request.contextPath}/vht/migration">MIGRATE PATIENTS</a>
+              </div>
+            </div>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href="${pageContext.request.contextPath}/">SETTINGS</a>
+                 <div class="dropdown">
+                 <span class="nav-link">SETTINGS</span>
+                 <div class="dropdown-content">
+                   <a class="nav-link" href="${pageContext.request.contextPath}/admin/registration">ADD USERS</a>
+                   <a class="nav-link" href="${pageContext.request.contextPath}/">ASSIGN ROLES</a>
+                   <a class="nav-link" href="${pageContext.request.contextPath}/">VIEW PROFILE</a>
+                   </div>
+                 </div>
             </li>
             <li class="nav-item">
                <form id="logout_form" method="post" action="/logout">

@@ -9,6 +9,7 @@
     <!-- Native scripts -->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+    <link rel="stylesheet" type="text/css" href="/css/navfunc.css">
 
     <!-- Imported scripts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -31,43 +32,43 @@
 
     <a href="${pageContext.request.contextPath}/patients/index" class="custom-card">
       <div class="card bg-light">
-      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+      <img class="card-img-top" src="../images/patient.jpg" width="196" height="131" alt="Card patient">
         <div class="card-body text-center">
           <p class="card-text">PATIENTS</p>
-          <a href="${pageContext.request.contextPath}/admin/index" class="stretched-link"></a>
+          <a href="${pageContext.request.contextPath}/patients/index" class="stretched-link"></a>
         </div>
       </div>
 
-      <a href="${pageContext.request.contextPath}/" class="custom-card">
+      <a href="${pageContext.request.contextPath}/vht/report" class="custom-card">
       <div class="card bg-warning text-white">
-      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+      <img class="card-img-top" src="../images/report.jpg" width="196" height="131" alt="Card report">
         <div class="card-body text-center">
           <p class="card-text">MONTHLY REPORTS</p>
-          <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>
+          <a href="${pageContext.request.contextPath}/vht/report" class="stretched-link"></a>
         </div>
       </div>
 
-      <a href="${pageContext.request.contextPath}/" class="custom-card">
+      <a href="${pageContext.request.contextPath}/vht/migration" class="custom-card">
       <div class="card bg-warning text-white">
-      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+      <img class="card-img-top" src="../images/migration.jpg" width="196" height="131" alt="Card migration">
         <div class="card-body text-center">
           <p class="card-text">MIGRATE PATIENTS</p>
-          <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>
+          <a href="${pageContext.request.contextPath}/vht/migration" class="stretched-link"></a>
         </div>
       </div>
 
-      <a href="${pageContext.request.contextPath}/" class="custom-card">
+      <a href="${pageContext.request.contextPath}/admin/registration" class="custom-card">
       <div class="card bg-info text-white">
-      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+      <img class="card-img-top" src="../images/add_user.png" width="196" height="131" alt="Card user">
         <div class="card-body text-center">
           <p class="card-text">ADD USER</p>
-          <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>
+          <a href="${pageContext.request.contextPath}/admin/registration" class="stretched-link"></a>
         </div>
       </div>
 
       <a href="${pageContext.request.contextPath}/" class="custom-card">
       <div class="card bg-info text-white">
-      <img class="card-img-top" src="../images/Network-PNG-Transparent.png" alt="Card image">
+      <img class="card-img-top" src="../images/roles.png" width="196" height="131" alt="Card role" >
        <div class="card-body text-center">
          <p class="card-text">ASSIGN ROLES</p>
          <a href="${pageContext.request.contextPath}/" class="stretched-link"></a>

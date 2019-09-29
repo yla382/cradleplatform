@@ -14,12 +14,11 @@ body {
 /*NAVBAR*/
 .navbar-container {
     height: 50px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    background-color: #232732;
+    background-image: linear-gradient(45deg, rgba(71,99,191,1), #4491d4);
     border-bottom: 1px solid white;
     color: white;
-    padding-top: 30px;
 }
 
 .navbar-title {
@@ -233,9 +232,4 @@ body {
 
 .vertical-translate {
     margin-bottom: -50%;
-}
-
-a.custom-card,
-a.custom-card:hover {
-  color: inherit;
 }
