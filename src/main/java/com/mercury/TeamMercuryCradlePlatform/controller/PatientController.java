@@ -37,12 +37,27 @@ public class PatientController {
 
     @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
     public @ResponseBody ModelAndView confirmPatientPage(Patient patient) {
-
         ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
-        modelAndView.addObject("patient", patient);
-        return modelAndView;
 
+        PatientRepository patientRepository = this.patientRepository;
+//        patientRepository.save(patient);
+
+        modelAndView.addObject("patient", patient);
+
+        return modelAndView;
     }
+
+    @RequestMapping(value = "/submitPatient", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView submitPatient(Patient patient) {
+        ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
+        System.out.println(patient.getFirstName());
+        patientRepository.save(patient);
+
+        List<Patient> patientlist = this.patientRepository.findAll();
+        modelAndView.addObject("patientList", patientlist);
+        return modelAndView;
+    }
+
 
     @GetMapping(path="/add")
     public @ResponseBody
