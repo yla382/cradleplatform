@@ -2,11 +2,11 @@
 
 ![Cradle Logo](https://csil-git1.cs.surrey.sfu.ca/373-20197-Mercury/cradleplatform/raw/readme-update/src/main/resources/META-INF/resources/static/images/readme/Cradle-4-logo.png)
 
-### OVERVIEW
+### Overview
 ---
-*"The Microlife CRADLE VSA [is a device to] accurately measure blood pressure
-and heart rate and uses these values to calculate whether the women is at risk
-of developing shock."* (Credit: 
+*"The Microlife CRADLE VSA [is a device that can] accurately measure blood
+pressure and heart rate and uses these values to calculate whether the women is
+at risk of developing shock."* (Credit: 
 [CRADLE Trial](http://cradletrial.com/the-device/))
 
 VHT (Village Health Team) Workers use the device to read their patients and,
@@ -20,12 +20,12 @@ data that VHTs send, and a database to store the information VHTs enter, as
 well as any follow-up information the medical workers enter; this repository
 holds the web app as well as the database.
 
-### FEATURES
+### Features
 ---
 #### Referral Tool:
 - Sync readings from VHTs in real-time for health facility workers to access
 - Allow health workers to enter readings, diagnoses or treatements and the
-  follow-up required by the VHTi
+  follow-up required by the VHT
 - Show most appropriate management for patient from decision algorithm, based
   on patient status (age, pregnancy status, ethnicity, suspected diagnosis,
   etc.)
@@ -42,7 +42,7 @@ holds the web app as well as the database.
 #### Educational Tools:
 - Videos with advice for health care workers
 
-### DIRECTORY STRUCTURE
+### Directory Structure
 ---
 ```
 ./
@@ -65,13 +65,13 @@ holds the web app as well as the database.
  └ pom.xml
 ```
 
-### DEPENDENCIES
+### Dependencies
 ---
 - JDK 1.8+
 - Maven 3+
 - MySQL
 
-### BUILD/RUN INSTRUCTIONS
+### Build/Run Instructions
 ---
 If hosting MySQL on a remote server, edit the following values in
 `src/main/resources/application.properties` as necessary:
@@ -84,12 +84,12 @@ Change into cloned directory and run:
 ```
 $ ./mvnw package
 ```
-The .jar will be built to [./target/]; to run from the cloned directory, run:
+The .jar will be built to `./target/`; to run from the cloned directory, run:
 ```
 $ java -jar ./target/TeamMercuryCradlePlatform-0.0.1-SNAPSHOT.jar
 ```
 
-### LICENSE
+### License
 ---
 This project is licensed under the 3-Clause "New" BSD License; see LICENSE.txt
 for more details.
