@@ -1,4 +1,4 @@
-<%@ page import="com.mercury.TeamMercuryCradlePlatform.Model.Patient" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Patient" %>
 <!DOCTYPE html>
 <html>
     <%

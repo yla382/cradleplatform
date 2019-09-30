@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.mercury.TeamMercuryCradlePlatform.Model.Patient" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Patient" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
