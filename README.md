@@ -1,6 +1,6 @@
 # CRADLE VSA SUPPORT APP
 
-![Cradle Logo](/src/main/resources/static/images/readme/Cradle-4-logo.png)
+![Cradle Logo](./src/main/resources/static/images/readme/Cradle-4-logo.png)
 
 ### OVERVIEW
 ---
