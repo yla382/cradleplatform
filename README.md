@@ -1,5 +1,7 @@
 # CRADLE VSA SUPPORT APP
 
+![Cradle Logo](/src/main/resources/static/images/readme/Cradle-4-logo.png)
+
 ### OVERVIEW
 ---
 *"The Microlife CRADLE VSA [is a device to] accurately measure blood pressure
@@ -39,6 +41,7 @@ holds the web app as well as the database.
   transportation
 #### Educational Tools:
 - Videos with advice for health care workers
+
 ### DIRECTORY STRUCTURE
 ---
 ```
@@ -61,11 +64,13 @@ holds the web app as well as the database.
  ├ mvnw.cmd
  └ pom.xml
 ```
+
 ### DEPENDENCIES
 ---
 - JDK 1.8+
 - Maven 3+
 - MySQL
+
 ### BUILD/RUN INSTRUCTIONS
 ---
 If hosting MySQL on a remote server, edit the following values in
@@ -83,6 +88,7 @@ The .jar will be built to [./target/]; to run from the cloned directory, run:
 ```
 $ java -jar ./target/TeamMercuryCradlePlatform-0.0.1-SNAPSHOT.jar
 ```
+
 ### LICENSE
 ---
 This project is licensed under the 3-Clause "New" BSD License; see LICENSE.txt
