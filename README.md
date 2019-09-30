@@ -89,7 +89,7 @@ The .jar will be built to `./target/`; to run from the cloned directory, run:
 $ java -jar ./target/TeamMercuryCradlePlatform-0.0.1-SNAPSHOT.jar
 ```
 
-### License
+## License
 
 This project is licensed under the 3-Clause "New" BSD License; see LICENSE.txt
 for more details.
