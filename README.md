@@ -22,24 +22,24 @@ holds the web app as well as the database.
 
 ## Features
 
-#### Referral Tool:
+#### Referral Tool
 - Sync readings from VHTs in real-time for health facility workers to access
 - Allow health workers to enter readings, diagnoses or treatements and the
   follow-up required by the VHT
 - Show most appropriate management for patient from decision algorithm, based
   on patient status (age, pregnancy status, ethnicity, suspected diagnosis,
   etc.)
-#### Individual Patient Monitoring:
+#### Individual Patient Monitoring
 - Store multiple readings for individual patients; allow viewing the data
   trends over time via graphs
 - Record medications, as well as date started, date discontinued (if
   applicable), dosage, and side effects
 - Alert health workers if readings are abnormal
-#### VHT Monthly Reports:
+#### VHT Monthly Reports
 - For any referral, VHTs and health workers will be able to view the health
   centre referred to, the distance to the health facility, and the method of
   transportation
-#### Educational Tools:
+#### Educational Tools
 - Videos with advice for health care workers
 
 ## Directory Structure
@@ -58,8 +58,9 @@ holds the web app as well as the database.
  │  │     └ WEB-INF
  │  │        └ view            JSP files
  │  └ test                     Unit tests
+ ├ AUTHORS.txt                 Project authors
  ├ LICENSE.txt                 Project license
- ├ README.txt                  Project Readme (this file)
+ ├ README.md                   Project Readme (this file)
  ├ mvnw
  ├ mvnw.cmd
  └ pom.xml
