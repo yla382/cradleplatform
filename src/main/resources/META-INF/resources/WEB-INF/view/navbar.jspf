@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/">Cradle</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,25 +9,56 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
+                <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/admin/index">Home</a>
+                    <a class="dropdown-item" href="/admin/users">Users</a>
+                    <a class="dropdown-item" href="/admin/registration">Register User</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/patients">Patients</a>
+                <a class="nav-link" href="/patient/patientlist">Patients</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/${pageContext.request.userPrincipal.name}/profile">Profile</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/reading">Readings</a>
             </li>
+            <%if (request.getRemoteUser()!= null) {%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile/${pageContext.request.userPrincipal.name}">Profile</a>
+                </li>
+            <%} %>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="post" action="/logout">
-            <%
-                if (request.getRemoteUser()!= null) {%>
-            <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+            <%if (request.getRemoteUser()!= null) {%>
+                <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+            <%} else if(!request.getAttribute("javax.servlet.forward.request_uri").toString().equals("/login")){%>
+                <button class="btn btn-success my-2 my-sm-0 btn-sm" type="button"
+                        onclick="window.location.href='/login'">Login</button>
+
             <%}%>
+
 
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
+        <script type="text/javascript">
+            // Add active class to current page
+            $(document).ready(function () {
+                var url = window.location.href;
+                var pathname = window.location.pathname;
+
+                if (pathname.includes("/admin")) {
+                    $('#navbarDropdownMenuLink').parent().addClass('active');
+                } else {
+                    $('ul.navbar-nav a').filter(function() {
+                        return this.href === url;
+                    }).parent().addClass('active');
+                }
+            });
+        </script>
     </div>
 </nav>

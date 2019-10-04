@@ -1,0 +1,47 @@
+<!--NAVBAR-->
+    <div class="navbar-container">
+        <div>
+            <a class="navbar-title" style="text-decoration:none" href="${pageContext.request.contextPath}/">Cradle</a>
+        </div>
+
+        <ul class="navbar">
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/index">HOME </a> </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/patient/patientlist">PATIENTS</a>
+            </li>
+            <li class="nav-item">
+            <div class="dropdown">
+              <span class="nav-link">VHT</span>
+              <div class="dropdown-content">
+                 <a class="nav-link" href="${pageContext.request.contextPath}/vht/report">VIEW REPORTS</a>
+                 <a class="nav-link" href="${pageContext.request.contextPath}/vht/allocation">ALLOCATE PATIENTS</a>
+              </div>
+            </div>
+            </li>
+            <li class="nav-item">
+                 <div class="dropdown">
+                 <span class="nav-link">SETTINGS</span>
+                 <div class="dropdown-content">
+                   <a class="nav-link" href="${pageContext.request.contextPath}/admin/registration">ADD USERS</a>
+                   <a class="nav-link" href="${pageContext.request.contextPath}/">ASSIGN ROLES</a>
+                   <a class="nav-link" href="${pageContext.request.contextPath}/profile/${pageContext.request.userPrincipal.name}">VIEW PROFILE</a>
+                   </div>
+                 </div>
+            </li>
+            <li class="nav-item">
+               <form id="logout_form" method="post" action="/logout">
+                    <%
+                          if (request.getRemoteUser()!= null) {%>
+                              <a class="nav-out" style="text-decoration:none" href="#" onclick="document.getElementById('logout_form').submit()">
+                              LOGOUT
+                              </a>
+                           <%}%>
+
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+            </li>
+        </ul>
+
+    </div>
+<!--END of NAVBAR-->

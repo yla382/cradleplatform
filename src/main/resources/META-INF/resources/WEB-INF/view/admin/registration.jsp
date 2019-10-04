@@ -20,36 +20,36 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Register a new user</div>
-                        <div class="card-body">
-                            <form action="${pageContext.request.contextPath}/admin/submitRegistration" method = "post">
-                                <div class="form-group row">
-                                    <label for="firstName" class="col-md-4 col-form-label text-md-right">First Name</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="firstName" class="form-control" name="firstName">
-                                    </div>
+                    <div class="card-body">
+                        <form action="${pageContext.request.contextPath}/admin/submitRegistration" method = "post">
+                            <div class="form-group row">
+                                <label for="firstName" class="col-md-4 col-form-label text-md-right">First Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="firstName" class="form-control" name="firstName">
                                 </div>
+                            </div>
 
-                                <div class="form-group row">
-                                    <label for="lastName" class="col-md-4 col-form-label text-md-right">Last Name</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="lastName" class="form-control" name="lastName">
-                                    </div>
+                            <div class="form-group row">
+                                <label for="lastName" class="col-md-4 col-form-label text-md-right">Last Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="lastName" class="form-control" name="lastName">
                                 </div>
+                            </div>
 
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="password" class="form-control" name="password">
-                                    </div>
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="password" class="form-control" name="password">
                                 </div>
+                                <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </div>
 
-                                <div class="form-group row">
-                                    <label for="email" class="col-md-4 col-form-label text-md-right">email</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="email" class="form-control" name="email">
-                                    </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="email" class="form-control" name="email">
                                 </div>
-
+                            </div>
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-md-right">User Roles</label>
                                     <div class="col-md-6 col-form-label">
@@ -72,7 +72,6 @@
                                         Register
                                     </button>
                                 </div>
-                                <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
                         </div>
                     </div>
