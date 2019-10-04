@@ -50,23 +50,11 @@ public class AdminController {
         temp.setEncodedPassword(password);
         userRepository.save(temp);
 
-        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost(this.emailAdmin.getEmailHost());
-        javaMailSender.setPort(this.emailAdmin.getPort());
-        javaMailSender.setUsername(this.emailAdmin.getUsername());
-        javaMailSender.setPassword(this.emailAdmin.getPassword());
+        String subject = "New Cradle account created";
+        String text = "Hello, " + temp.getFirstName() + " thank you for joining our organization" +
+                ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + password;
+        emailAdmin.sendEmail(temp.getEmail(), subject, text);
 
-        Properties properties = javaMailSender.getJavaMailProperties();
-        properties.put("mail.smtp.starttls.enable", "true");
-
-        SimpleMailMessage  simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom(this.emailAdmin.getUsername());
-        simpleMailMessage.setTo(temp.getEmail());
-        simpleMailMessage.setSubject("New Cradle account created");
-        simpleMailMessage.setText("Hello, " + temp.getFirstName() + " thank you for joining our organization" +
-                ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + password);
-
-        javaMailSender.send(simpleMailMessage);
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("user", user);
         return modelAndView;
