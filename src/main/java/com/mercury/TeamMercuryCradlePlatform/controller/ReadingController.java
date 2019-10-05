@@ -46,6 +46,12 @@ public class ReadingController {
 
     }
 
+    @RequestMapping(value = "/referral/addReferral", method = RequestMethod.POST)
+    public ModelAndView referralPage(){
+        return new ModelAndView("/referral/addReferral");
+    }
+
+
     private String getTrafficLightImg(ReadingAnalysis readingAnalysis){
 
         if(readingAnalysis.isGreen()){

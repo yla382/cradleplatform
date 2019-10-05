@@ -63,8 +63,10 @@
             </div>
 
 
-            <h2> Not referred</h2>
-            <p> <%= analysis.isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%> <button type="button">Send referral</button> </p>
+            <form action="${pageContext.request.contextPath}/referral/addReferral" method="post">
+                <h2> Not referred</h2>
+                <p> <%= analysis.isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%> <button type="submit" value="Submit">Send referral</button> </p>
+            </form>
 
             <div class="custom-control custom-switch">
                 <input checked type="checkbox" class="custom-control-input" id="followUp">
