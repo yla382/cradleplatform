@@ -102,6 +102,6 @@ public class Patient {
     }
 
     public void addReading(Reading reading){
-        readings.add(reading);
+        this.readings.add(reading);
     }
 }
