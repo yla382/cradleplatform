@@ -1,4 +1,4 @@
-package com.mercury.TeamMercuryCradlePlatform.fepository;
+package com.mercury.TeamMercuryCradlePlatform.repository;
 
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import org.springframework.data.jpa.repository.Query;

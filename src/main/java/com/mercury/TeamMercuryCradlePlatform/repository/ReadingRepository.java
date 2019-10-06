@@ -1,4 +1,4 @@
-package com.mercury.TeamMercuryCradlePlatform.fepository;
+package com.mercury.TeamMercuryCradlePlatform.repository;
 
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import org.springframework.data.repository.CrudRepository;

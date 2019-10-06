@@ -1,7 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
 import com.mercury.TeamMercuryCradlePlatform.model.User;
-import com.mercury.TeamMercuryCradlePlatform.fepository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;

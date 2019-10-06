@@ -2,9 +2,9 @@ package com.mercury.TeamMercuryCradlePlatform;
 
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
-import com.mercury.TeamMercuryCradlePlatform.fepository.PatientRepository;
-import com.mercury.TeamMercuryCradlePlatform.fepository.ReadingRepository;
-import com.mercury.TeamMercuryCradlePlatform.fepository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
