@@ -1,7 +1,7 @@
-package com.mercury.TeamMercuryCradlePlatform.Authentication;
+package com.mercury.TeamMercuryCradlePlatform.authentication;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.User;
-import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.fepository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

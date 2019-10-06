@@ -1,15 +1,12 @@
-package com.mercury.TeamMercuryCradlePlatform.Model;
+package com.mercury.TeamMercuryCradlePlatform.model;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Patient {

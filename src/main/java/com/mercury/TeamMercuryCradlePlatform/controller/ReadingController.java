@@ -1,10 +1,10 @@
-package com.mercury.TeamMercuryCradlePlatform.controllers;
+package com.mercury.TeamMercuryCradlePlatform.controller;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.Model.ReadingAnalysis;
-import com.mercury.TeamMercuryCradlePlatform.Repository.PatientRepository;
-import com.mercury.TeamMercuryCradlePlatform.Repository.ReadingRepository;
+import com.mercury.TeamMercuryCradlePlatform.model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.model.Reading;
+import com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis;
+import com.mercury.TeamMercuryCradlePlatform.fepository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.fepository.ReadingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

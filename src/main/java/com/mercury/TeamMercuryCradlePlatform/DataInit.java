@@ -1,16 +1,14 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
-import com.mercury.TeamMercuryCradlePlatform.Model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.Model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.Model.User;
-import com.mercury.TeamMercuryCradlePlatform.Repository.PatientRepository;
-import com.mercury.TeamMercuryCradlePlatform.Repository.ReadingRepository;
-import com.mercury.TeamMercuryCradlePlatform.Repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.fepository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.fepository.ReadingRepository;
+import com.mercury.TeamMercuryCradlePlatform.fepository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 

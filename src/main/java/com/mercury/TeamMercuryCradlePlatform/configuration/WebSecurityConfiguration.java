@@ -1,6 +1,6 @@
-package com.mercury.TeamMercuryCradlePlatform.Configuration;
+package com.mercury.TeamMercuryCradlePlatform.configuration;
 
-import com.mercury.TeamMercuryCradlePlatform.Authentication.UserLoginDetailsService;
+import com.mercury.TeamMercuryCradlePlatform.authentication.UserLoginDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,16 +1,10 @@
-package com.mercury.TeamMercuryCradlePlatform.Model;
-
-import org.hibernate.engine.internal.Cascade;
-import org.springframework.web.bind.annotation.ModelAttribute;
+package com.mercury.TeamMercuryCradlePlatform.model;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 /**
