@@ -27,9 +27,11 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String firstName, String lastName) {
+    public Patient(String firstName, String lastName, String country, String location) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.country = country;
+        this.location = location;
     }
 
     public Patient(String firstName, String lastName, Integer ageYears) {

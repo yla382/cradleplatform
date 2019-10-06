@@ -21,7 +21,6 @@ public class Reading {
      */
     @Transient private static final int DAYS_PER_MONTH = 30;
     @Transient private static final int DAYS_PER_WEEK = 7;
-
     @Transient public static final int MANUAL_USER_ENTRY_SYSTOLIC = 1;
     @Transient public static final int MANUAL_USER_ENTRY_DIASTOLIC = 2;
     @Transient public static final int MANUAL_USER_ENTRY_HEARTRATE = 4;

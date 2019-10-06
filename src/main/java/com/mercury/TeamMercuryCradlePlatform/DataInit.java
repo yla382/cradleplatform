@@ -3,6 +3,10 @@ package com.mercury.TeamMercuryCradlePlatform;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -28,16 +32,16 @@ public class DataInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User admin = new User("1234", "John", "Lee", "test@test.com", "ADMIN");
-        User vhc = new User("1234", "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER");
-        User healthWorker = new User("1234", "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER");
+        User admin = new User(passwordEncoder.encode("1234"), "John", "Lee", "test@test.com", "ADMIN");
+        User vht = new User(passwordEncoder.encode("1234"), "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER");
+        User healthWorker = new User(passwordEncoder.encode("1234"), "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER");
 
-        List<User> users = Arrays.asList(admin, vhc, healthWorker);
+        List<User> users = Arrays.asList(admin, vht, healthWorker);
         userRepository.saveAll(users);
 
-        Patient patient1 = new Patient("A", "B", 20);
-        Patient patient2 = new Patient("C", "D", 21);
-        Patient patient3 = new Patient("E", "F", 22);
+        Patient patient1 = new Patient("Ricky", "Owen","Uganda", "VillageA");
+        Patient patient2 = new Patient("Bobby", "Frown", "Uganda", "VillageA");
+        Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
 
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
 

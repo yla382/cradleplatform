@@ -1,11 +1,13 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Properties;
 
 @Controller
 @RequestMapping("/admin")
@@ -21,10 +24,13 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private EmailAdmin emailAdmin;
+    private PasswordEncoder passwordEncoder;
 
-    public AdminController(UserRepository userRepository) {
+    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.emailAdmin = emailAdmin;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/index")
@@ -38,23 +44,20 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String roles) {
+    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password, @RequestParam String roles) {
         User temp = new User(user);
         temp.setRole(roles);
+        temp.setEncodedPassword(password);
         userRepository.save(temp);
+
+        String subject = "New Cradle account created";
+        String text = "Hello, " + temp.getFirstName() + " thank you for joining our organization" +
+                ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + password;
+        emailAdmin.sendEmail(temp.getEmail(), subject, text);
+
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("user", user);
         return modelAndView;
-    }
-
-    @GetMapping("/{id}/profile")
-    public String getUserInfo(@PathVariable("id") Integer id, Model model) {
-        User user = userRepository.findByUserId(id);
-        model.addAttribute("UserId", id);
-        model.addAttribute("FirstName", user.getFirstName());
-        model.addAttribute("LastName", user.getLastName());
-        model.addAttribute("Role", user.getRole());
-        return "profile";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -66,6 +69,7 @@ public class AdminController {
     public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
 
         user.setRole(roles);
+        //user.setPassword(user.getPassword());
         this.userRepository.save(user);
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
 
