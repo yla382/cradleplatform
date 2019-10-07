@@ -58,6 +58,7 @@ public class Reading {
     @JoinColumn(name = "patient_Id")
     private Patient patient;
 
+
     // patient info
     @Transient public String patientId;
     @Column(name = "patient_name") public String patientName;
