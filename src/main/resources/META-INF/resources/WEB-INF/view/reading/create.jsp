@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="validator.min.js"></script>
 </head>
     <body>
 
@@ -16,7 +16,7 @@
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="container w-100" style="padding: 10px">
-            <form action="${pageContext.request.contextPath}/reading/analysis" method="post">
+            <form action="${pageContext.request.contextPath}/reading/analysis" method="post" id="form">
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <label for="bpSystolic">Systolic</label>
-                    <input required type="number" min="10" max="300" class="form-control" id="bpSystolic" name="bpSystolic" style="width: 25%">
+                    <input required type="number" min="10" max="300" class="form-control" id="bpSystolic" name="bpSystolic" style="width: 25%"/>
                 </div>
                 <div class="form-group">
                     <label for="bpDiastolic">Diastolic</label>
@@ -88,7 +88,7 @@
                     <input required type="number" min="40" max="200" class="form-control" id="heartRateBPM" name="heartRateBPM" style="width: 25%">
                 </div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="submit" value="Submit" id="submitButton">
+                <input class="form-group" type="submit" value="Submit" id="submitButton">
             </form>
 
             <%--Detects when user comes back to this page--%>
@@ -125,6 +125,18 @@
             document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
         }
 
+        $('#form').validator().on('submit', function (e) {
+            alert("stuff");
+            if (e.isDefaultPrevented()) {
+                // handle the invalid form...
+                if($('#bpSystolic').val() <= $('#bpDiastolic').val){
+                   alert("Systolic value must be greater than diastolic value");
+                }
+            } else {
+                // everything looks good!
+                alert("stuff");
+            }
+        })
 
     </script>
 

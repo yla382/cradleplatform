@@ -20,10 +20,10 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
         <%@ include file="../navbar.jspf" %>
-        <div class="container w-100">
+        <div class="container w-100 mt-4" >
 
             <h2> <%= reading.firstName + " " + reading.lastName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
-            <p>  <%= reading.readingId%></p>
+<%--            <p>  <%= reading.readingId%></p>--%>
             <p> <%= reading.getSymptomsString()%></p>
             <h2> <%= reading.getGestationTimeInAmPm() + ": " + analysis.getAnalysisText()%></h2>
 
