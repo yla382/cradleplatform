@@ -49,6 +49,16 @@
                     </c:forEach>
                 </td>
                 <td>
+                    <form action="${pageContext.request.contextPath}/admin/contact" method="get">
+                        <a href="#" class="btn btn-secondary" onclick="window.open('contact?email=${user.email}',
+                           'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
+                           'location=no,directories=no, status=yes');">
+                            Contact
+                        </a>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </td>
+                <td>
                     <form action="${pageContext.request.contextPath}/admin/users/${user.userId}" method="get">
                         <button type="submit" class="btn btn-secondary">Edit</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
