@@ -29,21 +29,44 @@ public class Referral {
     @Column(name = "action_already_taken")
     private String actionAlreadyTaken = null;
 
-//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "reading")
-//    private Reading reading;
-//
-//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "patient")
-//    private Patient patient;
+
+    @Column(name = "other_information_message")
+    private String otherInformationMessage = null;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "reading_id", referencedColumnName = "reading_id")
+    private Reading reading;
+
+    public Reading getReading() {
+        return reading;
+    }
+
+    public void setReading(Reading reading) {
+        this.reading = reading;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "patient_Id", referencedColumnName = "patient_Id")
+    private Patient patient;
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 
     public Referral() {
     }
 
-    public Referral(String referredHealthCentre, LocalDateTime dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken) {
+    public Referral(String referredHealthCentre, LocalDateTime dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage) {
         this.referredHealthCentre = referredHealthCentre;
         this.dateTimeSent = dateTimeSent;
         this.vhtName = vhtName;
         this.reasonOfReferral = reasonOfReferral;
         this.actionAlreadyTaken = actionAlreadyTaken;
+        this.otherInformationMessage = otherInformationMessage;
     }
 
     public Integer getReferralId() {
@@ -94,4 +117,11 @@ public class Referral {
         this.actionAlreadyTaken = actionAlreadyTaken;
     }
 
+    public String getOtherInformationMessage() {
+        return otherInformationMessage;
+    }
+
+    public void setOtherInformationMessage(String otherInformationMessage) {
+        this.otherInformationMessage = otherInformationMessage;
+    }
 }

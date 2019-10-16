@@ -27,6 +27,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/reading">Readings</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/referral/referralList">Referral</a>
+            </li>
             <%if (request.getRemoteUser()!= null) {%>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile/${pageContext.request.userPrincipal.name}">Profile</a>

@@ -21,6 +21,9 @@ public class Patient {
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private Set<Reading> readings;
 
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    private Referral referral;
+
     public Patient() {
     }
 

@@ -14,28 +14,28 @@ import org.springframework.web.servlet.ModelAndView;
 @Service
 @RequestMapping(path="/referral")
 public class ReferralController {
-//    @Autowired
-//    private ReferralRepository referralRepository;
-//
-//    public ReferralController(ReferralRepository referralRepository) {
-//        this.referralRepository = referralRepository;
-//    }
+    @Autowired
+    private ReferralRepository referralRepository;
+
+    public ReferralController(ReferralRepository referralRepository) {
+        this.referralRepository = referralRepository;
+    }
 
     @RequestMapping(value = "/addReferral", method = RequestMethod.GET)
     public ModelAndView addPatientPage(){
         return new ModelAndView("/referral/addReferral");
     }
 
-//    @RequestMapping(value = "/confirmReferral", method = RequestMethod.POST)
-//    public @ResponseBody ModelAndView confirmReferralPage(Referral referral) {
-//        ModelAndView modelAndView = new ModelAndView("/referral/confirmReferral");
-//
-//        ReferralRepository referralRepository = this.referralRepository;
-//
-//        modelAndView.addObject("referral", referral);
-//
-//        return modelAndView;
-//    }
+    @RequestMapping(value = "/confirmReferral", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView confirmReferralPage(Referral referral) {
+        ModelAndView modelAndView = new ModelAndView("/referral/confirmReferral");
+
+        ReferralRepository referralRepository = this.referralRepository;
+
+        modelAndView.addObject("referral", referral);
+
+        return modelAndView;
+    }
 
 
 }

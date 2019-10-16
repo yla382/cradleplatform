@@ -6,10 +6,10 @@
 <html>
 
     <%
-       Reading reading = (Reading)request.getAttribute("reading");
-       ReadingAnalysis analysis = (ReadingAnalysis)request.getAttribute("analysis");
-       String trafficLight = (String)request.getAttribute("trafficLight");
-       String arrowDirection = (String) request.getAttribute("arrowDirection");
+        Reading reading = (Reading)request.getAttribute("reading");
+        ReadingAnalysis analysis = (ReadingAnalysis)request.getAttribute("analysis");
+        String trafficLight = (String)request.getAttribute("trafficLight");
+        String arrowDirection = (String) request.getAttribute("arrowDirection");
     %>
 
     <meta charset="ISO-8859-1">

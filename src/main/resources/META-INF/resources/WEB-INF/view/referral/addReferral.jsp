@@ -29,6 +29,10 @@
                     <label for="actionAlreadyTaken">Action already taken: </label>
                     <input type="text" class="form-control" id="actionAlreadyTaken" name="actionAlreadyTaken"><br>
                 </div>
+                <div class="form-group">
+                    <label for="otherInfoMessage">Other Information and Messages: </label>
+                    <input type="text" class="form-control" id="otherInfoMessage" name="otherInfoMessage"><br>
+                </div>
                 <button type="submit" value="Submit"> Save </button>
                 <button type="button"> Test Message </button>
             </div>
