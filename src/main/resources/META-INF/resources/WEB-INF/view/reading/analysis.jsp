@@ -19,11 +19,11 @@
 
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-        <%@ include file="navbar.jspf" %>
-        <div class="container w-100">
+        <%@ include file="../navbar.jspf" %>
+        <div class="container w-100 mt-4" >
 
-            <h2> <%= reading.patientName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
-            <p>  <%= reading.patientId%></p>
+            <h2> <%= reading.firstName + " " + reading.lastName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
+<%--            <p>  <%= reading.readingId%></p>--%>
             <p> <%= reading.getSymptomsString()%></p>
             <h2> <%= reading.getGestationTimeInAmPm() + ": " + analysis.getAnalysisText()%></h2>
 
@@ -73,7 +73,20 @@
             <p> Follow-up <%= reading.isFlaggedForFollowup()? "recommended" : "not recommended"%></p>
 
             <button type="button" onclick="editButton()"> Edit </button>
-            <button type="button" onclick="saveButton()"> Save </button>
+            <form action="${pageContext.request.contextPath}/reading/analysis/save" method="post">
+                <input type="hidden" name="firstName" value="<%=reading.firstName%>"/>
+                <input type="hidden" name="lastName" value="<%=reading.lastName%>"/>
+                <input type="hidden" name="ageYears" value="<%=reading.ageYears%>"/>
+                <input type="hidden" name="symptoms" value="<%=reading.symptoms%>"/>
+                <input type="hidden" name="gestationalAgeUnit" value="<%=reading.gestationalAgeUnit%>"/>
+                <input type="hidden" name="gestationalAgeValue" value="<%=reading.gestationalAgeValue%>"/>
+                <input type="hidden" name="bpSystolic" value="<%=reading.bpSystolic%>"/>
+                <input type="hidden" name="bpDiastolic" value="<%=reading.bpDiastolic%>"/>
+                <input type="hidden" name="heartRateBPM" value="<%=reading.heartRateBPM%>"/>
+
+                <button type="submit"> Save </button>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
         </div>
     </body>
 
@@ -87,11 +100,6 @@
 
         function editButton() {
             window.history.back();
-        }
-
-        // TODO: implement save when database is done
-        function saveButton() {
-
         }
 
     </script>
