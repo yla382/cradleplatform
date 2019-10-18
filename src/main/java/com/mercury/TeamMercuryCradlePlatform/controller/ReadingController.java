@@ -1,23 +1,35 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis;
+import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.time.ZonedDateTime;
 
+
 @Controller
+@RequestMapping("/reading")
 public class ReadingController {
 
-    @RequestMapping(value = "/reading", method = RequestMethod.GET)
+    private PatientRepository patientRepository;
+    private ReadingRepository readingRepository;
+
+    ReadingController(PatientRepository patientRepository, ReadingRepository readingRepository){
+        this.patientRepository = patientRepository;
+        this.readingRepository = readingRepository;
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView readingPage(){
-        return new ModelAndView("/reading");
+        return new ModelAndView("/reading/create");
     }
 
 
-    @RequestMapping(value = "/submitReading", method = RequestMethod.POST)
+    @RequestMapping(value = "/analysis", method = RequestMethod.POST)
     public @ResponseBody ModelAndView readingAnalysisPage(
             Reading reading,
             @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
@@ -35,7 +47,7 @@ public class ReadingController {
 
         ReadingAnalysis analysis = ReadingAnalysis.analyze(reading);
 
-        ModelAndView modelAndView = new ModelAndView("/addReading");
+        ModelAndView modelAndView = new ModelAndView("/reading/analysis");
 
         modelAndView.addObject("reading", reading);
         modelAndView.addObject("analysis", analysis);
@@ -43,6 +55,25 @@ public class ReadingController {
         modelAndView.addObject("arrowDirection", getArrowDirection(analysis));
 
         return modelAndView;
+
+    }
+
+    @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
+    public ModelAndView readingAnalysisPage(Reading reading) {
+
+        reading.dateTimeTaken = ZonedDateTime.now();
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
+
+        if(patient != null){
+            reading.setPatient(patient);
+            readingRepository.save(reading);
+        }
+        else{
+            reading.setPatient(new Patient(reading));
+            readingRepository.save(reading);
+        }
+
+        return new ModelAndView("/reading/saved");
 
     }
 
