@@ -6,7 +6,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 //@Configuration
-// @EnableWebMvc
+@EnableWebMvc
 //@ComponentScan
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
