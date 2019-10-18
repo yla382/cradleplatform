@@ -73,7 +73,7 @@
             <tbody>
             <c:forEach items="<%=userList%>" var = "user">
                 <tr>
-                    <td>${user.userId}</th>
+                    <td class="table-row-id">${user.userId}</th>
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
                     <td>${user.email}</td>
