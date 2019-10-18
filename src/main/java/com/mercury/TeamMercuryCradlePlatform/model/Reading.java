@@ -58,6 +58,13 @@ public class Reading {
     @JoinColumn(name = "patient_Id", referencedColumnName = "patient_Id")
     private Patient patient;
 
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 
     // patient info
     @Column(name = "first_name") public String firstName;
