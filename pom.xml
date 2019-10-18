@@ -103,6 +103,13 @@
 					<executable>true</executable>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warSourceDirectory>${basedir}/src/main/resources/META-INF/resources/WEB-INF/view</warSourceDirectory>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
