@@ -5,6 +5,7 @@
     <title>Cradle</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <script src="/js/index.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -36,10 +37,10 @@
           <span class="dot4"></span>
           <span class="dot5"></span>
           <span class="dot6"></span>
-          <div class="welcome-header">
+          <div id="welcome-header" class="fade vertical-translate">
             Cradle.
           </div>
-          <div class="welcome-desc">
+          <div id="welcome-desc" class="fade vertical-translate">
             WELCOME TO</br>
             MERCURY'S PROJECT
           </div>

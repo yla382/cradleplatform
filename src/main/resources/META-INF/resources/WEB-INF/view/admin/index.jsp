@@ -32,9 +32,9 @@
 
         <ul>
           <li class="navbar-list"><a class="nav-link" href="/admin/index"><span class="glyphicon glyphicon-home nav-link-icon"></span>Dashboard</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/admin/users"><span class="glyphicon glyphicon-search nav-link-icon"></span>View Users</a></li>
+          <li class="navbar-list"><a class="nav-link" href="/admin/users"><span class="glyphicon glyphicon-search nav-link-icon"></span>View users</a></li>
           <li class="navbar-list">
-            <a class="nav-link" href="/admin/registration"><span class="glyphicon glyphicon-user nav-link-icon"></span>Register Users</a>
+            <a class="nav-link" href="/admin/registration"><span class="glyphicon glyphicon-user nav-link-icon"></span>Register users</a>
           </li class="navbar-list">
         </ul>
 
@@ -52,7 +52,17 @@
           <%} %>
         </ul>
       </div>
-      <div class="content-container"></div>
+      <div class="content-container">
+        <div class="content-header">
+          Dashboard
+        </div>
+        <div class="summary-container">
+          PLACEHOLDER
+        </div>
+        <div class="summary-container">
+          PLACEHOLDER
+        </div>
+      </div>
     </div>
   </body>
 </html>
