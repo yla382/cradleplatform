@@ -67,14 +67,14 @@
                         <div class="form-group row">
                             <label for="firstName" class="col-md-4 col-form-label text-md-right edit-users-label">FIRST NAME</label>
                             <div class="col-md-6">
-                                <input required type="text" id="firstName" class="form-control" name="firstName" value="<%=postUser.getFirstName()%>">
+                                <input required type="text" id="firstName" class="edit-field" name="firstName" value="<%=postUser.getFirstName()%>">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="lastName" class="col-md-4 col-form-label text-md-right edit-users-label">LAST NAME</label>
                             <div class="col-md-6">
-                                <input required type="text" id="lastName" class="form-control" name="lastName" value="<%=postUser.getLastName()%>">
+                                <input required type="text" id="lastName" class="edit-field" name="lastName" value="<%=postUser.getLastName()%>">
                             </div>
                         </div>
 
@@ -88,7 +88,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right edit-users-label">EMAIL</label>
                             <div class="col-md-6">
-                                <input required type="text" id="email" class="form-control" name="email" value="<%=postUser.getEmail()%>">
+                                <input required type="text" id="email" class="edit-field" name="email" value="<%=postUser.getEmail()%>">
                             </div>
                         </div>
                         <div class="form-group row">

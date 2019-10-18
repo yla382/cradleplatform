@@ -86,3 +86,11 @@
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
+
+.edit-field {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.979);
+}
