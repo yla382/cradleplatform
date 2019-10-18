@@ -1,13 +1,13 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-//@Configuration
 @EnableWebMvc
-//@ComponentScan
+@ComponentScan
 @Configuration
 public class MvcConfiguration implements WebMvcConfigurer {
 
