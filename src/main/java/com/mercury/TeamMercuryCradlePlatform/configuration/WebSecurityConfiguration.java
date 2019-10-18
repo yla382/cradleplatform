@@ -51,20 +51,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override //HTTP authentication based on role
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.formLogin().loginPage("/login").permitAll();
-//            .authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/vht/**").hasRole("ADMIN")
-//                .antMatchers("/healthworker/**").hasRole("HEALTHWORKER")
-//                .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHT")
-//                .and()
-//            .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//            .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-//                .permitAll();
+        httpSecurity
+            .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/vht/**").hasRole("ADMIN")
+                .antMatchers("/healthworker/**").hasRole("HEALTHWORKER")
+                .antMatchers("/patients/**").hasAnyRole("ADMIN", "HEALTHWORKER", "VHT")
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+            .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .permitAll();
     }
 
 }
