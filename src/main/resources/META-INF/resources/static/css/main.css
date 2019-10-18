@@ -50,7 +50,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .nav-link {
   text-decoration: none;
