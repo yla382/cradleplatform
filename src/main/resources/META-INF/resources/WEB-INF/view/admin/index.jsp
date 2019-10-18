@@ -24,23 +24,25 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="main-container">
+      <!--NAVBAR-->
       <div class="navbar-container">
         <div class="navbar-title">
           Cradle.
         </div>
 
         <ul>
-          <li class="navbar-list"><a class="nav-link" href="/admin/index"><span class="glyphicon glyphicon-home nav-link-icon"></span>Dashboard</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/admin/users"><span class="glyphicon glyphicon-search nav-link-icon"></span>View users</a></li>
+          <li class="navbar-list"><a class="nav-link" href="/admin/index"><span class="glyphicon glyphicon-signal nav-link-icon"></span>Dashboard</a></li>
+          <li class="navbar-list"><a class="nav-link" href="/admin/users"><span class="glyphicon glyphicon-search nav-link-icon"></span>View Users</a></li>
           <li class="navbar-list">
-            <a class="nav-link" href="/admin/registration"><span class="glyphicon glyphicon-user nav-link-icon"></span>Register users</a>
+            <a class="nav-link" href="/admin/registration"><span class="glyphicon glyphicon-user nav-link-icon"></span>Register Users</a>
           </li class="navbar-list">
         </ul>
 
         <ul>
           <li class="navbar-list"><a class="nav-link" href="/patient/patientlist"><span class="glyphicon glyphicon-user nav-link-icon"></span>Patients</a></li>
           <li class="navbar-list"><a class="nav-link" href="/reading/create"><span class="glyphicon glyphicon-file nav-link-icon"></span>Readings</a></li>
+          <li class="navbar-list"><a class="nav-link" href="/admin/index"><span class="glyphicon glyphicon-folder-open nav-link-icon"></span>Education</a></li>
           <%if (request.getRemoteUser()!= null) {%>
           <li class="navbar-list">
             <a
@@ -51,16 +53,18 @@
           </li>
           <%} %>
         </ul>
-      </div>
+      </div> <!--END of NAVBAR-->
       <div class="content-container">
         <div class="content-header">
           Dashboard
         </div>
-        <div class="summary-container">
-          PLACEHOLDER
-        </div>
-        <div class="summary-container">
-          PLACEHOLDER
+        <div class="content-body">
+          <div class="summary-container">
+            PLACEHOLDER
+          </div>
+          <div class="summary-container">
+            PLACEHOLDER
+          </div>
         </div>
       </div>
     </div>

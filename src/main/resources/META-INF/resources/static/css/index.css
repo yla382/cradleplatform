@@ -93,13 +93,14 @@ body {
 }
 
 #welcome-header {
-  width: 100%;
+  width: 300px;
   font-size: 70px;
   margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   transition: 1s;
+  border-bottom: 2px solid white;
 }
 
 #welcome-desc {
