@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AppController {
@@ -21,13 +22,13 @@ public class AppController {
         return "index";
     }
 
-    @GetMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
 
     @PreAuthorize("#id == authentication.getPrincipal().getUserId()")
-    @GetMapping("/profile/{id}")
+    @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
     public String getUserInfo(@PathVariable("id") Integer id, Model model) {
 
         User user = userRepository.findByUserId(id);

@@ -1,6 +1,11 @@
-
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Referral" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
+<%
+    Referral referral = (Referral)request.getSession().getAttribute("reading");
+%>
 
     <head>
 

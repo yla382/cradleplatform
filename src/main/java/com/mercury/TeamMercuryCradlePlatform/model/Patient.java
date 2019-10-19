@@ -20,6 +20,18 @@ public class Patient {
     private String country = null;
     private String location = null;
 
+    public enum Sex {
+        FEMALE,
+        MALE
+    }
+    private Sex sex = Sex.FEMALE;
+    private Integer zoneNumber = null;
+    private Integer blockNumber = null;
+    private Integer tankNumber = null;
+    private Integer villageNumber = null;
+    private Integer householdNumber = null;
+
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="patient_Id", referencedColumnName = "patient_Id")
     private List<Reading> readings = new ArrayList<>();
@@ -35,6 +47,20 @@ public class Patient {
         this.lastName = lastName;
         this.country = country;
         this.location = location;
+    }
+
+    public Patient(String firstName, String lastName, Integer ageYears, String country, String location, Sex sex, Integer zoneNumber, Integer blockNumber, Integer tankNumber, Integer villageNumber, Integer householdNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ageYears = ageYears;
+        this.country = country;
+        this.location = location;
+        this.sex = sex;
+        this.zoneNumber = zoneNumber;
+        this.blockNumber = blockNumber;
+        this.tankNumber = tankNumber;
+        this.villageNumber = villageNumber;
+        this.householdNumber = householdNumber;
     }
 
     public Patient(String firstName, String lastName, Integer ageYears) {
@@ -106,5 +132,61 @@ public class Patient {
 
     public void addReading(Reading reading){
         this.readings.add(reading);
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public Integer getZoneNumber() {
+        return zoneNumber;
+    }
+
+    public void setZoneNumber(Integer zoneNumber) {
+        this.zoneNumber = zoneNumber;
+    }
+
+    public Integer getBlockNumber() {
+        return blockNumber;
+    }
+
+    public void setBlockNumber(Integer blockNumber) {
+        this.blockNumber = blockNumber;
+    }
+
+    public Integer getTankNumber() {
+        return tankNumber;
+    }
+
+    public void setTankNumber(Integer tankNumber) {
+        this.tankNumber = tankNumber;
+    }
+
+    public Integer getVillageNumber() {
+        return villageNumber;
+    }
+
+    public void setVillageNumber(Integer villageNumber) {
+        this.villageNumber = villageNumber;
+    }
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
+    }
+
+    public Integer getHouseholdNumber() {
+        return householdNumber;
+    }
+
+    public void setHouseholdNumber(Integer householdNumber) {
+        this.householdNumber = householdNumber;
     }
 }

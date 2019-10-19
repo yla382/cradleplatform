@@ -69,6 +69,16 @@ public class Referral {
         this.otherInformationMessage = otherInformationMessage;
     }
 
+    public Referral(String referredHealthCentre, LocalDateTime dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage, Patient patient) {
+        this.referredHealthCentre = referredHealthCentre;
+        this.dateTimeSent = dateTimeSent;
+        this.vhtName = vhtName;
+        this.reasonOfReferral = reasonOfReferral;
+        this.actionAlreadyTaken = actionAlreadyTaken;
+        this.otherInformationMessage = otherInformationMessage;
+        this.patient = patient;
+    }
+
     public Integer getReferralId() {
         return referralId;
     }
