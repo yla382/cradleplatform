@@ -1,7 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
-import com.mercury.TeamMercuryCradlePlatform.model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.model.*;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
@@ -13,6 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,6 +44,12 @@ public class DataInit implements CommandLineRunner {
         Patient patient2 = new Patient("Bobby", "Frown", "Uganda", "VillageA");
         Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
 
+//        List<String> symptoms = new ArrayList<>();
+//        symptoms.add("Headache");
+//        symptoms.add("Blurred vision");
+//        Reading reading = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
+//        reading.setSymptomsString();
+//        readingRepository.save(reading);
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
 
     }

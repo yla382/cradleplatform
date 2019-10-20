@@ -71,6 +71,7 @@ public class Reading {
     @Column(name = "last_name") public String lastName;
     @Column(name = "age_years") public Integer ageYears;
     @Transient public List<String> symptoms = new ArrayList<>();
+
     @Column(name = "symptoms") String symptomsString = null;
     @Column(name = "gestational_age_unit") public GestationalAgeUnit gestationalAgeUnit;
     @Column(name = "gestational_age_value") public String gestationalAgeValue;
@@ -120,11 +121,12 @@ public class Reading {
         this.dateTimeTaken = reading.dateTimeTaken;
     }
 
-    public Reading(String firstName, String lastName, Integer ageYears, String symptomsString, GestationalAgeUnit gestationalAgeUnit, String gestationalAgeValue, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM, ZonedDateTime dateTimeTaken) {
+    public Reading(String firstName, String lastName, Integer ageYears, List<String> symptoms, GestationalAgeUnit gestationalAgeUnit, String gestationalAgeValue, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM, ZonedDateTime dateTimeTaken) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ageYears = ageYears;
-        this.symptomsString = symptomsString;
+        this.symptoms = symptoms;
+//        this.symptomsString = getSymptomsString(this.symptoms);
         this.gestationalAgeUnit = gestationalAgeUnit;
         this.gestationalAgeValue = gestationalAgeValue;
         this.bpSystolic = bpSystolic;
@@ -280,7 +282,7 @@ public class Reading {
     }
 
     // symptoms
-    public String getSymptomsString() {
+    public String getSymptomsString(List<String> symptoms) {
         String description = "";
         for (String symptom : symptoms) {
             // clean up
@@ -335,6 +337,11 @@ public class Reading {
         this.lastName = lastName;
     }
 
+    public void setSymptomsString() {
+        this.symptomsString = getSymptomsString(this.symptoms);
+    }
+
+
     public String getFirstName() {
         return firstName;
     }
@@ -371,9 +378,6 @@ public class Reading {
         return heartRateBPM;
     }
 
-//    public void setPatientId(Integer patientId) {
-//        this.patientId = patientId;
-//    }
 
     public void setAgeYears(Integer ageYears) {
         this.ageYears = ageYears;
@@ -381,9 +385,8 @@ public class Reading {
 
     public void setSymptoms(List<String> symptoms) {
         this.symptoms = symptoms;
+        this.symptomsString = getSymptomsString(symptoms);
     }
-
-
 
     public void setGestationalAgeUnit(String gestationalAgeUnit) {
         if(gestationalAgeUnit.compareTo("Weeks") == 0){
@@ -392,7 +395,7 @@ public class Reading {
         else if(gestationalAgeUnit.compareTo("Months") == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS;
         }
-        else {
+        else if(gestationalAgeUnit.compareTo("Not Pregnant") == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE;
         }
     }

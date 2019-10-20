@@ -53,12 +53,12 @@ public class ReadingController {
     }
 
     @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
-    public ModelAndView readingAnalysisPage(Reading reading) {
+    public ModelAndView saveReadingToDB(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken, @RequestParam(value = "gestationalAgeUnit") String value) {
 
-        if (reading.firstName.isEmpty()){
-            System.out.println("null");
-        }
-        //Todo: fix null symptoms and gestational age bug
+        reading.gestationalAgeUnit = Reading.GestationalAgeUnit.valueOf(value);
+        reading.dateTimeTaken = ZonedDateTime.parse(timeTaken);
+        reading.dateUploadedToServer = ZonedDateTime.now();
+
         Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
 
         if(patient != null){
@@ -71,7 +71,6 @@ public class ReadingController {
         }
 
         return new ModelAndView("/reading/saved");
-
     }
 
 

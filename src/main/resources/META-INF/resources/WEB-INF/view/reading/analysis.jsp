@@ -22,7 +22,7 @@
 
             <h2> <%= reading.firstName + " " + reading.lastName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
 <%--            <p>  <%= reading.readingId%></p>--%>
-            <p> <%= reading.getSymptomsString()%></p>
+            <p> <%= reading.getSymptomsString(reading.symptoms)%></p>
             <h2> <%= reading.getTimeTakenAmPm() + ": " + ReadingAnalysis.analyze(reading).getAnalysisText()%></h2>
 
             <div class="container">
@@ -81,7 +81,7 @@
                 <input type="hidden" name="bpSystolic" value="<%=reading.bpSystolic%>"/>
                 <input type="hidden" name="bpDiastolic" value="<%=reading.bpDiastolic%>"/>
                 <input type="hidden" name="heartRateBPM" value="<%=reading.heartRateBPM%>"/>
-                <input type="hidden" name="dateTimeTaken" value="<%=reading.dateTimeTaken%>">
+                <input type="hidden" name="dateTimeTaken" value="<%=reading.dateTimeTaken.toString()%>">
                 <button type="submit"> Save </button>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
