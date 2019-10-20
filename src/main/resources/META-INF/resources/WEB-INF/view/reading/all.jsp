@@ -48,13 +48,7 @@
                     <th>${reading.firstName}</th>
                     <td>${reading.lastName}</td>
                     <td>${reading.ageYears}</td>
-                    <td>
-                            ${reading.symptomsString}
-<%--                        <c:forEach items="${reading.symptomsString}" var = "symptoms">--%>
-<%--                            ${symptoms}--%>
-<%--                            <br>--%>
-<%--                        </c:forEach>--%>
-                    </td>
+                    <td>${reading.symptomsString}</td>
                     <td>${reading.gestationWeekDaysString}</td>
                     <td>${reading.bpSystolic}/${reading.bpDiastolic}</td>
                     <td>${reading.heartRateBPM}</td>
