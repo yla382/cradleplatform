@@ -111,4 +111,31 @@ public enum ReadingAnalysis  {
                 || (this == RED_DOWN);
     }
 
+    public String getTrafficLightImg(){
+
+        if(this.isGreen()){
+            return "status_green";
+        }
+        else if(this.isYellow()){
+            return "status_yellow";
+        }
+        else if(this.isRed()){
+            return "status_red";
+        }
+
+        return null;
+    }
+
+    public String getArrowDirection(){
+
+        if(this.isUp()){
+            return "arrow_up";
+        }
+        if(this.isDown()){
+            return "arrow_down";
+        }
+
+        return null;
+    }
+
 }

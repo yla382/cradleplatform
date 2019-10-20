@@ -64,7 +64,7 @@ public class AdminController {
     public ModelAndView getAllUsers(){
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
-////////////////////////////////////////////////////
+
     @RequestMapping(value ="/contact", method = RequestMethod.GET)
     public ModelAndView getContactPage(@RequestParam String email) {
         return new ModelAndView("/admin/contact").addObject("email", email);
@@ -75,7 +75,7 @@ public class AdminController {
         emailAdmin.sendEmail(email, subject, message);
         return new ModelAndView("/admin/submitMessage");
     }
-/////////////////////////////////////////////////////////
+
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
     public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
 

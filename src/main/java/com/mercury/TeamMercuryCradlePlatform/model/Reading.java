@@ -95,12 +95,6 @@ public class Reading {
     @Transient public String referralHealthCentre;
     @Transient public String referralComment;
 
-    // app metrics
-    @Transient public String appVersion;
-    @Transient public String deviceInfo;
-    @Transient public float totalOcrSeconds;
-    @Transient private int manuallyChangeOcrResults; // constants above
-
     // temporary values
     @Transient transient private long temporaryFlags = 0;
     @Transient transient public boolean userHasSelectedNoSymptoms;
@@ -207,7 +201,7 @@ public class Reading {
         }
     }
 
-    public String getGestationTimeInAmPm(){
+    public String getTimeTakenAmPm(){
 
         String time = "";
         int hour = dateTimeTaken.getHour();
@@ -339,6 +333,18 @@ public class Reading {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Long getReadingId(){
+        return this.readingId;
     }
 
     public Integer getAgeYears() {

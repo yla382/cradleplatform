@@ -60,20 +60,43 @@
                         <option value="2">Patient healthy</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="symptomsSelector">Symptoms</label>
-                    <select multiple class="form-control" id="symptomsSelector" name="symptoms">
-                        <option value="Headache">Headache</option>
-                        <option value="Blurred vision">Blurred vision</option>
-                        <option value="Abdominal pain">Abdominal pain</option>
-                        <option value="Bleeding">Bleeding</option>
-                        <option value="Feverish">Feverish</option>
-                        <option value="Unwell">Unwell</option>
-                    </select>
+                <div class="form-group" id="symptomsSelectorDiv">
+                    <ul class="list-unstyled">
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="Headache"> Headache
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="Blurred vision"> Blurred vision
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="Abdominal pain"> Abdominal pain
+
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="Bleeding"> Bleeding
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="Feverish"> Feverish
+                            </label>
+                        </li>
+                        <li><label>
+                                <input type="checkbox" name="symptoms" value="Unwell"> Unwell
+                            </label>
+                        </li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <label for="otherSymptoms">Other symptoms</label>
-                    <textarea class="form-control" id="otherSymptoms" name="otherSymptoms" rows="2"></textarea>
+                    <textarea class="form-control" id="otherSymptoms" name="otherSymptoms" rows="2" maxlength="200"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="bpSystolic">Systolic</label>
@@ -115,7 +138,14 @@
         function healthChange() {
             const e = document.getElementById("health");
             const strUser = e.options[e.selectedIndex].value;
-            document.getElementById("symptomsSelector").disabled = strUser === "2";
+
+            if(strUser === "2"){
+                $("#symptomsSelectorDiv input").attr('disabled', true);
+            }
+            else {
+                $("#symptomsSelectorDiv input").removeAttr('disabled');
+            }
+
             document.getElementById("otherSymptoms").disabled = strUser === "2";
         }
 

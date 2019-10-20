@@ -1,5 +1,6 @@
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Reading" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis" %>
+<%@ page import="java.util.UUID" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -7,9 +8,6 @@
 
     <%
        Reading reading = (Reading)request.getAttribute("reading");
-       ReadingAnalysis analysis = (ReadingAnalysis)request.getAttribute("analysis");
-       String trafficLight = (String)request.getAttribute("trafficLight");
-       String arrowDirection = (String) request.getAttribute("arrowDirection");
     %>
 
     <meta charset="ISO-8859-1">
@@ -25,7 +23,7 @@
             <h2> <%= reading.firstName + " " + reading.lastName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
 <%--            <p>  <%= reading.readingId%></p>--%>
             <p> <%= reading.getSymptomsString()%></p>
-            <h2> <%= reading.getGestationTimeInAmPm() + ": " + analysis.getAnalysisText()%></h2>
+            <h2> <%= reading.getTimeTakenAmPm() + ": " + ReadingAnalysis.analyze(reading).getAnalysisText()%></h2>
 
             <div class="container">
                 <div class="row">
@@ -37,11 +35,11 @@
                     <div class="col-sm">
                         <div class="row">
                             <div class="col-xs">
-                                <img src="/images/<%=trafficLight%>.png" alt="<%=trafficLight%>">
+                                <img src="/images/<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>">
                             </div>
                             <div class="col-xs">
-                                <c:if test="<%= arrowDirection != null %>">
-                                    <img src="/images/<%=arrowDirection%>.png" alt="<%=arrowDirection%>">
+                                <c:if test="<%= ReadingAnalysis.analyze(reading).getArrowDirection() != null %>">
+                                    <img src="/images/<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>">
                                 </c:if>
                             </div>
                         </div>
@@ -50,7 +48,7 @@
             </div>
 
             <h2> Advice</h2>
-            <p> <%=analysis.getBriefText()%></p>
+            <p> <%=ReadingAnalysis.analyze(reading).getBriefText()%></p>
 
             <div class="custom-control custom-switch">
                 <input checked type="checkbox" class="custom-control-input" id="recheckVitalsNow">
@@ -64,7 +62,7 @@
 
 
             <h2> Not referred</h2>
-            <p> <%= analysis.isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%> <button type="button">Send referral</button> </p>
+            <p> <%= ReadingAnalysis.analyze(reading).isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%> <button type="button">Send referral</button> </p>
 
             <div class="custom-control custom-switch">
                 <input checked type="checkbox" class="custom-control-input" id="followUp">
@@ -83,7 +81,7 @@
                 <input type="hidden" name="bpSystolic" value="<%=reading.bpSystolic%>"/>
                 <input type="hidden" name="bpDiastolic" value="<%=reading.bpDiastolic%>"/>
                 <input type="hidden" name="heartRateBPM" value="<%=reading.heartRateBPM%>"/>
-
+                <input type="hidden" name="dateTimeTaken" value="<%=reading.dateTimeTaken%>">
                 <button type="submit"> Save </button>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>

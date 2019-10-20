@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -28,12 +30,10 @@ public class ReadingController {
         return new ModelAndView("/reading/create");
     }
 
-
     @RequestMapping(value = "/analysis", method = RequestMethod.POST)
     public @ResponseBody ModelAndView readingAnalysisPage(
             Reading reading,
             @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
-
         reading.dateTimeTaken = ZonedDateTime.now();
 
         if(reading.symptoms.size() == 0){
@@ -45,14 +45,8 @@ public class ReadingController {
             }
         }
 
-        ReadingAnalysis analysis = ReadingAnalysis.analyze(reading);
-
         ModelAndView modelAndView = new ModelAndView("/reading/analysis");
-
         modelAndView.addObject("reading", reading);
-        modelAndView.addObject("analysis", analysis);
-        modelAndView.addObject("trafficLight", getTrafficLightImg(analysis));
-        modelAndView.addObject("arrowDirection", getArrowDirection(analysis));
 
         return modelAndView;
 
@@ -61,7 +55,10 @@ public class ReadingController {
     @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
     public ModelAndView readingAnalysisPage(Reading reading) {
 
-        reading.dateTimeTaken = ZonedDateTime.now();
+        if (reading.firstName.isEmpty()){
+            System.out.println("null");
+        }
+        //Todo: fix null symptoms and gestational age bug
         Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
 
         if(patient != null){
@@ -77,31 +74,32 @@ public class ReadingController {
 
     }
 
-    private String getTrafficLightImg(ReadingAnalysis readingAnalysis){
 
-        if(readingAnalysis.isGreen()){
-            return "status_green";
-        }
-        else if(readingAnalysis.isYellow()){
-            return "status_yellow";
-        }
-        else if(readingAnalysis.isRed()){
-            return "status_red";
-        }
-
-        return null;
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ModelAndView getAllUsers(){
+        return setUpAllReadingModel();
     }
 
-    private String getArrowDirection(ReadingAnalysis readingAnalysis){
+    @RequestMapping(value = "/all/edit", method = RequestMethod.POST)
+    public ModelAndView getAllReadings(Reading reading){
+        this.readingRepository.save(reading);
+        return setUpAllReadingModel();
+    }
 
-        if(readingAnalysis.isUp()){
-            return "arrow_up";
-        }
-        if(readingAnalysis.isDown()){
-            return "arrow_down";
-        }
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView getUserWithId(@PathVariable long id){
+        Reading reading = this.readingRepository.findByReadingId(id);
+        return new ModelAndView("/reading/editReading").addObject("reading", reading);
+    }
 
-        return null;
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public ModelAndView deleteUserWithId(@PathVariable long id){
+        this.readingRepository.delete(this.readingRepository.findByReadingId(id));
+        return setUpAllReadingModel();
+    }
+
+    private ModelAndView setUpAllReadingModel(){
+        return new ModelAndView("/reading/all").addObject("readingList", this.readingRepository.findAll());
     }
 
 }
