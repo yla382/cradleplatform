@@ -1,9 +1,9 @@
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Patient" %>
 <!DOCTYPE html>
 <html>
-    <%
-        Patient patient = (Patient)request.getAttribute("patient");
-    %>
+<%
+    Patient patient = (Patient)request.getAttribute("patient");
+%>
 
 <head>
     <meta charset="utf-8">
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <%@ include file="../navbar.jspf" %>
+<%@ include file="../navbar.jspf" %>
 </body>
 
 <body>
@@ -26,7 +26,7 @@
         <div class="container w-100" style="padding: 10px">
             <div class="form-group">
                 <label for="firstName">First name: </label>
-                <input type="text" class="form-control" id="firstName" name="firstName"><br>
+                <input type="text" class="form-control" id="firstName" name="firstName" value=<%= patient.getFirstName()%>><br>
             </div>
             <div class="form-group">
                 <label for="lastName">Last name: </label>

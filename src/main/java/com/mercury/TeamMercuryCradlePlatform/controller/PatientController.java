@@ -34,6 +34,10 @@ public class PatientController {
         return new ModelAndView("/patient/addPatient");
     }
 
+    @RequestMapping(value = "/editPatient", method = RequestMethod.POST)
+    public ModelAndView editPatientPage(){
+        return new ModelAndView("/patient/editPatient");
+    }
 
     @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
     public @ResponseBody ModelAndView confirmPatientPage(Patient patient) {
