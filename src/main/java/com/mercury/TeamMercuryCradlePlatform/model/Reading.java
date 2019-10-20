@@ -25,7 +25,6 @@ public class Reading {
     @Transient public static final int MANUAL_USER_ENTRY_DIASTOLIC = 2;
     @Transient public static final int MANUAL_USER_ENTRY_HEARTRATE = 4;
 
-
     /**
      * Types
      */
@@ -72,7 +71,7 @@ public class Reading {
     @Column(name = "age_years") public Integer ageYears;
     @Transient public List<String> symptoms = new ArrayList<>();
 
-    @Column(name = "symptoms") String symptomsString = null;
+    @Column(name = "symptoms") String symptomsString;
     @Column(name = "gestational_age_unit") public GestationalAgeUnit gestationalAgeUnit;
     @Column(name = "gestational_age_value") public String gestationalAgeValue;
 
@@ -126,7 +125,7 @@ public class Reading {
         this.lastName = lastName;
         this.ageYears = ageYears;
         this.symptoms = symptoms;
-//        this.symptomsString = getSymptomsString(this.symptoms);
+        setSymptomsString(this.symptoms);
         this.gestationalAgeUnit = gestationalAgeUnit;
         this.gestationalAgeValue = gestationalAgeValue;
         this.bpSystolic = bpSystolic;
@@ -281,9 +280,8 @@ public class Reading {
         }
     }
 
-    // symptoms
-    public String getSymptomsString(List<String> symptoms) {
-        String description = "";
+    private void setSymptomsString(List<String> symptoms){
+        StringBuilder description = new StringBuilder();
         for (String symptom : symptoms) {
             // clean up
             symptom = symptom.trim();
@@ -293,11 +291,11 @@ public class Reading {
 
             // append
             if (description.length() != 0) {
-                description += ", ";
+                description.append(", ");
             }
-            description += symptom;
+            description.append(symptom);
         }
-        return description;
+        symptomsString = description.toString();
     }
 
 
@@ -337,10 +335,6 @@ public class Reading {
         this.lastName = lastName;
     }
 
-    public void setSymptomsString() {
-        this.symptomsString = getSymptomsString(this.symptoms);
-    }
-
 
     public String getFirstName() {
         return firstName;
@@ -378,6 +372,9 @@ public class Reading {
         return heartRateBPM;
     }
 
+    public String getSymptomsString() {
+        return this.symptomsString;
+    }
 
     public void setAgeYears(Integer ageYears) {
         this.ageYears = ageYears;
@@ -385,7 +382,7 @@ public class Reading {
 
     public void setSymptoms(List<String> symptoms) {
         this.symptoms = symptoms;
-        this.symptomsString = getSymptomsString(symptoms);
+        setSymptomsString(this.symptoms);
     }
 
     public void setGestationalAgeUnit(String gestationalAgeUnit) {

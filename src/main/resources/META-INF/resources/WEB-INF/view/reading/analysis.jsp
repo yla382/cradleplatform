@@ -22,7 +22,7 @@
 
             <h2> <%= reading.firstName + " " + reading.lastName + ", " + reading.ageYears + "y" + " @ " + reading.getGestationWeekDaysString()%></h2>
 <%--            <p>  <%= reading.readingId%></p>--%>
-            <p> <%= reading.getSymptomsString(reading.symptoms)%></p>
+            <p> <%= reading.getSymptomsString()%></p>
             <h2> <%= reading.getTimeTakenAmPm() + ": " + ReadingAnalysis.analyze(reading).getAnalysisText()%></h2>
 
             <div class="container">

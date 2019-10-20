@@ -44,12 +44,11 @@ public class DataInit implements CommandLineRunner {
         Patient patient2 = new Patient("Bobby", "Frown", "Uganda", "VillageA");
         Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
 
-//        List<String> symptoms = new ArrayList<>();
-//        symptoms.add("Headache");
-//        symptoms.add("Blurred vision");
-//        Reading reading = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
-//        reading.setSymptomsString();
-//        readingRepository.save(reading);
+        List<String> symptoms = new ArrayList<>();
+        symptoms.add("Headache");
+        symptoms.add("Blurred vision");
+        Reading reading = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
+        readingRepository.save(reading);
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
 
     }

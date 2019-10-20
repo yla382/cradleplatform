@@ -25,11 +25,14 @@ public class ReadingController {
         this.readingRepository = readingRepository;
     }
 
+    // Create a new reading
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView readingPage(){
         return new ModelAndView("/reading/create");
     }
 
+
+    // Produce the analysis after creating a reading
     @RequestMapping(value = "/analysis", method = RequestMethod.POST)
     public @ResponseBody ModelAndView readingAnalysisPage(
             Reading reading,
@@ -52,13 +55,16 @@ public class ReadingController {
 
     }
 
+    // Save the reading to the db
     @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
-    public ModelAndView saveReadingToDB(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken, @RequestParam(value = "gestationalAgeUnit") String value) {
+    public String saveReadingToDB(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken, @RequestParam(value = "gestationalAgeUnit") String value) {
 
+        // Need to manually set these fields again otherwise it saves it as null in db
         reading.gestationalAgeUnit = Reading.GestationalAgeUnit.valueOf(value);
         reading.dateTimeTaken = ZonedDateTime.parse(timeTaken);
         reading.dateUploadedToServer = ZonedDateTime.now();
 
+        // If a patient exists with the same first, last and age then link this reading to the existing patient, else create new patient
         Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
 
         if(patient != null){
@@ -70,33 +76,38 @@ public class ReadingController {
             readingRepository.save(reading);
         }
 
-        return new ModelAndView("/reading/saved");
+        return "/reading/all";
     }
 
 
+    // View all readings
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllUsers(){
         return setUpAllReadingModel();
     }
 
+    // Save a reading after editing from the view all readings table
     @RequestMapping(value = "/all/edit", method = RequestMethod.POST)
     public ModelAndView getAllReadings(Reading reading){
         this.readingRepository.save(reading);
         return setUpAllReadingModel();
     }
 
+    // Edit a reading with the given id
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView getUserWithId(@PathVariable long id){
         Reading reading = this.readingRepository.findByReadingId(id);
         return new ModelAndView("/reading/editReading").addObject("reading", reading);
     }
 
+    // Delete a reading with the given id
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public ModelAndView deleteUserWithId(@PathVariable long id){
         this.readingRepository.delete(this.readingRepository.findByReadingId(id));
         return setUpAllReadingModel();
     }
 
+    // Create a model for view all readings and pass in a List of reading objects
     private ModelAndView setUpAllReadingModel(){
         return new ModelAndView("/reading/all").addObject("readingList", this.readingRepository.findAll());
     }

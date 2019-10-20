@@ -26,19 +26,19 @@
                 <div class="row">
                     <div class="col">
                         <label for="patientId">ID number</label>
-                        <input required type="text" class="form-control" id="patientId" name="patientId" <%=reading.getReadingId()%>>
+                        <input required type="text" class="form-control" id="patientId" name="patientId" value="<%=reading.readingId%>">
                     </div>
                     <div class="col">
                         <label for="firstName">First Name</label>
-                        <input required type="text" class="form-control" id="firstName" name="firstName" <%=reading.firstName%>>
+                        <input required type="text" class="form-control" id="firstName" name="firstName" value="<%=reading.firstName%>">
                     </div>
                     <div class="col">
                         <label for="lastName">Last Name</label>
-                        <input required type="text" class="form-control" id="lastName" name="lastName" <%=reading.lastName%>>
+                        <input required type="text" class="form-control" id="lastName" name="lastName" value="<%=reading.lastName%>">
                     </div>
                     <div class="col">
                         <label for="ageYears">Age</label>
-                        <input required type="number" min="0" class="form-control" id="ageYears" name="ageYears" <%=reading.ageYears%>>
+                        <input required type="number" min="0" class="form-control" id="ageYears" name="ageYears" value="<%=reading.ageYears%>">
                     </div>
                 </div>
                 <div class="row" style="width: 25%">
@@ -104,15 +104,15 @@
             </div>
             <div class="form-group">
                 <label for="bpSystolic">Systolic</label>
-                <input required type="number" min="10" max="300" class="form-control" id="bpSystolic" name="bpSystolic" style="width: 25%"/>
+                <input required type="number" min="10" max="300" class="form-control" id="bpSystolic" name="bpSystolic" style="width: 25%" value="<%=reading.bpSystolic%>"/>
             </div>
             <div class="form-group">
                 <label for="bpDiastolic">Diastolic</label>
-                <input required type="number" min="10" max="300" class="form-control" id="bpDiastolic" name="bpDiastolic" style="width: 25%">
+                <input required type="number" min="10" max="300" class="form-control" id="bpDiastolic" name="bpDiastolic" style="width: 25%" value="<%=reading.bpDiastolic%>">
             </div>
             <div class="form-group">
                 <label for="heartRateBPM">Heart rate</label>
-                <input required type="number" min="40" max="200" class="form-control" id="heartRateBPM" name="heartRateBPM" style="width: 25%">
+                <input required type="number" min="40" max="200" class="form-control" id="heartRateBPM" name="heartRateBPM" style="width: 25%" value="<%=reading.heartRateBPM%>">
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input class="form-group" type="submit" value="Submit" id="submitButton">
