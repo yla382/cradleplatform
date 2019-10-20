@@ -66,6 +66,15 @@
 
             <h2> Not referred</h2>
             <p> <%= analysis.isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%>
+                <%
+                    session.setAttribute("firstName",reading.firstName);
+                    session.setAttribute("lastName", reading.lastName);
+                    session.setAttribute("age", reading.ageYears);
+                    session.setAttribute("bpSystolic", reading.bpSystolic);
+                    session.setAttribute("bpDiastolic", reading.bpDiastolic);
+                    session.setAttribute("heartRate", reading.heartRateBPM);
+                    session.setAttribute("analysis", analysis.name());
+                %>
                 <a href="${pageContext.request.contextPath}/referral/addReferral">
                     <button type="button">Send referral</button>
                 </a>

@@ -23,6 +23,7 @@ public class ReferralController {
 
     @RequestMapping(value = "/addReferral", method = RequestMethod.GET)
     public ModelAndView addReferralPage(){
+
         return new ModelAndView("/referral/addReferral");
     }
 

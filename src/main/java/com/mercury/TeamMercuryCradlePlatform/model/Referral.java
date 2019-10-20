@@ -1,9 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "referral")
@@ -18,7 +16,7 @@ public class Referral {
     private String referredHealthCentre = null;
 
     @Column(name = "date_time_sent")
-    private LocalDateTime dateTimeSent = LocalDateTime.now();
+    private LocalDate dateTimeSent = LocalDate.now();
 
     @Column(name = "vht_name")
     private String vhtName = null;
@@ -33,6 +31,7 @@ public class Referral {
     @Column(name = "other_information_message")
     private String otherInformationMessage = null;
 
+    //reading info
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reading_id", referencedColumnName = "reading_id")
     private Reading reading;
@@ -45,6 +44,16 @@ public class Referral {
         this.reading = reading;
     }
 
+    @Column(name = "bp_systolic")
+    public Integer bpSystolic;
+
+    @Column(name = "by_diastolic")
+    public Integer bpDiastolic;
+
+    @Column(name = "hear_rate_bpm")
+    public Integer heartRateBPM;
+
+    // patient info
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_Id", referencedColumnName = "patient_Id")
     private Patient patient;
@@ -57,10 +66,39 @@ public class Referral {
         this.patient = patient;
     }
 
+    @Column(name = "first_name")
+    public String firstName;
+
+    @Column(name = "last_name")
+    public String lastName;
+
+    @Column(name = "age_years")
+    public Integer ageYears;
+
+    @Column(name = "sex")
+    public Patient.Sex sex;
+
+    @Column(name = "zone_number")
+    public Integer zoneNumber;
+
+    @Column(name = "block_number")
+    public Integer blockNumber;
+
+    @Column(name = "tank_number")
+    public Integer tankNumber;
+
+    @Column(name = "village_number")
+    public Integer villageNumber;
+
+    @Column(name = "household_number")
+    public Integer householdNumber;
+
+
+
     public Referral() {
     }
 
-    public Referral(String referredHealthCentre, LocalDateTime dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage) {
+    public Referral(String referredHealthCentre, LocalDate dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage) {
         this.referredHealthCentre = referredHealthCentre;
         this.dateTimeSent = dateTimeSent;
         this.vhtName = vhtName;
@@ -69,7 +107,7 @@ public class Referral {
         this.otherInformationMessage = otherInformationMessage;
     }
 
-    public Referral(String referredHealthCentre, LocalDateTime dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage, Patient patient) {
+    public Referral(String referredHealthCentre, LocalDate dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage, Patient patient) {
         this.referredHealthCentre = referredHealthCentre;
         this.dateTimeSent = dateTimeSent;
         this.vhtName = vhtName;
@@ -95,11 +133,11 @@ public class Referral {
         this.referredHealthCentre = referredHealthCentre;
     }
 
-    public LocalDateTime getDateTimeSent() {
+    public LocalDate getDateTimeSent() {
         return dateTimeSent;
     }
 
-    public void setDateTimeSent(LocalDateTime dateTimeSent) {
+    public void setDateTimeSent(LocalDate dateTimeSent) {
         this.dateTimeSent = dateTimeSent;
     }
 
