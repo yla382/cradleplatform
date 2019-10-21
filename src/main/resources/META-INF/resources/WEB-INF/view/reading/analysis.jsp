@@ -69,10 +69,10 @@
                 <%
                     session.setAttribute("firstName",reading.firstName);
                     session.setAttribute("lastName", reading.lastName);
-                    session.setAttribute("age", reading.ageYears);
+                    session.setAttribute("ageYears", reading.ageYears);
                     session.setAttribute("bpSystolic", reading.bpSystolic);
                     session.setAttribute("bpDiastolic", reading.bpDiastolic);
-                    session.setAttribute("heartRate", reading.heartRateBPM);
+                    session.setAttribute("heartRateBPM", reading.heartRateBPM);
                     session.setAttribute("analysis", analysis.name());
                 %>
                 <a href="${pageContext.request.contextPath}/referral/addReferral">

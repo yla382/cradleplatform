@@ -45,13 +45,13 @@ public class Referral {
     }
 
     @Column(name = "bp_systolic")
-    public Integer bpSystolic;
+    private Integer bpSystolic;
 
     @Column(name = "by_diastolic")
-    public Integer bpDiastolic;
+    private Integer bpDiastolic;
 
     @Column(name = "hear_rate_bpm")
-    public Integer heartRateBPM;
+    private Integer heartRateBPM;
 
     // patient info
     @OneToOne(cascade = CascadeType.ALL)
@@ -67,31 +67,36 @@ public class Referral {
     }
 
     @Column(name = "first_name")
-    public String firstName;
+    private String firstName;
 
     @Column(name = "last_name")
-    public String lastName;
+    private String lastName;
 
     @Column(name = "age_years")
-    public Integer ageYears;
+    private Integer ageYears;
+
+    public enum Sex {
+        FEMALE,
+        MALE
+    }
 
     @Column(name = "sex")
-    public Patient.Sex sex;
+    private Sex sex = Sex.FEMALE;
 
     @Column(name = "zone_number")
-    public Integer zoneNumber;
+    private Integer zoneNumber;
 
     @Column(name = "block_number")
-    public Integer blockNumber;
+    private Integer blockNumber;
 
     @Column(name = "tank_number")
-    public Integer tankNumber;
+    private Integer tankNumber;
 
     @Column(name = "village_number")
-    public Integer villageNumber;
+    private Integer villageNumber;
 
     @Column(name = "household_number")
-    public Integer householdNumber;
+    private Integer householdNumber;
 
 
 
@@ -107,14 +112,25 @@ public class Referral {
         this.otherInformationMessage = otherInformationMessage;
     }
 
-    public Referral(String referredHealthCentre, LocalDate dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage, Patient patient) {
+    public Referral(String referredHealthCentre, LocalDate dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM, String firstName, String lastName, Integer ageYears, Sex sex, Integer zoneNumber, Integer blockNumber, Integer tankNumber, Integer villageNumber, Integer householdNumber) {
         this.referredHealthCentre = referredHealthCentre;
         this.dateTimeSent = dateTimeSent;
         this.vhtName = vhtName;
         this.reasonOfReferral = reasonOfReferral;
         this.actionAlreadyTaken = actionAlreadyTaken;
         this.otherInformationMessage = otherInformationMessage;
-        this.patient = patient;
+        this.bpSystolic = bpSystolic;
+        this.bpDiastolic = bpDiastolic;
+        this.heartRateBPM = heartRateBPM;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ageYears = ageYears;
+        this.sex = sex;
+        this.zoneNumber = zoneNumber;
+        this.blockNumber = blockNumber;
+        this.tankNumber = tankNumber;
+        this.villageNumber = villageNumber;
+        this.householdNumber = householdNumber;
     }
 
     public Integer getReferralId() {
@@ -171,5 +187,101 @@ public class Referral {
 
     public void setOtherInformationMessage(String otherInformationMessage) {
         this.otherInformationMessage = otherInformationMessage;
+    }
+
+    public Integer getBpSystolic() {
+        return bpSystolic;
+    }
+
+    public void setBpSystolic(Integer bpSystolic) {
+        this.bpSystolic = bpSystolic;
+    }
+
+    public Integer getBpDiastolic() {
+        return bpDiastolic;
+    }
+
+    public void setBpDiastolic(Integer bpDiastolic) {
+        this.bpDiastolic = bpDiastolic;
+    }
+
+    public Integer getHeartRateBPM() {
+        return heartRateBPM;
+    }
+
+    public void setHeartRateBPM(Integer heartRateBPM) {
+        this.heartRateBPM = heartRateBPM;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getAgeYears() {
+        return ageYears;
+    }
+
+    public void setAgeYears(Integer ageYears) {
+        this.ageYears = ageYears;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public Integer getZoneNumber() {
+        return zoneNumber;
+    }
+
+    public void setZoneNumber(Integer zoneNumber) {
+        this.zoneNumber = zoneNumber;
+    }
+
+    public Integer getBlockNumber() {
+        return blockNumber;
+    }
+
+    public void setBlockNumber(Integer blockNumber) {
+        this.blockNumber = blockNumber;
+    }
+
+    public Integer getTankNumber() {
+        return tankNumber;
+    }
+
+    public void setTankNumber(Integer tankNumber) {
+        this.tankNumber = tankNumber;
+    }
+
+    public Integer getVillageNumber() {
+        return villageNumber;
+    }
+
+    public void setVillageNumber(Integer villageNumber) {
+        this.villageNumber = villageNumber;
+    }
+
+    public Integer getHouseholdNumber() {
+        return householdNumber;
+    }
+
+    public void setHouseholdNumber(Integer householdNumber) {
+        this.householdNumber = householdNumber;
     }
 }

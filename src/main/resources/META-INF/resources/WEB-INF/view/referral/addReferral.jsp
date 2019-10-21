@@ -1,13 +1,15 @@
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Referral" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <%
     String firstName = (String)session.getAttribute("firstName");
     String lastName = (String)session.getAttribute("lastName");
-    Integer age = (Integer)session.getAttribute("age");
+    Integer ageYears = (Integer)session.getAttribute("ageYears");
     Integer bpSystolic = (Integer)session.getAttribute("bpSystolic");
     Integer bpDiastolic = (Integer)session.getAttribute("bpDiastolic");
-    Integer heartRate = (Integer)session.getAttribute("heartRate");
+    Integer heartRateBPM = (Integer)session.getAttribute("heartRateBPM");
     String analysis = (String)session.getAttribute("analysis");
 %>
 
@@ -24,13 +26,9 @@
         <form action="${pageContext.request.contextPath}/referral/confirmReferral" method="post">
             <div class="container w-100" style="padding: 10px">
                 <div class="form-group">
-                    <label for="dateTimeSent">Date: </label>
-                    <input type="date" class="form-control" id="dateTimeSent" name="dateTimeSent"><br>
-                </div> <%--Date--%>
-                <div class="form-group">
                     <label for="referredHealthCentre">Health Centre referred to: </label>
                     <input type="text" class="form-control" id="referredHealthCentre" name="referredHealthCentre"><br>
-                </div> <%--Health Centre--%>
+                </div>
 
                 <%--Patient Info--%>
                 <div class="form-group">
@@ -42,13 +40,16 @@
                     <input type="text" class="form-control" id="lastName" name="lastName" value="<%=lastName%>"><br>
                 </div>
                 <div class="form-group">
-                    <label for="age">Age: </label>
-                    <input type="number" class="form-control" id="age" name="age" value="<%=age%>"><br>
+                    <label for="ageYears">Age: </label>
+                    <input type="number" class="form-control" id="ageYears" name="ageYears" value="<%=ageYears%>"><br>
                 </div>
 
                 <div class="form-group">
-                    <label for="sex">Sex: </label>
-                    <input type="number" class="form-control" id="sex" name="sex"><br>
+                    <label for="sex"></label>
+                    <select class="form-control" id="sex" name="sex" onclick="Sex()">
+                        <option value="FEMALE">FEMALE</option>
+                        <option value="MALE">MALE</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -80,8 +81,8 @@
                     <input type="number" class="form-control" id="bpDiastolic" name="bpDiastolic" value="<%=bpDiastolic%>"><br>
                 </div>
                 <div class="form-group">
-                    <label for="heartRate">Heart Rate: </label>
-                    <input type="number" class="form-control" id="heartRate" name="heartRate" value="<%=heartRate%>"><br>
+                    <label for="heartRateBPM">Heart Rate: </label>
+                    <input type="number" class="form-control" id="heartRateBPM" name="heartRateBPM" value="<%=heartRateBPM%>"><br>
                 </div>
                 <div class="form-group">
                     <label for="analysis">Reading Analysis: </label>
@@ -108,13 +109,19 @@
                     <input type="text" class="form-control" id="otherInfoMessage" name="otherInfoMessage"><br>
                 </div>
 
-                <button type="submit" value="Submit"> Save </button>
-                <button type="button"> Test Message </button>
+                <button type="submit" value="Submit"> Submit </button>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
     </body>
+<Script>
+    function Sex() {
+        const e = document.getElementById("sex");
+        const strUser = e.options[e.selectedIndex].value;
+        document.getElementById("sex").disabled = strUser === "FEMALE";
+    }
+</Script>
 
 
 </html>

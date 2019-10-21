@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+
 @Controller
 @Service
 @RequestMapping(path="/referral")
@@ -23,18 +25,14 @@ public class ReferralController {
 
     @RequestMapping(value = "/addReferral", method = RequestMethod.GET)
     public ModelAndView addReferralPage(){
-
         return new ModelAndView("/referral/addReferral");
     }
 
     @RequestMapping(value = "/confirmReferral", method = RequestMethod.POST)
     public @ResponseBody ModelAndView confirmReferralPage(Referral referral) {
         ModelAndView modelAndView = new ModelAndView("/referral/confirmReferral");
-
-        ReferralRepository referralRepository = this.referralRepository;
-
+        referral.setDateTimeSent(LocalDate.now());
         modelAndView.addObject("referral", referral);
-
         return modelAndView;
     }
 
