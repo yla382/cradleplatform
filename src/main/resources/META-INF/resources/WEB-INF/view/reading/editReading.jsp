@@ -151,14 +151,15 @@
     }
 
     function selectSymptoms(){
+
         let symptomsArr = "<c:out value='<%=reading.getSymptomsString()%>'/>".split(",");
 
-        if(symptomsArr[0] === "No Symptoms (patient healthy)"){
+        if(symptomsArr[0] === "<c:out value='<%=Strings.SYMPTOM_NO_SYMPTOMS%>'/>"){
             document.getElementById("health").selectedIndex = "1";
             healthChange();
         }
         else{
-            var i = 0;
+            let i = 0;
             $("#symptomsSelectorDiv input[type=checkbox]").each(function() {
                 if (symptomsArr.indexOf($(this).val()) > -1) {
                     $(this).prop('checked', true);
@@ -168,7 +169,7 @@
 
             if(i < symptomsArr.length){
                 const slicedArr = symptomsArr.slice(i, symptomsArr.length);
-                for(var i = 0; i < slicedArr.length; i++){
+                for(i = 0; i < slicedArr.length; i++){
                     if(i > 0){
                         slicedArr[i] = " " + slicedArr[i];
                     }
