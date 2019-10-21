@@ -3,6 +3,7 @@ package com.mercury.TeamMercuryCradlePlatform.controller;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
@@ -55,6 +56,7 @@ public class AndroidController {
         List<Reading> readings = readingRepository.findReadingsByPatient(patient);
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         try {
             return mapper.writeValueAsString(readings);
         }
@@ -69,13 +71,5 @@ public class AndroidController {
         readingRepository.save(reading);
         return reading.toString();
     }
-
-    @RequestMapping(value = "/getreading/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String getReading(@PathVariable Integer id) throws JsonProcessingException {
-        Patient p = patientRepository.findByPatientId(id);
-        List<Reading> readings = readingRepository.findReadingsByPatient(p);
-
-
 }
 

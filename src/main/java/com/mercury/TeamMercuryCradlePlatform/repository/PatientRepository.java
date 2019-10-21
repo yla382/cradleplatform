@@ -11,17 +11,15 @@ import java.util.List;
 public interface PatientRepository extends CrudRepository<Patient, Integer> {
     public List<Patient> findAll();
 
-    Patient findByPatientId(Integer id);
+    Patient findByPatientId(Integer patientId);
 
     @Query("SELECT c FROM Patient c WHERE c.firstName LIKE %?1%")
     List<Patient> findAllByFirstNameLike(String firstName);
-
     Patient findByFirstNameAndLastNameAndAgeYears(String firstName, String lastName, Integer ageYears);
+
     Boolean existsByFirstNameAndLastNameAndAgeYears(String firstName, String lastName, Integer agYears);
 
 
     @Query("SELECT c FROM Patient c WHERE c.lastName LIKE %?1%")
     List<Patient> findAllByLastNameLike(String lastName);
-
-    Patient findByPatientId(Integer patientId);
 }
