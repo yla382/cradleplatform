@@ -11,6 +11,8 @@ import java.util.List;
 public interface PatientRepository extends CrudRepository<Patient, Integer> {
     public List<Patient> findAll();
 
+    Patient findByPatientId(Integer id);
+
     @Query("SELECT c FROM Patient c WHERE c.firstName LIKE %?1%")
     List<Patient> findAllByFirstNameLike(String firstName);
 
