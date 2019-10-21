@@ -21,4 +21,5 @@ public interface PatientRepository extends CrudRepository<Patient, Integer> {
     @Query("SELECT c FROM Patient c WHERE c.lastName LIKE %?1%")
     List<Patient> findAllByLastNameLike(String lastName);
 
+    Patient findByPatientId(Integer patientId);
 }

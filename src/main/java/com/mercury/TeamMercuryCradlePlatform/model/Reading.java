@@ -406,4 +406,39 @@ public class Reading {
     public void setHeartRateBPM(Integer heartRateBPM) {
         this.heartRateBPM = heartRateBPM;
     }
+
+    @Override
+    public String toString() {
+        return "Reading{" +
+                "readingId=" + readingId +
+                ", dateLastSaved=" + dateLastSaved +
+                ", patient=" + patient +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", ageYears=" + ageYears +
+                ", symptoms=" + symptoms +
+                ", symptomsString='" + symptomsString + '\'' +
+                ", gestationalAgeUnit=" + gestationalAgeUnit +
+                ", gestationalAgeValue='" + gestationalAgeValue + '\'' +
+                ", pathToPhoto='" + pathToPhoto + '\'' +
+                ", bpSystolic=" + bpSystolic +
+                ", bpDiastolic=" + bpDiastolic +
+                ", heartRateBPM=" + heartRateBPM +
+                ", dateTimeTaken=" + dateTimeTaken +
+                ", gpsLocationOfReading='" + gpsLocationOfReading + '\'' +
+                ", dateUploadedToServer=" + dateUploadedToServer +
+                ", retestOfPreviousReadingIds=" + retestOfPreviousReadingIds +
+                ", dateRecheckVitalsNeeded=" + dateRecheckVitalsNeeded +
+                ", isFlaggedForFollowup=" + isFlaggedForFollowup +
+                ", referralMessageSendTime=" + referralMessageSendTime +
+                ", referralHealthCentre='" + referralHealthCentre + '\'' +
+                ", referralComment='" + referralComment + '\'' +
+                ", appVersion='" + appVersion + '\'' +
+                ", deviceInfo='" + deviceInfo + '\'' +
+                ", totalOcrSeconds=" + totalOcrSeconds +
+                ", manuallyChangeOcrResults=" + manuallyChangeOcrResults +
+                ", temporaryFlags=" + temporaryFlags +
+                ", userHasSelectedNoSymptoms=" + userHasSelectedNoSymptoms +
+                '}';
+    }
 }
