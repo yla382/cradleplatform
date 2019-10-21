@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                     <label for="sex"></label>
-                    <select class="form-control" id="sex" name="sex" onclick="Sex()">
+                    <select class="form-control" id="sex" name="sex">
                         <option value="FEMALE">FEMALE</option>
                         <option value="MALE">MALE</option>
                     </select>
@@ -115,13 +115,6 @@
         </form>
 
     </body>
-<Script>
-    function Sex() {
-        const e = document.getElementById("sex");
-        const strUser = e.options[e.selectedIndex].value;
-        document.getElementById("sex").disabled = strUser === "FEMALE";
-    }
-</Script>
 
 
 </html>

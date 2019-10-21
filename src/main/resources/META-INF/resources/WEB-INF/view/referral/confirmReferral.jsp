@@ -65,12 +65,11 @@
     <p> <%=referral.getOtherInformationMessage()%></p>
 
     <button type="button" onclick="editButton()"> Edit </button>
-    <form action="${pageContext.request.contextPath}/referral/confirmReferral/save" method="post">
+    <form action="${pageContext.request.contextPath}/referral/referralSaved" method="post">
         <input type="hidden" name="firstName" value="<%=referral.getFirstName()%>"/>
         <input type="hidden" name="lastName" value="<%=referral.getLastName()%>"/>
         <input type="hidden" name="ageYears" value="<%=referral.getAgeYears()%>"/>
         <input type="hidden" name="sex" value="<%=referral.getSex()%>"/>
-        <input type="hidden" name="dateTimeSent" value="<%=referral.getDateTimeSent()%>"/>
         <input type="hidden" name="zoneNumber" value="<%=referral.getZoneNumber()%>"/>
         <input type="hidden" name="blockNumber" value="<%=referral.getBlockNumber()%>"/>
         <input type="hidden" name="tankNumber" value="<%=referral.getTankNumber()%>"/>

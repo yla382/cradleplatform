@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @Service
@@ -33,6 +34,25 @@ public class ReferralController {
         ModelAndView modelAndView = new ModelAndView("/referral/confirmReferral");
         referral.setDateTimeSent(LocalDate.now());
         modelAndView.addObject("referral", referral);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/referralList", method = RequestMethod.GET)
+    public ModelAndView ReferralListPage() {
+        List<Referral> referralList = this.referralRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("/referral/referralList");
+        modelAndView.addObject("patientList", referralList);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/referralSaved", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView saveReferral(Referral referral) {
+        ModelAndView modelAndView = new ModelAndView("/referral/referralList");
+        referral.setDateTimeSent(LocalDate.now());
+        referralRepository.save(referral);
+
+        List<Referral> referralList = this.referralRepository.findAll();
+        modelAndView.addObject("referralList", referralList);
         return modelAndView;
     }
 

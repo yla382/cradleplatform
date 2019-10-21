@@ -1,13 +1,10 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
+import com.mercury.TeamMercuryCradlePlatform.model.*;
+import com.mercury.TeamMercuryCradlePlatform.repository.*;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
-import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
-import com.mercury.TeamMercuryCradlePlatform.model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.model.User;
-import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
-import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,12 +19,14 @@ public class DataInit implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
     private PatientRepository patientRepository;
     private ReadingRepository readingRepository;
+    private ReferralRepository referralRepository;
 
-    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository) {
+    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository, ReferralRepository referralRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
+        this.referralRepository = referralRepository;
     }
 
     @Override
@@ -44,6 +43,10 @@ public class DataInit implements CommandLineRunner {
         Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
 
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
+
+        Referral referral1 = new Referral("Bob", "Gloss", "Ricky", "ABC");
+        Referral referral2 = new Referral("Alice", "White", "Peter", "ABC");
+        referralRepository.saveAll(Arrays.asList(referral1, referral2));
 
     }
 }

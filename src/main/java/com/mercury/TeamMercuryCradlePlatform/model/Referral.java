@@ -99,20 +99,35 @@ public class Referral {
     private Integer householdNumber;
 
 
-
     public Referral() {
     }
 
-    public Referral(String referredHealthCentre, LocalDate dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage) {
+    public Referral(String firstName, String lastName, String vhtName, String referredHealthCentre) {
         this.referredHealthCentre = referredHealthCentre;
-        this.dateTimeSent = dateTimeSent;
         this.vhtName = vhtName;
-        this.reasonOfReferral = reasonOfReferral;
-        this.actionAlreadyTaken = actionAlreadyTaken;
-        this.otherInformationMessage = otherInformationMessage;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public Referral(String referredHealthCentre, LocalDate dateTimeSent, String vhtName, String reasonOfReferral, String actionAlreadyTaken, String otherInformationMessage, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM, String firstName, String lastName, Integer ageYears, Sex sex, Integer zoneNumber, Integer blockNumber, Integer tankNumber, Integer villageNumber, Integer householdNumber) {
+
+    public Referral(String referredHealthCentre,
+                    LocalDate dateTimeSent,
+                    String vhtName,
+                    String reasonOfReferral,
+                    String actionAlreadyTaken,
+                    String otherInformationMessage,
+                    Integer bpSystolic,
+                    Integer bpDiastolic,
+                    Integer heartRateBPM,
+                    String firstName,
+                    String lastName,
+                    Integer ageYears,
+                    Sex sex,
+                    Integer zoneNumber,
+                    Integer blockNumber,
+                    Integer tankNumber,
+                    Integer villageNumber,
+                    Integer householdNumber) {
         this.referredHealthCentre = referredHealthCentre;
         this.dateTimeSent = dateTimeSent;
         this.vhtName = vhtName;
