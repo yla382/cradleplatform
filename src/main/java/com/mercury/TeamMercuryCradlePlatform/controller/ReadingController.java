@@ -2,14 +2,13 @@ package com.mercury.TeamMercuryCradlePlatform.controller;
 
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis;
+
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -75,6 +74,7 @@ public class ReadingController {
         return setUpAllReadingModel();
     }
 
+    // Update a reading
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public ModelAndView updateReadingInDB(@PathVariable(value = "id") long id, Reading reading, @RequestParam(value = "otherSymptoms", defaultValue = "")  String otherSymptoms) {
 

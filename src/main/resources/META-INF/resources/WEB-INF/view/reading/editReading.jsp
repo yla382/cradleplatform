@@ -133,9 +133,9 @@
 
     function selectGestationalUnit(){
 
-        let selectedGestationUnit = document.getElementById("gestationalAgeUnit");
+        let selectedGestationUnit = $("#gestationalAgeUnit");
         let gestationalValue = $("#gestationalAgeValue");
-        let val = "<c:out value='<%=reading.gestationalAgeUnit%>'/>";
+        let val = "<c:out value='<%=reading.gestationalAgeUnit%>'/>"
 
         if(val ===  "<c:out value='<%=Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS%>'/>"){
             selectedGestationUnit.selectedIndex = "0";
@@ -144,6 +144,7 @@
             selectedGestationUnit.selectedIndex = "1";
         }
         else{
+            gestationalValue.prop('disabled', true);
             selectedGestationUnit.selectedIndex = "2";
         }
         gestationalValue.val(<%=reading.gestationalAgeValue%>);

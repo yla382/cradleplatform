@@ -25,7 +25,8 @@
 
     <div class="container-fluid">
         <br>
-        <table class="table">
+        <input class="form-control w-25" type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search" aria-label="Search">
+        <table class="table" id="readingsTable">
             <thead>
             <tr>
                 <th scope="col">Reading ID</th>
@@ -46,7 +47,7 @@
             <c:forEach items="<%=readingList%>" var = "reading">
                 <tr>
                     <th>${reading.readingId}</th>
-                    <th>${reading.firstName}</th>
+                    <td>${reading.firstName}</td>
                     <td>${reading.lastName}</td>
                     <td>${reading.ageYears}</td>
                     <td>
@@ -83,6 +84,19 @@
         </table>
     </div>
 </body>
+
+<script>
+
+    $(document).ready(function(){
+        $("#searchInput").on("keyup", function() {
+            const value = $(this).val().toLowerCase();
+            $("#readingsTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+</script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
