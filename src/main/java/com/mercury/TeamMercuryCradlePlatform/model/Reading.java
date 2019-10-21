@@ -1,5 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
@@ -60,6 +62,10 @@ public class Reading {
 
     public Patient getPatient() {
         return patient;
+    }
+
+    public Integer getPatientId() {
+        return patient.getPatientId();
     }
 
     public void setPatient(Patient patient) {
@@ -272,6 +278,8 @@ public class Reading {
         return isNeedRecheckVitals()
                 && dateRecheckVitalsNeeded.isBefore(ZonedDateTime.now());
     }
+
+    @JsonIgnore
     public long getMinutesUntilNeedRecheckVitals() {
         if (!isNeedRecheckVitals()) {
             throw new UnsupportedOperationException("No number of minutes for no recheck");
