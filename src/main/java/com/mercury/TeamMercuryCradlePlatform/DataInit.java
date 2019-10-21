@@ -44,9 +44,5 @@ public class DataInit implements CommandLineRunner {
 
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
 
-        Referral referral1 = new Referral("Bob", "Gloss", "Ricky", "ABC");
-        Referral referral2 = new Referral("Alice", "White", "Peter", "ABC");
-        referralRepository.saveAll(Arrays.asList(referral1, referral2));
-
     }
 }
