@@ -1,6 +1,9 @@
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Reading" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis" %>
 <%@ page import="java.util.UUID" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Arrays" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -75,7 +78,7 @@
                 <input type="hidden" name="firstName" value="<%=reading.firstName%>"/>
                 <input type="hidden" name="lastName" value="<%=reading.lastName%>"/>
                 <input type="hidden" name="ageYears" value="<%=reading.ageYears%>"/>
-                <input type="hidden" name="symptoms" value="<%=reading.symptoms%>"/>
+                <input type="hidden" name="symptoms" value="<%=reading.symptomsString%>"/>
                 <input type="hidden" name="gestationalAgeUnit" value="<%=reading.gestationalAgeUnit%>"/>
                 <input type="hidden" name="gestationalAgeValue" value="<%=reading.gestationalAgeValue%>"/>
                 <input type="hidden" name="bpSystolic" value="<%=reading.bpSystolic%>"/>

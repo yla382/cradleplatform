@@ -71,7 +71,7 @@ public class Reading {
     @Column(name = "age_years") public Integer ageYears;
     @Transient public List<String> symptoms = new ArrayList<>();
 
-    @Column(name = "symptoms") String symptomsString;
+    @Column(name = "symptoms") public String symptomsString;
     @Column(name = "gestational_age_unit") public GestationalAgeUnit gestationalAgeUnit;
     @Column(name = "gestational_age_value") public String gestationalAgeValue;
 
@@ -281,21 +281,12 @@ public class Reading {
     }
 
     private void setSymptomsString(List<String> symptoms){
-        StringBuilder description = new StringBuilder();
-        for (String symptom : symptoms) {
-            // clean up
-            symptom = symptom.trim();
-            if (symptom.length() == 0) {
-                continue;
-            }
+        this.symptomsString = String.join(",", symptoms);
+    }
 
-            // append
-            if (description.length() != 0) {
-                description.append(", ");
-            }
-            description.append(symptom);
-        }
-        symptomsString = description.toString();
+    public void addSymptom(String value){
+        this.symptoms.add(value);
+        setSymptomsString(this.symptoms);
     }
 
 
@@ -326,15 +317,6 @@ public class Reading {
 //    public Integer getPatientId() {
 //        return patientId;
 //    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
 
     public String getFirstName() {
         return firstName;
@@ -374,6 +356,18 @@ public class Reading {
 
     public String getSymptomsString() {
         return this.symptomsString;
+    }
+
+    public void setReadingId(Long readingId) {
+        this.readingId = readingId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setAgeYears(Integer ageYears) {

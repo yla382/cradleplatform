@@ -20,8 +20,8 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <label for="patientId">ID number</label>
-                            <input required type="text" class="form-control" id="patientId" name="patientId">
+                            <label for="readingId">ID number</label>
+                            <input required type="text" class="form-control" id="readingId" name="readingId">
                         </div>
                         <div class="col">
                             <label for="firstName">First Name</label>

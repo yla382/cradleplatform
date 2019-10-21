@@ -7,7 +7,7 @@
 
 <%
     Reading reading = (Reading)request.getAttribute("reading");
-%>>
+%>
 
 <head>
     <meta charset="ISO-8859-1">
@@ -21,13 +21,10 @@
 
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <div class="container w-100" style="padding: 10px">
-        <form action="${pageContext.request.contextPath}/reading/all/edit" method="post" id="form">
+        <form action="${pageContext.request.contextPath}/reading/update/<%=reading.readingId%>" method="post" id="form">
             <div class="form-group">
                 <div class="row">
-                    <div class="col">
-                        <label for="patientId">ID number</label>
-                        <input required type="text" class="form-control" id="patientId" name="patientId" value="<%=reading.readingId%>">
-                    </div>
+                    <input type="hidden" name="id" value="<%=reading.readingId%>"/>
                     <div class="col">
                         <label for="firstName">First Name</label>
                         <input required type="text" class="form-control" id="firstName" name="firstName" value="<%=reading.firstName%>">
@@ -129,6 +126,58 @@
 
 <script>
 
+    window.onload = function () {
+        selectGestationalUnit();
+        selectSymptoms();
+    };
+
+    function selectGestationalUnit(){
+
+        let selectedGestationUnit = document.getElementById("gestationalAgeUnit");
+        let gestationalValue = $("#gestationalAgeValue");
+        let val = "<c:out value='<%=reading.gestationalAgeUnit%>'/>";
+
+        if(val ===  "<c:out value='<%=Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS%>'/>"){
+            selectedGestationUnit.selectedIndex = "0";
+        }
+        else if(val ===  "<c:out value='<%=Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS%>'/>"){
+            selectedGestationUnit.selectedIndex = "1";
+        }
+        else{
+            selectedGestationUnit.selectedIndex = "2";
+        }
+        gestationalValue.val(<%=reading.gestationalAgeValue%>);
+    }
+
+    function selectSymptoms(){
+        let symptomsArr = "<c:out value='<%=reading.getSymptomsString()%>'/>".split(",");
+
+        if(symptomsArr[0] === "No Symptoms (patient healthy)"){
+            document.getElementById("health").selectedIndex = "1";
+            healthChange();
+        }
+        else{
+            var i = 0;
+            $("#symptomsSelectorDiv input[type=checkbox]").each(function() {
+                if (symptomsArr.indexOf($(this).val()) > -1) {
+                    $(this).prop('checked', true);
+                    i++;
+                }
+            });
+
+            if(i < symptomsArr.length){
+                const slicedArr = symptomsArr.slice(i, symptomsArr.length);
+                for(var i = 0; i < slicedArr.length; i++){
+                    if(i > 0){
+                        slicedArr[i] = " " + slicedArr[i];
+                    }
+                }
+
+                $("#otherSymptoms").val(slicedArr);
+            }
+        }
+    }
+
     function healthChange() {
         const e = document.getElementById("health");
         const strUser = e.options[e.selectedIndex].value;
@@ -148,19 +197,6 @@
         const strUser = e.options[e.selectedIndex].value;
         document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
     }
-
-    $('#form').validator().on('submit', function (e) {
-        alert("stuff");
-        if (e.isDefaultPrevented()) {
-            // handle the invalid form...
-            if($('#bpSystolic').val() <= $('#bpDiastolic').val){
-                alert("Systolic value must be greater than diastolic value");
-            }
-        } else {
-            // everything looks good!
-            alert("stuff");
-        }
-    })
 
 </script>
 
