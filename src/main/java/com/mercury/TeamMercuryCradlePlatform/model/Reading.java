@@ -1,5 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
+import com.mercury.TeamMercuryCradlePlatform.Strings;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,7 +35,6 @@ public class Reading {
         GESTATIONAL_AGE_UNITS_NONE,
         GESTATIONAL_AGE_UNITS_WEEKS,
         GESTATIONAL_AGE_UNITS_MONTHS,
-//        GESTATIONAL_AGE_UNITS_LASTMENSTRUALPERIOD,
     }
     public class WeeksAndDays {
         public final int weeks;
@@ -196,7 +197,7 @@ public class Reading {
 
     public String getGestationWeekDaysString(){
         if(gestationalAgeUnit == GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE){
-            return "Not Pregnant";
+            return Strings.GESTATION_UNIT_NOT_PREGNANT;
         }
         else {
             return getGestationalAgeInWeeksAndDays().weeks + "w " + getGestationalAgeInWeeksAndDays().days + "d";
@@ -385,14 +386,25 @@ public class Reading {
         setSymptomsString(this.symptoms);
     }
 
+    public void setSymptomsList(String otherSymptoms){
+        if(this.symptoms.size() == 0){
+            this.addSymptom(Strings.SYMPTOM_NO_SYMPTOMS);
+        }
+        else{
+            if(!otherSymptoms.isEmpty()){
+                this.addSymptom(otherSymptoms);
+            }
+        }
+    }
+
     public void setGestationalAgeUnit(String gestationalAgeUnit) {
-        if(gestationalAgeUnit.compareTo("Weeks") == 0){
+        if(gestationalAgeUnit.compareTo(Strings.GESTATION_UNIT_WEEKS) == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS;
         }
-        else if(gestationalAgeUnit.compareTo("Months") == 0){
+        else if(gestationalAgeUnit.compareTo(Strings.GESTATION_UNIT_MONTHS) == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS;
         }
-        else if(gestationalAgeUnit.compareTo("Not Pregnant") == 0){
+        else if(gestationalAgeUnit.compareTo(Strings.GESTATION_UNIT_NOT_PREGNANT) == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE;
         }
     }

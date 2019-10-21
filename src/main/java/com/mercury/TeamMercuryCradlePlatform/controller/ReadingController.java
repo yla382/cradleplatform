@@ -42,7 +42,7 @@ public class ReadingController {
             @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
 
         reading.dateTimeTaken = ZonedDateTime.now();
-        setSymptomsList(reading, otherSymptoms);
+        reading.setSymptomsList(otherSymptoms);
 
         ModelAndView modelAndView = new ModelAndView("/reading/analysis");
         modelAndView.addObject("reading", reading);
@@ -81,7 +81,7 @@ public class ReadingController {
         Reading dbReading = readingRepository.findByReadingId(id);
 
         reading.readingId = id;
-        setSymptomsList(reading, otherSymptoms);
+        reading.setSymptomsList(otherSymptoms);
         reading.dateTimeTaken = dbReading.dateTimeTaken;
         reading.dateUploadedToServer = dbReading.dateUploadedToServer;
 
@@ -105,13 +105,13 @@ public class ReadingController {
 
     // Edit a reading with the given id
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView getUserWithId(@PathVariable long id){
+    public ModelAndView getReadingWithId(@PathVariable long id){
         return new ModelAndView("/reading/editReading").addObject("reading", this.readingRepository.findByReadingId(id));
     }
 
     // Delete a reading with the given id
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public ModelAndView deleteUserWithId(@PathVariable long id){
+    public ModelAndView deleteReadingWithId(@PathVariable long id){
         this.readingRepository.delete(this.readingRepository.findByReadingId(id));
         return setUpAllReadingModel();
     }
@@ -126,16 +126,6 @@ public class ReadingController {
         return new ModelAndView("/reading/all").addObject("readingList", this.readingRepository.findAll());
     }
 
-    private void setSymptomsList(Reading reading, String otherSymptoms){
-        if(reading.symptoms.size() == 0){
-            reading.addSymptom("No Symptoms (patient healthy)");
-        }
-        else{
-            if(!otherSymptoms.isEmpty()){
-                reading.addSymptom(otherSymptoms);
-            }
-        }
 
-    }
 
 }

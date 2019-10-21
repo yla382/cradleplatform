@@ -1,3 +1,4 @@
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 <!DOCTYPE html>
 <html>
 
@@ -64,32 +65,32 @@
                     <ul class="list-unstyled">
                         <li>
                             <label>
-                                <input type="checkbox" name="symptoms" value="Headache"> Headache
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_HEADACHE%>"> <%=Strings.SYMPTOM_HEADACHE%>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="checkbox" name="symptoms" value="Blurred vision"> Blurred vision
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_BLURRED_VISION%>"> <%=Strings.SYMPTOM_BLURRED_VISION%>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="checkbox" name="symptoms" value="Abdominal pain"> Abdominal pain
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_ABDOMINAL_PAIN%>"> <%=Strings.SYMPTOM_ABDOMINAL_PAIN%>
 
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="checkbox" name="symptoms" value="Bleeding"> Bleeding
+                                <input type="checkbox" name="symptoms" value=<%=Strings.SYMPTOM_BLEEDING%>> <%=Strings.SYMPTOM_BLEEDING%>
                             </label>
                         </li>
                         <li>
                             <label>
-                                <input type="checkbox" name="symptoms" value="Feverish"> Feverish
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_FEVERISH%>"> <%=Strings.SYMPTOM_FEVERISH%>
                             </label>
                         </li>
                         <li><label>
-                                <input type="checkbox" name="symptoms" value="Unwell"> Unwell
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_UNWELL%>"> <%=Strings.SYMPTOM_UNWELL%>
                             </label>
                         </li>
                     </ul>
@@ -154,19 +155,6 @@
             const strUser = e.options[e.selectedIndex].value;
             document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
         }
-
-        $('#form').validator().on('submit', function (e) {
-            alert("stuff");
-            if (e.isDefaultPrevented()) {
-                // handle the invalid form...
-                if($('#bpSystolic').val() <= $('#bpDiastolic').val){
-                   alert("Systolic value must be greater than diastolic value");
-                }
-            } else {
-                // everything looks good!
-                alert("stuff");
-            }
-        })
 
     </script>
 

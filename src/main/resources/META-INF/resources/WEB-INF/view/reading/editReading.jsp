@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Reading" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +20,6 @@
 
 <%@ include file="../navbar.jspf" %>
 
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <div class="container w-100" style="padding: 10px">
         <form action="${pageContext.request.contextPath}/reading/update/<%=reading.readingId%>" method="post" id="form">
             <div class="form-group">
@@ -65,32 +65,32 @@
                 <ul class="list-unstyled">
                     <li>
                         <label>
-                            <input type="checkbox" name="symptoms" value="Headache"> Headache
+                            <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_HEADACHE%>"> <%=Strings.SYMPTOM_HEADACHE%>
                         </label>
                     </li>
                     <li>
                         <label>
-                            <input type="checkbox" name="symptoms" value="Blurred vision"> Blurred vision
+                            <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_BLURRED_VISION%>"> <%=Strings.SYMPTOM_BLURRED_VISION%>
                         </label>
                     </li>
                     <li>
                         <label>
-                            <input type="checkbox" name="symptoms" value="Abdominal pain"> Abdominal pain
+                            <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_ABDOMINAL_PAIN%>"> <%=Strings.SYMPTOM_ABDOMINAL_PAIN%>
 
                         </label>
                     </li>
                     <li>
                         <label>
-                            <input type="checkbox" name="symptoms" value="Bleeding"> Bleeding
+                            <input type="checkbox" name="symptoms" value=<%=Strings.SYMPTOM_BLEEDING%>> <%=Strings.SYMPTOM_BLEEDING%>
                         </label>
                     </li>
                     <li>
                         <label>
-                            <input type="checkbox" name="symptoms" value="Feverish"> Feverish
+                            <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_FEVERISH%>"> <%=Strings.SYMPTOM_FEVERISH%>
                         </label>
                     </li>
                     <li><label>
-                        <input type="checkbox" name="symptoms" value="Unwell"> Unwell
+                        <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_UNWELL%>"> <%=Strings.SYMPTOM_UNWELL%>
                     </label>
                     </li>
                 </ul>
@@ -138,14 +138,14 @@
         let val = "<c:out value='<%=reading.gestationalAgeUnit%>'/>"
 
         if(val ===  "<c:out value='<%=Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS%>'/>"){
-            selectedGestationUnit.selectedIndex = "0";
+            selectedGestationUnit.prop('selectedIndex', 0);
         }
         else if(val ===  "<c:out value='<%=Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS%>'/>"){
-            selectedGestationUnit.selectedIndex = "1";
+            selectedGestationUnit.prop('selectedIndex', 1);
         }
         else{
             gestationalValue.prop('disabled', true);
-            selectedGestationUnit.selectedIndex = "2";
+            selectedGestationUnit.prop('selectedIndex', 2);
         }
         gestationalValue.val(<%=reading.gestationalAgeValue%>);
     }
@@ -196,7 +196,7 @@
     function gestationalAgeUnitChange() {
         const e = document.getElementById("gestationalAgeUnit");
         const strUser = e.options[e.selectedIndex].value;
-        document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
+        document.getElementById("gestationalAgeValue").disabled = strUser === "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
     }
 
 </script>
