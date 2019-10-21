@@ -16,11 +16,7 @@
     <script>
         function deleteRow(patientId) {
             var isConfirmed = confirm("Are you sure you want to delete " + patientId + "?");
-            if (isConfirmed) {
-                return true;
-            } else {
-                return false;
-            }
+            return isConfirmed;
         }
     </script>
 
@@ -42,7 +38,7 @@
             <table id="patients" class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Patient ID</th>
+                        <th scope="col">Attestation ID</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Country</th>
@@ -53,36 +49,27 @@
                 <tbody>
                     <c:forEach items="<%=patientList%>" var = "patient">
                     <tr>
-                        <th>${patient.patientId}</th>
+                        <th>${patient.attestationID}</th>
                         <th>${patient.firstName}</th>
                         <th>${patient.lastName}</th>
                         <th>${patient.country}</th>
                         <th>${patient.location}</th>
                         <th>
                             <div class="btn-group" role="group" aria-label="Button group">
-<%--                                <button type="button" class="btn btn-secondary" href="${pageContext.request.contextPath}/patient/addPatient">Edit</button>--%>
-<%--                                <button type="button" class="btn btn-secondary" onclick="deleteRow(${patient.patientId})">Delete</button>--%>
-<%--                                <a href="${pageContext.request.contextPath}/patient/addPatient"--%>
-<%--                                   onclick="return confirm('Are you sure you want to edit ' + ${patient.patientId}--%>
-<%--                                           + '?')"--%>
-<%--                                   class="button">--%>
-<%--                                    <button>--%>
-<%--                                        Edit--%>
-<%--                                    </button>--%>
-<%--                                </a>--%>
                                 <form action="${pageContext.request.contextPath}/patient/editPatient" method="post">
-                                    <input type="hidden" id="firstName" name="firstName" value=${patient.getFirstName()}>
-                                    <input type="hidden" id="lastName" name="lastName" value=${patient.getLastName()}>
-                                    <input type="hidden" id="country" name="country" value=${patient.getCountry()}>
-                                    <input type="hidden" id="location" name="location" value=${patient.getLocation()}>
-                                    <button type="submit" onclick="return true" class="btn btn-primary">
+                                    <input type="hidden" id="attestationID" name="attestationID" value=${patient.attestationID}>
+                                    <input type="hidden" id="firstName" name="firstName" value=${patient.firstName}>
+                                    <input type="hidden" id="lastName" name="lastName" value=${patient.lastName}>
+                                    <input type="hidden" id="country" name="country" value=${patient.country}>
+                                    <input type="hidden" id="location" name="location" value=${patient.location}>
+                                    <button type="submit" value="submit">
                                         Edit
                                     </button>
 
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                 <a href="${pageContext.request.contextPath}/patient/addPatient"
-                                   onclick="return confirm('Are you sure you want to delete ' + ${patient.patientId}
+                                   onclick="return confirm('Are you sure you want to delete ' + ${patient.attestationID}
                                            + '?') "
                                    class="button">
                                     <button>
@@ -92,8 +79,6 @@
 
                             </div>
                         </th>
-<%--                        <th><input type='button' class="EditRow" value="Edit"></th>--%>
-<%--                        <th><input type='button' class="RemoveRow" value="Delete"></th>--%>
                     </tr>
                     </c:forEach>
                 </tbody>

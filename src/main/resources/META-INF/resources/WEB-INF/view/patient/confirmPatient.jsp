@@ -46,6 +46,7 @@
     </div>
     <div class="row">
         <form id="deleteForm" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
+            <input type="hidden" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
             <input type="hidden" id="firstName" name="firstName" value=<%= patient.getFirstName()%>>
             <input type="hidden" id="lastName" name="lastName" value="<%= patient.getLastName()%>">
             <input type="hidden" id="country" name="country" value=<%= patient.getCountry()%>>

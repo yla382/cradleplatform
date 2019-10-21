@@ -25,20 +25,24 @@
     <form action="${pageContext.request.contextPath}/patient/confirmPatient" method="post">
         <div class="container w-100" style="padding: 10px">
             <div class="form-group">
+                <label for="firstName">Attestation ID: </label>
+                <input type="text" class="form-control" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>><br>
+            </div>
+            <div class="form-group">
                 <label for="firstName">First name: </label>
                 <input type="text" class="form-control" id="firstName" name="firstName" value=<%= patient.getFirstName()%>><br>
             </div>
             <div class="form-group">
                 <label for="lastName">Last name: </label>
-                <input type="text" class="form-control" id="lastName" name="lastName"><br>
+                <input type="text" class="form-control" id="lastName" name="lastName" value=<%= patient.getLastName()%>><br>
             </div>
             <div class="form-group">
                 <label for="country">Country: </label>
-                <input type="text" class="form-control" id="country" name="country"><br>
+                <input type="text" class="form-control" id="country" name="country" value=<%= patient.getCountry()%>><br>
             </div>
             <div class="form-group">
                 <label for="location">Location: </label>
-                <input type="text" class="form-control" id="location" name="location"><br>
+                <input type="text" class="form-control" id="location" name="location" value=<%= patient.getLocation()%>><br>
             </div>
             <button type="submit" value="Submit"> Create </button>
             <p id="status"></p>

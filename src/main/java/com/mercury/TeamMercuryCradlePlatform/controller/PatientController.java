@@ -3,12 +3,14 @@ package com.mercury.TeamMercuryCradlePlatform.controller;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Service
@@ -35,29 +37,40 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/editPatient", method = RequestMethod.POST)
-    public ModelAndView editPatientPage(){
-        return new ModelAndView("/patient/editPatient");
-    }
-
-    @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView confirmPatientPage(Patient patient) {
-        ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
-
-        PatientRepository patientRepository = this.patientRepository;
-//        patientRepository.save(patient);
-
+    public ModelAndView editPatientPage(Patient patient) {
+        ModelAndView modelAndView = new ModelAndView("/patient/editPatient");
         modelAndView.addObject("patient", patient);
 
         return modelAndView;
     }
 
+    @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView confirmPatientPage(Patient patient) {
+        ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
+        modelAndView.addObject("patient", patient);
+
+        return modelAndView;
+    }
+
+    /**
+     *
+     * If patient already exists in repository, edit the patient in the repository.
+     * Otherwise, add new patient to repository
+     * @param patient
+     * @return
+     */
     @RequestMapping(value = "/submitPatient", method = RequestMethod.POST)
     public @ResponseBody ModelAndView submitPatient(Patient patient) {
-        ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
-        System.out.println(patient.getFirstName());
-        patientRepository.save(patient);
+        List<Patient> patientlist = patientRepository.findAll();
+        Patient existingPatient = patientRepository.findByPatientId(patient.getPatientId());
+        if (existingPatient != null) {
+            existingPatient.updatePatient(patient);
+            patientRepository.save(existingPatient);
+        } else {
+            patientRepository.save(patient);
+        }
 
-        List<Patient> patientlist = this.patientRepository.findAll();
+        ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
         modelAndView.addObject("patientList", patientlist);
         return modelAndView;
     }

@@ -25,6 +25,10 @@
     <form action="${pageContext.request.contextPath}/patient/confirmPatient" method="post">
         <div class="container w-100" style="padding: 10px">
             <div class="form-group">
+                <label for="firstName">Attestation ID: </label>
+                <input type="text" class="form-control" id="attestationID" name="attestationID"><br>
+            </div>
+            <div class="form-group">
                 <label for="firstName">First name: </label>
                 <input type="text" class="form-control" id="firstName" name="firstName"><br>
             </div>

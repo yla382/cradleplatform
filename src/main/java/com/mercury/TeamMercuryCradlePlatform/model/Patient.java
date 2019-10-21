@@ -10,10 +10,15 @@ import javax.persistence.Id;
 
 @Entity
 public class Patient {
+    private static final short ATTESTATION_ID_LENGTH = 11;
+    private static final String NOT_APPLICABLE = "NA";
+
     @Id
     @Column(name="patient_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer patientId;
+    private Long patientId;
+
+    private String attestationID = null;
     private String firstName = null;
     private String lastName = null;
     private Integer ageYears = null;
@@ -27,21 +32,16 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String firstName, String lastName, String country, String location) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-        this.location = location;
+    public Patient(String attestationID, String firstName, String lastName, String country, String location) {
+        setAttestationID(attestationID);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setCountry(country);
+        setLocation(location);
     }
 
-    public Patient(String firstName, String lastName, Integer ageYears) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ageYears = ageYears;
-    }
-
-
-    public Patient(Reading reading){
+    // TODO: dont really need this, delete it later
+    public Patient(Reading reading) {
         this.firstName = reading.firstName;
         this.lastName = reading.lastName;
         this.ageYears = reading.ageYears;
@@ -49,59 +49,80 @@ public class Patient {
         this.readings.add(reading);
     }
 
-    public Integer getPatientId() {
-        return patientId;
+    public void updatePatient(Patient patient) {
+        setAttestationID(patient.getAttestationID());
+        setFirstName(patient.getFirstName());
+        setLastName(patient.getLastName());
+        setCountry(patient.getCountry());
+        setLocation(patient.getLocation());
     }
 
+
+    public void addReading(Reading reading){
+        this.readings.add(reading);
+    }
+
+    // Ideas used from https://www.baeldung.com/java-pad-string
+    private String padLeftZeros(String attestationID) {
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < ATTESTATION_ID_LENGTH - attestationID.length()) {
+            sb.append('0');
+        }
+        sb.append(attestationID);
+
+        return sb.toString();
+    }
+
+
+    public String getAttestationID() {
+        return attestationID;
+    }
+    public Long getPatientId() {
+        return patientId;
+    }
     public String getCountry() {
         return country;
     }
-
     public String getLocation() {
         return location;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public Integer getAgeYears() {
         return ageYears;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
+    private void setAttestationID(String attestationID) {
+        if (attestationID.length() < ATTESTATION_ID_LENGTH) {
+            System.out.println("less");
+            attestationID = padLeftZeros(attestationID);
+        } else if (attestationID.length() > ATTESTATION_ID_LENGTH) {
+            attestationID = NOT_APPLICABLE;
+        }
+        this.attestationID = attestationID;
     }
 
     public void setAgeYears(Integer ageYears) {
         this.ageYears = ageYears;
     }
-
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
-    }
-
     public void setCountry(String country) {
         this.country = country;
     }
-
     public void setLocation(String location) {
         this.location = location;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public void setPatientId(Integer patientId) {
-        this.patientId = patientId;
-    }
-
-    public void addReading(Reading reading){
-        this.readings.add(reading);
-    }
 }
