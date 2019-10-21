@@ -37,6 +37,7 @@
                 <th scope="col">Blood Pressure</th>
                 <th scope="col">Heart Rate</th>
                 <th scope="col">Traffic light(change)</th>
+                <th scope="col">Advice</th>
                 <th scope="col">Time Taken</th>
                 <th scope="col"></th>
             </tr>
@@ -63,7 +64,12 @@
                             <img src="/images/${ReadingAnalysis.analyze(reading).arrowDirection}.png" alt="Arrow Direction">
                         </c:if>
                     </td>
-                    <td>${reading.timeTakenAmPm}</td>
+                    <td>
+                        ${ReadingAnalysis.analyze(reading).briefText}
+                        <br>
+                        ${ReadingAnalysis.analyze(reading).analysisText}
+                    </td>
+                    <td>${reading.timeYYYYMMDD}</td>
                     <td>
                         <form action="${pageContext.request.contextPath}/reading/edit/${reading.readingId}" method="get">
                             <button type="submit" class="btn btn-secondary">Edit</button>

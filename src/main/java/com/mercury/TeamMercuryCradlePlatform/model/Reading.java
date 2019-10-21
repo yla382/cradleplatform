@@ -2,6 +2,7 @@ package com.mercury.TeamMercuryCradlePlatform.model;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -201,6 +202,11 @@ public class Reading {
             return getGestationalAgeInWeeksAndDays().weeks + "w " + getGestationalAgeInWeeksAndDays().days + "d";
         }
     }
+
+    public String getTimeYYYYMMDD() {
+        return DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm").format(dateTimeTaken);
+    }
+
 
     public String getTimeTakenAmPm(){
 
