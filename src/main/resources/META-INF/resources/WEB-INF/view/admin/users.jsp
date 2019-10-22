@@ -31,7 +31,6 @@
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">E-mail</th>
-            <th scope="col">Phone Number</th>
             <th scope="col">Roles</th>
             <th scope="col"></th>
         </tr>
@@ -43,7 +42,6 @@
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
                 <td>${user.email}</td>
-                <td>${user.phoneNumber}</td>
                 <td>
                     <c:forEach items="${user.roles}" var = "role">
                         ${role}
@@ -52,7 +50,7 @@
                 </td>
                 <td>
                     <form action="${pageContext.request.contextPath}/admin/contact" method="get">
-                        <a href="#" class="btn btn-secondary" onclick="window.open('contact?email=${user.email}&phoneNumber=${user.phoneNumber}',
+                        <a href="#" class="btn btn-secondary" onclick="window.open('contact?email=${user.email}',
                            'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
                            'location=no,directories=no, status=yes');">
                             Contact

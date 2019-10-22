@@ -1,6 +1,5 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
-import Service.ContactService;
 import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
@@ -66,20 +65,14 @@ public class AdminController {
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
-    @RequestMapping(value ="/users/contact", method = RequestMethod.GET)
-    public ModelAndView getContactPage(@RequestParam int userId) {
-        User user = userRepository.findByUserId(userId);
-        ModelAndView modelAndView = new ModelAndView("/admin/contact");
-        modelAndView.addObject("email", user.getEmail());
-        modelAndView.addObject("phoneNumber", user.getPhoneNumber());
-        return modelAndView;
+    @RequestMapping(value ="/contact", method = RequestMethod.GET)
+    public ModelAndView getContactPage(@RequestParam String email) {
+        return new ModelAndView("/admin/contact").addObject("email", email);
     }
 
     @RequestMapping(value = "/submitMessage", method = RequestMethod.POST)
-    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String phoneNumber, @RequestParam String contactMethod, @RequestParam String subject, @RequestParam String message){
-        //emailAdmin.sendEmail(email, subject, message);
-        ContactService contactService = new ContactService();
-        contactService.sendMessage(contactMethod, email, phoneNumber, subject, message);
+    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject, @RequestParam String message){
+        emailAdmin.sendEmail(email, subject, message);
         return new ModelAndView("/admin/submitMessage");
     }
 
@@ -90,6 +83,7 @@ public class AdminController {
         //user.setPassword(user.getPassword());
         this.userRepository.save(user);
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
