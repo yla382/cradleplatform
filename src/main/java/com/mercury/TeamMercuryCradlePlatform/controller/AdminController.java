@@ -66,12 +66,15 @@ public class AdminController {
     }
 
     @RequestMapping(value ="/contact", method = RequestMethod.GET)
-    public ModelAndView getContactPage(@RequestParam String email) {
-        return new ModelAndView("/admin/contact").addObject("email", email);
+    public ModelAndView getContactPage(@RequestParam String email, @RequestParam String phoneNumber) {
+        ModelAndView modelAndView = new ModelAndView("/admin/contact");
+        modelAndView.addObject("email", email);
+        modelAndView.addObject("phoneNumber", phoneNumber);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/submitMessage", method = RequestMethod.POST)
-    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject, @RequestParam String message){
+    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String phoneNumber, @RequestParam String contactMethod, @RequestParam String subject, @RequestParam String message){
         emailAdmin.sendEmail(email, subject, message);
         return new ModelAndView("/admin/submitMessage");
     }

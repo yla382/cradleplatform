@@ -4,6 +4,7 @@
 <html lang="en">
 <%
 String email = (String)request.getAttribute("email");
+String phoneNumber = (String)request.getAttribute("phoneNumber");
 %>
 
 <head>
@@ -18,6 +19,12 @@ String email = (String)request.getAttribute("email");
     <div class="container">
         <form action="${pageContext.request.contextPath}/admin/submitMessage" method = "POST">
             <input id="email" name="email" type="hidden" value="<%=email%>">
+            <input id="phoneNumber" name="phoneNumber" type="hidden" value="<%=phoneNumber%>">
+            <label for="contactMethod">Contact Method</label>
+            <select class="form-control" id="contactMethod" name="contactMethod">
+                <option value="email">Email</option>
+                <option value="phone_number">Phone Number</option>
+            </select>
             <label for="subject">Subject</label>
             <input type="text" name="subject" id="subject">
             <br>
