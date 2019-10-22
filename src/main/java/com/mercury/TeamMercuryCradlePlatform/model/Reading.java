@@ -116,10 +116,6 @@ public class Reading {
         // for JSON only
     }
 
-    public Reading(AndroidReading androidReading) {
-        //TODO
-    }
-
     public Reading(Reading reading){
         this.firstName = reading.firstName;
         this.lastName = reading.lastName;
