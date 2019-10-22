@@ -1,5 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.mercury.TeamMercuryCradlePlatform.Strings;
 
 import javax.persistence.*;
@@ -27,6 +29,7 @@ public class Reading {
     @Transient public static final int MANUAL_USER_ENTRY_SYSTOLIC = 1;
     @Transient public static final int MANUAL_USER_ENTRY_DIASTOLIC = 2;
     @Transient public static final int MANUAL_USER_ENTRY_HEARTRATE = 4;
+
 
     /**
      * Types
@@ -61,6 +64,10 @@ public class Reading {
 
     public Patient getPatient() {
         return patient;
+    }
+
+    public Integer getPatientId() {
+        return patient.getPatientId();
     }
 
     public void setPatient(Patient patient) {
@@ -274,6 +281,8 @@ public class Reading {
         return isNeedRecheckVitals()
                 && dateRecheckVitalsNeeded.isBefore(ZonedDateTime.now());
     }
+
+    @JsonIgnore
     public long getMinutesUntilNeedRecheckVitals() {
         if (!isNeedRecheckVitals()) {
             throw new UnsupportedOperationException("No number of minutes for no recheck");

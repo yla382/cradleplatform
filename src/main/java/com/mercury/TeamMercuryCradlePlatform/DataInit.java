@@ -22,13 +22,11 @@ public class DataInit implements CommandLineRunner {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private PatientRepository patientRepository;
-    private ReadingRepository readingRepository;
 
     public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
-        this.readingRepository = readingRepository;
     }
 
     @Override

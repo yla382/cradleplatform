@@ -116,7 +116,7 @@ public class User {
         }
     }
 
-    public String encodePassword(String password) {
+    private String encodePassword(String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(password);
     }
