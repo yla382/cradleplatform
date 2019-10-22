@@ -34,7 +34,7 @@
         <div>
             <br>
             <h1>List of Patients</h1>
-            <p><a href="${pageContext.request.contextPath}/patient/addPatient"><button>Create a new Patient</button></a></p>
+            <p><a href="${pageContext.request.contextPath}/patient/addPatient?action=add"><button>Create a new Patient</button></a></p>
             <table id="patients" class="table table-striped">
                 <thead>
                     <tr>

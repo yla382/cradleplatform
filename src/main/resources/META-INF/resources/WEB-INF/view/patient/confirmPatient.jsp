@@ -5,6 +5,7 @@
 
 <%
     Patient patient = (Patient)request.getAttribute("patient");
+    String action = (String)request.getAttribute("action");
 %>
 
 <head>
@@ -29,6 +30,10 @@
 
 <body>
     <div class="row">
+        <div class="col-sm-3">Attestation:</div>
+        <div class="col-sm-8"><%= patient.getAttestationID()%></div>
+    </div>
+    <div class="row">
         <div class="col-sm-3">First Name:</div>
         <div class="col-sm-8"><%= patient.getFirstName()%></div>
     </div>
@@ -46,6 +51,7 @@
     </div>
     <div class="row">
         <form id="deleteForm" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
+            <input type="hidden" id="action" name="action" value=<%= action%>>
             <input type="hidden" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
             <input type="hidden" id="firstName" name="firstName" value=<%= patient.getFirstName()%>>
             <input type="hidden" id="lastName" name="lastName" value="<%= patient.getLastName()%>">

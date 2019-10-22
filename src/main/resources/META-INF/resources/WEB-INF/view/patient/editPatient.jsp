@@ -25,7 +25,7 @@
     <form action="${pageContext.request.contextPath}/patient/confirmPatient" method="post">
         <div class="container w-100" style="padding: 10px">
             <div class="form-group">
-                <label for="firstName">Attestation ID: </label>
+                <label for="attestationID">Attestation ID: </label>
                 <input type="text" class="form-control" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>><br>
             </div>
             <div class="form-group">
@@ -48,6 +48,7 @@
             <p id="status"></p>
             <p id="patientInfo"></p>
         </div>
+        <input type="hidden" name="action" value="edit"/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 </body>

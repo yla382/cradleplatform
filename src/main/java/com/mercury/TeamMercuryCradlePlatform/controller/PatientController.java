@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.System.exit;
+
 @Controller
 @Service
 @RequestMapping(path="/patient")
@@ -26,6 +28,7 @@ public class PatientController {
     @RequestMapping(value = "/patientlist", method = RequestMethod.GET)
     public ModelAndView patientlistPage() {
         List<Patient> patientlist = this.patientRepository.findAll();
+        Patient patient = new Patient();
         ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
         modelAndView.addObject("patientList", patientlist);
         return modelAndView;
@@ -45,8 +48,9 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView confirmPatientPage(Patient patient) {
+    public @ResponseBody ModelAndView confirmPatientPage(@RequestParam String action, Patient patient) {
         ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
+        modelAndView.addObject("action", action);
         modelAndView.addObject("patient", patient);
 
         return modelAndView;
@@ -60,21 +64,36 @@ public class PatientController {
      * @return
      */
     @RequestMapping(value = "/submitPatient", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitPatient(Patient patient) {
-        List<Patient> patientlist = patientRepository.findAll();
-        Patient existingPatient = patientRepository.findByPatientId(patient.getPatientId());
-        if (existingPatient != null) {
-            existingPatient.updatePatient(patient);
-            patientRepository.save(existingPatient);
-        } else {
+    public @ResponseBody ModelAndView submitPatient(@RequestParam String action, Patient patient) {
+        if (action.equals("edit")) {
+            Optional<Patient> optionalExistingPatient = patientRepository.findByAttestationID(patient.getAttestationID());
+            if (optionalExistingPatient.isPresent()) {
+                Patient existingPatient = optionalExistingPatient.get();
+                existingPatient.updatePatient(patient);
+                patientRepository.save(existingPatient);
+            }
+        } else if (action.equals("add")) {
             patientRepository.save(patient);
+        } else {
+            exit(1);
         }
-
+        List<Patient> patientlist = patientRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
         modelAndView.addObject("patientList", patientlist);
         return modelAndView;
     }
 
+//    @RequestMapping(value="/save", method=RequestMethod.POST)
+//    public String handlePost(@RequestParam String action){
+//
+//        if( action.equals("save") ){
+//            //handle save
+//        }
+//        else if( action.equals("renew") ){
+//            //handle renew
+//        }
+//
+//    }
 
     @GetMapping(path="/add")
     public @ResponseBody

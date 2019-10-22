@@ -99,7 +99,7 @@ public class Patient {
     public void setPatientId(Long patientId) {
         this.patientId = patientId;
     }
-    private void setAttestationID(String attestationID) {
+    public void setAttestationID(String attestationID) {
         if (attestationID.length() < ATTESTATION_ID_LENGTH) {
             System.out.println("less");
             attestationID = padLeftZeros(attestationID);
@@ -108,7 +108,6 @@ public class Patient {
         }
         this.attestationID = attestationID;
     }
-
     public void setAgeYears(Integer ageYears) {
         this.ageYears = ageYears;
     }
