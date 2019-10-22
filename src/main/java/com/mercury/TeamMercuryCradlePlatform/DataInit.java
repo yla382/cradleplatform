@@ -22,11 +22,13 @@ public class DataInit implements CommandLineRunner {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private PatientRepository patientRepository;
+    private ReadingRepository readingRepository;
 
     public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
+        this.readingRepository = readingRepository;
     }
 
     @Override
@@ -50,7 +52,10 @@ public class DataInit implements CommandLineRunner {
         symptoms.add("test2");
 
         Reading reading = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
-        Reading reading2 = new Reading("Ricky", "Owen", 29, new ArrayList<String>(List.of("No Symptoms (patient healthy)")), Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
+
+        symptoms = new ArrayList<>();
+        symptoms.add(Strings.SYMPTOM_NO_SYMPTOMS);
+        Reading reading2 = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
 
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
         readingRepository.saveAll(Arrays.asList(reading, reading2));
