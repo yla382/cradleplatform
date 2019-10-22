@@ -17,7 +17,7 @@ public interface PatientRepository extends CrudRepository<Patient, Integer> {
     List<Patient> findAllByFirstNameLike(String firstName);
     Patient findByFirstNameAndLastNameAndAgeYears(String firstName, String lastName, Integer ageYears);
 
-    Boolean existsByFirstNameAndLastNameAndAgeYears(String firstName, String lastName, Integer agYears);
+    Boolean existsByFirstNameAndLastNameAndAgeYears(String firstName, String lastName, Integer ageYears);
 
 
     @Query("SELECT c FROM Patient c WHERE c.lastName LIKE %?1%")
