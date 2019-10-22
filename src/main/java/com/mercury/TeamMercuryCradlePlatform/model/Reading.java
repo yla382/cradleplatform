@@ -143,6 +143,15 @@ public class Reading {
         this.dateTimeTaken = dateTimeTaken;
     }
 
+    public Reading(String firstName, String lastName, Integer ageYears, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ageYears = ageYears;
+        this.bpSystolic = bpSystolic;
+        this.bpDiastolic = bpDiastolic;
+        this.heartRateBPM = heartRateBPM;
+    }
+
     public static Reading makeNewReading(ZonedDateTime now) {
         // setup basic info
         Reading r = new Reading();

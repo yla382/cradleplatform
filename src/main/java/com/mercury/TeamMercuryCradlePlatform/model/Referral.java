@@ -31,6 +31,9 @@ public class Referral {
     @Column(name = "other_information_message")
     private String otherInformationMessage = null;
 
+    @Column(name = "referral_reading_id")
+    private Long referralReadingId;
+
     //reading info
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "reading_id", referencedColumnName = "reading_id")
@@ -298,5 +301,13 @@ public class Referral {
 
     public void setHouseholdNumber(Integer householdNumber) {
         this.householdNumber = householdNumber;
+    }
+
+    public Long getReferralReadingId() {
+        return referralReadingId;
+    }
+
+    public void setReferralReadingId(Long referralReadingId) {
+        this.referralReadingId = referralReadingId;
     }
 }

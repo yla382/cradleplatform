@@ -21,6 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
+                <p> <%= "Reading ID: " + referral.getReferralReadingId()%></p>
                 <p> <%= "Name: " + referral.getFirstName() + " " + referral.getLastName()%></p>
                 <p> <%= "Age: " + referral.getAgeYears()%></p>
                 <p> <%= "Sex: " + referral.getSex()%></p>

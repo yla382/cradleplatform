@@ -29,8 +29,7 @@
             <th scope="col">Last Name</th>
             <th scope="col">Referred Health Centre</th>
             <th scope="col">VHT Name</th>
-<%--            <th scope="col">Patient ID</th>--%>
-<%--            <th scope="col">Reading ID</th>--%>
+            <th scope="col">Reading ID</th>
         </tr>
         </thead>
         <tbody>
@@ -41,8 +40,7 @@
                 <th>${referral.lastName}</th>
                 <th>${referral.referredHealthCentre}</th>
                 <th>${referral.vhtName}</th>
-<%--                <th>${referral.patient.patientId}</th>--%>
-<%--                <th>${referral.reading.readingId}</th>--%>
+                <th>${referral.referralReadingId}</th>
             </tr>
         </c:forEach>
         </tbody>

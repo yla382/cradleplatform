@@ -1,6 +1,9 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import com.mercury.TeamMercuryCradlePlatform.model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.Referral;
+import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +22,11 @@ import java.util.List;
 public class ReferralController {
     @Autowired
     private ReferralRepository referralRepository;
+    private ReadingRepository readingRepository;
 
-    public ReferralController(ReferralRepository referralRepository) {
+    public ReferralController(ReferralRepository referralRepository, ReadingRepository readingRepository) {
         this.referralRepository = referralRepository;
+        this.readingRepository = readingRepository;
     }
 
     @RequestMapping(value = "/addReferral", method = RequestMethod.GET)
@@ -49,6 +54,8 @@ public class ReferralController {
     public @ResponseBody ModelAndView saveReferral(Referral referral) {
         ModelAndView modelAndView = new ModelAndView("/referral/referralList");
         referral.setDateTimeSent(LocalDate.now());
+        Reading reading = readingRepository.findByReadingId(referral.getReferralReadingId());
+        referral.setReading(reading);
         referralRepository.save(referral);
 
         List<Referral> referralList = this.referralRepository.findAll();
