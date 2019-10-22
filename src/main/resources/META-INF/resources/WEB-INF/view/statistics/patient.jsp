@@ -40,13 +40,26 @@
 <script>
 
 
-    function setUpData() {
+
+    window.onload = function () {
+        setUpYAxis();
+    };
+
+    function setUpYAxis() {
         var labels = [];
+
         <% for (int i=0; i<readingList.size(); i++) { %>
+
         labels[<%= i+1 %>] = "<%= readingList.get(i).getTimeYYYYMMDD()%>";
+        <%--bpSystolic[<%= i+1 %>] = "<%= readingList.get(i).getBpSystolic()%>";--%>
+        <%--bpDiastolic[<%= i+1 %>] = "<%= readingList.get(i).getBpDiastolic()%>";--%>
+
         <% } %>
-        return labels;
+
+        return labels
+
     }
+
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -57,7 +70,7 @@
         // The data for our dataset
         data: {
             // times
-            labels: setUpData(),
+            labels: setUpYAxis(),
 
             //
             datasets: [{
@@ -83,6 +96,16 @@
                     scaleLabel: {
                         display: true,
                         labelString: 'blood pressure'
+                    },
+                    ticks: {
+                        min: 0,
+                        max: 5,
+                        stepSize: 1,
+                        suggestedMin: 0.5,
+                        suggestedMax: 5.5,
+                        callback: function(value, index, values) {
+                            return '$' + value;
+                        }
                     }
                 }]
             }
