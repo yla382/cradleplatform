@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>TeamMercuryCradlePlatform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>TeamMercuryCradlePlatform</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -27,17 +28,31 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.boot</groupId>-->
 <!--			<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
 <!--		</dependency>-->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.53</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -70,10 +85,12 @@
 		<dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
         </dependency>
 		<dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
+			<scope>provided</scope>
         </dependency>
 	</dependencies>
 
@@ -82,6 +99,16 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warSourceDirectory>${basedir}/src/main/resources/META-INF/resources/WEB-INF/view</warSourceDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
