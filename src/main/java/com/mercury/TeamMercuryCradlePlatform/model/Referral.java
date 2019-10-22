@@ -47,10 +47,10 @@ public class Referral {
     @Column(name = "bp_systolic")
     private Integer bpSystolic;
 
-    @Column(name = "by_diastolic")
+    @Column(name = "bp_diastolic")
     private Integer bpDiastolic;
 
-    @Column(name = "hear_rate_bpm")
+    @Column(name = "heart_rate_bpm")
     private Integer heartRateBPM;
 
     // patient info
