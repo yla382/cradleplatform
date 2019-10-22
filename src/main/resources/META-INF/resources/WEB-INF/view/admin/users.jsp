@@ -51,8 +51,8 @@
                     </c:forEach>
                 </td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/admin/contact" method="get">
-                        <a href="#" class="btn btn-secondary" onclick="window.open('contact?email=${user.email}&phoneNumber=${user.phoneNumber}',
+                    <form action="${pageContext.request.contextPath}/admin/users/contact/${user.userId}" method="get">
+                        <a href="#" class="btn btn-secondary" onclick="window.open('http://localhost:8080/admin/users/contact?userId=${user.userId}',
                            'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
                            'location=no,directories=no, status=yes');">
                             Contact
