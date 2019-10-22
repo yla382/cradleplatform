@@ -66,11 +66,12 @@ public class AdminController {
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
-    @RequestMapping(value ="/contact", method = RequestMethod.GET)
-    public ModelAndView getContactPage(@RequestParam String email, @RequestParam String phoneNumber) {
+    @RequestMapping(value ="/users/contact", method = RequestMethod.GET)
+    public ModelAndView getContactPage(@RequestParam int userId) {
+        User user = userRepository.findByUserId(userId);
         ModelAndView modelAndView = new ModelAndView("/admin/contact");
-        modelAndView.addObject("email", email);
-        modelAndView.addObject("phoneNumber", phoneNumber);
+        modelAndView.addObject("email", user.getEmail());
+        modelAndView.addObject("phoneNumber", user.getPhoneNumber());
         return modelAndView;
     }
 
@@ -89,7 +90,6 @@ public class AdminController {
         //user.setPassword(user.getPassword());
         this.userRepository.save(user);
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
-
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
