@@ -1,7 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
-import com.mercury.TeamMercuryCradlePlatform.model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.model.*;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
@@ -13,6 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,10 +39,21 @@ public class DataInit implements CommandLineRunner {
         userRepository.saveAll(users);
 
         Patient patient1 = new Patient("Ricky", "Owen","Uganda", "VillageA");
+        patient1.setAgeYears(29);
         Patient patient2 = new Patient("Bobby", "Frown", "Uganda", "VillageA");
         Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
 
+        List<String> symptoms = new ArrayList<>();
+        symptoms.add("Headache");
+        symptoms.add("Blurred vision");
+        symptoms.add("test");
+        symptoms.add("test2");
+
+        Reading reading = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
+        Reading reading2 = new Reading("Ricky", "Owen", 29, new ArrayList<String>(List.of("No Symptoms (patient healthy)")), Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
+
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
+        readingRepository.saveAll(Arrays.asList(reading, reading2));
 
     }
 }

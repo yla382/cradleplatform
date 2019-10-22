@@ -2,8 +2,11 @@ package com.mercury.TeamMercuryCradlePlatform.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.mercury.TeamMercuryCradlePlatform.Strings;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -35,7 +38,6 @@ public class Reading {
         GESTATIONAL_AGE_UNITS_NONE,
         GESTATIONAL_AGE_UNITS_WEEKS,
         GESTATIONAL_AGE_UNITS_MONTHS,
-//        GESTATIONAL_AGE_UNITS_LASTMENSTRUALPERIOD,
     }
     public class WeeksAndDays {
         public final int weeks;
@@ -77,7 +79,8 @@ public class Reading {
     @Column(name = "last_name") public String lastName;
     @Column(name = "age_years") public Integer ageYears;
     @Transient public List<String> symptoms = new ArrayList<>();
-    @Column(name = "symptoms") String symptomsString = null;
+
+    @Column(name = "symptoms") public String symptomsString;
     @Column(name = "gestational_age_unit") public GestationalAgeUnit gestationalAgeUnit;
     @Column(name = "gestational_age_value") public String gestationalAgeValue;
 
@@ -100,12 +103,6 @@ public class Reading {
     @Transient public ZonedDateTime referralMessageSendTime;
     @Transient public String referralHealthCentre;
     @Transient public String referralComment;
-
-    // app metrics
-    @Transient public String appVersion;
-    @Transient public String deviceInfo;
-    @Transient public float totalOcrSeconds;
-    @Transient private int manuallyChangeOcrResults; // constants above
 
     // temporary values
     @Transient transient private long temporaryFlags = 0;
@@ -132,11 +129,12 @@ public class Reading {
         this.dateTimeTaken = reading.dateTimeTaken;
     }
 
-    public Reading(String firstName, String lastName, Integer ageYears, String symptomsString, GestationalAgeUnit gestationalAgeUnit, String gestationalAgeValue, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM, ZonedDateTime dateTimeTaken) {
+    public Reading(String firstName, String lastName, Integer ageYears, List<String> symptoms, GestationalAgeUnit gestationalAgeUnit, String gestationalAgeValue, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM, ZonedDateTime dateTimeTaken) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ageYears = ageYears;
-        this.symptomsString = symptomsString;
+        this.symptoms = symptoms;
+        setSymptomsString(this.symptoms);
         this.gestationalAgeUnit = gestationalAgeUnit;
         this.gestationalAgeValue = gestationalAgeValue;
         this.bpSystolic = bpSystolic;
@@ -206,14 +204,19 @@ public class Reading {
 
     public String getGestationWeekDaysString(){
         if(gestationalAgeUnit == GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE){
-            return "Not Pregnant";
+            return Strings.GESTATION_UNIT_NOT_PREGNANT;
         }
         else {
             return getGestationalAgeInWeeksAndDays().weeks + "w " + getGestationalAgeInWeeksAndDays().days + "d";
         }
     }
 
-    public String getGestationTimeInAmPm(){
+    public String getTimeYYYYMMDD() {
+        return DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm").format(dateTimeTaken);
+    }
+
+
+    public String getTimeTakenAmPm(){
 
         String time = "";
         int hour = dateTimeTaken.getHour();
@@ -293,23 +296,13 @@ public class Reading {
         }
     }
 
-    // symptoms
-    public String getSymptomsString() {
-        String description = "";
-        for (String symptom : symptoms) {
-            // clean up
-            symptom = symptom.trim();
-            if (symptom.length() == 0) {
-                continue;
-            }
+    private void setSymptomsString(List<String> symptoms){
+        this.symptomsString = String.join(",", symptoms);
+    }
 
-            // append
-            if (description.length() != 0) {
-                description += ", ";
-            }
-            description += symptom;
-        }
-        return description;
+    public void addSymptom(String value){
+        this.symptoms.add(value);
+        setSymptomsString(this.symptoms);
     }
 
 
@@ -341,12 +334,16 @@ public class Reading {
 //        return patientId;
 //    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Long getReadingId(){
+        return this.readingId;
     }
 
     public Integer getAgeYears() {
@@ -373,9 +370,21 @@ public class Reading {
         return heartRateBPM;
     }
 
-//    public void setPatientId(Integer patientId) {
-//        this.patientId = patientId;
-//    }
+    public String getSymptomsString() {
+        return this.symptomsString;
+    }
+
+    public void setReadingId(Long readingId) {
+        this.readingId = readingId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public void setAgeYears(Integer ageYears) {
         this.ageYears = ageYears;
@@ -383,18 +392,28 @@ public class Reading {
 
     public void setSymptoms(List<String> symptoms) {
         this.symptoms = symptoms;
+        setSymptomsString(this.symptoms);
     }
 
-
+    public void setSymptomsList(String otherSymptoms){
+        if(this.symptoms.size() == 0){
+            this.addSymptom(Strings.SYMPTOM_NO_SYMPTOMS);
+        }
+        else{
+            if(!otherSymptoms.isEmpty()){
+                this.addSymptom(otherSymptoms);
+            }
+        }
+    }
 
     public void setGestationalAgeUnit(String gestationalAgeUnit) {
-        if(gestationalAgeUnit.compareTo("Weeks") == 0){
+        if(gestationalAgeUnit.compareTo(Strings.GESTATION_UNIT_WEEKS) == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS;
         }
-        else if(gestationalAgeUnit.compareTo("Months") == 0){
+        else if(gestationalAgeUnit.compareTo(Strings.GESTATION_UNIT_MONTHS) == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS;
         }
-        else {
+        else if(gestationalAgeUnit.compareTo(Strings.GESTATION_UNIT_NOT_PREGNANT) == 0){
             this.gestationalAgeUnit = GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE;
         }
     }
@@ -413,40 +432,5 @@ public class Reading {
 
     public void setHeartRateBPM(Integer heartRateBPM) {
         this.heartRateBPM = heartRateBPM;
-    }
-
-    @Override
-    public String toString() {
-        return "Reading{" +
-                "readingId=" + readingId +
-                ", dateLastSaved=" + dateLastSaved +
-                ", patient=" + patient +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", ageYears=" + ageYears +
-                ", symptoms=" + symptoms +
-                ", symptomsString='" + symptomsString + '\'' +
-                ", gestationalAgeUnit=" + gestationalAgeUnit +
-                ", gestationalAgeValue='" + gestationalAgeValue + '\'' +
-                ", pathToPhoto='" + pathToPhoto + '\'' +
-                ", bpSystolic=" + bpSystolic +
-                ", bpDiastolic=" + bpDiastolic +
-                ", heartRateBPM=" + heartRateBPM +
-                ", dateTimeTaken=" + dateTimeTaken +
-                ", gpsLocationOfReading='" + gpsLocationOfReading + '\'' +
-                ", dateUploadedToServer=" + dateUploadedToServer +
-                ", retestOfPreviousReadingIds=" + retestOfPreviousReadingIds +
-                ", dateRecheckVitalsNeeded=" + dateRecheckVitalsNeeded +
-                ", isFlaggedForFollowup=" + isFlaggedForFollowup +
-                ", referralMessageSendTime=" + referralMessageSendTime +
-                ", referralHealthCentre='" + referralHealthCentre + '\'' +
-                ", referralComment='" + referralComment + '\'' +
-                ", appVersion='" + appVersion + '\'' +
-                ", deviceInfo='" + deviceInfo + '\'' +
-                ", totalOcrSeconds=" + totalOcrSeconds +
-                ", manuallyChangeOcrResults=" + manuallyChangeOcrResults +
-                ", temporaryFlags=" + temporaryFlags +
-                ", userHasSelectedNoSymptoms=" + userHasSelectedNoSymptoms +
-                '}';
     }
 }

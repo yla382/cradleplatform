@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 <!DOCTYPE html>
 <html>
 
@@ -20,8 +22,8 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
-                            <label for="patientId">ID number</label>
-                            <input required type="text" class="form-control" id="patientId" name="patientId">
+                            <label for="readingId">ID number</label>
+                            <input required type="text" class="form-control" id="readingId" name="readingId">
                         </div>
                         <div class="col">
                             <label for="firstName">First Name</label>
@@ -56,24 +58,47 @@
                 <div class="form-group" style="width: 25%">
                     <label for="health"></label>
                     <select class="form-control" id="health" name="health" onchange="healthChange()">
-                        <option value="1">Patient sick</option>
-                        <option value="2">Patient healthy</option>
+                        <option value="sick">Patient sick</option>
+                        <option value="healthy">Patient healthy</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="symptomsSelector">Symptoms</label>
-                    <select multiple class="form-control" id="symptomsSelector" name="symptoms">
-                        <option value="Headache">Headache</option>
-                        <option value="Blurred vision">Blurred vision</option>
-                        <option value="Abdominal pain">Abdominal pain</option>
-                        <option value="Bleeding">Bleeding</option>
-                        <option value="Feverish">Feverish</option>
-                        <option value="Unwell">Unwell</option>
-                    </select>
+                <div class="form-group" id="symptomsSelectorDiv">
+                    <ul class="list-unstyled">
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_HEADACHE%>"> <%=Strings.SYMPTOM_HEADACHE%>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_BLURRED_VISION%>"> <%=Strings.SYMPTOM_BLURRED_VISION%>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_ABDOMINAL_PAIN%>"> <%=Strings.SYMPTOM_ABDOMINAL_PAIN%>
+
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value=<%=Strings.SYMPTOM_BLEEDING%>> <%=Strings.SYMPTOM_BLEEDING%>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_FEVERISH%>"> <%=Strings.SYMPTOM_FEVERISH%>
+                            </label>
+                        </li>
+                        <li><label>
+                                <input type="checkbox" name="symptoms" value="<%=Strings.SYMPTOM_UNWELL%>"> <%=Strings.SYMPTOM_UNWELL%>
+                            </label>
+                        </li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <label for="otherSymptoms">Other symptoms</label>
-                    <textarea class="form-control" id="otherSymptoms" name="otherSymptoms" rows="2"></textarea>
+                    <textarea class="form-control" id="otherSymptoms" name="otherSymptoms" rows="2" maxlength="200"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="bpSystolic">Systolic</label>
@@ -100,7 +125,6 @@
 
 
 <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             var backButton = document.getElementById("backButtonState");
             if (backButton.value === "0") {
@@ -115,28 +139,22 @@
         function healthChange() {
             const e = document.getElementById("health");
             const strUser = e.options[e.selectedIndex].value;
-            document.getElementById("symptomsSelector").disabled = strUser === "2";
-            document.getElementById("otherSymptoms").disabled = strUser === "2";
+
+            if(strUser === "healthy"){
+                $("#symptomsSelectorDiv input").attr('disabled', true);
+            }
+            else {
+                $("#symptomsSelectorDiv input").removeAttr('disabled');
+            }
+
+            document.getElementById("otherSymptoms").disabled = strUser === "healthy";
         }
 
         function gestationalAgeUnitChange() {
             const e = document.getElementById("gestationalAgeUnit");
             const strUser = e.options[e.selectedIndex].value;
-            document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
+            document.getElementById("gestationalAgeValue").disabled = strUser === "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
         }
-
-        $('#form').validator().on('submit', function (e) {
-            alert("stuff");
-            if (e.isDefaultPrevented()) {
-                // handle the invalid form...
-                if($('#bpSystolic').val() <= $('#bpDiastolic').val){
-                   alert("Systolic value must be greater than diastolic value");
-                }
-            } else {
-                // everything looks good!
-                alert("stuff");
-            }
-        })
 
     </script>
 
