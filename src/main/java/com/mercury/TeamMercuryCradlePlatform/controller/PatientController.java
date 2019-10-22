@@ -48,12 +48,6 @@ public class PatientController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ModelAndView deletePatient(Patient patient) {
-//        Optional<Patient> optionalExistingPatient = patientRepository.findByAttestationID(patient.getAttestationID());
-//        if (optionalExistingPatient.isPresent()) {
-//            Patient existingPatient = optionalExistingPatient.get();
-//            patientRepository.deleteById(existingPatient.getPatientId());
-//        }
-
         patientRepository.deleteById(patient.getPatientID());
         ModelAndView modelAndView = new ModelAndView("/patient/deleted");
         modelAndView.addObject("patient", patient);

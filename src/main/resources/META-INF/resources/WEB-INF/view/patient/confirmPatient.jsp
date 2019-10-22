@@ -30,10 +30,6 @@
 
 <body>
     <div class="row">
-        <div class="col-sm-3">Attasdion:</div>
-        <div class="col-sm-8"><%= patient.getPatientID()%></div>
-    </div>
-    <div class="row">
         <div class="col-sm-3">Attestation:</div>
         <div class="col-sm-8"><%= patient.getAttestationID()%></div>
     </div>
@@ -56,7 +52,6 @@
     <div class="row">
         <form id="submit" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
             <input type="hidden" id="action" name="action" value=<%= action%>>
-            <input type="hidden" id="patientID" name="patientID" value=<%= patient.getPatientID()%>>
             <input type="hidden" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
             <input type="hidden" id="firstName" name="firstName" value=<%= patient.getFirstName()%>>
             <input type="hidden" id="lastName" name="lastName" value="<%= patient.getLastName()%>">
@@ -70,15 +65,6 @@
         </form>
     </div>
 
-    <script>
-        function editButton() {
-
-        }
-
-        function saveButton(patientRepository, patient) {
-        }
-
-    </script>
 </body>
 
 

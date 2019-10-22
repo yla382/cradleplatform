@@ -34,7 +34,7 @@
         <div>
             <br>
             <h1>List of Patients</h1>
-            <p><a href="${pageContext.request.contextPath}/patient/addPatient?action=add"><button>Create a new Patient</button></a></p>
+            <p><a href="${pageContext.request.contextPath}/patient/addPatient"><button>Create a new Patient</button></a></p>
             <table id="patients" class="table table-striped">
                 <thead>
                     <tr>
@@ -77,7 +77,7 @@
                                     <input type="hidden" name="location" value=${patient.location}>
                                     <button type="submit" value="submit"
                                             onclick="return confirm('Are you sure you want to delete ' + ${patient.attestationID}
-                                            + '?' + ${patient.patientID}) "
+                                            + '?') "
                                     >
                                         Delete
                                     </button>
