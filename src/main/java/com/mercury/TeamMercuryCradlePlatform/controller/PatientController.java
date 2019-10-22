@@ -28,7 +28,6 @@ public class PatientController {
     @RequestMapping(value = "/patientlist", method = RequestMethod.GET)
     public ModelAndView patientlistPage() {
         List<Patient> patientlist = this.patientRepository.findAll();
-        Patient patient = new Patient();
         ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
         modelAndView.addObject("patientList", patientlist);
         return modelAndView;
@@ -83,17 +82,6 @@ public class PatientController {
         return modelAndView;
     }
 
-//    @RequestMapping(value="/save", method=RequestMethod.POST)
-//    public String handlePost(@RequestParam String action){
-//
-//        if( action.equals("save") ){
-//            //handle save
-//        }
-//        else if( action.equals("renew") ){
-//            //handle renew
-//        }
-//
-//    }
 
     @GetMapping(path="/add")
     public @ResponseBody

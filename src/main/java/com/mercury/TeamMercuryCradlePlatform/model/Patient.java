@@ -100,13 +100,17 @@ public class Patient {
         this.patientId = patientId;
     }
     public void setAttestationID(String attestationID) {
-        if (attestationID.length() < ATTESTATION_ID_LENGTH) {
-            System.out.println("less");
-            attestationID = padLeftZeros(attestationID);
-        } else if (attestationID.length() > ATTESTATION_ID_LENGTH) {
-            attestationID = NOT_APPLICABLE;
+//        if (attestationID.length() < ATTESTATION_ID_LENGTH) {
+//            System.out.println("less");
+//            attestationID = padLeftZeros(attestationID);
+//        } else if (attestationID.length() > ATTESTATION_ID_LENGTH) {
+//            attestationID = NOT_APPLICABLE;
+//        }
+        if (attestationID.length() == ATTESTATION_ID_LENGTH) {
+            this.attestationID = attestationID;
+            return;
         }
-        this.attestationID = attestationID;
+        this.attestationID = NOT_APPLICABLE;
     }
     public void setAgeYears(Integer ageYears) {
         this.ageYears = ageYears;
