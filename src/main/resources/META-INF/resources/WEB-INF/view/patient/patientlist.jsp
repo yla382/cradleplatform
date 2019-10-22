@@ -57,25 +57,32 @@
                         <th>
                             <div class="btn-group" role="group" aria-label="Button group">
                                 <form action="${pageContext.request.contextPath}/patient/editPatient" method="post">
-                                    <input type="hidden" id="attestationID" name="attestationID" value=${patient.attestationID}>
-                                    <input type="hidden" id="firstName" name="firstName" value=${patient.firstName}>
-                                    <input type="hidden" id="lastName" name="lastName" value=${patient.lastName}>
-                                    <input type="hidden" id="country" name="country" value=${patient.country}>
-                                    <input type="hidden" id="location" name="location" value=${patient.location}>
+                                    <input type="hidden" name="patientID" value=${patient.patientID}>
+                                    <input type="hidden" name="attestationID" value=${patient.attestationID}>
+                                    <input type="hidden" name="firstName" value=${patient.firstName}>
+                                    <input type="hidden" name="lastName" value=${patient.lastName}>
+                                    <input type="hidden" name="country" value=${patient.country}>
+                                    <input type="hidden" name="location" value=${patient.location}>
                                     <button type="submit" value="submit">
                                         Edit
                                     </button>
-
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <a href="${pageContext.request.contextPath}/patient/addPatient"
-                                   onclick="return confirm('Are you sure you want to delete ' + ${patient.attestationID}
-                                           + '?') "
-                                   class="button">
-                                    <button>
+                                <form action="${pageContext.request.contextPath}/patient/delete" method="post">
+                                    <input type="hidden" name="patientID" value=${patient.patientID}>
+                                    <input type="hidden" name="attestationID" value=${patient.attestationID}>
+                                    <input type="hidden" name="firstName" value=${patient.firstName}>
+                                    <input type="hidden" name="lastName" value=${patient.lastName}>
+                                    <input type="hidden" name="country" value=${patient.country}>
+                                    <input type="hidden" name="location" value=${patient.location}>
+                                    <button type="submit" value="submit"
+                                            onclick="return confirm('Are you sure you want to delete ' + ${patient.attestationID}
+                                            + '?' + ${patient.patientID}) "
+                                    >
                                         Delete
                                     </button>
-                                </a>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
 
                             </div>
                         </th>

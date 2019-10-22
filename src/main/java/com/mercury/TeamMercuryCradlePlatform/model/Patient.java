@@ -14,9 +14,9 @@ public class Patient {
     private static final String NOT_APPLICABLE = "NA";
 
     @Id
-    @Column(name="patient_Id")
+    @Column(name="patient_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long patientId;
+    private Long patientID;
 
     private String attestationID = null;
     private String firstName = null;
@@ -73,12 +73,11 @@ public class Patient {
         return sb.toString();
     }
 
-
+    public Long getPatientID(){
+        return patientID;
+    }
     public String getAttestationID() {
         return attestationID;
-    }
-    public Long getPatientId() {
-        return patientId;
     }
     public String getCountry() {
         return country;
@@ -96,8 +95,8 @@ public class Patient {
         return ageYears;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
+    public void setPatientID(Long patientID) {
+        this.patientID = patientID;
     }
     public void setAttestationID(String attestationID) {
 //        if (attestationID.length() < ATTESTATION_ID_LENGTH) {

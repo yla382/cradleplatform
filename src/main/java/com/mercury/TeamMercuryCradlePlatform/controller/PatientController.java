@@ -46,6 +46,20 @@ public class PatientController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public ModelAndView deletePatient(Patient patient) {
+//        Optional<Patient> optionalExistingPatient = patientRepository.findByAttestationID(patient.getAttestationID());
+//        if (optionalExistingPatient.isPresent()) {
+//            Patient existingPatient = optionalExistingPatient.get();
+//            patientRepository.deleteById(existingPatient.getPatientId());
+//        }
+
+        patientRepository.deleteById(patient.getPatientID());
+        ModelAndView modelAndView = new ModelAndView("/patient/deleted");
+        modelAndView.addObject("patient", patient);
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
     public @ResponseBody ModelAndView confirmPatientPage(@RequestParam String action, Patient patient) {
         ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
@@ -65,7 +79,7 @@ public class PatientController {
     @RequestMapping(value = "/submitPatient", method = RequestMethod.POST)
     public @ResponseBody ModelAndView submitPatient(@RequestParam String action, Patient patient) {
         if (action.equals("edit")) {
-            Optional<Patient> optionalExistingPatient = patientRepository.findByAttestationID(patient.getAttestationID());
+            Optional<Patient> optionalExistingPatient = patientRepository.findById(patient.getPatientID());
             if (optionalExistingPatient.isPresent()) {
                 Patient existingPatient = optionalExistingPatient.get();
                 existingPatient.updatePatient(patient);
@@ -76,9 +90,7 @@ public class PatientController {
         } else {
             exit(1);
         }
-        List<Patient> patientlist = patientRepository.findAll();
-        ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
-        modelAndView.addObject("patientList", patientlist);
+        ModelAndView modelAndView = new ModelAndView("/patient/saved");
         return modelAndView;
     }
 

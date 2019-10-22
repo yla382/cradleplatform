@@ -25,6 +25,9 @@
     <form action="${pageContext.request.contextPath}/patient/confirmPatient" method="post">
         <div class="container w-100" style="padding: 10px">
             <div class="form-group">
+                <input type="hidden" name="patientID" value=<%= patient.getPatientID()%>>
+            </div>
+            <div class="form-group">
                 <label for="attestationID">Attestation ID: </label>
                 <input required type="text" pattern="NA|[0-9]{11,11}" required title="Please enter a 11 number attestation ID or enter 'NA'" maxlength="11"
                        class="form-control" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>><br>
