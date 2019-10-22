@@ -57,8 +57,8 @@
             <div class="form-group" style="width: 25%">
                 <label for="health"></label>
                 <select class="form-control" id="health" name="health" onchange="healthChange()">
-                    <option value="1">Patient sick</option>
-                    <option value="2">Patient healthy</option>
+                    <option value="sick">Patient sick</option>
+                    <option value="healthy">Patient healthy</option>
                 </select>
             </div>
             <div class="form-group" id="symptomsSelectorDiv">
@@ -159,19 +159,19 @@
             healthChange();
         }
         else{
-            let i = 0;
+            let symptomsIndex = 0;
             $("#symptomsSelectorDiv input[type=checkbox]").each(function() {
                 if (symptomsArr.indexOf($(this).val()) > -1) {
                     $(this).prop('checked', true);
-                    i++;
+                    symptomsIndex++;
                 }
             });
 
-            if(i < symptomsArr.length){
-                const slicedArr = symptomsArr.slice(i, symptomsArr.length);
-                for(i = 0; i < slicedArr.length; i++){
-                    if(i > 0){
-                        slicedArr[i] = " " + slicedArr[i];
+            if(symptomsIndex < symptomsArr.length){
+                const slicedArr = symptomsArr.slice(symptomsIndex, symptomsArr.length);
+                for(symptomsIndex = 0; symptomsIndex < slicedArr.length; symptomsIndex++){
+                    if(symptomsIndex > 0){
+                        slicedArr[symptomsIndex] = " " + slicedArr[symptomsIndex];
                     }
                 }
 
@@ -184,14 +184,14 @@
         const e = document.getElementById("health");
         const strUser = e.options[e.selectedIndex].value;
 
-        if(strUser === "2"){
+        if(strUser === "healthy"){
             $("#symptomsSelectorDiv input").attr('disabled', true);
         }
         else {
             $("#symptomsSelectorDiv input").removeAttr('disabled');
         }
 
-        document.getElementById("otherSymptoms").disabled = strUser === "2";
+        document.getElementById("otherSymptoms").disabled = strUser === "healthy";
     }
 
     function gestationalAgeUnitChange() {

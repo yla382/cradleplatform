@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 <!DOCTYPE html>
 <html>
@@ -57,8 +58,8 @@
                 <div class="form-group" style="width: 25%">
                     <label for="health"></label>
                     <select class="form-control" id="health" name="health" onchange="healthChange()">
-                        <option value="1">Patient sick</option>
-                        <option value="2">Patient healthy</option>
+                        <option value="sick">Patient sick</option>
+                        <option value="healthy">Patient healthy</option>
                     </select>
                 </div>
                 <div class="form-group" id="symptomsSelectorDiv">
@@ -124,7 +125,6 @@
 
 
 <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             var backButton = document.getElementById("backButtonState");
             if (backButton.value === "0") {
@@ -140,20 +140,20 @@
             const e = document.getElementById("health");
             const strUser = e.options[e.selectedIndex].value;
 
-            if(strUser === "2"){
+            if(strUser === "healthy"){
                 $("#symptomsSelectorDiv input").attr('disabled', true);
             }
             else {
                 $("#symptomsSelectorDiv input").removeAttr('disabled');
             }
 
-            document.getElementById("otherSymptoms").disabled = strUser === "2";
+            document.getElementById("otherSymptoms").disabled = strUser === "healthy";
         }
 
         function gestationalAgeUnitChange() {
             const e = document.getElementById("gestationalAgeUnit");
             const strUser = e.options[e.selectedIndex].value;
-            document.getElementById("gestationalAgeValue").disabled = strUser === "Not Pregnant";
+            document.getElementById("gestationalAgeValue").disabled = strUser === "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
         }
 
     </script>
