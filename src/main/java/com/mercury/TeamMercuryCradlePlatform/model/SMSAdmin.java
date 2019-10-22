@@ -3,6 +3,8 @@ package com.mercury.TeamMercuryCradlePlatform.model;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import org.springframework.stereotype.Component;
+
 
 public class SMSAdmin {
     private static final String ACCOUNT_SID = "AC5da00db224e5944c1adfc31a4cc2ed39";
@@ -21,6 +23,15 @@ public class SMSAdmin {
 
     public void testSendText(String phoneNumber, String subject, String text) {
         Twilio.init(TEST_ACCOUNT_SID, TEST_AUTH_TOKEN);
+        Message message = Message.creator(
+                new PhoneNumber(phoneNumber),
+                new PhoneNumber(TWILIO_NUMBER),
+                createText(subject, text))
+                .create();
+    }
+
+    public void sendText(String phoneNumber, String subject, String text) {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
                 new PhoneNumber(phoneNumber),
                 new PhoneNumber(TWILIO_NUMBER),

@@ -1,5 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import Service.ContactService;
 import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
@@ -75,7 +76,9 @@ public class AdminController {
 
     @RequestMapping(value = "/submitMessage", method = RequestMethod.POST)
     public ModelAndView sendMessage(@RequestParam String email, @RequestParam String phoneNumber, @RequestParam String contactMethod, @RequestParam String subject, @RequestParam String message){
-        emailAdmin.sendEmail(email, subject, message);
+        //emailAdmin.sendEmail(email, subject, message);
+        ContactService contactService = new ContactService();
+        contactService.sendMessage(contactMethod, email, phoneNumber, subject, message);
         return new ModelAndView("/admin/submitMessage");
     }
 
