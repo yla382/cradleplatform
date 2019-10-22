@@ -26,14 +26,16 @@ public class User {
         this.lastName = user.lastName;
         this.roles = user.roles;
         this.email = user.email;
+        this.phoneNumber = user.phoneNumber;
     }
 
-    public User(String password, String firstName, String lastName, String email, String roles) {
+    public User(String password, String firstName, String lastName, String email, String roles, String phoneNumber) {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.roles = roles;
+        this.phoneNumber = phoneNumber;
     }
 
     @Column(name = "email")
@@ -55,6 +57,9 @@ public class User {
 
     @Column(name = "roles")
     private String roles = null;
+
+    @Column(name = "phone_number")
+    private String phoneNumber = null;
 
     public Integer getUserId() {
         return userId;
@@ -108,6 +113,14 @@ public class User {
         this.roles = roles;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public List<String> getRoles() {
         if(this.roles.length() > 0) {
             return Arrays.asList(this.roles.split(","));
@@ -116,7 +129,7 @@ public class User {
         }
     }
 
-    public String encodePassword(String password) {
+    private String encodePassword(String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(password);
     }
