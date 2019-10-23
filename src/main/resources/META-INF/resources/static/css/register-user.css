@@ -1,3 +1,19 @@
+@media screen and (max-width: 1600px) {
+  .btn-register {
+    font-size: 14px !important;
+  }
+  .round label:after {
+    width: 8px !important;
+  }
+  .round label {
+    height: 25px !important;
+    width: 25px !important;
+  }
+  .register-users-container {
+    margin-right: 20% !important;
+  }
+}
+
 .register-users-container {
   background-color: white;
   margin-top: 50px;

@@ -1,3 +1,30 @@
+@media screen and (max-width: 1600px) {
+  .btn-save {
+    font-size: 14px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+  }
+  .btn-delete {
+    font-size: 14px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  .round label:after {
+    width: 8px !important;
+  }
+  .round label {
+    height: 25px !important;
+    width: 25px !important;
+  }
+  .edit-users-container {
+    margin-right: 20% !important;
+  }
+}
+
 .edit-users-container {
   background-color: white;
   margin-top: 50px;

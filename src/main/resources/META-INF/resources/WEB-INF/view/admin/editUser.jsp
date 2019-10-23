@@ -135,7 +135,7 @@
                         <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                     <div class="row col-md-6 offset-md-4">
-                        <div class="col mr-2">
+                        <div class="col sm-2">
                             <form id="deleteForm" action="${pageContext.request.contextPath}/admin/users/delete/<%=postUser.getUserId()%>" method = "post">
                                 <button type="submit" form="deleteForm" onclick="return deleteAlertBox()" class="btn-delete">
                                     Delete
@@ -143,7 +143,7 @@
                                 <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
                         </div>
-                        <div class="col ml-2">
+                        <div class="col sm-2">
                             <button type="submit" form="editForm" onclick="return rolesCheckbox()" class="btn-save">
                                 Save
                             </button>
