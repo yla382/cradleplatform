@@ -40,7 +40,7 @@ public class AdminController {
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
     public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password, @RequestParam String roles) {
-        User newUser = new User(user);
+        User newUser = new User(user, password);
         newUser.setRole(roles);
         userRepository.save(newUser);
 
