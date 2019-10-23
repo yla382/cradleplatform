@@ -55,6 +55,7 @@
                                 <div class="col-md-6">
                                     <input type="text" id="phoneNumber" class="form-control" name="phoneNumber">
                                 </div>
+                            </div>
 
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-md-right">User Roles</label>
