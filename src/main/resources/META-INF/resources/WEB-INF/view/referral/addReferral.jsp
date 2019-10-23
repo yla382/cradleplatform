@@ -4,7 +4,7 @@
 <html>
 
 <%
-    Long referralReadingId = (Long)session.getAttribute("readingId");
+    Integer referralReadingId = (Integer)session.getAttribute("readingId");
     String firstName = (String)session.getAttribute("firstName");
     String lastName = (String)session.getAttribute("lastName");
     Integer ageYears = (Integer)session.getAttribute("ageYears");
@@ -59,23 +59,23 @@
 
                 <div class="form-group">
                     <label for="zoneNumber">Zone Number: </label>
-                    <input type="number" class="form-control" id="zoneNumber" name="zoneNumber"><br>
+                    <input type="number" class="form-control" id="zoneNumber" name="zoneNumber" required="required" pattern="[0-9]{1,5}"><br>
                 </div>
                 <div class="form-group">
                     <label for="blockNumber">Block Number: </label>
-                    <input type="number" class="form-control" id="blockNumber" name="blockNumber"><br>
+                    <input type="number" class="form-control" id="blockNumber" name="blockNumber" required="required" pattern="[0-9]{1,5}"><br>
                 </div>
                 <div class="form-group">
                     <label for="tankNumber">Tank Number: </label>
-                    <input type="number" class="form-control" id="tankNumber" name="tankNumber"><br>
+                    <input type="number" class="form-control" id="tankNumber" name="tankNumber" required="required" pattern="[0-9]{1,5}"><br>
                 </div>
                 <div class="form-group">
                     <label for="villageNumber">Village Number: </label>
-                    <input type="number" class="form-control" id="villageNumber" name="villageNumber"><br>
+                    <input type="number" class="form-control" id="villageNumber" name="villageNumber" required="required" pattern="[0-9]{1,5}"><br>
                 </div>
                 <div class="form-group">
                     <label for="householdNumber">Household Number: </label>
-                    <input type="number" class="form-control" id="householdNumber" name="householdNumber"><br>
+                    <input type="number" class="form-control" id="householdNumber" name="householdNumber" required="required" pattern="[0-9]{1,5}"><br>
                 </div>
                 <div class="form-group">
                     <label for="bpSystolic">Blood Pressure Systolic: </label>

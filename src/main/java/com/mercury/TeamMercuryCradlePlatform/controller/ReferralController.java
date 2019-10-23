@@ -46,7 +46,7 @@ public class ReferralController {
     public ModelAndView ReferralListPage() {
         List<Referral> referralList = this.referralRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("/referral/referralList");
-        modelAndView.addObject("patientList", referralList);
+        modelAndView.addObject("referralList", referralList);
         return modelAndView;
     }
 
@@ -54,8 +54,6 @@ public class ReferralController {
     public @ResponseBody ModelAndView saveReferral(Referral referral) {
         ModelAndView modelAndView = new ModelAndView("/referral/referralList");
         referral.setDateTimeSent(LocalDate.now());
-        Reading reading = readingRepository.findByReadingId(referral.getReferralReadingId());
-        referral.setReading(reading);
         referralRepository.save(referral);
 
         List<Referral> referralList = this.referralRepository.findAll();

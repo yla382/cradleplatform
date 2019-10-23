@@ -32,7 +32,7 @@ public class Referral {
     private String otherInformationMessage = null;
 
     @Column(name = "referral_reading_id")
-    private Long referralReadingId = null;
+    private Integer referralReadingId = 0;
 
     //reading info
     @OneToOne(cascade = CascadeType.ALL)
@@ -105,7 +105,7 @@ public class Referral {
     public Referral() {
     }
 
-    public Referral(String firstName, String lastName, Integer ageYears, String vhtName, String referredHealthCentre, Long referralReadingId) {
+    public Referral(String firstName, String lastName, Integer ageYears, String vhtName, String referredHealthCentre, Integer referralReadingId) {
         this.referredHealthCentre = referredHealthCentre;
         this.vhtName = vhtName;
         this.firstName = firstName;
@@ -117,7 +117,7 @@ public class Referral {
 
     public Referral(String referredHealthCentre,
                     LocalDate dateTimeSent,
-                    Long referralReadingId,
+                    Integer referralReadingId,
                     String vhtName,
                     String reasonOfReferral,
                     String actionAlreadyTaken,
@@ -136,6 +136,7 @@ public class Referral {
                     Integer householdNumber) {
         this.referredHealthCentre = referredHealthCentre;
         this.dateTimeSent = dateTimeSent;
+        this.referralReadingId = referralReadingId;
         this.vhtName = vhtName;
         this.reasonOfReferral = reasonOfReferral;
         this.actionAlreadyTaken = actionAlreadyTaken;
@@ -272,6 +273,7 @@ public class Referral {
 
     public void setZoneNumber(Integer zoneNumber) {
         this.zoneNumber = zoneNumber;
+
     }
 
     public Integer getBlockNumber() {
@@ -306,11 +308,11 @@ public class Referral {
         this.householdNumber = householdNumber;
     }
 
-    public Long getReferralReadingId() {
+    public Integer getReferralReadingId() {
         return referralReadingId;
     }
 
-    public void setReferralReadingId(Long referralReadingId) {
+    public void setReferralReadingId(Integer referralReadingId) {
         this.referralReadingId = referralReadingId;
     }
 }

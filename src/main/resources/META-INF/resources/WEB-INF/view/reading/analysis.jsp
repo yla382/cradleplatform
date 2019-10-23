@@ -67,7 +67,7 @@
             <h2> Not referred</h2>
             <p> <%= ReadingAnalysis.analyze(reading).isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%>
                 <%
-                    session.setAttribute("readingId", reading.readingId);
+                    session.setAttribute("readingId", reading.readingId.intValue());
                     session.setAttribute("firstName",reading.firstName);
                     session.setAttribute("lastName", reading.lastName);
                     session.setAttribute("ageYears", reading.ageYears);
