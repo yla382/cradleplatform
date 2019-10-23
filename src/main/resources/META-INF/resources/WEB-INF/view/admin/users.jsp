@@ -31,6 +31,7 @@
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">E-mail</th>
+            <th scope="col">Phone Number</th>
             <th scope="col">Roles</th>
             <th scope="col"></th>
         </tr>
@@ -42,6 +43,7 @@
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
                 <td>${user.email}</td>
+                <td>${user.phoneNumber}</td>
                 <td>
                     <c:forEach items="${user.roles}" var = "role">
                         ${role}
