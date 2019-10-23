@@ -4,6 +4,20 @@ html {
   margin: 0px;
   height: 100%;
 }
+@media screen and (max-width: 1600px) {
+  html {
+    font-size: 80% !important;
+  }
+  .nav-link {
+    font-size: 16px !important;
+  }
+  .navbar-title {
+    font-size: 32px !important;
+  }
+  .content-header {
+    font-size: 32px !important;
+  }
+}
 
 body {
   padding: 0px;
@@ -52,13 +66,18 @@ body {
   text-overflow: ellipsis;
   margin-right: 10px;
 }
+
 .nav-link {
   text-decoration: none;
   color: white;
   font-size: 25px;
   font-weight: 100;
 }
+
 .nav-link:active {
+  color: white !important;
+}
+.nav-link:hover {
   color: white !important;
 }
 

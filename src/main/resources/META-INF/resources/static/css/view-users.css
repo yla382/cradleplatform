@@ -1,3 +1,12 @@
+@media screen and (max-width: 1600px) {
+  .table-icon {
+    font-size: 16px !important;
+  }
+  .table-row-id {
+    font-size: 18px !important;
+  }
+}
+
 .table-container {
   background-color: white;
   padding: 50px;
@@ -12,6 +21,10 @@
 .table-icon {
   color: rgb(88, 88, 88) !important;
   font-size: 25px;
+}
+.table-icon:hover {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .table-row-id {
