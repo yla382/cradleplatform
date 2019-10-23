@@ -54,6 +54,7 @@
             >
           </li>
           <%} %>
+          <li class="navbar-list"><a class="nav-link" href="/logout">< Sign Out ></a></li>
         </ul>
       </div> <!--END of NAVBAR-->
       <div class="content-container">

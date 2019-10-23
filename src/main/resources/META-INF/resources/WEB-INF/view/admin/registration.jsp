@@ -60,7 +60,7 @@
       </div> <!--END of NAVBAR-->
       <div class="content-container">
         <div class="content-header">
-          Register Users
+          Register A New User
         </div>
             <div class="register-users-container">
                 <main class="my-form">
