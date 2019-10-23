@@ -32,7 +32,7 @@ public class Referral {
     private String otherInformationMessage = null;
 
     @Column(name = "referral_reading_id")
-    private Long referralReadingId;
+    private Long referralReadingId = null;
 
     //reading info
     @OneToOne(cascade = CascadeType.ALL)
@@ -48,13 +48,13 @@ public class Referral {
     }
 
     @Column(name = "bp_systolic")
-    private Integer bpSystolic;
+    private Integer bpSystolic = 0;
 
     @Column(name = "bp_diastolic")
-    private Integer bpDiastolic;
+    private Integer bpDiastolic = 0;
 
     @Column(name = "heart_rate_bpm")
-    private Integer heartRateBPM;
+    private Integer heartRateBPM = 0;
 
     // patient info
     @OneToOne(cascade = CascadeType.ALL)
@@ -87,34 +87,37 @@ public class Referral {
     private Sex sex = Sex.FEMALE;
 
     @Column(name = "zone_number")
-    private Integer zoneNumber;
+    private Integer zoneNumber = 0;
 
     @Column(name = "block_number")
-    private Integer blockNumber;
+    private Integer blockNumber = 0;
 
     @Column(name = "tank_number")
-    private Integer tankNumber;
+    private Integer tankNumber = 0;
 
     @Column(name = "village_number")
-    private Integer villageNumber;
+    private Integer villageNumber = 0;
 
     @Column(name = "household_number")
-    private Integer householdNumber;
+    private Integer householdNumber = 0;
 
 
     public Referral() {
     }
 
-    public Referral(String firstName, String lastName, String vhtName, String referredHealthCentre) {
+    public Referral(String firstName, String lastName, Integer ageYears, String vhtName, String referredHealthCentre, Long referralReadingId) {
         this.referredHealthCentre = referredHealthCentre;
         this.vhtName = vhtName;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.ageYears = ageYears;
+        this.referralReadingId = referralReadingId;
     }
 
 
     public Referral(String referredHealthCentre,
                     LocalDate dateTimeSent,
+                    Long referralReadingId,
                     String vhtName,
                     String reasonOfReferral,
                     String actionAlreadyTaken,
