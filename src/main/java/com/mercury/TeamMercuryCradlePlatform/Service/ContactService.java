@@ -1,4 +1,4 @@
-package Service;
+package com.mercury.TeamMercuryCradlePlatform.Service;
 
 import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
 //import com.mercury.TeamMercuryCradlePlatform.model.SMSAdmin;
