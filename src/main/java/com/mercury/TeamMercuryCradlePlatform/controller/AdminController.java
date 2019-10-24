@@ -1,11 +1,10 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import com.mercury.TeamMercuryCradlePlatform.Service.ContactService;
 import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Properties;
 
 @Controller
 @RequestMapping("/admin")
@@ -63,6 +61,28 @@ public class AdminController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getAllUsers(){
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+    }
+
+    @RequestMapping(value ="/users/contact", method = RequestMethod.GET)
+    public ModelAndView getContactPage(@RequestParam int userId) {
+        User user = userRepository.findByUserId(userId);
+        ModelAndView modelAndView = new ModelAndView("/admin/contact");
+        modelAndView.addObject("email", user.getEmail());
+        modelAndView.addObject("phoneNumber", user.getPhoneNumber());
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/submitMessage", method = RequestMethod.POST)
+    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject, @RequestParam String contactMethod, @RequestParam String message, @RequestParam String phoneNumber){
+        //emailAdmin.sendEmail(email, subject, message);
+        ContactService contactService = new ContactService();
+        contactService.sendMessage(contactMethod, email, phoneNumber, subject, message);
+
+        System.out.println(contactMethod);
+        System.out.println(email);
+        System.out.println(phoneNumber);
+        return new ModelAndView("/admin/submitMessage");
     }
 
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)

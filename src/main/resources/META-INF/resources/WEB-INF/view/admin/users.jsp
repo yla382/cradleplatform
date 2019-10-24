@@ -31,6 +31,7 @@
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
             <th scope="col">E-mail</th>
+            <th scope="col">Phone Number</th>
             <th scope="col">Roles</th>
             <th scope="col"></th>
         </tr>
@@ -42,11 +43,22 @@
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
                 <td>${user.email}</td>
+                <td>${user.phoneNumber}</td>
                 <td>
                     <c:forEach items="${user.roles}" var = "role">
                         ${role}
                         <br>
                     </c:forEach>
+                </td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/admin/users/contact/${user.userId}" method="get">
+                        <a href="#" class="btn btn-secondary" onclick="window.open('http://localhost:8080/admin/users/contact?userId=${user.userId}',
+                           'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
+                           'location=no,directories=no, status=yes');">
+                            Contact
+                        </a>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
                 </td>
                 <td>
                     <form action="${pageContext.request.contextPath}/admin/users/${user.userId}" method="get">
