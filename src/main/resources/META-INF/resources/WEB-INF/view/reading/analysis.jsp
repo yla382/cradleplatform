@@ -63,8 +63,24 @@
             </div>
 
 
+
             <h2> Not referred</h2>
-            <p> <%= ReadingAnalysis.analyze(reading).isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%> <button type="button">Send referral</button> </p>
+            <p> <%= ReadingAnalysis.analyze(reading).isReferralToHealthCentreRecommended()? "Referral recommended" : "Referral not recommended"%>
+                <%
+                    session.setAttribute("readingId", reading.readingId.intValue());
+                    session.setAttribute("firstName",reading.firstName);
+                    session.setAttribute("lastName", reading.lastName);
+                    session.setAttribute("ageYears", reading.ageYears);
+                    session.setAttribute("bpSystolic", reading.bpSystolic);
+                    session.setAttribute("bpDiastolic", reading.bpDiastolic);
+                    session.setAttribute("heartRateBPM", reading.heartRateBPM);
+                    session.setAttribute("analysis", ReadingAnalysis.analyze(reading).name());
+                %>
+                <a href="${pageContext.request.contextPath}/referral/addReferral">
+                    <button type="button">Send referral</button>
+                </a>
+            </p>
+
 
             <div class="custom-control custom-switch">
                 <input checked type="checkbox" class="custom-control-input" id="followUp">

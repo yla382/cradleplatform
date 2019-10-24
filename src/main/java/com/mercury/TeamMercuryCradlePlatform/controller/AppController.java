@@ -39,13 +39,13 @@ public class AppController {
         return "index";
     }
 
-    @GetMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
 
     @PreAuthorize("#id == authentication.getPrincipal().getUserId()")
-    @GetMapping("/profile/{id}")
+    @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
     public String getUserInfo(@PathVariable("id") Integer id, Model model) {
 
         User user = userRepository.findByUserId(id);
