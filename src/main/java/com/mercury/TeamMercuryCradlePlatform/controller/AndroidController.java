@@ -10,11 +10,15 @@ import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -26,9 +30,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import javax.print.attribute.standard.Media;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/android")
@@ -93,13 +102,42 @@ public class AndroidController {
         return new ResponseEntity<>(reading, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/uploadzip", method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadZip(@RequestBody MultipartFile file, HttpServletRequest request) throws IOException {
+        File zip = File.createTempFile(UUID.randomUUID().toString(), "temp");
+        FileOutputStream o = new FileOutputStream(zip);
+        IOUtils.copy(file.getInputStream(), o);
+        o.close();
+
+        String destination = "C:\\Users\\John\\Desktop";
+        try {
+            ZipFile zipFile = new ZipFile(zip);
+            zipFile.extractAll(destination);
+        } catch (ZipException e) {
+            e.printStackTrace();
+        } finally {
+            zip.delete();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> uploadFile(@RequestParam("file")MultipartFile file) throws IOException {
-        File convertFile = new File("/Users/earlcookie/Desktop" + file.getOriginalFilename());
+    public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+        File convertFile = new File("C:\\Users\\John\\Desktop\\greenfoodchallenge\\"  + file.getOriginalFilename());
         boolean res = convertFile.createNewFile();
         FileOutputStream fout = new FileOutputStream(convertFile);
         fout.write(file.getBytes());
         fout.close();
+
+        String destination = "C:\\Users\\John\\Desktop\\greenfoodchallenge";
+        try {
+            ZipFile zipFile = new ZipFile(convertFile);
+            zipFile.extractAll(destination);
+        } catch (ZipException e) {
+            e.printStackTrace();
+        } finally {
+            convertFile.delete();
+        }
         return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
     }
 }
