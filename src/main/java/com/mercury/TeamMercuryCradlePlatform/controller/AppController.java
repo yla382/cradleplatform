@@ -15,7 +15,6 @@ public class AppController {
     @Autowired
     private UserRepository userRepository;
 
-
     @RequestMapping("/")
     public String welcome() {
         return "index";
@@ -23,7 +22,7 @@ public class AppController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "index";
     }
 
     @PreAuthorize("#id == authentication.getPrincipal().getUserId()")

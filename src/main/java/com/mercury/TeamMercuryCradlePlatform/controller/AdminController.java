@@ -38,21 +38,27 @@ public class AdminController {
         return (List<User>) this.userRepository.findAll();
     }
 
+    @GetMapping("/education")
+    public String educationPage() {
+        return "admin/education";
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public @ResponseBody ModelAndView registrationPage() {
         return new ModelAndView("admin/registration");
     }
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password, @RequestParam String roles) {
+    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password,
+            @RequestParam String roles) {
         User temp = new User(user);
         temp.setRole(roles);
         temp.setEncodedPassword(password);
         userRepository.save(temp);
 
         String subject = "New Cradle account created";
-        String text = "Hello, " + temp.getFirstName() + " thank you for joining our organization" +
-                ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + password;
+        String text = "Hello, " + temp.getFirstName() + " thank you for joining our organization"
+                + ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + password;
         emailAdmin.sendEmail(temp.getEmail(), subject, text);
 
         ModelAndView modelAndView = new ModelAndView("index");
@@ -61,40 +67,43 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView getAllUsers(){
+    public ModelAndView getAllUsers() {
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
-////////////////////////////////////////////////////
-    @RequestMapping(value ="/contact", method = RequestMethod.GET)
+
+    ////////////////////////////////////////////////////
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public ModelAndView getContactPage(@RequestParam String email) {
         return new ModelAndView("/admin/contact").addObject("email", email);
     }
 
     @RequestMapping(value = "/submitMessage", method = RequestMethod.POST)
-    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject, @RequestParam String message){
+    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject,
+            @RequestParam String message) {
         emailAdmin.sendEmail(email, subject, message);
         return new ModelAndView("/admin/submitMessage");
     }
-/////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
-    public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
+    public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles) {
 
         user.setRole(roles);
-        //user.setPassword(user.getPassword());
+        // user.setPassword(user.getPassword());
         this.userRepository.save(user);
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
 
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public ModelAndView getUserWithId(@PathVariable int id){
+    public ModelAndView getUserWithId(@PathVariable int id) {
 
         User user = this.userRepository.findByUserId(id);
         return new ModelAndView("/admin/editUser").addObject("postUser", user);
     }
 
     @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.POST)
-    public ModelAndView deleteUserWithId(@PathVariable int id){
+    public ModelAndView deleteUserWithId(@PathVariable int id) {
         this.userRepository.delete(this.userRepository.findByUserId(id));
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
