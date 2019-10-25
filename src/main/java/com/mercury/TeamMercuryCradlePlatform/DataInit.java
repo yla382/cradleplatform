@@ -12,9 +12,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -46,16 +50,32 @@ public class DataInit implements CommandLineRunner {
         Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
 
         List<String> symptoms = new ArrayList<>();
-        symptoms.add("Headache");
-        symptoms.add("Blurred vision");
-        symptoms.add("test");
-        symptoms.add("test2");
 
-        Reading reading = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
-        Reading reading2 = new Reading("Ricky", "Owen", 29, new ArrayList<String>(List.of("No Symptoms (patient healthy)")), Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
+        Reading reading = new Reading("Ricky", "Owen", 29,
+                Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION, "dead"),
+                Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1",
+                130, 100, 90,
+                ZonedDateTime.of(LocalDate.of( 2019,4,5), LocalTime.of(9,30), ZoneId.systemDefault()));
+
+        Reading reading2 = new Reading("Ricky", "Owen", 29,
+                Collections.singletonList(Strings.SYMPTOM_NO_SYMPTOMS),
+                Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS, "7",
+                90, 60, 60,
+                ZonedDateTime.of(LocalDate.of( 2019,5,30), LocalTime.of(20,45), ZoneId.systemDefault()));
+
+        Reading reading3 = new Reading("Ricky", "Owen", 29,
+                Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION, "not dead"),
+                Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "1",
+                80, 70, 120,
+                ZonedDateTime.of(LocalDate.of( 2019,6,1), LocalTime.of(3,15), ZoneId.systemDefault()));
+
+        List<Reading> readings = Arrays.asList(reading, reading2, reading3);
+
+        patient1.addAllReadings(readings);
+        readings.forEach(r -> r.setPatient(patient1));
 
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
-        readingRepository.saveAll(Arrays.asList(reading, reading2));
+        readingRepository.saveAll(readings);
 
     }
 }

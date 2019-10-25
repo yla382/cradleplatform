@@ -1,5 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Reading" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.Comparator" %>
 
 
 <!DOCTYPE html>
@@ -20,14 +25,13 @@
 </head>
 
 
-
 <body>
 
 <%@ include file="../navbar.jspf" %>
 
-<div class="container">
-    <canvas id="myChart"></canvas>
-</div>
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
 
 </body>
 
@@ -42,76 +46,83 @@
 
 
     window.onload = function () {
-        setUpYAxis();
+
     };
 
-    function setUpYAxis() {
-        var labels = [];
+    function getData(type) {
+        var data = [];
 
         <% for (int i=0; i<readingList.size(); i++) { %>
 
-        labels[<%= i+1 %>] = "<%= readingList.get(i).getTimeYYYYMMDD()%>";
-        <%--bpSystolic[<%= i+1 %>] = "<%= readingList.get(i).getBpSystolic()%>";--%>
-        <%--bpDiastolic[<%= i+1 %>] = "<%= readingList.get(i).getBpDiastolic()%>";--%>
+        if(type === 0 ){
+            data[<%= i %>] = "<%= readingList.get(i).getTimeYYYYMMDD()%>";
+        }
+        else if(type === 1){
+            data[<%= i %>] = "<%= readingList.get(i).getBpSystolic()%>";
+        }
+        else if(type === 2){
+            data[<%= i %>] = "<%= readingList.get(i).getBpDiastolic()%>";
+        }
+        else {
+            data[<%= i %>] = "<%= readingList.get(i).getHeartRateBPM()%>";
+        }
 
         <% } %>
 
-        return labels
-
+        return data
     }
 
-
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-
-        // The data for our dataset
-        data: {
-            // times
-            labels: setUpYAxis(),
-
-            //
-            datasets: [{
-                label: 'Blood pressure chart',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
-            }]
-
-
-        },
-
-        // Configuration options go here
-        options: {
-            scales: {
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'date reading taken'
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'blood pressure'
-                    },
-                    ticks: {
-                        min: 0,
-                        max: 5,
-                        stepSize: 1,
-                        suggestedMin: 0.5,
-                        suggestedMax: 5.5,
-                        callback: function(value, index, values) {
-                            return '$' + value;
+    var canvas = document.getElementById('myChart');
+    var chart = new Chart(canvas,
+        {
+            "type":"line",
+            "data":
+                {
+                    "labels": getData(0),
+                    "datasets": [
+                        {
+                            "label":"Systolic",
+                            "data": getData(1),
+                            "fill":false,
+                            "backgroundColor": "rgb(0, 0, 255)",
+                            "borderColor" : "rgb(0, 0, 255)"
+                        },
+                        {
+                            "label":"Diastolic",
+                            "data": getData(2),
+                            "fill":false,
+                            "backgroundColor": "rgb(255, 129, 0)",
+                            "borderColor" : "rgb(255, 129, 0)"
+                        },
+                        {
+                            "label":"Heart Rate",
+                            "data": getData(3),
+                            "fill":false,
+                            "backgroundColor": "rgb(142, 56, 140)",
+                            "borderColor" : "rgb(142, 56, 140)"
                         }
-                    }
-                }]
-            }
-        }
+                    ]},
+            "options":
+                {
+                    "scales":
+                        {
+                            "xAxes": [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Time Reading Taken'
+                                },
+                            }],
 
-    });
+                            "yAxes": [{
+                                "ticks":{
+                                    "beginAtZero":true
+                                }
+                            }]
+                        }
+                }
+        });
+
+
 
 </script>
 

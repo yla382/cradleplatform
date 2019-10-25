@@ -104,4 +104,8 @@ public class Patient {
     public void addReading(Reading reading){
         this.readings.add(reading);
     }
+
+    public void addAllReadings(List<Reading> readingList){
+        this.readings.addAll(readingList);
+    }
 }
