@@ -25,9 +25,13 @@ public class Patient {
     private String country = null;
     private String location = null;
 
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="patient_Id", referencedColumnName = "patient_Id")
     private List<Reading> readings = new ArrayList<>();
+
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    private Referral referral;
 
     public Patient() {
     }
@@ -82,15 +86,19 @@ public class Patient {
     public String getCountry() {
         return country;
     }
+
     public String getLocation() {
         return location;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public Integer getAgeYears() {
         return ageYears;
     }
@@ -117,14 +125,35 @@ public class Patient {
     public void setCountry(String country) {
         this.country = country;
     }
+
     public void setLocation(String location) {
         this.location = location;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public void setPatientId(Integer patientId) {
+        this.patientId = patientId;
+    }
+
+    public void addReading(Reading reading){
+        this.readings.add(reading);
+    }
+
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
+    }
+
 
 }
