@@ -72,32 +72,40 @@
         </div>
         <div class="content-body">
           <div class="contact-container">
-                <div class="contact-header">
-                        Sending a message to ${name}
-                    </div>
                 <form action="${pageContext.request.contextPath}/admin/submitMessage" method = "POST">
                     <input id="email" name="email" type="hidden" value="<%=email%>">
                     <input id="phoneNumber" name="phoneNumber" type="hidden" value="<%=phoneNumber%>">
-                    <label for="contactMethod">Contact Method</label>
-                    <select class="form-control" id="contactMethod" name="contactMethod">
-                        <option value="email">Email</option>
-                        <option value="phoneNumber">Phone Number</option>
-                    </select>
 
                     <div class="form-group row">
-                        <label for="subject" class="col-md-4 col-form-label text-md-right contact-label">SUBJECT</label>
-                        <div class="col-md-6">
+                        <label for="contactMethod" class="col-md-3 col-form-label text-md-right contact-label">METHOD</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="contactMethod" name="contactMethod">
+                                    <option value="email">Email</option>
+                                    <option value="phoneNumber">Phone Number</option>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                            <label class="col-md-3 col-form-label text-md-right contact-label">TO</label>
+                            <div class="col-md-8 contact-receiver-container">
+                                <span class="contact-receiver">${name}</span>
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                        <label for="subject" class="col-md-3 col-form-label text-md-right contact-label">SUBJECT</label>
+                        <div class="col-md-8">
                             <input type="text" id="subject" class="contact-field" name="subject" placeholder="Subject">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="message" class="col-md-4 col-form-label text-md-right contact-label">MESSAGE</label>
-                        <div class="col-md-6">
-                            <input type="text" id="message" class="" name="message" placeholder="Message">
+                    <div class="form-group row contact-message-container">
+                        <label for="message" class="col-md-3 col-form-label text-md-right contact-label">MESSAGE</label>
+                        <div class="col-md-8">
+                            <textarea rows="5" id="message" class="contact-message" name="message" placeholder="Message"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6 offset-md-6">
-                            <div class="offset-md-2">
+                            <div class="offset-md-5">
                                 <button type="submit" class="btn-send">
                                     Send
                                 </button>

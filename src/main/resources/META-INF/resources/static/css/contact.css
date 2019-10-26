@@ -38,9 +38,40 @@
   border: 0;
   outline: 0;
   background: transparent;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.979);
+  padding-top: 8px;
 }
 
 .contact-label {
   font-weight: bold;
+}
+
+.contact-receiver {
+  color: rgb(14, 177, 136) !important;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.contact-receiver-container {
+  padding-top: 3px;
+}
+
+.contact-message {
+  width: 100%;
+  margin-top: 4px;
+  border: none;
+  overflow: auto;
+  outline: none;
+  background-color: rgb(241, 241, 241);
+  padding: 10px 5px 5px 5px;
+  margin-left: -5px;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
+}
+
+.contact-message-container {
+  margin-top: -10px;
 }
