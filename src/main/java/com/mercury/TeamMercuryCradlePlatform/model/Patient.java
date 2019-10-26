@@ -14,9 +14,9 @@ public class Patient {
     private static final String NOT_APPLICABLE = "NA";
 
     @Id
-    @Column(name="patient_ID")
+    @Column(name="patient_Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long patientID;
+    private Long patientId;
 
     private String attestationID = null;
     private String firstName = null;
@@ -61,11 +61,6 @@ public class Patient {
         setLocation(patient.getLocation());
     }
 
-
-    public void addReading(Reading reading){
-        this.readings.add(reading);
-    }
-
     // Ideas used from https://www.baeldung.com/java-pad-string
     private String padLeftZeros(String attestationID) {
         StringBuilder sb = new StringBuilder();
@@ -77,8 +72,8 @@ public class Patient {
         return sb.toString();
     }
 
-    public Long getPatientID(){
-        return patientID;
+    public Long getPatientId(){
+        return patientId;
     }
     public String getAttestationID() {
         return attestationID;
@@ -103,8 +98,8 @@ public class Patient {
         return ageYears;
     }
 
-    public void setPatientID(Long patientID) {
-        this.patientID = patientID;
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
     public void setAttestationID(String attestationID) {
 //        if (attestationID.length() < ATTESTATION_ID_LENGTH) {
@@ -136,10 +131,6 @@ public class Patient {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setPatientId(Integer patientId) {
-        this.patientId = patientId;
     }
 
     public void addReading(Reading reading){

@@ -3,9 +3,11 @@ package com.mercury.TeamMercuryCradlePlatform.repository;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PatientRepository extends CrudRepository<Patient, Long> {

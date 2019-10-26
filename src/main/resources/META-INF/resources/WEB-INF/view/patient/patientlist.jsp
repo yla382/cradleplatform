@@ -57,7 +57,7 @@
                         <th>
                             <div class="btn-group" role="group" aria-label="Button group">
                                 <form action="${pageContext.request.contextPath}/patient/editPatient" method="post">
-                                    <input type="hidden" name="patientID" value=${patient.patientID}>
+                                    <input type="hidden" name="patientID" value=${patient.patientId}>
                                     <input type="hidden" name="attestationID" value=${patient.attestationID}>
                                     <input type="hidden" name="firstName" value=${patient.firstName}>
                                     <input type="hidden" name="lastName" value=${patient.lastName}>
@@ -69,7 +69,7 @@
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                 <form action="${pageContext.request.contextPath}/patient/delete" method="post">
-                                    <input type="hidden" name="patientID" value=${patient.patientID}>
+                                    <input type="hidden" name="patientID" value=${patient.patientId}>
                                     <input type="hidden" name="attestationID" value=${patient.attestationID}>
                                     <input type="hidden" name="firstName" value=${patient.firstName}>
                                     <input type="hidden" name="lastName" value=${patient.lastName}>

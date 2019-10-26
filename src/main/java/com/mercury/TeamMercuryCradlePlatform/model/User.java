@@ -38,6 +38,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+
+    public User(String encode, String john, String lee, String s, String admin) {
+    }
+
+
     @Column(name = "email")
     //@NotEmpty(message = "Email must be provided")
     private String email = null;

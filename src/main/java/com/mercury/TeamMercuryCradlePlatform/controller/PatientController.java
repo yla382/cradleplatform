@@ -3,7 +3,6 @@ package com.mercury.TeamMercuryCradlePlatform.controller;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +47,7 @@ public class PatientController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ModelAndView deletePatient(Patient patient) {
-        patientRepository.deleteById(patient.getPatientID());
+        patientRepository.deleteById(patient.getPatientId());
         ModelAndView modelAndView = new ModelAndView("/patient/deleted");
         modelAndView.addObject("patient", patient);
         return modelAndView;
@@ -73,7 +72,7 @@ public class PatientController {
     @RequestMapping(value = "/submitPatient", method = RequestMethod.POST)
     public @ResponseBody ModelAndView submitPatient(@RequestParam String action, Patient patient) {
         if (action.equals("edit")) {
-            Optional<Patient> optionalExistingPatient = patientRepository.findById(patient.getPatientID());
+            Optional<Patient> optionalExistingPatient = patientRepository.findById(patient.getPatientId());
             if (optionalExistingPatient.isPresent()) {
                 Patient existingPatient = optionalExistingPatient.get();
                 existingPatient.updatePatient(patient);
