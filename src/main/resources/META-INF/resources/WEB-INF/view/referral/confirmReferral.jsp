@@ -18,16 +18,18 @@
 <%@ include file="../navbar.jspf" %>
 <div class="container w-100 mt-4" >
 
+    <h2>Personal Information</h2>
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <p> <%= "Reading ID: " + referral.getReferralReadingId()%></p>
+                <p> <%= "Reading ID: " + referral.getReadingId()%></p>
                 <p> <%= "Name: " + referral.getFirstName() + " " + referral.getLastName()%></p>
                 <p> <%= "Age: " + referral.getAgeYears()%></p>
                 <p> <%= "Sex: " + referral.getSex()%></p>
             </div>
         </div>
     </div>
+    <h2>Referred Health Centre</h2>
     <div class="container">
         <div class="row">
             <div class="col-sm">
@@ -38,6 +40,7 @@
         </div>
     </div>
 
+    <h2>Address Information</h2>
     <div class="container">
         <div class="row">
             <div class="col-sm">
@@ -49,6 +52,7 @@
             </div>
         </div>
     </div>
+    <h2>Blood Pressure and Heart Rate</h2>
     <div class="container">
         <div class="row">
             <div class="col-sm">
@@ -67,6 +71,7 @@
 
     <button type="button" onclick="editButton()"> Edit </button>
     <form action="${pageContext.request.contextPath}/referral/referralSaved" method="post">
+        <input type="hidden" name="readingId" value="<%=referral.getReadingId()%>"/>
         <input type="hidden" name="firstName" value="<%=referral.getFirstName()%>"/>
         <input type="hidden" name="lastName" value="<%=referral.getLastName()%>"/>
         <input type="hidden" name="ageYears" value="<%=referral.getAgeYears()%>"/>

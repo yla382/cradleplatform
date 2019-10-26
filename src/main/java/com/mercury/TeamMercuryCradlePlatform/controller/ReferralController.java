@@ -38,6 +38,8 @@ public class ReferralController {
     public @ResponseBody ModelAndView confirmReferralPage(Referral referral) {
         ModelAndView modelAndView = new ModelAndView("/referral/confirmReferral");
         referral.setDateTimeSent(LocalDate.now());
+        Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
+        referral.setReading(reading);
         modelAndView.addObject("referral", referral);
         return modelAndView;
     }
@@ -54,6 +56,8 @@ public class ReferralController {
     public @ResponseBody ModelAndView saveReferral(Referral referral) {
         ModelAndView modelAndView = new ModelAndView("/referral/referralList");
         referral.setDateTimeSent(LocalDate.now());
+        Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
+        referral.setReading(reading);
         referralRepository.save(referral);
 
         List<Referral> referralList = this.referralRepository.findAll();

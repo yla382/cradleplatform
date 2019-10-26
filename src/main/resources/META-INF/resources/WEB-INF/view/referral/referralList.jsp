@@ -30,6 +30,8 @@
             <th scope="col">Referred Health Centre</th>
             <th scope="col">VHT Name</th>
             <th scope="col">Reading ID</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -40,7 +42,18 @@
                 <th>${referral.lastName}</th>
                 <th>${referral.referredHealthCentre}</th>
                 <th>${referral.vhtName}</th>
-                <th>${referral.referralReadingId}</th>
+                <th>${referral.readingId}</th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/referral/edit/${reading.readingId}" method="get">
+                        <button type="submit" class="btn btn-secondary">Edit</button>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </th>
+                <th>
+                    <form action="${pageContext.request.contextPath}/referral/referralList/deleted" method="get">
+                        <button type="submit" class="btn btn-secondary">Delete</button>
+                    </form>
+                </th>
             </tr>
         </c:forEach>
         </tbody>
