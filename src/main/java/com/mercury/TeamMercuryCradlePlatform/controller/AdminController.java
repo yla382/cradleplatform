@@ -70,11 +70,12 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/users/contact", method = RequestMethod.GET)
-    public ModelAndView getContactPage(@RequestParam int userId) {
+    public ModelAndView getContactPage(@RequestParam int userId, @RequestParam String name) {
         User user = userRepository.findByUserId(userId);
         ModelAndView modelAndView = new ModelAndView("/admin/contact");
         modelAndView.addObject("email", user.getEmail());
         modelAndView.addObject("phoneNumber", user.getPhoneNumber());
+        modelAndView.addObject("name", name);
         return modelAndView;
     }
 

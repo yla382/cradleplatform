@@ -88,27 +88,12 @@
                     </td>
                     <td>
                       <!--
-                        <form action="${pageContext.request.contextPath}/admin/contact" method="get">
-                            <a href="#" class="btn btn-secondary" onclick="window.open('contact?email=${user.email}',
-                              'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
-                              'location=no,directories=no, status=yes');">
-                                Contact
-                            </a>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        </form>
-                      -->
-                      
-                      
                       <a onclick="window.open('http://localhost:8080/admin/users/contact?userId=${user.userId}',
                       'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
                       'location=no,directories=no, status=yes');" class="glyphicon glyphicon-envelope table-icon"></a>
-                              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                      <!--
-                        <a onclick="window.open('contact?email=${user.email}',
-                              'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
-                              'location=no,directories=no, status=yes');" class="glyphicon glyphicon-envelope table-icon"></a>
-                              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                      -->
+                              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+                      <a href="/admin/users/contact?userId=${user.userId}&name=${user.firstName} + ${user.lastName}" class="glyphicon glyphicon-envelope table-icon"></a>
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </td>
                     <td>
                       <!--
