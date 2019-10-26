@@ -27,10 +27,15 @@
             <th scope="col">Referral ID</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Zone Number</th>
+            <th scope="col">Block Number</th>
+            <th scope="col">Tank Number</th>
+            <th scope="col">Village Number</th>
+            <th scope="col">Household Number</th>
             <th scope="col">Referred Health Centre</th>
             <th scope="col">VHT Name</th>
             <th scope="col">Reading ID</th>
-            <th scope="col"></th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -40,15 +45,15 @@
                 <th>${referral.referralId}</th>
                 <th>${referral.firstName}</th>
                 <th>${referral.lastName}</th>
+                <th>${referral.ageYears}</th>
+                <th>${referral.zoneNumber}</th>
+                <th>${referral.blockNumber}</th>
+                <th>${referral.tankNumber}</th>
+                <th>${referral.villageNumber}</th>
+                <th>${referral.householdNumber}</th>
                 <th>${referral.referredHealthCentre}</th>
                 <th>${referral.vhtName}</th>
                 <th>${referral.readingId}</th>
-                <th>
-                    <form action="${pageContext.request.contextPath}/referral/edit/${referral.referralId}" method="get">
-                        <button type="submit" class="btn btn-secondary">Edit</button>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    </form>
-                </th>
                 <th>
                     <form action="${pageContext.request.contextPath}/referral/delete/${referral.referralId}" method="post">
                         <button type="submit" class="btn btn-secondary" name="delete" onclick="return confirm('Are you sure you want to delete?');">Delete</button>
