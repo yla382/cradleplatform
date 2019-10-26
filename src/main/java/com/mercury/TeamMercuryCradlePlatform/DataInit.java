@@ -50,8 +50,6 @@ public class DataInit implements CommandLineRunner {
         Patient patient2 = new Patient("Bobby", "Frown", "Uganda", "VillageA");
         Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
 
-        List<String> symptoms = new ArrayList<>();
-
         Reading reading = new Reading("Ricky", "Owen", 29,
                 Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION, "dead"),
                 Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1",
