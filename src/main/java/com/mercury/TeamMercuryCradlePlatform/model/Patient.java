@@ -24,6 +24,9 @@ public class Patient {
     @JoinColumn(name="patient_Id", referencedColumnName = "patient_Id")
     private List<Reading> readings = new ArrayList<>();
 
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    private Referral referral;
+
     public Patient() {
     }
 
@@ -33,6 +36,7 @@ public class Patient {
         this.country = country;
         this.location = location;
     }
+
 
     public Patient(String firstName, String lastName, Integer ageYears) {
         this.firstName = firstName;
@@ -108,4 +112,15 @@ public class Patient {
     public void addAllReadings(List<Reading> readingList){
         this.readings.addAll(readingList);
     }
+
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
+    }
+
+
 }
