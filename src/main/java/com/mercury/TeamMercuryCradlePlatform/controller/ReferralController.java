@@ -8,6 +8,7 @@ import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,6 +61,15 @@ public class ReferralController {
         referral.setReading(reading);
         referralRepository.save(referral);
 
+        List<Referral> referralList = this.referralRepository.findAll();
+        modelAndView.addObject("referralList", referralList);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public ModelAndView deleteReferralById(@PathVariable Integer id){
+        ModelAndView modelAndView = new ModelAndView("/referral/referralList");
+        this.referralRepository.delete(this.referralRepository.findByReferralId(id));
         List<Referral> referralList = this.referralRepository.findAll();
         modelAndView.addObject("referralList", referralList);
         return modelAndView;

@@ -44,14 +44,14 @@
                 <th>${referral.vhtName}</th>
                 <th>${referral.readingId}</th>
                 <th>
-                    <form action="${pageContext.request.contextPath}/referral/edit/${reading.readingId}" method="get">
+                    <form action="${pageContext.request.contextPath}/referral/edit/${referral.referralId}" method="get">
                         <button type="submit" class="btn btn-secondary">Edit</button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </th>
                 <th>
-                    <form action="${pageContext.request.contextPath}/referral/referralList/deleted" method="get">
-                        <button type="submit" class="btn btn-secondary">Delete</button>
+                    <form action="${pageContext.request.contextPath}/referral/delete/${referral.referralId}" method="post">
+                        <button type="submit" class="btn btn-secondary" name="delete" onclick="return confirm('Are you sure you want to delete?');">Delete</button>
                     </form>
                 </th>
             </tr>

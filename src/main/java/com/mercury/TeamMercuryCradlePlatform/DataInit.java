@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,8 +59,13 @@ public class DataInit implements CommandLineRunner {
         symptoms.add(Strings.SYMPTOM_NO_SYMPTOMS);
         Reading reading2 = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
 
+        Reading reading3 = new Reading("Bob", "Gloss", 26, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 190, 90, 90, ZonedDateTime.now());
+
+//        Referral referral1 = new Referral("ABC", LocalDate.now(), "Sam", "", "", "", 190, 90, 90, "Bob", "Gloss", 26, Referral.Sex.MALE, 1, 2, 3, 1, 1);
+
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
-        readingRepository.saveAll(Arrays.asList(reading, reading2));
+        readingRepository.saveAll(Arrays.asList(reading, reading2, reading3));
+//        referralRepository.save(referral1);
 
     }
 }

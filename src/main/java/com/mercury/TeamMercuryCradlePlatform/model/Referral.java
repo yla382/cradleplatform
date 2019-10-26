@@ -153,6 +153,7 @@ public class Referral {
         this.householdNumber = householdNumber;
     }
 
+
     public Integer getReferralId() {
         return referralId;
     }

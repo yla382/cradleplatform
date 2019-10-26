@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ReferralRepository extends CrudRepository<Referral, Integer> {
     public List<Referral> findAll();
+    public Referral findByReferralId(Integer id);
 }
