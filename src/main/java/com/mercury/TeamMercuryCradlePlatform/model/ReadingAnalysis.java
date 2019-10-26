@@ -1,6 +1,8 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
 
+import com.mercury.TeamMercuryCradlePlatform.Strings;
+
 /**
  * Analyzes a single reading and generates advice for this reading.
  * If analyzing a sequence of readings (retests), use ReadingRetestAnalysis
@@ -9,12 +11,12 @@ package com.mercury.TeamMercuryCradlePlatform.model;
 
 public enum ReadingAnalysis  {
     // Enum Types
-    NONE("No vital signs entered", "Go to Photo tab and take picture of CRADLE VSA. Then go to Vitals tab and confirm data."),
-    GREEN("Patient is likely healthy", "Continue normal care."),
-    YELLOW_UP("Raised BP", "Monitor for preeclampsia. Transfer to health centre within 24h."),
-    YELLOW_DOWN("Low BP", "Common but assess for infection, bleeding, anaemia, and dehydration."),
-    RED_UP("Very raised BP", "Urgent action needed. Transfer to health centre within 4h. Monitor baby."),
-    RED_DOWN("In severe shock", "Urgent action needed. Get help and assess mother. Immediately transfer to health centre within 1h.");
+    NONE(Strings.ANALYSIS_NONE, Strings.BRIEF_ADVICE_NONE),
+    GREEN(Strings.ANALYSIS_GREEN, Strings.BRIEF_ADVICE_GREEN),
+    YELLOW_UP(Strings.ANALYSIS_YELLOW_UP, Strings.BRIEF_ADVICE_YELLOW_UP),
+    YELLOW_DOWN(Strings.ANALYSIS_YELLOW_DOWN, Strings.BRIEF_ADVICE_YELLOW_DOWN),
+    RED_UP(Strings.ANALYSIS_RED_UP, Strings.BRIEF_ADVICE_RED_UP),
+    RED_DOWN(Strings.ANALYSIS_RED_DOWN, Strings.BRIEF_ADVICE_RED_DOWN);
 
 
     // Break points for determining Green/Yellow/Red Up/Down
@@ -109,6 +111,33 @@ public enum ReadingAnalysis  {
         return (this == YELLOW_UP)
                 || (this == RED_UP)
                 || (this == RED_DOWN);
+    }
+
+    public String getTrafficLightImg(){
+
+        if(this.isGreen()){
+            return "status_green";
+        }
+        else if(this.isYellow()){
+            return "status_yellow";
+        }
+        else if(this.isRed()){
+            return "status_red";
+        }
+
+        return null;
+    }
+
+    public String getArrowDirection(){
+
+        if(this.isUp()){
+            return "arrow_up";
+        }
+        if(this.isDown()){
+            return "arrow_down";
+        }
+
+        return null;
     }
 
 }
