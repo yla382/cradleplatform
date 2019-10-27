@@ -9,35 +9,44 @@ import java.util.Properties;
 
 @Component
 public class EmailAdmin {
-    //@Value("${spring.mail.host}") //Retrieved from application.properties
     private String emailHost = "smtp.gmail.com";
-    //@Value("${spring.mail.port}") //Retrieved from application.properties
     private int port = 587;
-
-    //@Value("${spring.mail.username}") //Retrieved from application.properties
     private String username = "teammercury9@gmail.com";
-    //@Value("${spring.mail.password}") //Retrieved from application.properties
     private String password = "cradle0112";
 
 
     public void sendEmail(String email, String subject, String text) {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
-        javaMailSender.setHost(emailHost);
-        javaMailSender.setPort(port);
-        javaMailSender.setUsername(username);
-        javaMailSender.setPassword(password);
+        createMailSender(javaMailSender);
 
         Properties properties = javaMailSender.getJavaMailProperties();
         properties.put("mail.smtp.starttls.enable", "true");
 
+        SimpleMailMessage simpleMailMessage = createMailMessage(email, subject, text);
+        javaMailSender.send(simpleMailMessage);
+    }
+
+    private SimpleMailMessage createMailMessage(String email, String subject, String text) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(username);
         simpleMailMessage.setTo(email);
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(text);
+        return simpleMailMessage;
+    }
 
-        javaMailSender.send(simpleMailMessage);
+    private void createMailSender(JavaMailSenderImpl javaMailSender) {
+        javaMailSender.setHost(emailHost);
+        javaMailSender.setPort(port);
+        javaMailSender.setUsername(username);
+        javaMailSender.setPassword(password);
+    }
+
+    public void sendRegistrationEmail(String password, User newUser) {
+        String subject = "New Cradle account created";
+        String text = "Hello, " + newUser.getFirstName() + " thank you for joining our organization" +
+                ". Here is ur account id and password\n" + "ID: " + newUser.getUserId() + "\npassword: " + password;
+        sendEmail(newUser.getEmail(), subject, text);
     }
 
     public String getEmailHost() {
