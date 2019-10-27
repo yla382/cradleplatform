@@ -12,6 +12,7 @@ import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
