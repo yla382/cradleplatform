@@ -96,8 +96,10 @@ public class Reading {
     @Transient public String referralHealthCentre;
     @Transient public String referralComment;
 
-    @OneToOne(mappedBy = "reading", cascade= CascadeType.PERSIST)
+    @OneToOne(cascade= CascadeType.PERSIST)
+    @JoinColumn(name = "referral_id", referencedColumnName = "referral_id")
     private Referral referral;
+
 
     // temporary values
     @Transient transient private long temporaryFlags = 0;
@@ -449,5 +451,13 @@ public class Reading {
 
     public void setHeartRateBPM(Integer heartRateBPM) {
         this.heartRateBPM = heartRateBPM;
+    }
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
     }
 }

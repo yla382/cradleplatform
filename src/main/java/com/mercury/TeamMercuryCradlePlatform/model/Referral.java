@@ -32,7 +32,7 @@ public class Referral {
     private String otherInformationMessage = null;
 
     //reading info
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "referral", cascade = CascadeType.PERSIST)
     @JoinColumn(name = "reading_id", referencedColumnName = "reading_id")
     private Reading reading;
 
