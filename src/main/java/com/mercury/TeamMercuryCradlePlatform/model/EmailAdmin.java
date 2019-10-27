@@ -9,17 +9,15 @@ import java.util.Properties;
 
 @Component
 public class EmailAdmin {
-    @Value("${spring.mail.host}") //Retrieved from application.properties
-    private String emailHost;
+    //@Value("${spring.mail.host}") //Retrieved from application.properties
+    private String emailHost = "smtp.gmail.com";
+    //@Value("${spring.mail.port}") //Retrieved from application.properties
+    private int port = 587;
 
-    @Value("${spring.mail.port}") //Retrieved from application.properties
-    private int port;
-
-    @Value("${spring.mail.username}") //Retrieved from application.properties
-    private String username;
-
-    @Value("${spring.mail.password}") //Retrieved from application.properties
-    private String password;
+    //@Value("${spring.mail.username}") //Retrieved from application.properties
+    private String username = "teammercury9@gmail.com";
+    //@Value("${spring.mail.password}") //Retrieved from application.properties
+    private String password = "cradle0112";
 
 
     public void sendEmail(String email, String subject, String text) {
