@@ -25,7 +25,7 @@
     <form action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
         <div class="container w-100" style="padding: 10px">
             <div class="form-group">
-                <input type="hidden" name="patientID" value=<%= patient.getPatientId()%>>
+                <input type="hidden" name="patientId" value=<%= patient.getPatientId()%>>
             </div>
             <div class="form-group">
                 <label for="attestationID">Attestation ID: </label>

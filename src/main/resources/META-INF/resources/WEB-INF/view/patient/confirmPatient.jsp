@@ -52,6 +52,7 @@
     <div class="row">
         <form id="submit" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
             <input type="hidden" id="action" name="action" value=<%= action%>>
+            <input type="hidden" id="patientId" name="patientId" value=<%= patient.getPatientId()%>>
             <input type="hidden" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
             <input type="hidden" id="firstName" name="firstName" value=<%= patient.getFirstName()%>>
             <input type="hidden" id="lastName" name="lastName" value="<%= patient.getLastName()%>">
