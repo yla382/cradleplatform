@@ -96,7 +96,7 @@ public class Reading {
     @Transient public String referralHealthCentre;
     @Transient public String referralComment;
 
-    @OneToOne(cascade= CascadeType.PERSIST)
+    @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "referral_id", referencedColumnName = "referral_id")
     private Referral referral;
 
