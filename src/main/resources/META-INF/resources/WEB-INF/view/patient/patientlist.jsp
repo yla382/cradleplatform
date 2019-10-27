@@ -13,6 +13,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <script>
+        function deleteRow(patientId) {
+            var isConfirmed = confirm("Are you sure you want to delete " + patientId + "?");
+            return isConfirmed;
+        }
+    </script>
+
     <%
         List<Patient> patientList = (List<Patient>)request.getAttribute("patientList");
     %>
@@ -31,26 +38,60 @@
             <table id="patients" class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Patient ID</th>
+                        <th scope="col">Attestation ID</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Country</th>
                         <th scope="col">Location</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="<%=patientList%>" var = "patient">
                     <tr>
-                        <th>${patient.patientId}</th>
+                        <th>${patient.attestationID}</th>
                         <th>${patient.firstName}</th>
                         <th>${patient.lastName}</th>
                         <th>${patient.country}</th>
                         <th>${patient.location}</th>
+                        <th>
+                            <div class="btn-group" role="group" aria-label="Button group">
+                                <form action="${pageContext.request.contextPath}/patient/editPatient" method="post">
+                                    <input type="hidden" name="patientId" value=${patient.patientId}>
+                                    <input type="hidden" name="attestationID" value=${patient.attestationID}>
+                                    <input type="hidden" name="firstName" value=${patient.firstName}>
+                                    <input type="hidden" name="lastName" value=${patient.lastName}>
+                                    <input type="hidden" name="country" value=${patient.country}>
+                                    <input type="hidden" name="location" value=${patient.location}>
+                                    <button type="submit" value="submit">
+                                        Edit
+                                    </button>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/patient/delete" method="post">
+                                    <input type="hidden" name="patientId" value=${patient.patientId}>
+                                    <input type="hidden" name="attestationID" value=${patient.attestationID}>
+                                    <input type="hidden" name="firstName" value=${patient.firstName}>
+                                    <input type="hidden" name="lastName" value=${patient.lastName}>
+                                    <input type="hidden" name="country" value=${patient.country}>
+                                    <input type="hidden" name="location" value=${patient.location}>
+                                    <button type="submit" value="submit"
+                                            onclick="return confirm('Are you sure you want to delete ' + ${patient.attestationID}
+                                            + '?') "
+                                    >
+                                        Delete
+                                    </button>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
+
+                            </div>
+                        </th>
                     </tr>
                     </c:forEach>
                 </tbody>
             </table>
         </div>
     </main>
+
 
 </html>

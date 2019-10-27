@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
+
+import static java.lang.System.exit;
 
 @Controller
 @Service
@@ -40,32 +43,57 @@ public class PatientController {
         return new ModelAndView("/patient/addPatient");
     }
 
-
-    @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView confirmPatientPage(Patient patient) {
-        ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
-
-        PatientRepository patientRepository = this.patientRepository;
-//        patientRepository.save(patient);
-
+    @RequestMapping(value = "/editPatient", method = RequestMethod.POST)
+    public ModelAndView editPatientPage(Patient patient) {
+        ModelAndView modelAndView = new ModelAndView("/patient/editPatient");
         modelAndView.addObject("patient", patient);
 
         return modelAndView;
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public ModelAndView deletePatient(Patient patient) {
+        patientRepository.deleteById(patient.getPatientId());
+        ModelAndView modelAndView = new ModelAndView("/patient/deleted");
+        modelAndView.addObject("patient", patient);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/confirmPatient", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView confirmPatientPage(@RequestParam String action, Patient patient) {
+        ModelAndView modelAndView = new ModelAndView("/patient/confirmPatient");
+        modelAndView.addObject("action", action);
+        modelAndView.addObject("patient", patient);
+
+        return modelAndView;
+    }
+
+    /**
+     *
+     * If patient already exists in repository, edit the patient in the repository.
+     * Otherwise, add new patient to repository
+     * @param patient
+     * @return
+     */
     @RequestMapping(value = "/submitPatient", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitPatient(Patient patient) {
-        ModelAndView modelAndView = new ModelAndView("/patient/patientlist");
-        System.out.println(patient.getFirstName());
-        patientRepository.save(patient);
-
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = userDetails.getUsername();
-        SupervisorPatientPair supervisorPatientPair = new SupervisorPatientPair(username, patient.getPatientId().toString());
-        supervisorRepository.save(supervisorPatientPair);
-
-        List<Patient> patientlist = this.patientRepository.findAll();
-        modelAndView.addObject("patientList", patientlist);
+    public @ResponseBody ModelAndView submitPatient(@RequestParam String action, Patient patient) {
+        if (action.equals("edit")) {
+            Optional<Patient> optionalExistingPatient = patientRepository.findById(patient.getPatientId());
+            if (optionalExistingPatient.isPresent()) {
+                Patient existingPatient = optionalExistingPatient.get();
+                existingPatient.updatePatient(patient);
+                patientRepository.save(existingPatient);
+            }
+        } else if (action.equals("add")) {
+            patientRepository.save(patient);
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String username = userDetails.getUsername();
+            SupervisorPatientPair supervisorPatientPair = new SupervisorPatientPair(username, patient.getPatientId().toString());
+            supervisorRepository.save(supervisorPatientPair);
+        } else {
+            exit(1);
+        }
+        ModelAndView modelAndView = new ModelAndView("/patient/saved");
         return modelAndView;
     }
 

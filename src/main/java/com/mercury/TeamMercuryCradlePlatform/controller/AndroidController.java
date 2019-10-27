@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
@@ -18,13 +17,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.print.attribute.standard.Media;
-import java.util.List;
 
 @Controller
 @RequestMapping("/android")
@@ -58,8 +56,12 @@ public class AndroidController {
 
     @RequestMapping(value = "reading/findByPatientID/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getReadingsByPatientId(@PathVariable Integer id) {
-        Patient patient = patientRepository.findByPatientId(id);
+    public String getReadingsByPatientId(@PathVariable Long id) {
+        Optional<Patient> optionalExistingPatient = patientRepository.findById(id);
+        Patient patient = null;
+        if (optionalExistingPatient.isPresent()) {
+            patient = optionalExistingPatient.get();
+        }
         List<Reading> readings = readingRepository.findReadingsByPatient(patient);
 
         ObjectMapper mapper = new ObjectMapper();
