@@ -1,8 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
-import com.mercury.TeamMercuryCradlePlatform.model.*;
-import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
+import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
@@ -23,29 +22,27 @@ public class DataInit implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
     private PatientRepository patientRepository;
     private ReadingRepository readingRepository;
-    private ReferralRepository referralRepository;
 
-    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository, ReferralRepository referralRepository) {
+    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
-        this.referralRepository = referralRepository;
     }
 
     @Override
     public void run(String... args) {
-        User admin = new User(passwordEncoder.encode("1234"), "John", "Lee", "test@test.com", "ADMIN", "");
-        User vht = new User(passwordEncoder.encode("1234"), "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER", "");
-        User healthWorker = new User(passwordEncoder.encode("1234"), "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER", "");
+        User admin = new User(passwordEncoder.encode("1234"), "John", "Lee", "test@test.com", "ADMIN", "1234567890");
+        User vht = new User(passwordEncoder.encode("1234"), "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER", "9999999999");
+        User healthWorker = new User(passwordEncoder.encode("1234"), "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER", "0001111111");
 
         List<User> users = Arrays.asList(admin, vht, healthWorker);
         userRepository.saveAll(users);
 
-        Patient patient1 = new Patient("Ricky", "Owen","Uganda", "VillageA");
-        patient1.setAgeYears(29);
-        Patient patient2 = new Patient("Bobby", "Frown", "Uganda", "VillageA");
-        Patient patient3 = new Patient("Bob", "Gloss", "Uganda", "VillageB");
+        Patient patient1 = new Patient("48300027402","Ricky", "Owen","Uganda", "VillageA");
+        Patient patient2 = new Patient("00159694421","Bobby", "Frown", "Uganda", "VillageA");
+        Patient patient3 = new Patient("392310","Braum", "Gloss", "Uganda", "VillageB");
+        Patient patient4 = new Patient("323494760911189","Bro", "Ther", "Uganda", "VillageB");
 
         List<String> symptoms = new ArrayList<>();
         symptoms.add("Headache");
@@ -59,7 +56,7 @@ public class DataInit implements CommandLineRunner {
         symptoms.add(Strings.SYMPTOM_NO_SYMPTOMS);
         Reading reading2 = new Reading("Ricky", "Owen", 29, symptoms, Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1", 90, 60, 60, ZonedDateTime.now());
 
-        patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
+        patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3, patient4));
         readingRepository.saveAll(Arrays.asList(reading, reading2));
 
     }

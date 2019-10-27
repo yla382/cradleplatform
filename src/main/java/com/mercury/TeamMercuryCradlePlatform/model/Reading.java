@@ -1,7 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.mercury.TeamMercuryCradlePlatform.Strings;
 
 import javax.persistence.*;
@@ -63,11 +62,13 @@ public class Reading {
     private Patient patient;
 
     public Patient getPatient() {
+        patient.setAttestationID("123");
         return patient;
     }
 
-    public Integer getPatientId() {
+    public Long getPatientId() {
         return patient.getPatientId();
+
     }
 
     public void setPatient(Patient patient) {
