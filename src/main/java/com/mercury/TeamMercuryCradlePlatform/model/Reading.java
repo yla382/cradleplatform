@@ -1,7 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.mercury.TeamMercuryCradlePlatform.Strings;
 
 import javax.persistence.*;
@@ -54,11 +53,13 @@ public class Reading {
     private Patient patient;
 
     public Patient getPatient() {
+        patient.setAttestationID("123");
         return patient;
     }
 
-    public Integer getPatientId() {
+    public Long getPatientId() {
         return patient.getPatientId();
+
     }
 
     public void setPatient(Patient patient) {
@@ -145,6 +146,15 @@ public class Reading {
         this.bpDiastolic = bpDiastolic;
         this.heartRateBPM = heartRateBPM;
         this.dateTimeTaken = dateTimeTaken;
+    }
+
+    public Reading(String firstName, String lastName, Integer ageYears, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ageYears = ageYears;
+        this.bpSystolic = bpSystolic;
+        this.bpDiastolic = bpDiastolic;
+        this.heartRateBPM = heartRateBPM;
     }
 
     public static Reading makeNewReading(ZonedDateTime now) {

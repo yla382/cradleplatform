@@ -5,6 +5,7 @@
 
 <%
     Patient patient = (Patient)request.getAttribute("patient");
+    String action = (String)request.getAttribute("action");
 %>
 
 <head>
@@ -29,6 +30,10 @@
 
 <body>
     <div class="row">
+        <div class="col-sm-3">Attestation:</div>
+        <div class="col-sm-8"><%= patient.getAttestationID()%></div>
+    </div>
+    <div class="row">
         <div class="col-sm-3">First Name:</div>
         <div class="col-sm-8"><%= patient.getFirstName()%></div>
     </div>
@@ -45,7 +50,10 @@
         <div class="col-sm-9"><%= patient.getLocation()%></div>
     </div>
     <div class="row">
-        <form id="deleteForm" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
+        <form id="submit" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
+            <input type="hidden" id="action" name="action" value=<%= action%>>
+            <input type="hidden" id="patientId" name="patientId" value=<%= patient.getPatientId()%>>
+            <input type="hidden" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
             <input type="hidden" id="firstName" name="firstName" value=<%= patient.getFirstName()%>>
             <input type="hidden" id="lastName" name="lastName" value="<%= patient.getLastName()%>">
             <input type="hidden" id="country" name="country" value=<%= patient.getCountry()%>>
@@ -58,15 +66,6 @@
         </form>
     </div>
 
-    <script>
-        function editButton() {
-
-        }
-
-        function saveButton(patientRepository, patient) {
-        }
-
-    </script>
 </body>
 
 

@@ -57,6 +57,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+
+    public User(String encode, String john, String lee, String s, String admin) {
+    }
+
+
     @Column(name = "email")
     private String email = null;
 

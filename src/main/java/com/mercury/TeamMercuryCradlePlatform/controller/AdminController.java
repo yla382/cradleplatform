@@ -33,6 +33,11 @@ public class AdminController {
         return this.userRepository.findAll();
     }
 
+    @GetMapping("/education")
+    public String educationPage() {
+        return "admin/education";
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public @ResponseBody ModelAndView registrationPage() {
         return new ModelAndView("admin/registration");
@@ -58,19 +63,20 @@ public class AdminController {
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
-    @RequestMapping(value ="/users/contact", method = RequestMethod.GET)
-    public ModelAndView getContactPage(@RequestParam int userId) {
+    @RequestMapping(value = "/users/contact", method = RequestMethod.GET)
+    public ModelAndView getContactPage(@RequestParam int userId, @RequestParam String name) {
         User user = userRepository.findByUserId(userId);
         ModelAndView modelAndView = new ModelAndView("/admin/contact");
         modelAndView.addObject("email", user.getEmail());
         modelAndView.addObject("phoneNumber", user.getPhoneNumber());
-
+        modelAndView.addObject("name", name);
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/submitMessage", method = RequestMethod.POST)
-    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject, @RequestParam String contactMethod, @RequestParam String message, @RequestParam String phoneNumber){
+    public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject,
+            @RequestParam String contactMethod, @RequestParam String message, @RequestParam String phoneNumber) {
+        // emailAdmin.sendEmail(email, subject, message);
         ContactService contactService = new ContactService();
         contactService.sendMessage(contactMethod, email, phoneNumber, subject, message);
 
@@ -78,7 +84,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
-    public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles){
+    public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles) {
+
         user.setRole(roles);
         this.userRepository.save(user);
 
@@ -87,7 +94,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public ModelAndView getUserWithId(@PathVariable int id){
+    public ModelAndView getUserWithId(@PathVariable int id) {
+
         User user = this.userRepository.findByUserId(id);
 
         return new ModelAndView("/admin/editUser").addObject("postUser", user);
