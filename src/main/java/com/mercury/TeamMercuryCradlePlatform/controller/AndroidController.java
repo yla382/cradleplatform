@@ -78,7 +78,7 @@ public class AndroidController {
 
     @RequestMapping(value = "reading/findByPatientID/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getReadingsByPatientId(@PathVariable Integer id) {
+    public String getReadingsByPatientId(@PathVariable Long id) {
         Patient patient = patientRepository.findByPatientId(id);
         List<Reading> readings = readingRepository.findReadingsByPatient(patient);
 
