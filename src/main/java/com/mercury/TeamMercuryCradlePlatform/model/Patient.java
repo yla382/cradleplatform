@@ -47,6 +47,16 @@ public class Patient {
         setLocation(location);
     }
 
+    public Patient(String attestationID, String firstName, String lastName, Integer ageYears, String country, String location) {
+        setAttestationID(attestationID);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAgeYears(ageYears);
+        setCountry(country);
+        setLocation(location);
+    }
+
+
     // TODO: dont really need this, delete it later
     public Patient(Reading reading) {
         this.firstName = reading.firstName;
