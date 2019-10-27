@@ -1,11 +1,8 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
-import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.model.VHTPair;
 import com.mercury.TeamMercuryCradlePlatform.repository.SupervisorRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,6 +45,6 @@ public class VHTController {
 
         supervisorRepository.updateVHT(oldVhtId, newVhtId);
 
-        return new ModelAndView("index");
+        return new ModelAndView("/admin/index");
     }
 }
