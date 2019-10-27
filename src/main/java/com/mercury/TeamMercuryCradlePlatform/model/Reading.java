@@ -105,7 +105,7 @@ public class Reading {
     @Transient public String referralHealthCentre;
     @Transient public String referralComment;
 
-    @OneToOne(mappedBy = "reading", cascade= CascadeType.ALL)
+    @OneToOne(mappedBy = "reading", cascade= CascadeType.PERSIST)
     private Referral referral;
 
     // temporary values

@@ -10,7 +10,7 @@ public class Referral {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "referral_id")
-    private Integer referralId;
+    private Long referralId;
 
     @Column(name = "referred_health_centre")
     private String referredHealthCentre = null;
@@ -32,7 +32,7 @@ public class Referral {
     private String otherInformationMessage = null;
 
     //reading info
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "reading_id", referencedColumnName = "reading_id")
     private Reading reading;
 
@@ -154,11 +154,11 @@ public class Referral {
     }
 
 
-    public Integer getReferralId() {
+    public Long getReferralId() {
         return referralId;
     }
 
-    public void setReferralId(Integer referralId) {
+    public void setReferralId(Long referralId) {
         this.referralId = referralId;
     }
 

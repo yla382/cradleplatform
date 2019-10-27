@@ -24,41 +24,41 @@
     <table id="referral" class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">Referral ID</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Age</th>
-            <th scope="col">Zone Number</th>
-            <th scope="col">Block Number</th>
-            <th scope="col">Tank Number</th>
-            <th scope="col">Village Number</th>
-            <th scope="col">Household Number</th>
-            <th scope="col">Referred Health Centre</th>
-            <th scope="col">VHT Name</th>
-            <th scope="col">Reading ID</th>
-            <th scope="col"></th>
+            <td scope="col">Referral ID</td>
+            <td scope="col">First Name</td>
+            <td scope="col">Last Name</td>
+            <td scope="col">Age</td>
+            <td scope="col">Zone Number</td>
+            <td scope="col">Block Number</td>
+            <td scope="col">Tank Number</td>
+            <td scope="col">Village Number</td>
+            <td scope="col">Household Number</td>
+            <td scope="col">Referred Health Centre</td>
+            <td scope="col">VHT Name</td>
+            <td scope="col">Reading ID</td>
+            <td scope="col"></td>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="<%=referralList%>" var = "referral">
             <tr>
-                <th>${referral.referralId}</th>
-                <th>${referral.firstName}</th>
-                <th>${referral.lastName}</th>
-                <th>${referral.ageYears}</th>
-                <th>${referral.zoneNumber}</th>
-                <th>${referral.blockNumber}</th>
-                <th>${referral.tankNumber}</th>
-                <th>${referral.villageNumber}</th>
-                <th>${referral.householdNumber}</th>
-                <th>${referral.referredHealthCentre}</th>
-                <th>${referral.vhtName}</th>
-                <th>${referral.readingId}</th>
-                <th>
+                <td>${referral.referralId}</td>
+                <td>${referral.firstName}</td>
+                <td>${referral.lastName}</td>
+                <td>${referral.ageYears}</td>
+                <td>${referral.zoneNumber}</td>
+                <td>${referral.blockNumber}</td>
+                <td>${referral.tankNumber}</td>
+                <td>${referral.villageNumber}</td>
+                <td>${referral.householdNumber}</td>
+                <td>${referral.referredHealthCentre}</td>
+                <td>${referral.vhtName}</td>
+                <td>${referral.readingId}</td>
+                <td>
                     <form action="${pageContext.request.contextPath}/referral/close/${referral.referralId}" method="post">
                         <button type="submit" class="btn btn-secondary" name="delete" onclick="return confirm('Do you want to close this referral?');">Close</button>
                     </form>
-                </th>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

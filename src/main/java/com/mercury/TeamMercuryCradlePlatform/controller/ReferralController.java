@@ -1,6 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
 import com.mercury.TeamMercuryCradlePlatform.model.Referral;
+import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class ReferralController {
     }
 
     @RequestMapping(value = "/close/{id}", method = RequestMethod.POST)
-    public ModelAndView deleteReferralById(@PathVariable Integer id){
+    public ModelAndView deleteReferralById(@PathVariable Long id){
         ModelAndView modelAndView = new ModelAndView("/referral/referralList");
         this.referralRepository.delete(this.referralRepository.findByReferralId(id));
         List<Referral> referralList = this.referralRepository.findAll();
