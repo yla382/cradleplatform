@@ -4,6 +4,7 @@ import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.SupervisorRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -21,12 +22,15 @@ public class DataInit implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
     private PatientRepository patientRepository;
     private ReadingRepository readingRepository;
+    private SupervisorRepository supervisorRepository;
 
-    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository) {
+    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                    PatientRepository patientRepository, ReadingRepository readingRepository, SupervisorRepository supervisorRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
+        this.supervisorRepository = supervisorRepository;
     }
 
     @Override
