@@ -141,7 +141,7 @@ public class AndroidController {
             ZipFile zipFile = new ZipFile(convertFile);
             zipFile.extractAll(pathname);
 
-            File dataFile = new File(pathname + "\\unencrypted\\data.zip");
+            File dataFile = new File(pathname + "/unencrypted/data.zip");
             ZipFile dataZipFile = new ZipFile(dataFile);
             dataZipFile.extractAll(pathname);
             File dir = new File(pathname);
