@@ -1,0 +1,29 @@
+.col {
+    display: block;
+    margin-bottom: 5pt !important;
+}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input {
+    height: 10pt !important;
+}
+td[align="left"] {
+    margin-left: 10pt !important;
+}
+input[type="submit"] {
+    height: 20pt !important;
+}
+#facility {
+    width: 60% !important;
+}
+form { display: table; }
+label {
+    display: inline-block;
+    text-align: right;
+}
+input { display: table-cell; }

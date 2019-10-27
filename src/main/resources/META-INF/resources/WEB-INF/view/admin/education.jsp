@@ -4,8 +4,7 @@
     <meta charset="ISO-8859-1" />
     <title>Cradle</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
-    <link rel="stylesheet" type="text/css" href="/css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="/css/education.css" />
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -45,7 +44,7 @@
         <ul>
           <li class="navbar-list"><a class="nav-link" href="/patient/patientlist"><span class="glyphicon glyphicon-user nav-link-icon"></span>Patients</a></li>
           <li class="navbar-list"><a class="nav-link" href="/reading/create"><span class="glyphicon glyphicon-file nav-link-icon"></span>Readings</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/admin/education"><span class="glyphicon glyphicon-folder-open nav-link-icon"></span>Education</a></li>
+          <li class="navbar-list"><a class="nav-link" href="/admin/index"><span class="glyphicon glyphicon-folder-open nav-link-icon"></span>Education</a></li>
           <%if (request.getRemoteUser()!= null) {%>
           <li class="navbar-list">
             <a
@@ -60,32 +59,18 @@
       </div> <!--END of NAVBAR-->
       <div class="content-container">
         <div class="content-header">
-          Your Profile
-        </div>  
-        <div class="content-body">
-          <div class="table-container"> 
-            <div class="row">  
-            <div class="col-sm-3">
-                <span class="glyphicon glyphicon-user profile-icon"></span>
-            </div>
-            <div class="col-sm-3 profile-label">
-                <span>ID</span></br>
-                <span>First Name</span></br>
-                <span>Last Name</span></br>
-                <span>Roles</span>
-            </div>
-            <div class="col-sm-6">
-                <span>${UserId}</span></br>
-                <span>${FirstName}</span></br>
-                <span>${LastName}</span></br>
-                <span>${Role}</span>
-            </div>
-            </div>
-      </div>
+          Education
         </div>
-
-
-    </div>
+        <div class="content-body">
+          <div class="education-container">
+            <div class="video-header">
+                What is blood pressure?
+            </div>
+            <iframe class="video-container" src="https://www.youtube.com/embed/4YNdp3pRjig">
+            </iframe>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -21,14 +21,13 @@ public class AppController {
     @RequestMapping(value = "/hello/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String sendUser(@PathVariable("id") Integer id) throws JsonProcessingException {
-        //User user = new User("1234", "Earl", "Cooke", "ecooke@sfu.ca", "ADMIN");
+        // User user = new User("1234", "Earl", "Cooke", "ecooke@sfu.ca", "ADMIN");
         User user = userRepository.findByUserId(id);
         ObjectMapper mapper = new ObjectMapper();
 
         try {
             return mapper.writeValueAsString(user);
-        }
-        catch (JsonGenerationException e) {
+        } catch (JsonGenerationException e) {
             e.printStackTrace();
             return null;
         }
@@ -39,13 +38,13 @@ public class AppController {
         return "index";
     }
 
-    @GetMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "login";
+        return "index";
     }
 
     @PreAuthorize("#id == authentication.getPrincipal().getUserId()")
-    @GetMapping("/profile/{id}")
+    @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)
     public String getUserInfo(@PathVariable("id") Integer id, Model model) {
 
         User user = userRepository.findByUserId(id);

@@ -12,4 +12,5 @@ public interface ReadingRepository extends CrudRepository<Reading, Long> {
     List<Reading> findReadingsByPatient(Patient patient);
     public Reading findByReadingId(Long id);
     public List<Reading> findAll();
+
 }
