@@ -28,43 +28,56 @@
 <%@ include file="../navbar.jspf" %>
 </body>
 
-<body>
-    <div class="row">
-        <div class="col-sm-3">Attestation:</div>
-        <div class="col-sm-8"><%= patient.getAttestationID()%></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">First Name:</div>
-        <div class="col-sm-8"><%= patient.getFirstName()%></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">Last Name:</div>
-        <div class="col-sm-8"><%= patient.getLastName()%></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">Country:</div>
-        <div class="col-sm-9"><%= patient.getCountry()%></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">Location:</div>
-        <div class="col-sm-9"><%= patient.getLocation()%></div>
-    </div>
-    <div class="row">
-        <form id="submit" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
-            <input type="hidden" id="action" name="action" value=<%= action%>>
-<%--            <input type="hidden" id="patientId" name="patientId" value=<%= patient.getPatientId()%>>--%>
-            <input type="hidden" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
-            <input type="hidden" id="firstName" name="firstName" value=<%= patient.getFirstName()%>>
-            <input type="hidden" id="lastName" name="lastName" value="<%= patient.getLastName()%>">
-            <input type="hidden" id="country" name="country" value=<%= patient.getCountry()%>>
-            <input type="hidden" id="location" name="location" value=<%= patient.getLocation()%>>
-            <button type="submit" onclick="return true" class="btn btn-primary">
-                Save
-            </button>
+<script>
+    function getPatientIdByAddOrEdit() {
+        if (<%= action.equals("edit")%>) {
+            return <%= patient.getPatientId()%>
+        } else if (<%= action.equals("add")%>) {
+            return null;
+        }
+        return null;
+    }
 
-            <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-    </div>
+    document.getElementById('patientId').value = getPatientIdByAddOrEdit();
+</script>
+
+<body>
+<div class="row">
+    <div class="col-sm-3">Attestation:</div>
+    <div class="col-sm-8"><%= patient.getAttestationID()%></div>
+</div>
+<div class="row">
+    <div class="col-sm-3">First Name:</div>
+    <div class="col-sm-8"><%= patient.getFirstName()%></div>
+</div>
+<div class="row">
+    <div class="col-sm-3">Last Name:</div>
+    <div class="col-sm-8"><%= patient.getLastName()%></div>
+</div>
+<div class="row">
+    <div class="col-sm-3">Country:</div>
+    <div class="col-sm-9"><%= patient.getCountry()%></div>
+</div>
+<div class="row">
+    <div class="col-sm-3">Location:</div>
+    <div class="col-sm-9"><%= patient.getLocation()%></div>
+</div>
+<div class="row">
+    <form id="submit" action="${pageContext.request.contextPath}/patient/submitPatient" method="post">
+        <input type="hidden" id="action" name="action" value=<%= action%>>
+        <input type="hidden" id="patientId" name="patientId" value="">
+        <input type="hidden" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
+        <input type="hidden" id="firstName" name="firstName" value=<%= patient.getFirstName()%>>
+        <input type="hidden" id="lastName" name="lastName" value=<%= patient.getLastName()%>>
+        <input type="hidden" id="country" name="country" value=<%= patient.getCountry()%>>
+        <input type="hidden" id="location" name="location" value=<%= patient.getLocation()%>>
+        <button type="submit" onclick="return true" class="btn btn-primary">
+            Save
+        </button>
+
+        <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+</div>
 
 </body>
 
