@@ -55,8 +55,8 @@
                 <th>${referral.vhtName}</th>
                 <th>${referral.readingId}</th>
                 <th>
-                    <form action="${pageContext.request.contextPath}/referral/delete/${referral.referralId}" method="post">
-                        <button type="submit" class="btn btn-secondary" name="delete" onclick="return confirm('Are you sure you want to delete?');">Delete</button>
+                    <form action="${pageContext.request.contextPath}/referral/close/${referral.referralId}" method="post">
+                        <button type="submit" class="btn btn-secondary" name="delete" onclick="return confirm('Do you want to close this referral?');">Close</button>
                     </form>
                 </th>
             </tr>

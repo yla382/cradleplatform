@@ -69,7 +69,7 @@
     <h2>Other Messages</h2>
     <p> <%=referral.getOtherInformationMessage()%></p>
 
-    <button type="button" onclick="editButton()"> Edit </button>
+
     <form action="${pageContext.request.contextPath}/referral/referralSaved" method="post">
         <input type="hidden" name="readingId" value="<%=referral.getReadingId()%>"/>
         <input type="hidden" name="firstName" value="<%=referral.getFirstName()%>"/>
@@ -90,10 +90,10 @@
         <input type="hidden" name="actionAlreadyTaken" value="<%=referral.getActionAlreadyTaken()%>"/>
         <input type="hidden" name="otherInformationMessage" value="<%=referral.getOtherInformationMessage()%>"/>
 
+        <button type="button" onclick="editButton()"> Edit </button>
         <button type="submit"> Save </button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
-    <button type="button"> Send Text Message </button>
 </div>
 </body>
 
