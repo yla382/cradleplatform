@@ -30,6 +30,7 @@
 <%@ include file="../navbar.jspf" %>
 
     <div class="container">
+
         <canvas id="myChart"></canvas>
     </div>
 
@@ -44,12 +45,8 @@
 <script>
 
 
-
-    window.onload = function () {
-
-    };
-
     function getData(type) {
+
         var data = [];
 
         <% for (int i=0; i<readingList.size(); i++) { %>
@@ -69,7 +66,7 @@
 
         <% } %>
 
-        return data
+        return data;
     }
 
     var canvas = document.getElementById('myChart');
