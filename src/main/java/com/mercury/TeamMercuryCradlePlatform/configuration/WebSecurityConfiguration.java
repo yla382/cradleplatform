@@ -82,8 +82,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         } else {
 
                         }
-            }
-        })
+                    }
+                })
                 .loginPage("/login")
                 .permitAll()
                 .and()
