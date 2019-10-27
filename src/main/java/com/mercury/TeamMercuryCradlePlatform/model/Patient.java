@@ -1,5 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class Patient {
     @JoinColumn(name="patient_Id", referencedColumnName = "patient_Id")
     private List<Reading> readings = new ArrayList<>();
 
+    @JsonIgnore
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
     private Referral referral;
 
