@@ -58,9 +58,9 @@
           <div class="summary-container">
             <canvas id="bloodPressureChart"></canvas>
           </div>
-          <div class="summary-container">
-            <canvas id="statusChart"></canvas>
-          </div>
+<%--          <div class="summary-container">--%>
+<%--            <canvas id="statusChart"></canvas>--%>
+<%--          </div>--%>
         </div>
       </div>
     </div>
@@ -69,6 +69,7 @@
 
 
 <script>
+
 
   var pId = [];
   var pList = [];
@@ -91,7 +92,7 @@
 
     generatePatientData();
 
-    var select = document.getElementById("selectNumber");
+    var select = document.getElementById("selectPatient");
     var options = pList;
     for(var i = 0; i < options.length; i++) {
       var opt = options[i];
@@ -108,7 +109,7 @@
   function getBloodPressureData(type) {
 
     var data = [];
-    var e = document.getElementById("selectNumber");
+    var e = document.getElementById("selectPatient");
 
     <% for (int i=0; i<readingList.size(); i++) { %>
 
@@ -131,7 +132,7 @@
         else {
           data[<%= i %>] = "<%= readingList.get(i).getHeartRateBPM()%>";
         }
-        }
+      }
 
     <% } %>
 
@@ -141,7 +142,7 @@
 
   function createGraphs() {
     createBloodPressureChart();
-    createStatusChart();
+    // createStatusChart();
   }
 
   function createBloodPressureChart() {
@@ -188,12 +189,8 @@
             });
   }
 
+  function createStatusChart() {
 
-  function getStatusChartData() {
-
-    numbGreen = 0;
-    numbYellow = 0;
-    numbRed = 0;
 
     <%
 
@@ -202,13 +199,13 @@
       int numbRed = 0;
 
     %>
-    var e = document.getElementById("selectNumber");
+
+    var e = document.getElementById("selectPatient");
 
     <% for (Reading reading : readingList) { %>
 
     if(pId[e.selectedIndex] === "<c:out value='<%=reading.getPatient().getPatientId()%>'/>"){
       <%
-
         ReadingAnalysis readingAnalysis = ReadingAnalysis.analyze(reading);
         if(readingAnalysis.isGreen()){
           numbGreen++;
@@ -219,20 +216,11 @@
         else {
           numbRed++;
         }
-
       %>
     }
 
     <% } %>
 
-    numbGreen = "<%= numbGreen%>";
-    numbYellow = "<%= numbYellow%>";
-    numbRed = "<%= numbRed%>";
-
-  }
-
-  function createStatusChart() {
-    getStatusChartData();
     new Chart(document.getElementById("statusChart"),
             {
               "type":"doughnut",
@@ -243,9 +231,9 @@
                           "label":"Status lights",
                           "data":
                                   [
-                                    numbRed,
-                                    numbYellow,
-                                    numbGreen
+                                    "<c:out value='<%=numbRed%>'/>",
+                                    "<c:out value='<%=numbYellow%>'/>",
+                                    "<c:out value='<%=numbGreen%>'/>"
                                   ],
                           "backgroundColor":
                                   [
@@ -255,7 +243,6 @@
                                   ]}]
                       }}
     );
-
   }
 
 
