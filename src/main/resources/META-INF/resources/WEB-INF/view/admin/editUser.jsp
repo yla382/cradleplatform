@@ -34,7 +34,7 @@
           <li class="navbar-list"><a class="nav-link" href="/admin/users"><span class="glyphicon glyphicon-search nav-link-icon"></span>View Users</a></li>
           <li class="navbar-list">
             <a class="nav-link" href="/admin/registration"><span class="glyphicon glyphicon-user nav-link-icon"></span>Register Users</a>
-          </li class="navbar-list">
+          </li>
         </ul>
 
         <ul>
@@ -95,7 +95,7 @@
                         <div class="form-group row">
                             <label for="phoneNumber" class="col-md-4 col-form-label text-md-right edit-users-label">PHONE #</label>
                             <div class="col-md-6">
-                                <input type="text" id="phoneNumber" class="edit-field" name="phoneNumber" placeholder="Phone Number">
+                                <input type="text" id="phoneNumber" class="edit-field" name="phoneNumber" value="<%=postUser.getPhoneNumber()%>">
                             </div>
                           </div>
                         <div class="form-group row">

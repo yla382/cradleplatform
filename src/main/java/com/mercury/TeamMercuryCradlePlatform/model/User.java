@@ -30,6 +30,9 @@ public class User {
     }
 
     public User(String password, String firstName, String lastName, String email, String roles, String phoneNumber) {
+        System.out.println(firstName);
+        System.out.println(roles);
+        System.out.println("lol");
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -134,6 +137,10 @@ public class User {
         } else {
             return new ArrayList<>();
         }
+    }
+
+    public String getRolesAsString() {
+        return this.roles;
     }
 
     private String encodePassword(String password) {

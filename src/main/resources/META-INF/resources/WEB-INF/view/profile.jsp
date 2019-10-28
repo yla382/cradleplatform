@@ -39,7 +39,7 @@
           <li class="navbar-list"><a class="nav-link" href="/admin/users"><span class="glyphicon glyphicon-search nav-link-icon"></span>View Users</a></li>
           <li class="navbar-list">
             <a class="nav-link" href="/admin/registration"><span class="glyphicon glyphicon-user nav-link-icon"></span>Register Users</a>
-          </li class="navbar-list">
+          </li>
         </ul>
 
         <ul>
@@ -81,11 +81,22 @@
                 <span>${Role}</span>
             </div>
             </div>
-      </div>
+          </div>
+        </div>
+        <div class="content-body">
+          <div class="col-sm-3">
+            <form action="/profile/${pageContext.request.userPrincipal.name}/edit" method="post">
+              <input type="hidden" name="userName" value=${UserId}>
+              <button type="submit" value="submit">
+                Edit
+              </button>
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
+          </div>
         </div>
 
 
-    </div>
+        </div>
     </div>
   </body>
 </html>
