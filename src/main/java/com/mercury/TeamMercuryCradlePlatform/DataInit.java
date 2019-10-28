@@ -49,7 +49,9 @@ public class DataInit implements CommandLineRunner {
         Patient patient1 = new Patient("48300027402","Ricky", "Owen","Uganda", "VillageA");
         patient1.setAgeYears(29);
         Patient patient2 = new Patient("00159694421","Bobby", "Frown", "Uganda", "VillageA");
+        patient2.setAgeYears(80);
         Patient patient3 = new Patient("392310","Braum", "Gloss", "Uganda", "VillageB");
+        patient3.setAgeYears(13);
         Patient patient4 = new Patient("323494760911189","Bro", "Ther", "Uganda", "VillageB");
 
         Reading reading = new Reading("Ricky", "Owen", 29,

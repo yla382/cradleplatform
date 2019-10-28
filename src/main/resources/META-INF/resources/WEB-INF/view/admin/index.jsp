@@ -71,13 +71,13 @@
         </ul>
       </div> <!--END of NAVBAR-->
       <div class="content-container">
-        <label for="selectNumber"> Select Patient</label>
-        <select id="selectNumber" onchange="createGraphs()">
-        </select>
         <div class="content-header">
           Dashboard
         </div>
         <div class="content-body">
+          <label for="selectPatient"> </label>
+          <select id="selectPatient" onchange="createGraphs()">
+          </select>
           <div class="summary-container">
             <canvas id="bloodPressureChart"></canvas>
           </div>
@@ -93,136 +93,19 @@
 
 <script>
 
-  class Data {
-    constructor(pId, pList, dates, systolic, diastolic, heartRate, numbGreen, numbYellow, numbRed) {
-      this._pId = pId;
-      this._pList = pList;
-      this._dates = dates;
-      this._systolic = systolic;
-      this._diastolic = diastolic;
-      this._heartRate = heartRate;
-      this._numbGreen = numbGreen;
-      this._numbYellow = numbYellow;
-      this._numbRed = numbRed;
-    }
-
-    get pId() {
-      return this._pId;
-    }
-
-    set pId(value) {
-      this._pId = value;
-    }
-
-    get pList() {
-      return this._pList;
-    }
-
-    set pList(value) {
-      this._pList = value;
-    }
-
-    get dates() {
-      return this._dates;
-    }
-
-    set dates(value) {
-      this._dates = value;
-    }
-
-    get systolic() {
-      return this._systolic;
-    }
-
-    set systolic(value) {
-      this._systolic = value;
-    }
-
-    get diastolic() {
-      return this._diastolic;
-    }
-
-    set diastolic(value) {
-      this._diastolic = value;
-    }
-
-    get heartRate() {
-      return this._heartRate;
-    }
-
-    set heartRate(value) {
-      this._heartRate = value;
-    }
-
-    get numbGreen() {
-      return this._numbGreen;
-    }
-
-    set numbGreen(value) {
-      this._numbGreen = value;
-    }
-
-    get numbYellow() {
-      return this._numbYellow;
-    }
-
-    set numbYellow(value) {
-      this._numbYellow = value;
-    }
-
-    get numbRed() {
-      return this._numbRed;
-    }
-
-    set numbRed(value) {
-      this._numbRed = value;
-    }
-  }
+  var pId = [];
+  var pList = [];
+  var numbGreen = 0;
+  var numbYellow = 0;
+  var numbRed = 0;
 
   function generatePatientData() {
-
-    var pId = [];
-    var pList = [];
-    var dates = [];
-    var systolic = [];
-    var diastolic = [];
-    var heartRate = [];
-    var numbGreen = 0;
-    var numbYellow = 0;
-    var numbRed = 0;
-
     <% for (Patient p : patientList) { %>
 
       pId.push("<%= p.getPatientId()%>");
       pList.push("<%= p.getFirstName() + " " + p.getLastName() + ", " + p.getAgeYears()%>");
 
     <% } %>
-
-    var e = document.getElementById("selectNumber");
-    <% for (Reading r : readingList) { %>
-
-      if(pId[e.selectedIndex] === "<c:out value='<%=r.getPatient().getPatientId()%>'/>") {
-        dates.push("<%= r.getTimeYYYYMMDD()%>");
-        systolic.push("<%= r.getBpSystolic()%>");
-        diastolic.push("<%= r.getBpDiastolic()%>");
-        heartRate.push("<%= r.getHeartRateBPM()%>");
-
-        <% ReadingAnalysis analysis = ReadingAnalysis.analyze(r);%>
-
-        if("<c:out value='<%=analysis.isGreen()%>'/>"){
-          numbGreen++;
-        }
-        else if("<c:out value='<%=analysis.isYellow()%>'/>"){
-          numbYellow++;
-        }
-        else{
-          numbRed++;
-        }
-      }
-    <% } %>
-
-    return new Data(pId, pList, dates, systolic, diastolic, heartRate, numbGreen, numbYellow, numbRed);
-
   }
 
   function populatePatientList() {
@@ -230,7 +113,7 @@
     generatePatientData();
 
     var select = document.getElementById("selectNumber");
-    var options = listString;
+    var options = pList;
     for(var i = 0; i < options.length; i++) {
       var opt = options[i];
       var el = document.createElement("option");
@@ -238,8 +121,6 @@
       el.value = opt;
       select.appendChild(el);
     }
-
-    Data d = new
 
     createGraphs();
 
@@ -250,10 +131,9 @@
     var data = [];
     var e = document.getElementById("selectNumber");
 
-
     <% for (int i=0; i<readingList.size(); i++) { %>
 
-      if(patientId[e.selectedIndex] === "<c:out value='<%=readingList.get(i).getPatient().getPatientId()%>'/>") {
+      if(pId[e.selectedIndex] === "<c:out value='<%=readingList.get(i).getPatient().getPatientId()%>'/>") {
 
         // Get date
         if (type === 0) {
@@ -279,11 +159,11 @@
     return data;
   }
 
+
   function createGraphs() {
     createBloodPressureChart();
     createStatusChart();
   }
-
 
   function createBloodPressureChart() {
     new Chart(document.getElementById("bloodPressureChart"),
@@ -319,13 +199,6 @@
                       {
                         "scales":
                                 {
-                                  "xAxes": [{
-                                    scaleLabel: {
-                                      display: true,
-                                      labelString: 'Time Reading Taken'
-                                    },
-                                  }],
-
                                   "yAxes": [{
                                     "ticks":{
                                       "beginAtZero":true
@@ -334,41 +207,53 @@
                                 }
                       }
             });
-
   }
 
-  var numbGreen, numbYellow, numbRed;
-  function getBarChartData() {
+
+  function getStatusChartData() {
 
     numbGreen = 0;
     numbYellow = 0;
     numbRed = 0;
 
+    <%
+
+      int numbGreen = 0;
+      int numbYellow = 0;
+      int numbRed = 0;
+
+    %>
     var e = document.getElementById("selectNumber");
 
-    <% for (int i=0; i<readingList.size(); i++) { %>
+    <% for (Reading reading : readingList) { %>
 
-    if(patientId[e.selectedIndex] === "<c:out value='<%=readingList.get(i).getPatient().getPatientId()%>'/>") {
+    if(pId[e.selectedIndex] === "<c:out value='<%=reading.getPatient().getPatientId()%>'/>"){
+      <%
 
-      <% ReadingAnalysis analysis = ReadingAnalysis.analyze(readingList.get(i));%>
+        ReadingAnalysis readingAnalysis = ReadingAnalysis.analyze(reading);
+        if(readingAnalysis.isGreen()){
+          numbGreen++;
+        }
+        else if(readingAnalysis.isYellow()){
+          numbYellow++;
+        }
+        else {
+          numbRed++;
+        }
 
-      if("<c:out value='<%=analysis.isGreen()%>'/>"){
-        numbGreen++;
-      }
-      else if("<c:out value='<%=analysis.isYellow()%>'/>"){
-        numbYellow++;
-      }
-      else{
-        numbRed++;
-      }
+      %>
     }
 
     <% } %>
 
+    numbGreen = "<%= numbGreen%>";
+    numbYellow = "<%= numbYellow%>";
+    numbRed = "<%= numbRed%>";
+
   }
 
   function createStatusChart() {
-
+    getStatusChartData();
     new Chart(document.getElementById("statusChart"),
             {
               "type":"doughnut",
@@ -379,9 +264,9 @@
                           "label":"Status lights",
                           "data":
                                   [
-                                    numbGreen,
+                                    numbRed,
                                     numbYellow,
-                                    numbRed
+                                    numbGreen
                                   ],
                           "backgroundColor":
                                   [
