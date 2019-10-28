@@ -133,7 +133,7 @@ public class AndroidController {
 
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> uploadFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
+    public ResponseEntity<Object> uploadFile(@RequestPart(name = "file") MultipartFile file, HttpServletRequest request) throws IOException {
         String pathname = "/home/ecooke";
         File convertFile = new File(pathname + "/" + file.getOriginalFilename());
         boolean res = convertFile.createNewFile();
