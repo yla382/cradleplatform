@@ -68,6 +68,9 @@ public class ReferralController {
 
     @RequestMapping(value = "/close/{id}", method = RequestMethod.POST)
     public ModelAndView deleteReferralById(@PathVariable Long id){
+//        Referral referral = this.referralRepository.findByReferralId(id);
+//        Reading reading = referral.getReading();
+//        reading.setReferral(null);
         this.referralRepository.delete(this.referralRepository.findByReferralId(id));
         List<Referral> referralList = this.referralRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("/referral/referralList");
