@@ -27,36 +27,43 @@ public class StatisticsController {
 
     @RequestMapping(value = "/blood-pressure-graph/{id}", method = RequestMethod.GET)
     public ModelAndView bloodPressureGraph(@PathVariable Long id){
-        return new ModelAndView("/statistics/bloodPressureGraph").addObject(this.readingRepository.findReadingsByPatient(patientRepository.findByPatientId(id)));
-    }
 
+        System.out.println(id);
 
-    @RequestMapping(value = "/status-chart/{id}", method = RequestMethod.GET)
-    public ModelAndView trafficLightPieChart(@PathVariable Long id){
-        ModelAndView modelAndView = new ModelAndView("/statistics/trafficLightPieChart");
+        ModelAndView modelAndView = new ModelAndView("/statistics/bloodPressureGraph");
 
         int numbGreen = 0, numbYellow = 0, numbRed = 0;
         List<Reading> readingList = this.readingRepository.findReadingsByPatient(this.patientRepository.findByPatientId(id));
-        for(Reading reading : readingList){
+
+        List<String> dateArr = new ArrayList<>();
+        List<Integer> systolicArr = new ArrayList<>();
+        List<Integer> diastolicArr = new ArrayList<>();
+        List<Integer> heartRateArr =  new ArrayList<>();
+
+        for (Reading reading : readingList) {
+
+            dateArr.add(reading.getTimeYYYYMMDD());
+            systolicArr.add(reading.bpSystolic);
+            diastolicArr.add(reading.bpDiastolic);
+            heartRateArr.add(reading.heartRateBPM);
+
             ReadingAnalysis analysis = ReadingAnalysis.analyze(reading);
-            if(analysis.isGreen()){
+            if (analysis.isGreen()) {
                 numbGreen++;
-            }
-            else if(analysis.isYellow()){
+            } else if (analysis.isYellow()) {
                 numbYellow++;
-            }
-            else{
+            } else {
                 numbRed++;
             }
         }
 
+        modelAndView.addObject("dateArr", dateArr);
+        modelAndView.addObject("systolicArr", systolicArr);
+        modelAndView.addObject("diastolicArr", diastolicArr);
+        modelAndView.addObject("heartRateArr", heartRateArr);
         modelAndView.addObject("data", Arrays.asList(numbGreen, numbYellow, numbRed));
 
         return modelAndView;
     }
-
-
-
-
 
 }

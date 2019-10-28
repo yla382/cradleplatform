@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,13 +40,13 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView bloodPressureGraph(){
+    public ModelAndView viewAllReadings(){
 
-        ModelAndView modelAndView = new ModelAndView("/admin/index");
-        modelAndView.addObject("patientList", patientRepository.findAll());
-        modelAndView.addObject("readingList", readingRepository.findAll());
-
-        return modelAndView;
+        List<Reading> readings = this.readingRepository.findAll();
+        for(Reading r : readings){
+            r.symptoms = new ArrayList<>(Arrays.asList(r.symptomsString.split(",")));
+        }
+        return new ModelAndView("/reading/all").addObject("readingList", readings);
 
     }
 

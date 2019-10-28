@@ -9,6 +9,7 @@
 <%
   List<Reading> readingList = (List<Reading>) request.getAttribute("readingList");
   List<Patient> patientList = (List<Patient>) request.getAttribute("patientList");
+  List<Integer> data = (List<Integer>) request.getAttribute("data");
 %>
 
   <head>
@@ -52,15 +53,15 @@
           Dashboard
         </div>
         <div class="content-body">
-          <label for="selectPatient"> </label>
-          <select id="selectPatient" onchange="createGraphs()">
-          </select>
+<%--          <label for="selectPatient"> </label>--%>
+<%--          <select id="selectPatient" onchange="createGraphs()">--%>
+<%--          </select>--%>
           <div class="summary-container">
             <canvas id="bloodPressureChart"></canvas>
           </div>
-<%--          <div class="summary-container">--%>
-<%--            <canvas id="statusChart"></canvas>--%>
-<%--          </div>--%>
+          <div class="summary-container">
+            <canvas id="statusChart"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -70,180 +71,277 @@
 
 <script>
 
-
-  var pId = [];
-  var pList = [];
-  var numbGreen = 0;
-  var numbYellow = 0;
-  var numbRed = 0;
-
-  function generatePatientData() {
-
-    <% for (Patient p : patientList) { %>
-
-      pId.push("<%= p.getPatientId()%>");
-      pList.push("<%= p.getFirstName() + " " + p.getLastName() + ", " + p.getAgeYears()%>");
-
-    <% } %>
-
-  }
-
-  function populatePatientList() {
-
-    generatePatientData();
-
-    var select = document.getElementById("selectPatient");
-    var options = pList;
-    for(var i = 0; i < options.length; i++) {
-      var opt = options[i];
-      var el = document.createElement("option");
-      el.textContent = opt;
-      el.value = opt;
-      select.appendChild(el);
-    }
-
-    createGraphs();
-
-  }
-
-  function getBloodPressureData(type) {
+  function getData(type) {
 
     var data = [];
-    var e = document.getElementById("selectPatient");
 
     <% for (int i=0; i<readingList.size(); i++) { %>
 
-      if(pId[e.selectedIndex] === "<c:out value='<%=readingList.get(i).getPatient().getPatientId()%>'/>") {
-
-        // Get date
-        if (type === 0) {
-            data[<%= i %>] = "<%= readingList.get(i).getTimeYYYYMMDD()%>";
-        }
-        // Get systolic
-        else if (type === 1) {
-          data[<%= i %>] = "<%= readingList.get(i).getBpSystolic()%>";
-        }
-
-        // Get diastolic
-        else if (type === 2) {
-          data[<%= i %>] = "<%= readingList.get(i).getBpDiastolic()%>";
-        }
-        // Get heartRate
-        else {
-          data[<%= i %>] = "<%= readingList.get(i).getHeartRateBPM()%>";
-        }
-      }
+    if(type === 0 ){
+      data[<%= i %>] = "<%= readingList.get(i).getTimeYYYYMMDD()%>";
+    }
+    else if(type === 1){
+      data[<%= i %>] = "<%= readingList.get(i).getBpSystolic()%>";
+    }
+    else if(type === 2){
+      data[<%= i %>] = "<%= readingList.get(i).getBpDiastolic()%>";
+    }
+    else {
+      data[<%= i %>] = "<%= readingList.get(i).getHeartRateBPM()%>";
+    }
 
     <% } %>
 
     return data;
   }
 
+  var canvas = document.getElementById('bloodPressureChart');
+  var chart = new Chart(canvas,
+          {
+            "type":"line",
+            "data":
+                    {
+                      "labels": getData(0),
+                      "datasets": [
+                        {
+                          "label":"Systolic",
+                          "data": getData(1),
+                          "fill":false,
+                          "backgroundColor": "rgb(0, 0, 255)",
+                          "borderColor" : "rgb(0, 0, 255)"
+                        },
+                        {
+                          "label":"Diastolic",
+                          "data": getData(2),
+                          "fill":false,
+                          "backgroundColor": "rgb(255, 129, 0)",
+                          "borderColor" : "rgb(255, 129, 0)"
+                        },
+                        {
+                          "label":"Heart Rate",
+                          "data": getData(3),
+                          "fill":false,
+                          "backgroundColor": "rgb(142, 56, 140)",
+                          "borderColor" : "rgb(142, 56, 140)"
+                        }
+                      ]},
+            "options":
+                    {
+                      "scales":
+                              {
+                                "xAxes": [{
+                                  scaleLabel: {
+                                    display: true,
+                                    labelString: 'Time Reading Taken'
+                                  },
+                                }],
 
-  function createGraphs() {
-    createBloodPressureChart();
-    // createStatusChart();
-  }
+                                "yAxes": [{
+                                  "ticks":{
+                                    "beginAtZero":true
+                                  }
+                                }]
+                              }
+                    }
+          });
 
-  function createBloodPressureChart() {
-    new Chart(document.getElementById("bloodPressureChart"),
-            {
-              "type":"line",
-              "data":
-                      {
-                        "labels": getBloodPressureData(0),
-                        "datasets": [
-                          {
-                            "label":"Systolic",
-                            "data": getBloodPressureData(1),
-                            "fill":false,
-                            "backgroundColor": "rgb(0, 0, 255)",
-                            "borderColor" : "rgb(0, 0, 255)"
-                          },
-                          {
-                            "label":"Diastolic",
-                            "data": getBloodPressureData(2),
-                            "fill":false,
-                            "backgroundColor": "rgb(255, 129, 0)",
-                            "borderColor" : "rgb(255, 129, 0)"
-                          },
-                          {
-                            "label":"Heart Rate",
-                            "data": getBloodPressureData(3),
-                            "fill":false,
-                            "backgroundColor": "rgb(142, 56, 140)",
-                            "borderColor" : "rgb(142, 56, 140)"
-                          }
-                        ]},
-              "options":
-                      {
-                        "scales":
-                                {
-                                  "yAxes": [{
-                                    "ticks":{
-                                      "beginAtZero":true
-                                    }
-                                  }]
-                                }
-                      }
-            });
-  }
-
-  function createStatusChart() {
+  new Chart(document.getElementById("statusChart"),
+          {
+            "type":"doughnut",
+            "data":
+                    {
+                      "labels":["Red","Yellow", "Green"],
+                      "datasets":[{
+                        "label":"Status lights",
+                        "data":
+                                [
+                                  "<c:out value='<%=data.get(0)%>'/>",
+                                  "<c:out value='<%=data.get(1)%>'/>",
+                                  "<c:out value='<%=data.get(2)%>'/>"
+                                ],
+                        "backgroundColor":
+                                [
+                                  "rgb(255, 99, 132)",
+                                  "rgb(255, 255, 0)",
+                                  "rgb(124, 252, 0)"
+                                ]}]
+                    }}
+  );
 
 
-    <%
+  <%--var pId = [];--%>
+  <%--var pList = [];--%>
+  <%--var numbGreen = 0;--%>
+  <%--var numbYellow = 0;--%>
+  <%--var numbRed = 0;--%>
 
-      int numbGreen = 0;
-      int numbYellow = 0;
-      int numbRed = 0;
+  <%--function generatePatientData() {--%>
 
-    %>
+  <%--  <% for (Patient p : patientList) { %>--%>
 
-    var e = document.getElementById("selectPatient");
+  <%--    pId.push("<%= p.getPatientId()%>");--%>
+  <%--    pList.push("<%= p.getFirstName() + " " + p.getLastName() + ", " + p.getAgeYears()%>");--%>
 
-    <% for (Reading reading : readingList) { %>
+  <%--  <% } %>--%>
 
-    if(pId[e.selectedIndex] === "<c:out value='<%=reading.getPatient().getPatientId()%>'/>"){
-      <%
-        ReadingAnalysis readingAnalysis = ReadingAnalysis.analyze(reading);
-        if(readingAnalysis.isGreen()){
-          numbGreen++;
-        }
-        else if(readingAnalysis.isYellow()){
-          numbYellow++;
-        }
-        else {
-          numbRed++;
-        }
-      %>
-    }
+  <%--}--%>
 
-    <% } %>
+  <%--function populatePatientList() {--%>
 
-    new Chart(document.getElementById("statusChart"),
-            {
-              "type":"doughnut",
-              "data":
-                      {
-                        "labels":["Red","Yellow", "Green"],
-                        "datasets":[{
-                          "label":"Status lights",
-                          "data":
-                                  [
-                                    "<c:out value='<%=numbRed%>'/>",
-                                    "<c:out value='<%=numbYellow%>'/>",
-                                    "<c:out value='<%=numbGreen%>'/>"
-                                  ],
-                          "backgroundColor":
-                                  [
-                                    "rgb(255, 99, 132)",
-                                    "rgb(255, 255, 0)",
-                                    "rgb(124, 252, 0)"
-                                  ]}]
-                      }}
-    );
-  }
+  <%--  generatePatientData();--%>
+
+  <%--  var select = document.getElementById("selectPatient");--%>
+  <%--  var options = pList;--%>
+  <%--  for(var i = 0; i < options.length; i++) {--%>
+  <%--    var opt = options[i];--%>
+  <%--    var el = document.createElement("option");--%>
+  <%--    el.textContent = opt;--%>
+  <%--    el.value = opt;--%>
+  <%--    select.appendChild(el);--%>
+  <%--  }--%>
+
+  <%--  createGraphs();--%>
+
+  <%--}--%>
+
+  <%--function getBloodPressureData(type) {--%>
+
+  <%--  var data = [];--%>
+  <%--  var e = document.getElementById("selectPatient");--%>
+
+  <%--  <% for (int i=0; i<readingList.size(); i++) { %>--%>
+
+  <%--    if("<c:out value='<%=readingList.get(i).getPatient() != null%>'/>"){--%>
+  <%--      if(pId[e.selectedIndex] === "<c:out value='<%=readingList.get(i).getPatient().getPatientId()%>'/>") {--%>
+  <%--        // Get date--%>
+  <%--        if (type === 0) {--%>
+  <%--          data[<%= i %>] = "<%= readingList.get(i).getTimeYYYYMMDD()%>";--%>
+  <%--        }--%>
+  <%--        // Get systolic--%>
+  <%--        else if (type === 1) {--%>
+  <%--          data[<%= i %>] = "<%= readingList.get(i).getBpSystolic()%>";--%>
+  <%--        }--%>
+
+  <%--        // Get diastolic--%>
+  <%--        else if (type === 2) {--%>
+  <%--          data[<%= i %>] = "<%= readingList.get(i).getBpDiastolic()%>";--%>
+  <%--        }--%>
+  <%--        // Get heartRate--%>
+  <%--        else {--%>
+  <%--          data[<%= i %>] = "<%= readingList.get(i).getHeartRateBPM()%>";--%>
+  <%--        }--%>
+  <%--      }--%>
+  <%--    }--%>
+  <%--  <% } %>--%>
+
+  <%--  return data;--%>
+  <%--}--%>
+
+
+  <%--function createGraphs() {--%>
+  <%--  createBloodPressureChart();--%>
+  <%--  // createStatusChart();--%>
+  <%--}--%>
+
+  <%--function createBloodPressureChart() {--%>
+  <%--  new Chart(document.getElementById("bloodPressureChart"),--%>
+  <%--          {--%>
+  <%--            "type":"line",--%>
+  <%--            "data":--%>
+  <%--                    {--%>
+  <%--                      "labels": getBloodPressureData(0),--%>
+  <%--                      "datasets": [--%>
+  <%--                        {--%>
+  <%--                          "label":"Systolic",--%>
+  <%--                          "data": getBloodPressureData(1),--%>
+  <%--                          "fill":false,--%>
+  <%--                          "backgroundColor": "rgb(0, 0, 255)",--%>
+  <%--                          "borderColor" : "rgb(0, 0, 255)"--%>
+  <%--                        },--%>
+  <%--                        {--%>
+  <%--                          "label":"Diastolic",--%>
+  <%--                          "data": getBloodPressureData(2),--%>
+  <%--                          "fill":false,--%>
+  <%--                          "backgroundColor": "rgb(255, 129, 0)",--%>
+  <%--                          "borderColor" : "rgb(255, 129, 0)"--%>
+  <%--                        },--%>
+  <%--                        {--%>
+  <%--                          "label":"Heart Rate",--%>
+  <%--                          "data": getBloodPressureData(3),--%>
+  <%--                          "fill":false,--%>
+  <%--                          "backgroundColor": "rgb(142, 56, 140)",--%>
+  <%--                          "borderColor" : "rgb(142, 56, 140)"--%>
+  <%--                        }--%>
+  <%--                      ]},--%>
+  <%--            "options":--%>
+  <%--                    {--%>
+  <%--                      "scales":--%>
+  <%--                              {--%>
+  <%--                                "yAxes": [{--%>
+  <%--                                  "ticks":{--%>
+  <%--                                    "beginAtZero":true--%>
+  <%--                                  }--%>
+  <%--                                }]--%>
+  <%--                              }--%>
+  <%--                    }--%>
+  <%--          });--%>
+  <%--}--%>
+
+  <%--function createStatusChart() {--%>
+
+
+  <%--  <%--%>
+
+  <%--    int numbGreen = 0;--%>
+  <%--    int numbYellow = 0;--%>
+  <%--    int numbRed = 0;--%>
+
+  <%--  %>--%>
+
+  <%--  var e = document.getElementById("selectPatient");--%>
+
+  <%--  <% for (Reading reading : readingList) { %>--%>
+
+  <%--  if(pId[e.selectedIndex] === "<c:out value='<%=reading.getPatient().getPatientId()%>'/>"){--%>
+  <%--    <%--%>
+  <%--      ReadingAnalysis readingAnalysis = ReadingAnalysis.analyze(reading);--%>
+  <%--      if(readingAnalysis.isGreen()){--%>
+  <%--        numbGreen++;--%>
+  <%--      }--%>
+  <%--      else if(readingAnalysis.isYellow()){--%>
+  <%--        numbYellow++;--%>
+  <%--      }--%>
+  <%--      else {--%>
+  <%--        numbRed++;--%>
+  <%--      }--%>
+  <%--    %>--%>
+  <%--  }--%>
+
+  <%--  <% } %>--%>
+
+  <%--  new Chart(document.getElementById("statusChart"),--%>
+  <%--          {--%>
+  <%--            "type":"doughnut",--%>
+  <%--            "data":--%>
+  <%--                    {--%>
+  <%--                      "labels":["Red","Yellow", "Green"],--%>
+  <%--                      "datasets":[{--%>
+  <%--                        "label":"Status lights",--%>
+  <%--                        "data":--%>
+  <%--                                [--%>
+  <%--                                  "<c:out value='<%=numbRed%>'/>",--%>
+  <%--                                  "<c:out value='<%=numbYellow%>'/>",--%>
+  <%--                                  "<c:out value='<%=numbGreen%>'/>"--%>
+  <%--                                ],--%>
+  <%--                        "backgroundColor":--%>
+  <%--                                [--%>
+  <%--                                  "rgb(255, 99, 132)",--%>
+  <%--                                  "rgb(255, 255, 0)",--%>
+  <%--                                  "rgb(124, 252, 0)"--%>
+  <%--                                ]}]--%>
+  <%--                    }}--%>
+  <%--  );--%>
+  <%--}--%>
 
 
 </script>
