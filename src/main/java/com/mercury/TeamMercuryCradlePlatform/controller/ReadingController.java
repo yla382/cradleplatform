@@ -79,6 +79,7 @@ public class ReadingController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public ModelAndView updateReadingInDB(@PathVariable(value = "id") long id, Reading reading, @RequestParam(value = "otherSymptoms", defaultValue = "")  String otherSymptoms) {
 
+        System.out.println("update");
         Reading dbReading = readingRepository.findByReadingId(id);
 
         reading.readingId = id;

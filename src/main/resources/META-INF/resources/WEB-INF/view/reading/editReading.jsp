@@ -39,15 +39,18 @@
                     <input type="hidden" name="id" value="<%=reading.readingId%>"/>
                     <div class="col">
                         <label for="firstName">First Name</label>
-                        <input disabled required type="text" class="form-control" id="firstName" name="firstName" value="<%=reading.firstName%>">
+                        <input disabled required type="text" class="form-control" value="<%=reading.firstName%>">
+                        <input hidden required type="text" class="form-control" id="firstName" name="firstName" value="<%=reading.firstName%>">
                     </div>
                     <div class="col">
                         <label for="lastName">Last Name</label>
-                        <input disabled required type="text" class="form-control" id="lastName" name="lastName" value="<%=reading.lastName%>">
+                        <input disabled required type="text" class="form-control"  value="<%=reading.lastName%>">
+                        <input hidden required type="text" class="form-control" id="lastName" name="lastName" value="<%=reading.lastName%>">
                     </div>
                     <div class="col">
                         <label for="ageYears">Age</label>
-                        <input disabled required type="number" min="0" class="form-control" id="ageYears" name="ageYears" value="<%=reading.ageYears%>">
+                        <input disabled required type="number" min="0" class="form-control" value="<%=reading.ageYears%>">
+                        <input hidden required type="number" min="0" class="form-control" id="ageYears" name="ageYears" value="<%=reading.ageYears%>">
                     </div>
                 </div>
                 <div class="row" style="width: 25%; margin-top: 5px">
