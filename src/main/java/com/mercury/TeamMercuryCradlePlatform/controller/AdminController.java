@@ -2,7 +2,11 @@ package com.mercury.TeamMercuryCradlePlatform.controller;
 
 import com.mercury.TeamMercuryCradlePlatform.Service.ContactService;
 import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
+import com.mercury.TeamMercuryCradlePlatform.model.Reading;
+import com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -22,15 +27,26 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
     private EmailAdmin emailAdmin;
+    private ReadingRepository readingRepository;
+    private PatientRepository patientRepository;
 
-    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin) {
+    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin, ReadingRepository readingRepository, PatientRepository patientRepository) {
         this.userRepository = userRepository;
         this.emailAdmin = emailAdmin;
+        this.readingRepository = readingRepository;
+        this.patientRepository = patientRepository;
+
     }
 
-    @GetMapping("/index")
-    public List<User> users() {
-        return this.userRepository.findAll();
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView bloodPressureGraph(){
+
+        ModelAndView modelAndView = new ModelAndView("/admin/index");
+        modelAndView.addObject("patientList", patientRepository.findAll());
+        modelAndView.addObject("readingList", readingRepository.findAll());
+
+        return modelAndView;
+
     }
 
     @GetMapping("/education")

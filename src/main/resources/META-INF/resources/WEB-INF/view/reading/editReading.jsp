@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Reading" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.GestationalAgeUnit" %>
 <!DOCTYPE html>
 <html>
 
@@ -137,10 +138,10 @@
         let gestationalValue = $("#gestationalAgeValue");
         let val = "<c:out value='<%=reading.gestationalAgeUnit%>'/>"
 
-        if(val ===  "<c:out value='<%=Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS%>'/>"){
+        if(val ===  "<c:out value='<%=GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS%>'/>"){
             selectedGestationUnit.prop('selectedIndex', 0);
         }
-        else if(val ===  "<c:out value='<%=Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS%>'/>"){
+        else if(val ===  "<c:out value='<%=GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS%>'/>"){
             selectedGestationUnit.prop('selectedIndex', 1);
         }
         else{
