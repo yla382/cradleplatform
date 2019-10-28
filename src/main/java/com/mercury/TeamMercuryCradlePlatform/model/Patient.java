@@ -1,7 +1,5 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.ArrayList;
@@ -27,13 +25,11 @@ public class Patient {
     private String country = null;
     private String location = null;
 
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="patient_Id", referencedColumnName = "patient_Id")
     private List<Reading> readings = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "patient")
     private Referral referral;
 
     public Patient() {
@@ -46,16 +42,6 @@ public class Patient {
         setCountry(country);
         setLocation(location);
     }
-
-    public Patient(String attestationID, String firstName, String lastName, Integer ageYears, String country, String location) {
-        setAttestationID(attestationID);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setAgeYears(ageYears);
-        setCountry(country);
-        setLocation(location);
-    }
-
 
     // TODO: dont really need this, delete it later
     public Patient(Reading reading) {
@@ -148,6 +134,10 @@ public class Patient {
 
     public void addReading(Reading reading){
         this.readings.add(reading);
+    }
+
+    public void addAllReadings(List<Reading> readingList){
+        this.readings.addAll(readingList);
     }
 
 

@@ -96,6 +96,10 @@ public class Reading {
     @Transient public String referralHealthCentre;
     @Transient public String referralComment;
 
+    @OneToOne(mappedBy = "reading")
+    private Referral referral;
+
+
     // temporary values
     @Transient transient private long temporaryFlags = 0;
     @Transient transient public boolean userHasSelectedNoSymptoms;
@@ -446,5 +450,13 @@ public class Reading {
 
     public void setHeartRateBPM(Integer heartRateBPM) {
         this.heartRateBPM = heartRateBPM;
+    }
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
     }
 }
