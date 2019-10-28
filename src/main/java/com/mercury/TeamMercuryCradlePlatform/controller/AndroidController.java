@@ -130,21 +130,21 @@ public class AndroidController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-        File convertFile = new File("C:\\Users\\John\\Desktop\\test\\"  + file.getOriginalFilename());
+        String pathname = "/home/ecooke";
+        File convertFile = new File(pathname + "/" + file.getOriginalFilename());
         boolean res = convertFile.createNewFile();
         FileOutputStream fout = new FileOutputStream(convertFile);
         fout.write(file.getBytes());
         fout.close();
 
-        String destination = "C:\\Users\\John\\Desktop\\test";
         try {
             ZipFile zipFile = new ZipFile(convertFile);
-            zipFile.extractAll(destination);
+            zipFile.extractAll(pathname);
 
-            File dataFile = new File(destination + "\\unencrypted\\data.zip");
+            File dataFile = new File(pathname + "/unencrypted/data.zip");
             ZipFile dataZipFile = new ZipFile(dataFile);
-            dataZipFile.extractAll(destination);
-            File dir = new File(destination);
+            dataZipFile.extractAll(pathname);
+            File dir = new File(pathname);
             for(File f: dir.listFiles()) {
                 if (f.getName().endsWith((".json"))) {
                     storeJson(f);
@@ -154,7 +154,7 @@ public class AndroidController {
             e.printStackTrace();
         } finally {
             //convertFile.delete();
-            FileUtils.cleanDirectory(new File(destination));
+            FileUtils.cleanDirectory(new File(pathname));
         }
         return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
     }
