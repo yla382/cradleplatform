@@ -25,7 +25,6 @@ public class Patient {
     private String country = null;
     private String location = null;
 
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="patient_Id", referencedColumnName = "patient_Id")
     private List<Reading> readings = new ArrayList<>();
@@ -135,6 +134,10 @@ public class Patient {
 
     public void addReading(Reading reading){
         this.readings.add(reading);
+    }
+
+    public void addAllReadings(List<Reading> readingList){
+        this.readings.addAll(readingList);
     }
 
 

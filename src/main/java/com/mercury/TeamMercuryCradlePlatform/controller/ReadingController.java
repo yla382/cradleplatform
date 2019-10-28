@@ -127,6 +127,4 @@ public class ReadingController {
         return new ModelAndView("/reading/all").addObject("readingList", this.readingRepository.findAll());
     }
 
-
-
 }
