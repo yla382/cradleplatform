@@ -12,6 +12,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="/js/toastr.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/notifications.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -30,44 +31,8 @@
   </head>
 
   <body>
-      <script>
-          function alertFunction() {
-            toastr.success('Have fun storming the castle!', 'Miracle Max Says');
-               }
-               window.onload = alertFunction;</script>
     <div class="main-container">
-      <!--NAVBAR-->
-      <div class="navbar-container">
-        <div class="navbar-title">
-          Cradle.
-        </div>
-
-        <ul>
-          <li class="navbar-list"><a class="nav-link" href="/admin/index"><span class="glyphicon glyphicon-signal nav-link-icon"></span>Dashboard</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/admin/users"><span class="glyphicon glyphicon-search nav-link-icon"></span>View Users</a></li>
-          <li class="navbar-list">
-            <a class="nav-link" href="/admin/registration"><span class="glyphicon glyphicon-user nav-link-icon"></span>Register Users</a>
-          </li class="navbar-list">
-        </ul>
-
-        <ul>
-          <li class="navbar-list"><a class="nav-link" href="/patient/patientlist"><span class="glyphicon glyphicon-user nav-link-icon"></span>Patients</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/vht/allocation"><span class="glyphicon glyphicon-user nav-link-icon"></span>Patient Allocation</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/reading/create"><span class="glyphicon glyphicon-file nav-link-icon"></span>Readings</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/vht/genreport"><span class="glyphicon glyphicon-dashboard nav-link-icon"></span>Reports</a></li>
-          <li class="navbar-list"><a class="nav-link" href="/admin/education"><span class="glyphicon glyphicon-folder-open nav-link-icon"></span>Education</a></li>
-          <%if (request.getRemoteUser()!= null) {%>
-          <li class="navbar-list">
-            <a
-              class="nav-link"
-              href="/profile/${pageContext.request.userPrincipal.name}"
-              ><span class="glyphicon glyphicon-cog nav-link-icon"></span>Profile</a
-            >
-          </li>
-          <%} %>
-          <li class="navbar-list"><a class="nav-link" href="/logout">< Sign Out ></a></li>
-        </ul>
-      </div> <!--END of NAVBAR-->
+      <%@ include file="../navbar/navbar.jspf" %>
       <div class="content-container">
         <div class="content-header">
           Dashboard
