@@ -56,25 +56,25 @@ public class DataInit implements CommandLineRunner {
 
         Reading reading = new Reading("Ricky", "Owen", 29,
                 Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION, "dead"),
-                Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1",
+                GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "1",
                 130, 100, 90,
                 ZonedDateTime.of(LocalDate.of( 2019,4,5), LocalTime.of(9,30), ZoneId.systemDefault()));
 
         Reading reading2 = new Reading("Ricky", "Owen", 29,
                 Collections.singletonList(Strings.SYMPTOM_NO_SYMPTOMS),
-                Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS, "7",
+                GestationalAgeUnit.GESTATIONAL_AGE_UNITS_WEEKS, "7",
                 90, 60, 60,
                 ZonedDateTime.of(LocalDate.of( 2019,5,30), LocalTime.of(20,45), ZoneId.systemDefault()));
 
         Reading reading3 = new Reading("Ricky", "Owen", 29,
                 Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION, "not dead"),
-                Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "1",
+                GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "1",
                 80, 70, 120,
                 ZonedDateTime.of(LocalDate.of( 2019,6,1), LocalTime.of(3,15), ZoneId.systemDefault()));
 
         Reading reading4 = new Reading("Ricky", "Owen", 29,
                 Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION),
-                Reading.GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "1",
+                GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "1",
                 200, 150, 180,
                 ZonedDateTime.of(LocalDate.of( 2019,7,5), LocalTime.of(19,30), ZoneId.systemDefault()));
 

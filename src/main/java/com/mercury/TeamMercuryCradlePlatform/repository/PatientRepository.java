@@ -12,9 +12,8 @@ import java.util.Optional;
 @Repository
 public interface PatientRepository extends CrudRepository<Patient, Long> {
     public List<Patient> findAll();
-    Patient findByPatientId(Long id);
 
-    public Patient findByPatientId(Long id);
+    Patient findByPatientId(Long id);
 
     @Query("SELECT c FROM Patient c WHERE c.attestationID LIKE ?1")
     Optional<Patient> findByAttestationID(@Param("id") String id);
