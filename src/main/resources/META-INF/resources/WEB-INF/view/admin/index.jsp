@@ -2,7 +2,6 @@
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Reading" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Patient" %>
-<%@ page import="java.lang.reflect.Array" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis" %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +19,9 @@
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -100,12 +101,14 @@
   var numbRed = 0;
 
   function generatePatientData() {
+
     <% for (Patient p : patientList) { %>
 
       pId.push("<%= p.getPatientId()%>");
       pList.push("<%= p.getFirstName() + " " + p.getLastName() + ", " + p.getAgeYears()%>");
 
     <% } %>
+
   }
 
   function populatePatientList() {
