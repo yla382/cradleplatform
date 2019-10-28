@@ -42,24 +42,9 @@ public class AdminController {
     public ModelAndView bloodPressureGraph(){
 
         ModelAndView modelAndView = new ModelAndView("/admin/index");
-
-//        int numbGreen = 0, numbYellow = 0, numbRed = 0;
-//        List<Reading> readingList = this.readingRepository.findReadingsByPatient(this.patientRepository.findByPatientId(id));
-//        for(Reading reading : readingList){
-//            ReadingAnalysis analysis = ReadingAnalysis.analyze(reading);
-//            if(analysis.isGreen()){
-//                numbGreen++;
-//            }
-//            else if(analysis.isYellow()){
-//                numbYellow++;
-//            }
-//            else{
-//                numbRed++;
-//            }
-//        }
-
         modelAndView.addObject("patientList", patientRepository.findAll());
         modelAndView.addObject("readingList", readingRepository.findAll());
+
         return modelAndView;
 
     }
