@@ -8,6 +8,10 @@
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/toastr.css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/js/toastr.js"></script>
+    <script src="/js/main.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -26,6 +30,11 @@
   </head>
 
   <body>
+      <script>
+          function alertFunction() {
+            toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+               }
+               window.onload = alertFunction;</script>
     <div class="main-container">
       <!--NAVBAR-->
       <div class="navbar-container">
