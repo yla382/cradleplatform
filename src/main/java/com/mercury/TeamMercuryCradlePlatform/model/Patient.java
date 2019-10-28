@@ -29,7 +29,7 @@ public class Patient {
     @JoinColumn(name="patient_Id", referencedColumnName = "patient_Id")
     private List<Reading> readings = new ArrayList<>();
 
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "patient")
     private Referral referral;
 
     public Patient() {

@@ -1,17 +1,18 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
-import com.mercury.TeamMercuryCradlePlatform.model.*;
-import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
+import com.mercury.TeamMercuryCradlePlatform.model.GestationalAgeUnit;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.SupervisorRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -24,24 +25,23 @@ import java.util.List;
 @Service
 public class DataInit implements CommandLineRunner {
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
     private PatientRepository patientRepository;
     private ReadingRepository readingRepository;
-    private ReferralRepository referralRepository;
+    private SupervisorRepository supervisorRepository;
 
-    public DataInit(UserRepository userRepository, PasswordEncoder passwordEncoder, PatientRepository patientRepository, ReadingRepository readingRepository, ReferralRepository referralRepository) {
+    public DataInit(UserRepository userRepository,
+                    PatientRepository patientRepository, ReadingRepository readingRepository, SupervisorRepository supervisorRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
-        this.referralRepository = referralRepository;
+        this.supervisorRepository = supervisorRepository;
     }
 
     @Override
     public void run(String... args) {
-        User admin = new User(passwordEncoder.encode("1234"), "John", "Lee", "test@test.com", "ADMIN", "1234567890");
-        User vht = new User(passwordEncoder.encode("1234"), "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER", "9999999999");
-        User healthWorker = new User(passwordEncoder.encode("1234"), "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER", "0001111111");
+        User admin = new User("1234", "John", "Lee", "test@test.com", "ADMIN", "1234567890");
+        User vht = new User("1234", "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER", "9999999999");
+        User healthWorker = new User("1234", "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER", "0001111111");
 
         List<User> users = Arrays.asList(admin, vht, healthWorker);
         userRepository.saveAll(users);

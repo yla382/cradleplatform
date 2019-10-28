@@ -1,5 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import com.mercury.TeamMercuryCradlePlatform.model.GestationalAgeUnit;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 
@@ -56,7 +57,7 @@ public class ReadingController {
     public ModelAndView saveReadingToDB(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken, @RequestParam(value = "gestationalAgeUnit") String value) {
 
         // Need to manually set these fields again otherwise it saves it as null in db
-        reading.gestationalAgeUnit = Reading.GestationalAgeUnit.valueOf(value);
+        reading.gestationalAgeUnit = GestationalAgeUnit.valueOf(value);
         reading.dateTimeTaken = ZonedDateTime.parse(timeTaken);
         reading.dateUploadedToServer = ZonedDateTime.now();
 

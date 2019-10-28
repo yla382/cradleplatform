@@ -9,7 +9,6 @@ import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,14 +27,12 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
     private EmailAdmin emailAdmin;
-    private PasswordEncoder passwordEncoder;
     private ReadingRepository readingRepository;
     private PatientRepository patientRepository;
 
-    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin, PasswordEncoder passwordEncoder, ReadingRepository readingRepository, PatientRepository patientRepository) {
+    public AdminController(UserRepository userRepository, EmailAdmin emailAdmin, ReadingRepository readingRepository, PatientRepository patientRepository) {
         this.userRepository = userRepository;
         this.emailAdmin = emailAdmin;
-        this.passwordEncoder = passwordEncoder;
         this.readingRepository = readingRepository;
         this.patientRepository = patientRepository;
 
@@ -80,17 +77,13 @@ public class AdminController {
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
     public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password,
             @RequestParam String roles) {
-        User temp = new User(user);
-        temp.setRole(roles);
-        temp.setEncodedPassword(password);
-        userRepository.save(temp);
+        User newUser = new User(user, password);
+        newUser.setRole(roles);
+        userRepository.save(newUser);
 
-        String subject = "New Cradle account created";
-        String text = "Hello, " + temp.getFirstName() + " thank you for joining our organization"
-                + ". Here is ur account id and password\n" + "ID: " + temp.getUserId() + "\npassword: " + password;
-        emailAdmin.sendEmail(temp.getEmail(), subject, text);
+        emailAdmin.sendRegistrationEmail(password, newUser);
 
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
         modelAndView.addObject("user", user);
         return modelAndView;
     }
@@ -117,18 +110,15 @@ public class AdminController {
         ContactService contactService = new ContactService();
         contactService.sendMessage(contactMethod, email, phoneNumber, subject, message);
 
-        System.out.println(contactMethod);
-        System.out.println(email);
-        System.out.println(phoneNumber);
-        return new ModelAndView("/admin/submitMessage");
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
     public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles) {
 
         user.setRole(roles);
-        // user.setPassword(user.getPassword());
         this.userRepository.save(user);
+
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
 
     }
@@ -137,12 +127,14 @@ public class AdminController {
     public ModelAndView getUserWithId(@PathVariable int id) {
 
         User user = this.userRepository.findByUserId(id);
+
         return new ModelAndView("/admin/editUser").addObject("postUser", user);
     }
 
     @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.POST)
     public ModelAndView deleteUserWithId(@PathVariable int id) {
         this.userRepository.delete(this.userRepository.findByUserId(id));
+
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 

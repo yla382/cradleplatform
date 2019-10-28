@@ -8,6 +8,11 @@
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/toastr.css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/js/toastr.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/notifications.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -84,7 +89,7 @@
                                         <div class="form-group row">
                                             <label for="password" class="col-md-4 col-form-label text-md-right register-users-label">PASSWORD</label>
                                             <div class="col-md-6">
-                                                <input type="text" id="password" class="register-field" name="password" placeholder="Password">
+                                                <input type="password" id="password" class="register-field" name="password" placeholder="Password">
                                             </div>
                                             <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                                         </div>
@@ -129,7 +134,7 @@
                                             </div>
                                             <div class="col-md-6 offset-md-6">
                                                 <div class="offset-md-2">
-                                                    <button type="submit" class="btn-register">
+                                                    <button type="submit" class="btn-register" onclick="registerMessage()">
                                                         Register
                                                     </button>
                                                 </div>

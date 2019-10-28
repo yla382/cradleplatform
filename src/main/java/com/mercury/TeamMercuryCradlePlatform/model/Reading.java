@@ -29,15 +29,6 @@ public class Reading {
     @Transient public static final int MANUAL_USER_ENTRY_DIASTOLIC = 2;
     @Transient public static final int MANUAL_USER_ENTRY_HEARTRATE = 4;
 
-
-    /**
-     * Types
-     */
-    public enum GestationalAgeUnit {
-        GESTATIONAL_AGE_UNITS_NONE,
-        GESTATIONAL_AGE_UNITS_WEEKS,
-        GESTATIONAL_AGE_UNITS_MONTHS,
-    }
     public class WeeksAndDays {
         public final int weeks;
         public final int days;
@@ -105,6 +96,10 @@ public class Reading {
     @Transient public String referralHealthCentre;
     @Transient public String referralComment;
 
+    @OneToOne(mappedBy = "reading")
+    private Referral referral;
+
+
     // temporary values
     @Transient transient private long temporaryFlags = 0;
     @Transient transient public boolean userHasSelectedNoSymptoms;
@@ -115,6 +110,19 @@ public class Reading {
      */
     public Reading() {
         // for JSON only
+    }
+
+    public Reading(AndroidReading reading) {
+        this.firstName = reading.getPatientName();
+        //this.lastName = reading.lastName;
+        this.ageYears = reading.getAgeYears();
+        this.symptomsString = reading.getSymptoms().toString();
+        this.gestationalAgeUnit = reading.getGestationalAgeUnit();
+        this.gestationalAgeValue = reading.getGestationalAgeValue();
+        this.bpSystolic = reading.getBpSystolic();
+        this.bpDiastolic = reading.getBpDiastolic();
+        this.heartRateBPM = reading.getHeartRateBPM();
+        this.dateTimeTaken = reading.getDateTimeTaken();
     }
 
     public Reading(Reading reading){
@@ -442,5 +450,13 @@ public class Reading {
 
     public void setHeartRateBPM(Integer heartRateBPM) {
         this.heartRateBPM = heartRateBPM;
+    }
+
+    public Referral getReferral() {
+        return referral;
+    }
+
+    public void setReferral(Referral referral) {
+        this.referral = referral;
     }
 }
