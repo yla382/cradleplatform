@@ -25,7 +25,7 @@
                 <a class="nav-link" href="/patient/patientlist">Patients</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reading/all">Readings</a>
+                <a class="nav-link" href="/reading/create">Readings</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/referral/referralList">Referral</a>

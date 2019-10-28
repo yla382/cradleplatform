@@ -88,6 +88,12 @@
                                             </button>
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         </form>
+                                        <form action="${pageContext.request.contextPath}/reading/all/${patient.patientId}" method="get">
+                                            <button type="submit" value="submit" class="btn-generic">
+                                                Readings
+                                            </button>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        </form>
 
                                     </div>
                                 </th>
