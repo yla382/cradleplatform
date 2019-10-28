@@ -26,13 +26,13 @@ public class StatisticsController {
 
 
     @RequestMapping(value = "/blood-pressure-graph/{id}", method = RequestMethod.GET)
-    public ModelAndView bloodPressureGraph(@PathVariable Integer id){
+    public ModelAndView bloodPressureGraph(@PathVariable Long id){
         return new ModelAndView("/statistics/bloodPressureGraph").addObject(this.readingRepository.findReadingsByPatient(patientRepository.findByPatientId(id)));
     }
 
 
     @RequestMapping(value = "/status-chart/{id}", method = RequestMethod.GET)
-    public ModelAndView trafficLightPieChart(@PathVariable Integer id){
+    public ModelAndView trafficLightPieChart(@PathVariable Long id){
         ModelAndView modelAndView = new ModelAndView("/statistics/trafficLightPieChart");
 
         int numbGreen = 0, numbYellow = 0, numbRed = 0;
