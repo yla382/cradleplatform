@@ -64,9 +64,9 @@
         <div class="content-body">
           <div class="education-container">
             <div class="video-header">
-                What is blood pressure?
+                How to use CRADLE VSA
             </div>
-            <iframe class="video-container" src="https://www.youtube.com/embed/4YNdp3pRjig">
+            <iframe class="video-container" src="https://www.youtube.com/embed/QainNBCHKAg">
             </iframe>
           </div>
         </div>
