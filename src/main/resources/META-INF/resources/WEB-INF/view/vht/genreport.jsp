@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>General Report</title>
     <!-- Native scripts -->
-    <link rel="stylesheet" type="text/css" href="/css/navfunc.css">
-    <link rel="stylesheet" type="text/css" href="/css/report.css">
-    <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/navfunc.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/report.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/welcome.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" crossorigin="anonymous">
 
 
     <!-- Imported scripts -->
@@ -18,8 +21,6 @@
 
 <body>
 
-<%@ include file="../navbar_admin.jspf" %>
-
 <br>
 <br>
 
@@ -27,11 +28,30 @@
 
 <button class="collapsible">CRADLE readings recorded</button>
 <div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <canvas id="myChart"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'CRADLE readings recorded per Month',
+                    data: [12, 19, 30,12,10],
+                    pointBackgroundColor: 'rgb(228,245,255)',
+                    borderColor: 'rgba(26,47,118, 1)',
+                    pointBorderColor: 'rgba(26,47,118, 1)',
+                    backgroundColor: 'rgba(26,47,118, 1)',
+                    fill: false,
+                    borderWidth: 3
+                }]
+            },
+            options: {}
+        });
+    </script>
 </div>
 <button class="collapsible">Referrals made</button>
 <div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
 <button class="collapsible">Traffic light colours recorded</button>
 <div class="content">

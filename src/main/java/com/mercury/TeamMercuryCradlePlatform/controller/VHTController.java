@@ -1,5 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 import com.mercury.TeamMercuryCradlePlatform.model.VHTPair;
+import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.SupervisorRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,15 @@ public class VHTController {
     @Autowired
     private UserRepository userRepository;
     private SupervisorRepository supervisorRepository;
+    private ReadingRepository readingRepository;
+    private ReferralRepository referralRepository;
 
-    public VHTController(UserRepository userRepository, SupervisorRepository supervisorRepository) {
+    public VHTController(UserRepository userRepository, SupervisorRepository supervisorRepository,
+                         ReadingRepository readingRepository, ReferralRepository referralRepository) {
         this.userRepository = userRepository;
         this.supervisorRepository = supervisorRepository;
+        this.readingRepository = readingRepository;
+        this.referralRepository = referralRepository;
     }
 
     @GetMapping("/vht/report")
@@ -24,13 +31,15 @@ public class VHTController {
         return "vht/report";
     }
 
-    @GetMapping("/vht/genreport")
-    public String genreport() {
-        return "vht/genreport";
+    @RequestMapping(value = "/vht/genreport", method = RequestMethod.GET)
+    public ModelAndView genReport() {
+        ModelAndView reportDataSets = new ModelAndView("/vht/genreport");
+
+        return reportDataSets;
     }
 
     @RequestMapping(value = "/vht/allocation", method = RequestMethod.GET)
-    public ModelAndView getAllUsers() {
+    public ModelAndView getListOfVHT() {
         return new ModelAndView("/vht/allocation").addObject("listOfVHT", this.userRepository.findAllByRole("VHT"));
     }
 
