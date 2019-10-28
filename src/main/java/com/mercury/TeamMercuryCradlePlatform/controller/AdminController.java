@@ -44,22 +44,21 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password, @RequestParam String roles) {
+    public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password,
+            @RequestParam String roles) {
         User newUser = new User(user, password);
         newUser.setRole(roles);
         userRepository.save(newUser);
 
         emailAdmin.sendRegistrationEmail(password, newUser);
 
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
         modelAndView.addObject("user", user);
         return modelAndView;
     }
 
-
-
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView getAllUsers(){
+    public ModelAndView getAllUsers() {
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
@@ -80,7 +79,7 @@ public class AdminController {
         ContactService contactService = new ContactService();
         contactService.sendMessage(contactMethod, email, phoneNumber, subject, message);
 
-        return new ModelAndView("/admin/submitMessage");
+        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
     }
 
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
@@ -102,7 +101,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.POST)
-    public ModelAndView deleteUserWithId(@PathVariable int id){
+    public ModelAndView deleteUserWithId(@PathVariable int id) {
         this.userRepository.delete(this.userRepository.findByUserId(id));
 
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());

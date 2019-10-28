@@ -84,7 +84,7 @@
                                         <div class="form-group row">
                                             <label for="password" class="col-md-4 col-form-label text-md-right register-users-label">PASSWORD</label>
                                             <div class="col-md-6">
-                                                <input type="text" id="password" class="register-field" name="password" placeholder="Password">
+                                                <input type="password" id="password" class="register-field" name="password" placeholder="Password">
                                             </div>
                                             <input type = "hidden" name = "${_csrf.parameterName}" value="${_csrf.token}"/>
                                         </div>
