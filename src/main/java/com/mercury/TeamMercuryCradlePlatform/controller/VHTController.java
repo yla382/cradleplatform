@@ -1,4 +1,5 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
+import com.mercury.TeamMercuryCradlePlatform.model.StatsCollector;
 import com.mercury.TeamMercuryCradlePlatform.model.VHTPair;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 @Controller
 public class VHTController {
 
@@ -17,6 +21,7 @@ public class VHTController {
     private SupervisorRepository supervisorRepository;
     private ReadingRepository readingRepository;
     private ReferralRepository referralRepository;
+    private StatsCollector statsCollector;
 
     public VHTController(UserRepository userRepository, SupervisorRepository supervisorRepository,
                          ReadingRepository readingRepository, ReferralRepository referralRepository) {
@@ -24,6 +29,9 @@ public class VHTController {
         this.supervisorRepository = supervisorRepository;
         this.readingRepository = readingRepository;
         this.referralRepository = referralRepository;
+
+        this.statsCollector = new StatsCollector(LocalDate.now(), this.userRepository,
+                this.supervisorRepository, this.readingRepository,this.referralRepository);
     }
 
     @GetMapping("/vht/report")
@@ -34,6 +42,17 @@ public class VHTController {
     @RequestMapping(value = "/vht/genreport", method = RequestMethod.GET)
     public ModelAndView genReport() {
         ModelAndView reportDataSets = new ModelAndView("/vht/genreport");
+        ArrayList<ArrayList<Integer>> statsCollection =  statsCollector.collectYearlyStats();
+        ArrayList<Integer> readingList = statsCollection.get(0);
+        reportDataSets.addObject("readingList", readingList);
+        ArrayList<Integer> referralList = statsCollection.get(1);
+        reportDataSets.addObject("referralList", referralList);
+        ArrayList<Integer> complReferralList = statsCollection.get(2);
+        reportDataSets.addObject("complReferralList", complReferralList);
+        ArrayList<Integer> pregnantList = statsCollection.get(3);
+        reportDataSets.addObject("pregnantList", pregnantList);
+        ArrayList<Integer> pregnantHelpedList = statsCollection.get(4);
+        reportDataSets.addObject("pregnantHelpedList", pregnantHelpedList);
 
         return reportDataSets;
     }
@@ -49,11 +68,9 @@ public class VHTController {
 
         String oldVhtId = vhtPair.getFirstVHT().split(" ")[0];
         String newVhtId = vhtPair.getSecondVHT().split(" ")[0];
-        System.out.print(oldVhtId);
-        System.out.println(newVhtId);
 
         supervisorRepository.updateVHT(oldVhtId, newVhtId);
 
-        return new ModelAndView("/admin/index");
+        return new ModelAndView("/patient/patientlist");
     }
 }

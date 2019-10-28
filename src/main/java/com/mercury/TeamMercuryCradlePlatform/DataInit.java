@@ -4,10 +4,7 @@ import com.mercury.TeamMercuryCradlePlatform.model.GestationalAgeUnit;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.User;
-import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
-import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
-import com.mercury.TeamMercuryCradlePlatform.repository.SupervisorRepository;
-import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
+import com.mercury.TeamMercuryCradlePlatform.repository.*;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
@@ -28,13 +25,15 @@ public class DataInit implements CommandLineRunner {
     private PatientRepository patientRepository;
     private ReadingRepository readingRepository;
     private SupervisorRepository supervisorRepository;
+    private ReferralRepository referralRepository;
 
-    public DataInit(UserRepository userRepository,
-                    PatientRepository patientRepository, ReadingRepository readingRepository, SupervisorRepository supervisorRepository) {
+    public DataInit(UserRepository userRepository, PatientRepository patientRepository,
+                    ReadingRepository readingRepository, SupervisorRepository supervisorRepository, ReferralRepository referralRepository) {
         this.userRepository = userRepository;
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
         this.supervisorRepository = supervisorRepository;
+        this.referralRepository = referralRepository;
     }
 
     @Override
