@@ -87,7 +87,7 @@
           <div class="col-sm-3">
             <form action="/profile/${pageContext.request.userPrincipal.name}/edit" method="post">
               <input type="hidden" name="userName" value=${UserId}>
-              <button type="submit" value="submit">
+              <button type="submit" value="submit" class="btn-edit">
                 Edit
               </button>
               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
