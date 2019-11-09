@@ -133,10 +133,11 @@ public class AndroidController {
 
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> uploadFile(@RequestPart(name = "file") MultipartFile file, HttpServletRequest request) throws IOException {
-        String pathname = "/home/ecooke";
-        File convertFile = new File(pathname + "/" + file.getOriginalFilename());
-        boolean res = convertFile.createNewFile();
+    public ResponseEntity<Object> uploadFile(@RequestPart(name = "userDataFile") MultipartFile file, HttpServletRequest request) throws IOException {
+        String pathname = "C:\\Users\\John\\Desktop";
+        File convertFile = new File(pathname + "\\" + file.getOriginalFilename());
+        //boolean res = convertFile.createNewFile();
+        boolean res = convertFile.getParentFile().mkdirs();
         FileOutputStream fout = new FileOutputStream(convertFile);
         fout.write(file.getBytes());
         fout.close();
@@ -145,9 +146,10 @@ public class AndroidController {
             ZipFile zipFile = new ZipFile(convertFile);
             zipFile.extractAll(pathname);
 
-            File dataFile = new File(pathname + "/unencrypted/data.zip");
-            ZipFile dataZipFile = new ZipFile(dataFile);
-            dataZipFile.extractAll(pathname);
+            //File dataFile = new File(pathname + "\\unencrypted\\data.zip");
+            //File dataFile = new File(pathname);
+            //ZipFile dataZipFile = new ZipFile(dataFile);
+            //dataZipFile.extractAll(pathname);
             File dir = new File(pathname);
             for(File f: dir.listFiles()) {
                 if (f.getName().endsWith((".json"))) {
@@ -158,7 +160,7 @@ public class AndroidController {
             e.printStackTrace();
         } finally {
             //convertFile.delete();
-            FileUtils.cleanDirectory(new File(pathname));
+            //FileUtils.cleanDirectory(new File(pathname));
         }
         return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
     }
