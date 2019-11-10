@@ -134,8 +134,8 @@ public class AndroidController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> uploadFile(@RequestPart(name = "userDataFile") MultipartFile file, HttpServletRequest request) throws IOException {
-        String pathname = "C:\\Users\\John\\Desktop";
-        File convertFile = new File(pathname + "\\" + file.getOriginalFilename());
+        String pathname = "/readings";
+        File convertFile = new File(pathname + "/" + file.getOriginalFilename());
         //boolean res = convertFile.createNewFile();
         boolean res = convertFile.getParentFile().mkdirs();
         FileOutputStream fout = new FileOutputStream(convertFile);
@@ -160,7 +160,7 @@ public class AndroidController {
             e.printStackTrace();
         } finally {
             //convertFile.delete();
-            //FileUtils.cleanDirectory(new File(pathname));
+            FileUtils.cleanDirectory(new File(pathname));
         }
         return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
     }
