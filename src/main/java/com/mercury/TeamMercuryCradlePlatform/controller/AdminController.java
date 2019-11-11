@@ -66,7 +66,7 @@ public class AdminController {
 
         if(userRepository.findByEmail(user.getEmail()) != null) {
             System.out.println("user repository is called");
-            return new ModelAndView("admin/registration").addObject("message", "ok");
+            return new ModelAndView("admin/registration").addObject("message", "error");
         } else {
                 User newUser = new User(user, password);
                 newUser.setEncodedPassword(newUser.getPassword());
