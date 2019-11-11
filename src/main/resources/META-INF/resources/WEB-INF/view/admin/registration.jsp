@@ -30,7 +30,7 @@
     ></script>
     <script type="text/javascript">
         window.onload = function() {
-            if("${message}" == "error") {
+            if("${status}" == "error") {
                 toastr.error("This email already in use");
             }
         };
