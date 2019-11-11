@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping("/admin")
@@ -65,9 +66,34 @@ public class AdminController {
     public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password,
             @RequestParam String roles) {
 
+        String message = "";
+        if (user.getFirstName() == "") {
+            message += "First name field is empty </br>";
+        }
+        if (user.getLastName() == "") {
+            message += "Last name field is empty </br>";
+        }
+        if (password == "") {
+            message += "Password field is empty </br>";
+        }
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            return new ModelAndView("admin/registration").addObject("status", "error");
+            message += "This email is already in use </br>";
+        }
+        if (user.getEmail() == "") {
+            message += "Email field is empty </br>";
         } else {
+            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                    + "A-Z]{2,7}$";
+            Pattern pat = Pattern.compile(emailRegex);
+            if (!pat.matcher(user.getEmail()).matches()) {
+                message += "Email is invalid </br>";
+            }
+        }
+        if (user.getPhoneNumber() == "") {
+            message += "Phone number field is empty </br>";
+        }
+
+        if (message == "") {
             User newUser = new User(user, password);
             newUser.setEncodedPassword(newUser.getPassword());
             newUser.setRole(roles);
@@ -79,7 +105,10 @@ public class AdminController {
                     this.userRepository.findAll());
             modelAndView.addObject("user", user);
             return modelAndView;
+        } else {
+            return new ModelAndView("admin/registration").addObject("status", "error").addObject("message", message);
         }
+
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
