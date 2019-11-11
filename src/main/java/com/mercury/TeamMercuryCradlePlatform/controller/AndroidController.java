@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.List;
@@ -134,7 +135,8 @@ public class AndroidController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> uploadFile(@RequestPart(name = "userDataFile") MultipartFile file, HttpServletRequest request) throws IOException {
-        String pathname = "C:\\Users\\John\\Desktop";
+        Path path = Paths.get(".");
+        String pathname = path.toAbsolutePath().toString() + "\\reading";
         File convertFile = new File(pathname + "\\" + file.getOriginalFilename());
         //boolean res = convertFile.createNewFile();
         boolean res = convertFile.getParentFile().mkdirs();
