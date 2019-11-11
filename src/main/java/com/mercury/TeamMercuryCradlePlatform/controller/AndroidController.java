@@ -162,7 +162,7 @@ public class AndroidController {
             e.printStackTrace();
         } finally {
             //convertFile.delete();
-            //FileUtils.cleanDirectory(new File(pathname));
+            FileUtils.cleanDirectory(new File(pathname));
         }
         return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
     }
