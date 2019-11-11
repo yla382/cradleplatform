@@ -58,9 +58,9 @@ public class DataInit implements CommandLineRunner {
         Patient patient7 = new Patient("80998173275","Dembe", "Onek", "Uganda", "Kampala", 15);
         Patient patient8 = new Patient("12552771169","Kizza", "Alupo", "Uganda", "Rakai", 76);
         Patient patient9 = new Patient("56782458742","Jennifer", "Eriyo", "Uganda", "Tororo", 56);
-        Patient patient10 = new Patient("1009027781","Jeje", "Kony", "Uganda", "Sironko", 26);
-        Patient patient11 = new Patient("6369428211","Kahinda", "Otafiire", "Uganda", "Lira", 26);
-        Patient patient12 = new Patient("7059224477","Kamanda", "Kauzya", "Uganda", "Lira", 24);
+        Patient patient10 = new Patient("10090277812","Jeje", "Kony", "Uganda", "Sironko", 26);
+        Patient patient11 = new Patient("63694282111","Kahinda", "Otafiire", "Uganda", "Lira", 26);
+        Patient patient12 = new Patient("70592244776","Kamanda", "Kauzya", "Uganda", "Lira", 24);
 
         List<Patient> patients = Arrays.asList(patient1, patient2, patient3, patient4, patient5, patient6, patient7,
                 patient8, patient9, patient10, patient11, patient12);
