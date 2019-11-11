@@ -85,6 +85,8 @@
 
 .form-check-label {
   margin-right: 15px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .round label:after {
