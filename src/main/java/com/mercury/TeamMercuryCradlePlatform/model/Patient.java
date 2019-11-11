@@ -35,12 +35,13 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String attestationID, String firstName, String lastName, String country, String location) {
+    public Patient(String attestationID, String firstName, String lastName, String country, String location, Integer ageYears) {
         setAttestationID(attestationID);
         setFirstName(firstName);
         setLastName(lastName);
         setCountry(country);
         setLocation(location);
+        setAgeYears(ageYears);
     }
 
     // TODO: dont really need this, delete it later
