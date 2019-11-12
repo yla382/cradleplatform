@@ -61,7 +61,7 @@ public class StatsCollector {
             referralList.add(this.referralRepository.findNumberOfReferralsPerMonth(startDate, endDate));
             complReferralList.add(this.referralRepository.findNumberOfReferralsPerMonth(startDate, endDate));
             pregnantList.add(this.readingRepository.findNumberOfPregnantWomenPerMonth(startDate, endDate));
-            pregnantHelpedList.add(this.readingRepository.findNumberOfReferredPregnantWomenPerMonth(startDate, endDate));
+            pregnantHelpedList.add(this.referralRepository.findNumberOfReferredPregnantWomenPerMonth(startDate, endDate));
         }
 
         return statsCollection;

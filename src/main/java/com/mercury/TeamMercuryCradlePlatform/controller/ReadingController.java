@@ -54,7 +54,8 @@ public class ReadingController {
 
     // Save the reading to the db
     @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
-    public ModelAndView saveReadingToDB(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken, @RequestParam(value = "gestationalAgeUnit") String value) {
+    public ModelAndView saveReadingToDB(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken,
+                                        @RequestParam(value = "gestationalAgeUnit") String value, @RequestParam(value = "saveByReferral") String saveByRef) {
 
         // Need to manually set these fields again otherwise it saves it as null in db
         reading.gestationalAgeUnit = GestationalAgeUnit.valueOf(value);
@@ -72,6 +73,9 @@ public class ReadingController {
             readingRepository.save(reading);
         }
 
+        if(saveByRef.equalsIgnoreCase("true")){
+            return new ModelAndView("/referral/addReferral");
+        }
         return setUpAllReadingModel();
     }
 
