@@ -1,7 +1,9 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
+import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Referral;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
+import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReferralRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,12 @@ public class ReferralController {
     @Autowired
     private ReferralRepository referralRepository;
     private ReadingRepository readingRepository;
+    private PatientRepository patientRepository;
 
-    public ReferralController(ReferralRepository referralRepository, ReadingRepository readingRepository) {
+    public ReferralController(ReferralRepository referralRepository, ReadingRepository readingRepository, PatientRepository patientRepository) {
         this.referralRepository = referralRepository;
         this.readingRepository = readingRepository;
+        this.patientRepository = patientRepository;
     }
 
     @RequestMapping(value = "/addReferral", method = RequestMethod.GET)
@@ -39,7 +43,10 @@ public class ReferralController {
         ModelAndView modelAndView = new ModelAndView("/referral/confirmReferral");
         referral.setDateTimeSent(LocalDate.now());
         Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(referral.getFirstName(), referral.getLastName(), referral.getAgeYears());
+
         referral.setReading(reading);
+        referral.setPatient(patient);
         modelAndView.addObject("referral", referral);
         return modelAndView;
     }
@@ -57,7 +64,9 @@ public class ReferralController {
 
         referral.setDateTimeSent(LocalDate.now());
         Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(referral.getFirstName(), referral.getLastName(), referral.getAgeYears());
         referral.setReading(reading);
+        referral.setPatient(patient);
         referralRepository.save(referral);
 
         List<Referral> referralList = this.referralRepository.findAll();
@@ -75,6 +84,18 @@ public class ReferralController {
         List<Referral> referralList = this.referralRepository.findAll();
         ModelAndView modelAndView = new ModelAndView("/referral/referralList");
         modelAndView.addObject("referralList", referralList);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    public ModelAndView getReferralInfoById(@PathVariable Long id) {
+        Referral referral = this.referralRepository.findByReferralId(id);
+        Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(referral.getFirstName(), referral.getLastName(), referral.getAgeYears());
+        ModelAndView modelAndView = new ModelAndView("/referral/referralInfo");
+        modelAndView.addObject("referral", referral);
+        modelAndView.addObject("reading", reading);
+        modelAndView.addObject("patient", patient);
         return modelAndView;
     }
 
