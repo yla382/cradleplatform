@@ -2,6 +2,8 @@ package com.mercury.TeamMercuryCradlePlatform;
 
 public class Strings{
 
+    public static final String ADMIN_EMAIL = "admin@test.com";
+
     public static final String ANALYSIS_NONE = "No vital signs entered";
     public static final String ANALYSIS_GREEN = "Patient is likely healthy";
     public static final String ANALYSIS_YELLOW_UP = "Raised BP" ;

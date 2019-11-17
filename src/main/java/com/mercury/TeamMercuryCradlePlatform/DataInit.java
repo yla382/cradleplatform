@@ -2,7 +2,6 @@ package com.mercury.TeamMercuryCradlePlatform;
 
 import com.mercury.TeamMercuryCradlePlatform.model.*;
 import com.mercury.TeamMercuryCradlePlatform.repository.*;
-import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -42,17 +42,19 @@ public class VHTController {
     @RequestMapping(value = "/vht/genreport", method = RequestMethod.GET)
     public ModelAndView genReport() {
         ModelAndView reportDataSets = new ModelAndView("/vht/genreport");
-        ArrayList<ArrayList<Integer>> statsCollection =  statsCollector.collectYearlyStats();
-        ArrayList<Integer> readingList = statsCollection.get(0);
-        reportDataSets.addObject("readingList", readingList);
-        ArrayList<Integer> referralList = statsCollection.get(1);
-        reportDataSets.addObject("referralList", referralList);
-        ArrayList<Integer> complReferralList = statsCollection.get(2);
-        reportDataSets.addObject("complReferralList", complReferralList);
-        ArrayList<Integer> pregnantList = statsCollection.get(3);
-        reportDataSets.addObject("pregnantList", pregnantList);
-        ArrayList<Integer> pregnantHelpedList = statsCollection.get(4);
-        reportDataSets.addObject("pregnantHelpedList", pregnantHelpedList);
+        ArrayList<ArrayList<Integer>> statsCollections =  statsCollector.collectYearlyStats();
+
+        String[] dataCollectionNames = {"readingList", "referralList", "complReferralList", "pregnantList",
+                "pregnantHelpedList", "green", "yellowUp", "yellowDown", "redUp", "redDown"};
+
+        if (statsCollections.size() != dataCollectionNames.length) {
+            System.out.println("INCONSISTENCY IN DATA!");
+            return  reportDataSets;
+        }
+
+        for (int i = 0; i < statsCollections.size(); i++) {
+            reportDataSets.addObject(dataCollectionNames[i], statsCollections.get(i));
+        }
 
         return reportDataSets;
     }
