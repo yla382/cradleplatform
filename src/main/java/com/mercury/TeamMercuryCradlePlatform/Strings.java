@@ -28,6 +28,11 @@ public class Strings{
     public static final String GESTATION_UNIT_MONTHS = "Months";
     public static final String GESTATION_UNIT_NOT_PREGNANT = "Not Pregnant";
 
+    public static final String MONTH_DIGIT_ZERO = "0";
+    public static final String FIRST_OF_JANUARY = "-01-01";
+    public static final String FIRST_DAY_OF_MONTH = "-01";
+    public static final String MONTH_DELIMITER = "-";
+
 //    public static final String VHT = "VHT";
 //    public static final String HEALTH_WORKER = "HEALTH_WORKER";
 //    public static final String ADMIN = "ADMIN";
