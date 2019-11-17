@@ -1,20 +1,13 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
-import com.mercury.TeamMercuryCradlePlatform.model.GestationalAgeUnit;
-import com.mercury.TeamMercuryCradlePlatform.model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.model.*;
 import com.mercury.TeamMercuryCradlePlatform.repository.*;
-import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.*;
 import java.time.LocalDate;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,16 +20,18 @@ public class DataInit implements CommandLineRunner {
     private ReadingRepository readingRepository;
     private SupervisorRepository supervisorRepository;
     private ReferralRepository referralRepository;
+    private AnalysisRepository analysisRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public DataInit(UserRepository userRepository, PatientRepository patientRepository,
                     ReadingRepository readingRepository, SupervisorRepository supervisorRepository,
-                    ReferralRepository referralRepository) {
+                    ReferralRepository referralRepository, AnalysisRepository analysisRepository) {
         this.userRepository = userRepository;
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
         this.supervisorRepository = supervisorRepository;
         this.referralRepository = referralRepository;
+        this.analysisRepository = analysisRepository;
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -86,8 +81,20 @@ public class DataInit implements CommandLineRunner {
         patient1.addAllReadings(readings);
         readings.forEach(r -> r.setPatient(patient1));
 
+        Analysis analysis = new Analysis(reading);
+        Analysis analysis2 = new Analysis(reading2);
+        Analysis analysis3 = new Analysis(reading3);
+        Analysis analysis4 = new Analysis(reading4);
+
+        List<Analysis> analyses = Arrays.asList(analysis, analysis2, analysis3, analysis4);
+
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
         readingRepository.saveAll(readings);
+        analysisRepository.saveAll(analyses);
 
+        SupervisorPatientPair supervisorPatientPair1 = new SupervisorPatientPair("test@test.com", patient1.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair2 = new SupervisorPatientPair("test@test.com", patient2.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair3 = new SupervisorPatientPair("test@test.com", patient3.getPatientId().toString());
+        supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair1, supervisorPatientPair2, supervisorPatientPair3));
     }
 }

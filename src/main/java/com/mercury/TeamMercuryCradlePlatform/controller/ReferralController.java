@@ -54,10 +54,12 @@ public class ReferralController {
 
     @RequestMapping(value = "/referralSaved", method = RequestMethod.POST)
     public @ResponseBody ModelAndView saveReferral(Referral referral) {
-
         referral.setDateTimeSent(LocalDate.now());
-        Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
+        Reading reading = readingRepository.findTopByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPMOrderByDateTimeTakenDesc
+                (referral.getFirstName(), referral.getLastName(), referral.getAgeYears(),
+                        referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
         referral.setReading(reading);
+        referral.setIsPregnant(reading.getGestationalAgeInWeeksAndDays() != null);
         referralRepository.save(referral);
 
         List<Referral> referralList = this.referralRepository.findAll();
