@@ -459,4 +459,8 @@ public class Reading {
     public void setReferral(Referral referral) {
         this.referral = referral;
     }
+
+    public ZonedDateTime getDateTimeTaken() {
+        return dateTimeTaken;
+    }
 }

@@ -48,6 +48,11 @@ public class Referral {
         this.reading = reading;
     }
 
+    public void setIsPregnant(Boolean isPregnant) {
+        this.isPregnant = isPregnant;
+    }
+
+
     @Column(name = "bp_systolic")
     private Integer bpSystolic = 0;
 
@@ -101,6 +106,9 @@ public class Referral {
 
     @Column(name = "household_number")
     private Integer householdNumber = 0;
+
+    @Column(name = "isPregnant")
+    private Boolean isPregnant = true;
 
 
     public Referral() {
