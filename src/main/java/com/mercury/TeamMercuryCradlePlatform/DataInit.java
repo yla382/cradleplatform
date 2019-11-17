@@ -156,8 +156,17 @@ public class DataInit implements CommandLineRunner {
         Analysis analysis2 = new Analysis(reading2);
         Analysis analysis3 = new Analysis(reading3);
         Analysis analysis4 = new Analysis(reading4);
+        Analysis analysis5 = new Analysis(reading5);
+        Analysis analysis6 = new Analysis(reading6);
+        Analysis analysis7 = new Analysis(reading7);
+        Analysis analysis8 = new Analysis(reading8);
+        Analysis analysis9 = new Analysis(reading9);
+        Analysis analysis10 = new Analysis(reading10);
+        Analysis analysis11 = new Analysis(reading11);
+        Analysis analysis12 = new Analysis(reading12);
 
-        List<Analysis> analyses = Arrays.asList(analysis1, analysis2, analysis3, analysis4);
+        List<Analysis> analyses = Arrays.asList(analysis1, analysis2, analysis3, analysis4, analysis5, analysis6,
+                analysis7, analysis8, analysis9, analysis10, analysis11, analysis12);
 
         patientRepository.saveAll(patients);
 
@@ -170,9 +179,23 @@ public class DataInit implements CommandLineRunner {
 
         analysisRepository.saveAll(analyses);
 
+        // Check that every patient has his/her supervisor (the person who creates the first record of the patient)
         SupervisorPatientPair supervisorPatientPair1 = new SupervisorPatientPair("test@test.com", patient1.getPatientId().toString());
         SupervisorPatientPair supervisorPatientPair2 = new SupervisorPatientPair("test@test.com", patient2.getPatientId().toString());
         SupervisorPatientPair supervisorPatientPair3 = new SupervisorPatientPair("test@test.com", patient3.getPatientId().toString());
-        supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair1, supervisorPatientPair2, supervisorPatientPair3));
+        SupervisorPatientPair supervisorPatientPair4 = new SupervisorPatientPair("test@test.com", patient4.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair5 = new SupervisorPatientPair("test2@test.com", patient5.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair6 = new SupervisorPatientPair("test2@test.com", patient6.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair7 = new SupervisorPatientPair("test2@test.com", patient7.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair8 = new SupervisorPatientPair("test2@test.com", patient8.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair9 = new SupervisorPatientPair("test3@test.com", patient9.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair10 = new SupervisorPatientPair("test3@test.com", patient10.getPatientId().toString());
+        SupervisorPatientPair supervisorPatientPair11 = new SupervisorPatientPair("test3@test.com", patient11.getPatientId().toString());
+
+        supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair1, supervisorPatientPair2,
+                supervisorPatientPair3, supervisorPatientPair4));
+        supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair5, supervisorPatientPair6,
+                supervisorPatientPair7, supervisorPatientPair8));
+        supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair9, supervisorPatientPair10, supervisorPatientPair11));
     }
 }
