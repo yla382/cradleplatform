@@ -79,22 +79,12 @@ public class Referral {
     @Column(name = "age_years")
     private Integer ageYears;
 
-    public enum Sex {
-        FEMALE,
-        MALE
-    }
-
     @Column(name = "sex")
     private Sex sex = Sex.FEMALE;
 
     @Column(name = "zone_number")
     private Integer zoneNumber = 0;
 
-    @Column(name = "block_number")
-    private Integer blockNumber = 0;
-
-    @Column(name = "tank_number")
-    private Integer tankNumber = 0;
 
     @Column(name = "village_number")
     private Integer villageNumber = 0;
@@ -106,12 +96,16 @@ public class Referral {
     public Referral() {
     }
 
-    public Referral(String firstName, String lastName, Integer ageYears, String vhtName, String referredHealthCentre) {
+    public Referral(String firstName, String lastName, Integer ageYears, Sex sex, String vhtName, String referredHealthCentre, Integer bpSystolic, Integer bpDiastolic, Integer heartRateBPM) {
         this.referredHealthCentre = referredHealthCentre;
         this.vhtName = vhtName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.ageYears = ageYears;
+        this.sex = sex;
+        this.bpSystolic = bpSystolic;
+        this.bpDiastolic = bpDiastolic;
+        this.heartRateBPM = heartRateBPM;
     }
 
 
@@ -129,8 +123,6 @@ public class Referral {
                     Integer ageYears,
                     Sex sex,
                     Integer zoneNumber,
-                    Integer blockNumber,
-                    Integer tankNumber,
                     Integer villageNumber,
                     Integer householdNumber) {
         this.referredHealthCentre = referredHealthCentre;
@@ -147,8 +139,6 @@ public class Referral {
         this.ageYears = ageYears;
         this.sex = sex;
         this.zoneNumber = zoneNumber;
-        this.blockNumber = blockNumber;
-        this.tankNumber = tankNumber;
         this.villageNumber = villageNumber;
         this.householdNumber = householdNumber;
     }
@@ -273,22 +263,6 @@ public class Referral {
     public void setZoneNumber(Integer zoneNumber) {
         this.zoneNumber = zoneNumber;
 
-    }
-
-    public Integer getBlockNumber() {
-        return blockNumber;
-    }
-
-    public void setBlockNumber(Integer blockNumber) {
-        this.blockNumber = blockNumber;
-    }
-
-    public Integer getTankNumber() {
-        return tankNumber;
-    }
-
-    public void setTankNumber(Integer tankNumber) {
-        this.tankNumber = tankNumber;
     }
 
     public Integer getVillageNumber() {

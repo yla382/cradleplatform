@@ -1,9 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform;
 
-import com.mercury.TeamMercuryCradlePlatform.model.GestationalAgeUnit;
-import com.mercury.TeamMercuryCradlePlatform.model.Patient;
-import com.mercury.TeamMercuryCradlePlatform.model.Reading;
-import com.mercury.TeamMercuryCradlePlatform.model.User;
+import com.mercury.TeamMercuryCradlePlatform.model.*;
 import com.mercury.TeamMercuryCradlePlatform.repository.*;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -84,6 +81,10 @@ public class DataInit implements CommandLineRunner {
 
         patientRepository.saveAll(Arrays.asList(patient1, patient2, patient3));
         readingRepository.saveAll(readings);
+
+        Referral referral1 = new Referral("Ricky", "Owen", 29, Sex.MALE, "Sam", "ABC", 200, 150, 180);
+
+        referralRepository.save(referral1);
 
     }
 }

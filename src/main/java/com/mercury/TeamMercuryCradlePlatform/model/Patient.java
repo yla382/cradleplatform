@@ -149,5 +149,4 @@ public class Patient {
         this.referral = referral;
     }
 
-
 }

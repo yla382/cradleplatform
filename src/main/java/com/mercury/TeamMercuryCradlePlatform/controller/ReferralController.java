@@ -91,11 +91,9 @@ public class ReferralController {
     public ModelAndView getReferralInfoById(@PathVariable Long id) {
         Referral referral = this.referralRepository.findByReferralId(id);
         Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
-        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(referral.getFirstName(), referral.getLastName(), referral.getAgeYears());
         ModelAndView modelAndView = new ModelAndView("/referral/referralInfo");
         modelAndView.addObject("referral", referral);
         modelAndView.addObject("reading", reading);
-        modelAndView.addObject("patient", patient);
         return modelAndView;
     }
 

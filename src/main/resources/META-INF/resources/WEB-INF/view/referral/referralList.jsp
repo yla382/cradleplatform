@@ -50,7 +50,7 @@
                 <c:forEach items="<%=referralList%>" var = "referral">
                     <tr>
                         <td>${referral.referralId}</td>
-                        <td>${referral.firstName} ${referral.firstName} </td>
+                        <td>${referral.firstName} ${referral.lastName} </td>
                         <td>${referral.ageYears}</td>
                         <td>${referral.sex}</td>
                         <td>${referral.referredHealthCentre}</td>

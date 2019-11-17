@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Reading" %>
 <%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Patient" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,18 +24,12 @@
 <%
     Referral referral = (Referral)request.getAttribute("referral");
     Reading reading = (Reading)request.getAttribute("reading");
-    Patient patient = (Patient)request.getAttribute("patient");
 %>
 
 <body>
 <%@ include file="../navbar/navbar.jspf" %>
 <div class="container w-100 mt-4" >
 
-    <h2>Patient ID</h2>
-    <p><%=patient.getPatientId()%></p>
-
-    <h2>Reading ID</h2>
-    <p><%=reading.getReadingId()%></p>
 
     <h2>Personal Information</h2>
     <div class="container">
@@ -46,46 +41,84 @@
                 <p> <%= "Sex: " + referral.getSex()%></p>
             </div>
         </div>
-    </div>
-    <h2>Referred Health Centre</h2>
-    <div class="container">
         <div class="row">
             <div class="col-sm">
+                <h3>Referred Health Centre</h3>
                 <p> <%= "Date: " + referral.getDateTimeSent()%></p>
                 <p> <%= "VHT Name: " + referral.getVhtName()%></p>
                 <p> <%= "Referred Health Centre: " + referral.getReferredHealthCentre()%></p>
             </div>
         </div>
-    </div>
-
-    <h2>Address Information</h2>
-    <div class="container">
         <div class="row">
             <div class="col-sm">
+                <h3>Address Information</h3>
                 <p> <%= "Zone Number: " + referral.getZoneNumber()%></p>
-                <p> <%= "Block Number: " + referral.getBlockNumber()%></p>
-                <p> <%= "Tank Number: " + referral.getTankNumber()%></p>
                 <p> <%= "Village Number: " + referral.getVillageNumber()%></p>
                 <p> <%= "Household Number: " + referral.getHouseholdNumber()%></p>
             </div>
         </div>
     </div>
-    <h2>Blood Pressure and Heart Rate</h2>
+    <h2>Reading Information</h2>
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col">
+                <p> <%= "Reading ID: " + reading.getReadingId()%></p>
+                <p> <%= "Gestation Age: " + reading.getGestationWeekDaysString()%></p>
                 <p> <%= "BP: " + referral.getBpSystolic() + "/" + referral.getBpDiastolic()%></p>
                 <p> <%= "HR: " + referral.getHeartRateBPM() %></p>
             </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <img src="/images/<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>">
+                    </div>
+                    <div class="col">
+                        <c:if test="<%= ReadingAnalysis.analyze(reading).getArrowDirection() != null %>">
+                            <img src="/images/<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>">
+                        </c:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3> Symptoms</h3>
+                <p> <%= reading.getSymptomsString()%></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3> Time Taken</h3>
+                <p> <%= ReadingAnalysis.analyze(reading).getAnalysisText()%></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3> Advice</h3>
+                <p> <%=ReadingAnalysis.analyze(reading).getBriefText()%></p>
+            </div>
         </div>
     </div>
-
-    <h2>Reason of Referral</h2>
-    <p><%=referral.getReasonOfReferral()%></p>
-    <h2>Action Already Taken</h2>
-    <p> <%=referral.getActionAlreadyTaken()%></p>
-    <h2>Other Messages</h2>
-    <p> <%=referral.getOtherInformationMessage()%></p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Reason of Referral</h3>
+                <p><%=referral.getReasonOfReferral()%></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Action Already Taken</h3>
+                <p> <%=referral.getActionAlreadyTaken()%></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Other Messages</h3>
+                <p> <%=referral.getOtherInformationMessage()%></p>
+            </div>
+        </div>
+    </div>
 
 </div>
 </body>
