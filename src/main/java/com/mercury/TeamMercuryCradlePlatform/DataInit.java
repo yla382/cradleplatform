@@ -152,11 +152,12 @@ public class DataInit implements CommandLineRunner {
         readings10.forEach(r -> r.setPatient(patient10));
         readings11.forEach(r -> r.setPatient(patient11));
 
-        Analysis analysis = new Analysis(reading);
+        Analysis analysis1 = new Analysis(reading1);
         Analysis analysis2 = new Analysis(reading2);
         Analysis analysis3 = new Analysis(reading3);
         Analysis analysis4 = new Analysis(reading4);
 
+        List<Analysis> analyses = Arrays.asList(analysis1, analysis2, analysis3, analysis4);
 
         patientRepository.saveAll(patients);
 
@@ -166,6 +167,8 @@ public class DataInit implements CommandLineRunner {
         readingRepository.saveAll(readings8);
         readingRepository.saveAll(readings10);
         readingRepository.saveAll(readings11);
+
+        analysisRepository.saveAll(analyses);
 
         SupervisorPatientPair supervisorPatientPair1 = new SupervisorPatientPair("test@test.com", patient1.getPatientId().toString());
         SupervisorPatientPair supervisorPatientPair2 = new SupervisorPatientPair("test@test.com", patient2.getPatientId().toString());
