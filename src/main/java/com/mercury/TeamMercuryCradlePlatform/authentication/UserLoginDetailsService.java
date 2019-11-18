@@ -20,7 +20,6 @@ public class UserLoginDetailsService implements UserDetailsService {
         //User user = this.userRepository.findByUserId(Integer.valueOf(s));
         User user = this.userRepository.findByEmail(s);
         UserLogin userLogin = new UserLogin(user);
-
         return userLogin;
     }
 }
