@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Controller
@@ -41,10 +42,12 @@ public class ReferralController {
     @RequestMapping(value = "/confirmReferral", method = RequestMethod.POST)
     public @ResponseBody ModelAndView confirmReferralPage(Referral referral) {
         ModelAndView modelAndView = new ModelAndView("/referral/confirmReferral");
-        referral.setDateTimeSent(LocalDate.now());
+
         Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
         Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(referral.getFirstName(), referral.getLastName(), referral.getAgeYears());
-
+        if (referral.getDateTimeSent() == null) {
+            referral.setDateTimeSent(ZonedDateTime.now());
+        }
         referral.setReading(reading);
         referral.setPatient(patient);
         modelAndView.addObject("referral", referral);
@@ -62,11 +65,17 @@ public class ReferralController {
     @RequestMapping(value = "/referralSaved", method = RequestMethod.POST)
     public @ResponseBody ModelAndView saveReferral(Referral referral) {
 
-        referral.setDateTimeSent(LocalDate.now());
-        Reading reading = readingRepository.findReadingByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPM(referral.getFirstName(), referral.getLastName(), referral.getAgeYears(), referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
         Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(referral.getFirstName(), referral.getLastName(), referral.getAgeYears());
-        referral.setReading(reading);
         referral.setPatient(patient);
+
+        Reading reading = readingRepository.findTopByFirstNameAndLastNameAndAgeYearsAndBpSystolicAndBpDiastolicAndHeartRateBPMOrderByDateTimeTakenDesc
+                (referral.getFirstName(), referral.getLastName(), referral.getAgeYears(),
+                        referral.getBpSystolic(), referral.getBpDiastolic(), referral.getHeartRateBPM());
+        referral.setReading(reading);
+        if (referral.getDateTimeSent() == null) {
+            referral.setDateTimeSent(ZonedDateTime.now());
+        }
+        referral.setIsPregnant(reading.getGestationalAgeInWeeksAndDays() != null);
         referralRepository.save(referral);
 
         List<Referral> referralList = this.referralRepository.findAll();

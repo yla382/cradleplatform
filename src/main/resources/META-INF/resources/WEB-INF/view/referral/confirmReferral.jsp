@@ -57,7 +57,6 @@
             <div class="col-sm">
                 <p> <%= "Zone Number: " + referral.getZoneNumber()%></p>
                 <p> <%= "Village Number: " + referral.getVillageNumber()%></p>
-                <p> <%= "Household Number: " + referral.getHouseholdNumber()%></p>
             </div>
         </div>
     </div>
@@ -86,7 +85,6 @@
         <input type="hidden" name="sex" value="<%=referral.getSex()%>"/>
         <input type="hidden" name="zoneNumber" value="<%=referral.getZoneNumber()%>"/>
         <input type="hidden" name="villageNumber" value="<%=referral.getVillageNumber()%>"/>
-        <input type="hidden" name="householdNumber" value="<%=referral.getHouseholdNumber()%>"/>
         <input type="hidden" name="vhtName" value="<%=referral.getVhtName()%>"/>
         <input type="hidden" name="referredHealthCentre" value="<%=referral.getReferredHealthCentre()%>"/>
         <input type="hidden" name="bpSystolic" value="<%=referral.getBpSystolic()%>"/>

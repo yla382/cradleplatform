@@ -54,7 +54,6 @@
                 <h3>Address Information</h3>
                 <p> <%= "Zone Number: " + referral.getZoneNumber()%></p>
                 <p> <%= "Village Number: " + referral.getVillageNumber()%></p>
-                <p> <%= "Household Number: " + referral.getHouseholdNumber()%></p>
             </div>
         </div>
     </div>

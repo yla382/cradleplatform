@@ -83,10 +83,6 @@
                             <label for="villageNumber">Village Number: </label>
                             <input type="number" class="form-control" id="villageNumber" name="villageNumber" required="required" pattern="[0-9]{1,5}">
                         </div>
-                        <div class="col">
-                            <label for="householdNumber">Household Number: </label>
-                            <input type="number" class="form-control" id="householdNumber" name="householdNumber" required="required" pattern="[0-9]{1,5}">
-                        </div>
                     </div>
                 </div>
                 <div class="form-group">
