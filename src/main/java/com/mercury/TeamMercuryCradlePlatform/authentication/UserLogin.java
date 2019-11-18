@@ -33,6 +33,10 @@ public class UserLogin implements UserDetails {
 
     @Override
     public String getUsername() {
+        return this.user.getUserId().toString();
+    }
+
+    public String getUserEmail() {
         return this.user.getEmail();
     }
 
