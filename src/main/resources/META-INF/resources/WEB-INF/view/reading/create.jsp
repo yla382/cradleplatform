@@ -32,7 +32,9 @@
                     <div class="row">
                         <div class="col">
                             <label for="readingId">ID number</label>
-                            <input required type="text" class="form-control" id="readingId" name="readingId">
+                            <input required type="text" pattern="[0-9]{1,11}"
+                                   required title="Please enter an ID of 1 to 11 digits long" maxlength="11"
+                                   class="form-control" id="readingId" name="readingId">
                         </div>
                         <div class="col">
                             <label for="firstName">First Name</label>
