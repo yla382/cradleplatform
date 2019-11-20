@@ -45,47 +45,17 @@ public class UserController {
     @PostMapping("/signup")
     public User addNewUser(@RequestBody User newUser) {
 
-        // Check it:
-//        if (newUser.getEmail() == null || newUser.getEmail().isEmpty()) {
-//            throw new IllegalArgumentException();
-//        }
-//        if (newUser.getFirstName() == null || newUser.getFirstName().isEmpty()) {
-//            throw new IllegalArgumentException();
-//        }
-//        if (newUser.getLastName() == null || newUser.getLastName().isEmpty()) {
-//            throw new IllegalArgumentException();
-//        }
-//        if (newUser.getPassword() == null || newUser.getPassword().isEmpty()) {
-//            throw new IllegalArgumentException();
-//        }
-//
-//        if (newUser.getPhoneNumber() == null || newUser.getPhoneNumber().isEmpty()) {
-//            throw new IllegalArgumentException();
-//        }
-
         if (userRepository.existsByEmail(newUser.getEmail())) {
             System.out.println("User already exists error");
             throw new IllegalArgumentException();
         }
 
+        newUser.setUserId(-1);
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
 
         // Add it to repository, returning what is actually created in DB
         System.out.println("adding user:\n" + newUser.toString());
         return userRepository.save(newUser);
-    }
-
-
-    // ---------------------------------------
-    //    Retrieve user by email
-    // ---------------------------------------
-    @GetMapping("/byEmail")
-    public User userByEmail(
-            @RequestHeader(value = "apiKey", defaultValue = "") String apiKey,
-            @RequestParam("email") String email
-    ) {
-
-        return null;
     }
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
