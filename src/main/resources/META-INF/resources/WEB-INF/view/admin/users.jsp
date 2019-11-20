@@ -64,7 +64,7 @@
                       'popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,' +
                       'location=no,directories=no, status=yes');" class="glyphicon glyphicon-envelope table-icon"></a>
                               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-                      <a href="/admin/users/contact?userId=${user.userId}&name=${user.firstName} + ${user.lastName}" class="glyphicon glyphicon-envelope table-icon"></a>
+                      <a href="/admin/users/contact?userId=${user.userId}&name=${user.firstName} + ${user.lastName}" class="glyphicon glyphicon-envelope table-icon" title="Contact person"></a>
                       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </td>
                     <td>
@@ -74,7 +74,7 @@
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                         -->
-                        <a href="${pageContext.request.contextPath}/admin/users/${user.userId}" class="glyphicon glyphicon-pencil table-icon"></a>
+                        <a href="${pageContext.request.contextPath}/admin/users/${user.userId}" class="glyphicon glyphicon-pencil table-icon" title="Edit"></a>
                     </td>
 
                 </tr>
