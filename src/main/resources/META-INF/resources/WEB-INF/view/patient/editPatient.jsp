@@ -33,7 +33,7 @@
             </label>
 
             <div class="form-group row">
-                    <label for="attestationID" class="col-md-4 col-form-label text-md-right edit-users-label">ATTESTATION ID: </label>
+                    <label for="attestationID" class="col-md-4 col-form-label text-md-right edit-users-label">ATTESTATION ID</label>
                     <div class ="col-md-6">
                     <input required type="text" pattern="NA|[0-9]{11,11}" required title="Please enter a 11 number attestation ID or enter 'NA'" maxlength="11"
                            class="edit-field" id="attestationID" name="attestationID" value=<%= patient.getAttestationID()%>>
