@@ -46,7 +46,7 @@
                     <tbody>
                     <c:forEach items="<%=referralList%>" var = "referral">
                         <tr>
-                            <td>${referral.referralId}</td>
+                            <td class="table-row-id">${referral.referralId}</td>
                             <td>${referral.firstName} ${referral.lastName} </td>
                             <td>${referral.ageYears}</td>
                             <td>${referral.sex}</td>
