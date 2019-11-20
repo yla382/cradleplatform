@@ -10,6 +10,7 @@
     <title>ReferralList</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="/css/patient.css" />
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -21,6 +22,7 @@
 
 <%
     List<Referral> referralList = (List<Referral>)request.getAttribute("referralList");
+    Integer buttonCounter = 0;
 %>
 
 <body>
@@ -55,7 +57,7 @@
                 <c:forEach items="<%=referralList%>" var = "referral">
                     <tr>
                         <td>${referral.referralId}</td>
-                        <td>${referral.firstName} ${referral.firstName} </td>
+                        <td>${referral.firstName} ${referral.lastName} </td>
                         <td>${referral.ageYears}</td>
                         <td>${referral.zoneNumber}</td>
                         <td>${referral.blockNumber}</td>
@@ -69,12 +71,17 @@
     <%--                            <button type="submit" class="btn btn-secondary" name="info">Info</button>--%>
     <%--                        </form>--%>
                         </td>
+                        <%if (!referralList.get(buttonCounter++).getIsPregnant()) {%>
                         <td>
-                            <form action="${pageContext.request.contextPath}/referral/close/${referral.referralId}" method="post">
-                                <button type="submit" class="btn btn-secondary" name="delete" onclick="return confirm('Do you want to close this referral?');">Close</button>
+                            <form action="${pageContext.request.contextPath}/assessment/addAssessment/${referral.referralId}" method="post">
+                                <button type="submit" class="btn-generic" name="delete" onclick="return confirm('Do you want to close this referral?');">Close</button>
                             </form>
                         </td>
                     </tr>
+                    <%} else {%>
+                    <td>
+                    </td>
+                    <%}  %>
                 </c:forEach>
                 </tbody>
                 </table>

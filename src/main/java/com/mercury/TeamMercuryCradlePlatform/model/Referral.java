@@ -84,11 +84,6 @@ public class Referral {
     @Column(name = "age_years")
     private Integer ageYears;
 
-    public enum Sex {
-        FEMALE,
-        MALE
-    }
-
     @Column(name = "sex")
     private Sex sex = Sex.FEMALE;
 
@@ -313,5 +308,9 @@ public class Referral {
 
     public void setHouseholdNumber(Integer householdNumber) {
         this.householdNumber = householdNumber;
+    }
+
+    public Boolean getIsPregnant() {
+        return isPregnant;
     }
 }

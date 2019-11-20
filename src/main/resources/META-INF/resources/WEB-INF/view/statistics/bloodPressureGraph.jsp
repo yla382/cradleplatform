@@ -59,6 +59,9 @@
             <div class="summary-container">
                 <canvas id="statusChart"></canvas>
             </div>
+            <div class="summary-container">
+                <canvas id="medicationChart"></canvas>
+            </div>
         </div>
     </div>
 </div>
@@ -139,6 +142,24 @@
                                 "rgb(255, 255, 0)",
                                 "rgb(255, 99, 132)"
                             ]}]
+                }}
+    );
+
+
+    new Chart(document.getElementById("medicationChart"),
+        {
+            "type":"doughnut",
+            "data":
+                {
+                    "labels":["Green","Yellow", "Red"],
+                    "datasets":[{
+                        "label":"Medication",
+                        "data":
+                            [
+                                "<c:out value='<%=data.get(0)%>'/>",
+                                "<c:out value='<%=data.get(1)%>'/>",
+                                "<c:out value='<%=data.get(2)%>'/>"
+                            ] }]
                 }}
     );
 

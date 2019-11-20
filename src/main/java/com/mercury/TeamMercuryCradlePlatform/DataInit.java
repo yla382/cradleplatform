@@ -8,7 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -197,5 +196,15 @@ public class DataInit implements CommandLineRunner {
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair5, supervisorPatientPair6,
                 supervisorPatientPair7, supervisorPatientPair8));
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair9, supervisorPatientPair10, supervisorPatientPair11));
+
+        Referral referral = new Referral("UgandaHealthFacility", LocalDate.of( 2019,4,5),
+                "Yoon Lee", "Headache and Blurred vision", "Measured blood pressure",
+                "Referred to local hospital", 130, 100, 90, "Abbo",
+                "Kakooza", 29, Sex.OTHER, 1, 2, 3, 4, 5);
+
+        referral.setReading(reading1);
+        referral.setIsPregnant(reading1.getGestationalAgeInWeeksAndDays() != null);
+
+        referralRepository.save(referral);
     }
 }

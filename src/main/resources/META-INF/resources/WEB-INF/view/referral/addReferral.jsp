@@ -57,6 +57,7 @@
                     <select class="form-control" id="sex" name="sex">
                         <option value="FEMALE">FEMALE</option>
                         <option value="MALE">MALE</option>
+                        <option value="OTHER">OTHER</option>
                     </select>
                 </div>
 
