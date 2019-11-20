@@ -178,6 +178,21 @@ public class DataInit implements CommandLineRunner {
 
         analysisRepository.saveAll(analyses);
 
+        Referral referral1 = new Referral("Achen", "Kakooza", 36,
+                Sex.FEMALE, "Sam", "Lira Health Centre", 178, 150, 127,
+                ZonedDateTime.of(LocalDate.of( 2019,8,2), LocalTime.of(10,23), ZoneId.systemDefault()));
+
+        Referral referral2 = new Referral("Kizza", "Alupo", 76,
+                Sex.FEMALE, "Dembe", "Rakai Health Centre", 170, 127, 139,
+                ZonedDateTime.of(LocalDate.of( 2019,6,1), LocalTime.of(4,0), ZoneId.systemDefault()));
+
+        Referral referral3 = new Referral("Kahinda", "Otafiire", 26,
+                Sex.FEMALE, "Sam", "Lira Health Centre", 180, 130, 98,
+                ZonedDateTime.of(LocalDate.of( 2019,1,12), LocalTime.of(17,49), ZoneId.systemDefault()));
+
+        List<Referral> referrals = Arrays.asList(referral1,referral2, referral3);
+        referralRepository.saveAll(referrals);
+
         // Check that every patient has his/her supervisor (the person who creates the first record of the patient)
         SupervisorPatientPair supervisorPatientPair1 = new SupervisorPatientPair("test@test.com", patient1.getPatientId().toString());
         SupervisorPatientPair supervisorPatientPair2 = new SupervisorPatientPair("test@test.com", patient2.getPatientId().toString());
@@ -196,15 +211,5 @@ public class DataInit implements CommandLineRunner {
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair5, supervisorPatientPair6,
                 supervisorPatientPair7, supervisorPatientPair8));
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair9, supervisorPatientPair10, supervisorPatientPair11));
-
-        Referral referral = new Referral("UgandaHealthFacility", LocalDate.of( 2019,4,5),
-                "Yoon Lee", "Headache and Blurred vision", "Measured blood pressure",
-                "Referred to local hospital", 130, 100, 90, "Abbo",
-                "Kakooza", 29, Sex.OTHER, 1, 2, 3, 4, 5);
-
-        referral.setReading(reading1);
-        referral.setIsPregnant(reading1.getGestationalAgeInWeeksAndDays() != null);
-
-        referralRepository.save(referral);
     }
 }
