@@ -37,13 +37,13 @@
                     <div class="row">
                         <div class="col">
                             <label for="referredHealthCentre">Health Centre referred to: </label>
-                            <input type="text" class="form-control" id="referredHealthCentre" name="referredHealthCentre"><br>
+                            <input required type="text" class="form-control" id="referredHealthCentre" name="referredHealthCentre"><br>
                         </div>
 
                         <%--vht--%>
                         <div class="col">
                             <label for="vhtName">Name of VHT: </label>
-                            <input type="text" class="form-control" id="vhtName" name="vhtName"><br>
+                            <input required type="text" class="form-control" id="vhtName" name="vhtName"><br>
                         </div>
                     </div>
                 </div>
@@ -53,15 +53,15 @@
                     <div class="row">
                         <div class="col">
                             <label for="firstName">First Name: </label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" value="<%=firstName%>"><br>
+                            <input required type="text" class="form-control" id="firstName" name="firstName" value="<%=firstName%>"><br>
                         </div>
                         <div class="col">
                             <label for="lastName">Last Name: </label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" value="<%=lastName%>"><br>
+                            <input required type="text" class="form-control" id="lastName" name="lastName" value="<%=lastName%>"><br>
                         </div>
                         <div class="col">
                             <label for="ageYears">Age: </label>
-                            <input type="number" class="form-control" id="ageYears" name="ageYears" value="<%=ageYears%>"><br>
+                            <input required type="number" class="form-control" id="ageYears" name="ageYears" value="<%=ageYears%>"><br>
                         </div>
                         <div class="col">
                             <label for="sex">Sex: </label>
@@ -109,17 +109,17 @@
                 <%--referral reason--%>
                 <div class="form-group">
                     <label for="reasonOfReferral">I have referred to you this patient for this following reasons: </label>
-                    <input type="text" class="form-control" id="reasonOfReferral" name="reasonOfReferral"><br>
+                    <input required type="text" class="form-control" id="reasonOfReferral" name="reasonOfReferral"><br>
                 </div>
                 <%--action taken--%>
                 <div class="form-group">
                     <label for="actionAlreadyTaken">Action already taken: </label>
-                    <input type="text" class="form-control" id="actionAlreadyTaken" name="actionAlreadyTaken"><br>
+                    <input required type="text" class="form-control" id="actionAlreadyTaken" name="actionAlreadyTaken"><br>
                 </div>
                 <%--other message--%>
                 <div class="form-group">
                     <label for="otherInfoMessage">Other Information and Messages: </label>
-                    <input type="text" class="form-control" id="otherInfoMessage" name="otherInfoMessage"><br>
+                    <input required type="text" class="form-control" id="otherInfoMessage" name="otherInfoMessage"><br>
                 </div>
 
                 <button type="submit" value="Submit"> Submit </button>
