@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <form action="${pageContext.request.contextPath}/referral/close/${referral.referralId}" method="post">
-                                    <button type="submit" class="btn-no-style glyphicon glyphicon-trash table-icon" name="delete" title="Delete" onclick="return confirm('Do you want to close this referral?');"></button>
+                                    <button type="submit" class="btn-no-style glyphicon glyphicon-trash table-icon" name="delete" title="Delete" onclick="return confirm('Do you want to delete this referral?');"></button>
                                 </form>
                             </td>
         

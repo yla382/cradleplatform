@@ -66,6 +66,11 @@
   font-size: 20px;
 }
 
+.btn-save:hover {
+  background-color: rgb(36, 155, 135);
+  cursor: pointer;
+}
+
 .round {
   position: relative;
   margin-left: 15px;

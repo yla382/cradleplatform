@@ -22,6 +22,7 @@
 .table-icon:hover {
   text-decoration: none;
   cursor: pointer;
+  color: rgb(14, 177, 136) !important;
 }
 
 .table-row-id {

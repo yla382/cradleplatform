@@ -131,7 +131,7 @@
                                     Status
                                 </div>
                                 <div class="form-group row">
-                                        <div class="col-sm-3" style="padding-top: 30px">
+                                        <div class="col-sm-3" style="padding-top: 30px; margin-right: 10px;">
                                                 <img src="/images/<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>">
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 30px">
