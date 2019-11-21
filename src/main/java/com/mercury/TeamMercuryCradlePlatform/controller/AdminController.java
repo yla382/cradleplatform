@@ -65,19 +65,20 @@ public class AdminController {
             @RequestParam String roles) {
 
         if(userRepository.findByEmail(user.getEmail()) != null) {
-            System.out.println("user repository is called");
+            // Display error to user because email already in use
             return new ModelAndView("admin/registration").addObject("message", "error");
         } else {
-                User newUser = new User(user, password);
-                newUser.setEncodedPassword(newUser.getPassword());
-                newUser.setRole(roles);
+            // Create new user
+            User newUser = new User(user, password);
+            newUser.setEncodedPassword(newUser.getPassword());
+            newUser.setRole(roles);
 
-                userRepository.save(newUser);
+            userRepository.save(newUser);
 
-                emailAdmin.sendRegistrationEmail(password, newUser);
-                ModelAndView modelAndView = new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
-                modelAndView.addObject("user", user);
-                return modelAndView;
+            emailAdmin.sendRegistrationEmail(password, newUser);
+            ModelAndView modelAndView = new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+            modelAndView.addObject("user", user);
+            return modelAndView;
         }
     }
 
