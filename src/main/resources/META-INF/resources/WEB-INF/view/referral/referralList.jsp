@@ -65,12 +65,12 @@
                         <%if (!referralList.get(buttonCounter++).getIsAssessed()) {%>
                         <td>
                             <form action="${pageContext.request.contextPath}/assessment/addAssessment/${referral.referralId}" method="get">
-                                <button type="submit" class="btn-generic small" name="close" onclick="return confirm('Do you want to close this referral?');">Close</button>
+                                <button type="submit" class="btn-generic small" name="close" onclick="return confirm('Do you want to finalize this referral?');">Finalize</button>
                             </form>
                         </td>
                     </tr>
                     <%} else {%>
-                        <td><button type="button" class="btn-generic small" style="background-color: darkred">Finalized</button></td>
+                        <td><button type="button" class="btn-generic small" style="background-color: darkred"> Closed </button></td>
                     <%}  %>
                 </c:forEach>
                 </tbody>
