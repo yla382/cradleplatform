@@ -29,9 +29,9 @@
             crossorigin="anonymous"
     ></script>
     <script type="text/javascript">
-        window.onload = function () {
-            if ("${message}" == "error") {
-                toastr.error("This email already in use");
+        window.onload = function() {
+            if("${status}" == "error") {
+                toastr.error("${message}");
             }
         };
     </script>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right register-users-label">ROLES</label>
+                            <label class="col-md-4 col-form-label text-md-right register-users-label" style="margin-top: 10px">ROLES</label>
                             <div class="col-md-6 col-form-label">
                                 <div class="form-check form-check-inline">
                                     <div class="round">
