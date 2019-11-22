@@ -120,3 +120,8 @@
 .round input[type="checkbox"]:checked + label:after {
   opacity: 1;
 }
+
+.disable-input {
+  opacity: 0.6;
+  color: #6d6d6d;
+}
