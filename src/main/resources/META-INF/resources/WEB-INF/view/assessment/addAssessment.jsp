@@ -21,6 +21,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <style>
+        label{
+            font-weight: bold;
+        }
+        textarea{
+            resize: none;
+        }
+    </style>
 </head>
 <body>
     <div class="main-container">
@@ -29,9 +37,9 @@
             <div class="content-header">
                 Add Assessment
             </div>
-            <div class="content-body">
+            <div class="content-body" style="padding: 25px">
                 <div class="container w-100">
-                    <form action="${pageContext.request.contextPath}/assessment/assessmentSaved" method="post">
+                    <form action="${pageContext.request.contextPath}/assessment/confirmAssessment" method="post">
                         <div class="form-group">
                             <label for="diagnosis" >Put Diagnosis for <%=referral.getFirstName()%> <%=referral.getLastName()%> </label>
                             <textarea required="required" class="form-control" name="diagnosis" id="diagnosis" rows="9" maxlength="3000" placeholder="Put Diagnosis Here"></textarea>

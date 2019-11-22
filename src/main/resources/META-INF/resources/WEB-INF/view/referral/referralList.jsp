@@ -68,7 +68,7 @@
                         </td>
                     </tr>
                     <%} else {%>
-                        <td></td>
+                        <td><button type="button" class="btn-generic small" style="background-color: darkred">Finalized</button></td>
                     <%}  %>
                 </c:forEach>
                 </tbody>

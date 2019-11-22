@@ -19,7 +19,7 @@ function addMed() {
     var second_col = document.createElement('div');
     second_col.className = "col-sm-2";
     var third_col = document.createElement('div');
-    third_col.className = "col";
+    third_col.className = "col-sm-3";
     var fourth_col = document.createElement('div');
     fourth_col.className = "col";
     var fifth_col = document.createElement('div');
@@ -79,6 +79,7 @@ function addMed() {
     sideInput.type = 'text';
     sideInput.name = sideIndex;
     sideInput.className = "form-control";
+    sideInput.placeholder = "You can put side effects here";
     var sideLabel = document.createElement('label');
     sideLabel.setAttribute("for", sideIndex);
     sideLabel.innerHTML = "Side Effects";
@@ -98,10 +99,10 @@ function addMed() {
     first_row.appendChild(second_col);
     first_row.appendChild(third_col);
     first_row.appendChild(fourth_col);
-    first_row.appendChild(document.createElement('br'));
     second_row.appendChild(fifth_col);
 
     fieldset.appendChild(first_row);
+    fieldset.appendChild(document.createElement('br'));
     fieldset.appendChild(second_row);
     fieldset.appendChild(document.createElement('hr'));
 

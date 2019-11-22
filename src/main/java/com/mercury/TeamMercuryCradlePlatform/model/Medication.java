@@ -105,4 +105,8 @@ public class Medication {
     public void setPeriodOfConsumption(Integer periodOfConsumption) {
         this.periodOfConsumption = periodOfConsumption;
     }
+
+    public void calculateFinishDate (){
+        this.finishDate = this.startDate.plusDays(periodOfConsumption);
+    }
 }
