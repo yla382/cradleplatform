@@ -1,5 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.Util;
 
@@ -20,6 +21,7 @@ public class AndroidReading {
     private Integer bpSystolic;
     private ZonedDateTime dateLastSaved;
     private ZonedDateTime dateRecheckVitalsNeeded;
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy@HH:mm:ss.SSSZ")
     private ZonedDateTime dateTimeTaken;
     private String deviceInfo;
     private GestationalAgeUnit gestationalAgeUnit;
