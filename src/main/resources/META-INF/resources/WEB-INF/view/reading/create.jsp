@@ -110,31 +110,31 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
             
                                    
                                     <div class="form-group row" id="symptomsSelectorDiv">
-                                            <div class="col-sm-6 row">
-                                        <label class="col-sm-4 col-form-label create-reading-label" style="margin-top: 10px">SYMPTOMS</label>
-                                        <div class="col-md-5 col-form-label">
-                                            <div class="form-check form-check-inline">
-                                                <div class="round">
-                                                    <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck1" value="<%=Strings.SYMPTOM_HEADACHE%>" class="reading-checkbox">
-                                                    <label for="inlineCheck1"></label>
+                                        <div class="col-sm-6 row">
+                                            <label class="col-sm-4 col-form-label create-reading-label" style="margin-top: 10px">SYMPTOMS</label>
+                                            <div class="col-md-5 col-form-label">
+                                                <div class="form-check form-check-inline">
+                                                    <div class="round">
+                                                        <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck1" value="<%=Strings.SYMPTOM_HEADACHE%>" class="reading-checkbox">
+                                                        <label for="inlineCheck1"></label>
+                                                    </div>
+                                                    <label class="form-check-label" for="inlineCheck1"><%=Strings.SYMPTOM_HEADACHE%></label>
                                                 </div>
-                                                <label class="form-check-label" for="inlineCheck1"><%=Strings.SYMPTOM_HEADACHE%></label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <div class="round">
-                                                    <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck2" value="<%=Strings.SYMPTOM_BLURRED_VISION%>" class="reading-checkbox">
-                                                    <label for="inlineCheck2"></label>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="round">
+                                                        <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck2" value="<%=Strings.SYMPTOM_BLURRED_VISION%>" class="reading-checkbox">
+                                                        <label for="inlineCheck2"></label>
+                                                    </div>
+                                                    <label class="form-check-label" for="inlineCheck2"><%=Strings.SYMPTOM_BLURRED_VISION%></label>
                                                 </div>
-                                                <label class="form-check-label" for="inlineCheck2"><%=Strings.SYMPTOM_BLURRED_VISION%></label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <div class="round">
-                                                    <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck3" value="<%=Strings.SYMPTOM_ABDOMINAL_PAIN%>" class="reading-checkbox">
-                                                    <label for="inlineCheck3"></label>
+                                                <div class="form-check form-check-inline">
+                                                    <div class="round">
+                                                        <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck3" value="<%=Strings.SYMPTOM_ABDOMINAL_PAIN%>" class="reading-checkbox">
+                                                        <label for="inlineCheck3"></label>
+                                                    </div>
+                                                    <label class="form-check-label" for="inlineCheck3"><%=Strings.SYMPTOM_ABDOMINAL_PAIN%></label>
                                                 </div>
-                                                <label class="form-check-label" for="inlineCheck3"><%=Strings.SYMPTOM_ABDOMINAL_PAIN%></label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
+                                                <div class="form-check form-check-inline">
                                                     <div class="round">
                                                         <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck4" value="<%=Strings.SYMPTOM_BLEEDING%>" class="reading-checkbox">
                                                         <label for="inlineCheck4"></label>
@@ -142,21 +142,21 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                                     <label class="form-check-label" for="inlineCheck4"><%=Strings.SYMPTOM_BLEEDING%></label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                        <div class="round">
-                                                            <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck5" value="<%=Strings.SYMPTOM_FEVERISH%>" class="reading-checkbox">
-                                                            <label for="inlineCheck5"></label>
-                                                        </div>
-                                                        <label class="form-check-label" for="inlineCheck5"><%=Strings.SYMPTOM_FEVERISH%></label>
+                                                    <div class="round">
+                                                        <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck5" value="<%=Strings.SYMPTOM_FEVERISH%>" class="reading-checkbox">
+                                                        <label for="inlineCheck5"></label>
                                                     </div>
-                                                    <div class="form-check form-check-inline">
-                                                            <div class="round">
-                                                                <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck6" value="<%=Strings.SYMPTOM_UNWELL%>" class="reading-checkbox">
-                                                                <label for="inlineCheck6"></label>
-                                                            </div>
-                                                            <label class="form-check-label" for="inlineCheck6"><%=Strings.SYMPTOM_UNWELL%></label>
+                                                    <label class="form-check-label" for="inlineCheck5"><%=Strings.SYMPTOM_FEVERISH%></label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                        <div class="round">
+                                                            <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck6" value="<%=Strings.SYMPTOM_UNWELL%>" class="reading-checkbox">
+                                                            <label for="inlineCheck6"></label>
                                                         </div>
+                                                        <label class="form-check-label" for="inlineCheck6"><%=Strings.SYMPTOM_UNWELL%></label>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
 
                                     <div class="form-group row">
