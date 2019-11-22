@@ -36,7 +36,9 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                             <div class="col-sm-6 row">
                                         <label for="readingId" class="col-md-4 col-form-label create-reading-label">READING ID</label>
                                         <div class="col-md-7">
-                                            <input type="text" id="readingId" class="reading-field" name="readingId" placeholder="Reading ID">
+                                            <input type="text" id="readingId" class="reading-field" name="readingId" pattern="[0-9]{1,11}"
+                                                   title="Please enter an ID of 1 to 11 digits long" maxlength="11"
+                                                   placeholder="Reading ID" required>
                                         </div>
                                     </div>
                                     </div>
@@ -45,13 +47,13 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                         <div class="col-sm-6 row">
                                             <label for="firstName" class="col-sm-4 col-form-label create-reading-label">FIRST NAME</label>
                                             <div class="col-sm-7">
-                                                <input type="text" id="firstName" class="reading-field" name="firstName" placeholder="First Name">
+                                                <input type="text" id="firstName" class="reading-field" name="firstName" placeholder="First Name" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 row">
                                                 <label for="lastName" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">LAST NAME</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" id="lastName" class="reading-field" name="lastName" placeholder="Last Name">
+                                                    <input type="text" id="lastName" class="reading-field" name="lastName" placeholder="Last Name" required>
                                                 </div>
                                         </div>
                                     </div>
@@ -60,16 +62,17 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                             <div class="col-sm-6 row">
                                                 <label for="ageYears" class="col-sm-4 col-form-label create-reading-label">AGE</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" id="ageYears" class="reading-field" name="ageYears" placeholder="Age">
+                                                    <input type="text" id="ageYears" class="reading-field" name="ageYears" placeholder="Age" required>
                                                 </div>
                                             </div>
                                         </div>
                                     
                                     <div class="form-group row">
                                             <div class="col-sm-6 row">
-                                                    <label for="gestationalAgeValue" class="col-sm-4 col-form-label create-reading-label">GESTATIONAL AGE</label>
+                                                    <label for="gestationalAgeValue" id="gestationalAgeValueLabel" class="col-sm-4 col-form-label create-reading-label">GESTATIONAL AGE</label>
                                                     <div class="col-sm-7">
                                                         <input type="text" id="gestationalAgeValue" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age">
+                                                        <input type="text" id="gestationalAgeValueHidden" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age" hidden>
                                                     </div>
                                             </div>
                                             <div class="col-sm-6 row">
@@ -95,6 +98,7 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                                             id="health"
                                                             name="health"
                                                             onchange="healthChange()"
+                                                            required
                                                           >
                                                             <option value="sick">Patient is sick</option>
                                                             <option value="healthy">Patient is healthy</option>
@@ -168,19 +172,19 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                             <div class="col-sm-4 row">
                                                 <label for="bpSystolic" class="col-sm-5 col-form-label create-reading-label">SYSTOLIC</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic">
+                                                    <input type="text" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic" required>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4 row">
                                                     <label for="bpDiastolic" class="col-sm-5 offset-sm-1 col-form-label create-reading-label">DIASTOLIC</label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic">
+                                                        <input type="text" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic" required>
                                                     </div>
                                             </div>
                                             <div class="col-sm-4 row">
                                                     <label for="heartRateBPM" class="col-sm-5 offset-sm-1 col-form-label create-reading-label">HEART RATE</label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate">
+                                                        <input type="text" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate" required>
                                                     </div>
                                             </div>
                                         </div>
@@ -258,10 +262,24 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
     }
 
     function gestationalAgeUnitChange() {
-      const e = document.getElementById("gestationalAgeUnit");
-      const strUser = e.options[e.selectedIndex].value;
-      document.getElementById("gestationalAgeValue").disabled =
-        strUser === "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
+        var e = document.getElementById("gestationalAgeUnit");
+        var strUser = e.options[e.selectedIndex].value;
+        var notPregnant = "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
+
+        var gestValue = document.getElementById("gestationalAgeValue");
+
+        if (strUser === notPregnant) {
+            gestValue.disabled = true;
+            $("#gestationalAgeValueLabel").addClass("disable-input");
+            $("#gestationalAgeValue").addClass("disable-input");
+        }
+        else {
+            gestValue.disabled = false;
+            gestValue.value = "";
+            $("#gestationalAgeValueLabel").removeClass("disable-input");
+            $("#gestationalAgeValue").removeClass("disable-input");
+        }
+
     }
   </script>
 </html>
