@@ -22,7 +22,7 @@
 
 <%
     List<Referral> referralList = (List<Referral>)request.getAttribute("referralList");
-    Integer buttonCounter = 0;
+    int buttonCounter = 0;
 %>
 
 <body>
@@ -38,40 +38,37 @@
                 <table id="referralTable" class="table table-striped">
                     <thead>
                     <tr>
-                        <td scope="col">Referral ID</td>
-                        <td scope="col">Name</td>
-                        <td scope="col">Age</td>
-                        <td scope="col">Sex</td>
-                        <td scope="col">Referred Health Centre</td>
-                        <td scope="col">VHT Name</td>
-                        <td scope="col"></td>
-                        <td scope="col"></td>
+                        <th scope="col">REFERRAL ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">AGE</th>
+                        <th scope="col">SEX</th>
+                        <th scope="col">REFERRED HEALTH CENTRE</th>
+                        <th scope="col">VHT NAME</th>
+                        <th scope="col"></th>
+                        <th scope="col">STATUS</th>
                     </tr>
                     </thead>
                 <tbody>
                 <c:forEach items="<%=referralList%>" var = "referral">
                     <tr>
-                        <td>${referral.referralId}</td>
+                        <td class="table-row-id">${referral.referralId}</td>
                         <td>${referral.firstName} ${referral.lastName} </td>
                         <td>${referral.ageYears}</td>
                         <td>${referral.sex}</td>
                         <td>${referral.referredHealthCentre}</td>
                         <td>${referral.vhtName}</td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/referral/info/${referral.referralId}" method="get">
-                                <button type="submit" class="btn btn-secondary" name="info">Info</button>
-                            </form>
+                            <a href="${pageContext.request.contextPath}/referral/info/${referral.referralId}" class="glyphicon glyphicon-search table-icon" title="More Details"></a>
                         </td>
-                        <%if (!referralList.get(buttonCounter++).getIsPregnant()) {%>
+                        <%if (!referralList.get(buttonCounter++).getIsAssessed()) {%>
                         <td>
-                            <form action="${pageContext.request.contextPath}/assessment/addAssessment/${referral.referralId}" method="post">
-                                <button type="submit" class="btn-generic" name="delete" onclick="return confirm('Do you want to close this referral?');">Close</button>
+                            <form action="${pageContext.request.contextPath}/assessment/addAssessment/${referral.referralId}" method="get">
+                                <button type="submit" class="btn-generic small" name="close" onclick="return confirm('Do you want to close this referral?');">Close</button>
                             </form>
                         </td>
                     </tr>
                     <%} else {%>
-                    <td>
-                    </td>
+                        <td></td>
                     <%}  %>
                 </c:forEach>
                 </tbody>

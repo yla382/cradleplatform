@@ -28,10 +28,10 @@ public class Assessment {
 
     public Assessment(){}
 
-    public Assessment(String diagnosis, String notes, LocalDate dateCreated) {
+    public Assessment(String diagnosis, String notes, List<Medication> medications) {
         this.diagnosis = diagnosis;
         this.notes = notes;
-        this.dateCreated = dateCreated;
+        this.medications = medications;
     }
 
     public Long getAssessmentId() {

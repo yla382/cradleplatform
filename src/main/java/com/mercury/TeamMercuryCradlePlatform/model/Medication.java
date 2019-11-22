@@ -15,6 +15,8 @@ public class Medication {
     private String medicationName = null;
     private LocalDate startDate = LocalDate.now();
     private LocalDate finishDate = LocalDate.now();
+    private Integer periodOfConsumption = 0;
+    private String doseUnits = null;
     private String sideEffects = null;
     private Double dose = .0;
 
@@ -24,12 +26,20 @@ public class Medication {
 
     public Medication(){}
 
-    public Medication(String medicationName, LocalDate startDate, LocalDate finishDate, String sideEffects, Double dose) {
+    public Medication(String medicationName, Integer periodOfConsumption, String sideEffects, String doseUnits, Double dose) {
         this.medicationName = medicationName;
-        this.startDate = startDate;
-        this.finishDate = finishDate;
+        this.periodOfConsumption = periodOfConsumption;
         this.sideEffects = sideEffects;
         this.dose = dose;
+        this.doseUnits = doseUnits;
+    }
+
+    public String getDoseUnits() {
+        return doseUnits;
+    }
+
+    public void setDoseUnits(String doseUnits) {
+        this.doseUnits = doseUnits;
     }
 
     public Long getMedicationId() {
@@ -86,5 +96,13 @@ public class Medication {
 
     public void setAssessment(Assessment assessment) {
         this.assessment = assessment;
+    }
+
+    public Integer getPeriodOfConsumption() {
+        return periodOfConsumption;
+    }
+
+    public void setPeriodOfConsumption(Integer periodOfConsumption) {
+        this.periodOfConsumption = periodOfConsumption;
     }
 }

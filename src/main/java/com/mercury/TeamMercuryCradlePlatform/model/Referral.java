@@ -98,6 +98,9 @@ public class Referral {
     @Column(name = "isPregnant")
     private Boolean isPregnant = true;
 
+    @Column(name = "isAssessed")
+    private Boolean isAssessed = false;
+
 
     public Referral() {
     }
@@ -289,4 +292,15 @@ public class Referral {
         this.villageNumber = villageNumber;
     }
 
+    public Boolean getIsPregnant() {
+        return isPregnant;
+    }
+
+    public Boolean getIsAssessed() {
+        return isAssessed;
+    }
+
+    public void setIsAssessed(Boolean assessed) {
+        isAssessed = assessed;
+    }
 }
