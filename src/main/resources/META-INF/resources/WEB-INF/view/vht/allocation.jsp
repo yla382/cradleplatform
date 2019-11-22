@@ -46,21 +46,27 @@
         </div>
 
         <div class="container-allocation">
-            <form id="allocationForm" action="${pageContext.request.contextPath}/submitAllocation"
-                  method="post">
-                <div style="text-align:center;">
 
+            <div class="container">
+                <form id="allocationForm" action="${pageContext.request.contextPath}/submitAllocation"
+                      method="post">
                     <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="firstVHT" class="text-direction">FROM</label>
+                        <label for="firstVHT"
+                               class="col-md-4 col-form-label text-md-right register-users-label">ALLOCATE FROM</label>
+
+                        <div class="col-md-4 col-form-label text-md-right">
                             <select id="firstVHT" name="firstVHT">
                                 <c:forEach items="<%=listOfVHT%>" var="vht">
                                     <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="col-md-6">
-                            <label for="secondVHT" class=text-direction">TO</label>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="secondVHT"
+                               class="col-md-4 col-form-label text-md-right register-users-label">ALLOCATE TO</label>
+                        <div class="col-md-4  col-form-label text-md-right ">
                             <select id="secondVHT" name="secondVHT">
                                 <c:forEach items="<%=listOfVHT%>" var="vht">
                                     <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
@@ -69,10 +75,11 @@
                         </div>
                     </div>
 
-                </div>
 
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+
+            </div>
 
             <br>
             <br>
