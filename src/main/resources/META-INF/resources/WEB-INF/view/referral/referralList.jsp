@@ -7,11 +7,12 @@
 <head>
 
     <meta charset="utf-8">
-    <title>ReferralList</title>
+    <title>Referral List</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="/css/patient.css" />
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
+    <link rel='stylesheet' href="/css/view-referrals.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,16 +27,17 @@
 %>
 
 <body>
-<div class="main-container">
-    <%@ include file="../navbar/navbar.jspf" %>
+    <div class="main-container">
 
-    <div class="content-container">
-        <div class="content-header">
-            Referral
-        </div>
-        <div class="content-body">
-            <div class="table-container">
-                <table id="referralTable" class="table table-striped">
+            <%@ include file="../navbar/navbar.jspf" %>
+
+                <div class="content-container">
+                <div class="content-header">
+                    View Referrals
+                </div>
+                <div class="content-body">
+                    <div class="table-container">
+                    <table class="table view-users-table">
                     <thead>
                     <tr>
                         <th scope="col">REFERRAL ID</th>
