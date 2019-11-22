@@ -133,7 +133,7 @@
         <%--other message--%>
         <div class="form-group">
             <label for="otherInfoMessage">Other Information and Messages: </label>
-            <input required type="text" class="form-control" id="otherInfoMessage" name="otherInfoMessage"><br>
+            <input type="text" class="form-control" id="otherInfoMessage" name="otherInfoMessage"><br>
         </div>
 
         <button type="submit" value="Submit"> Submit</button>
