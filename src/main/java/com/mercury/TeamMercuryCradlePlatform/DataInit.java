@@ -170,9 +170,25 @@ public class DataInit implements CommandLineRunner {
 
         analysisRepository.saveAll(analyses);
 
+        Referral referral1 = new Referral("Achen", "Kakooza", 36,
+                Sex.FEMALE, "Sam", "Lira Health Centre", 178, 150, 127,
+                ZonedDateTime.of(LocalDate.of( 2019,8,2), LocalTime.of(10,23), ZoneId.systemDefault()));
+
+        Referral referral2 = new Referral("Kizza", "Alupo", 76,
+                Sex.FEMALE, "Dembe", "Rakai Health Centre", 170, 127, 139,
+                ZonedDateTime.of(LocalDate.of( 2019,6,1), LocalTime.of(4,0), ZoneId.systemDefault()));
+
+        Referral referral3 = new Referral("Kahinda", "Otafiire", 26,
+                Sex.FEMALE, "Sam", "Lira Health Centre", 180, 130, 98,
+                ZonedDateTime.of(LocalDate.of( 2019,1,12), LocalTime.of(17,49), ZoneId.systemDefault()));
+
+        List<Referral> referrals = Arrays.asList(referral1,referral2, referral3);
+        referralRepository.saveAll(referrals);
+
         SupervisorPatientPair supervisorPatientPair1 = new SupervisorPatientPair("test@test.com", patient1.getPatientId().toString());
         SupervisorPatientPair supervisorPatientPair2 = new SupervisorPatientPair("test@test.com", patient2.getPatientId().toString());
         SupervisorPatientPair supervisorPatientPair3 = new SupervisorPatientPair("test@test.com", patient3.getPatientId().toString());
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair1, supervisorPatientPair2, supervisorPatientPair3));
+
     }
 }
