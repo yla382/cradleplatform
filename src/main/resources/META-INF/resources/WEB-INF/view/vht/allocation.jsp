@@ -53,7 +53,6 @@
                     <div class="form-group row">
                         <label for="firstVHT"
                                class="col-md-4 col-form-label text-md-right register-users-label">ALLOCATE FROM</label>
-
                         <div class="col-md-4 col-form-label text-md-right">
                             <select id="firstVHT" name="firstVHT">
                                 <c:forEach items="<%=listOfVHT%>" var="vht">
