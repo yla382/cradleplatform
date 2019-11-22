@@ -58,17 +58,17 @@
             <div class="row">
                 <div class="col">
                     <label for="firstName">First Name: </label>
-                    <input required type="text" class="form-control" id="firstName" name="firstName" required="required"
+                    <input required type="text" class="form-control" id="firstName" name="firstName"
                            value="<%=firstName%>"><br>
                 </div>
                 <div class="col">
                     <label for="lastName">Last Name: </label>
-                    <input required type="text" class="form-control" id="lastName" name="lastName" required="required"
+                    <input required type="text" class="form-control" id="lastName" name="lastName"
                            value="<%=lastName%>"><br>
                 </div>
                 <div class="col">
                     <label for="ageYears">Age: </label>
-                    <input required type="number" class="form-control" id="ageYears" name="ageYears" required="required"
+                    <input required type="number" class="form-control" id="ageYears" name="ageYears"
                            value="<%=ageYears%>"><br>
                 </div>
                 <div class="col">
@@ -99,17 +99,17 @@
             <div class="row">
                 <div class="col">
                     <label for="bpSystolic">Blood Pressure Systolic: </label>
-                    <input type="number" class="form-control" id="bpSystolic" name="bpSystolic" disabled
+                    <input type="number" class="form-control" id="bpSystolic" name="bpSystolic"
                            value="<%=bpSystolic%>">
                 </div>
                 <div class="col">
                     <label for="bpDiastolic">Blood Pressure Diastolic: </label>
-                    <input type="number" class="form-control" id="bpDiastolic" name="bpDiastolic" disabled
+                    <input type="number" class="form-control" id="bpDiastolic" name="bpDiastolic"
                            value="<%=bpDiastolic%>">
                 </div>
                 <div class="col">
                     <label for="heartRateBPM">Heart Rate: </label>
-                    <input type="number" class="form-control" id="heartRateBPM" name="heartRateBPM" disabled
+                    <input type="number" class="form-control" id="heartRateBPM" name="heartRateBPM"
                            value="<%=heartRateBPM%>">
                 </div>
                 <div class="col">
