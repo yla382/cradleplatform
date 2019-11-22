@@ -112,7 +112,7 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                     <div class="form-group row" id="symptomsSelectorDiv">
                                         <div class="col-sm-6 row">
                                             <label class="col-sm-4 col-form-label create-reading-label" style="margin-top: 10px">SYMPTOMS</label>
-                                            <div class="col-md-5 col-form-label">
+                                            <div id="symptoms" class="col-md-5 col-form-label">
                                                 <div class="form-check form-check-inline">
                                                     <div class="round">
                                                         <input class="form-check-input" type="checkbox" name="symptoms" id="inlineCheck1" value="<%=Strings.SYMPTOM_HEADACHE%>" class="reading-checkbox">
@@ -249,6 +249,7 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 
       if (strUser === "healthy") {
         $("#symptomsSelectorDiv input").attr("disabled", true);
+        $(".form-check-input").prop("checked", false);
         $(".form-check-input").addClass("disable-input");
         $(".form-check-label").addClass("disable-input");
         $("#otherSymptoms").addClass("disable-input");
@@ -270,12 +271,12 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 
         if (strUser === notPregnant) {
             gestValue.disabled = true;
+            gestValue.value = "";
             $("#gestationalAgeValueLabel").addClass("disable-input");
             $("#gestationalAgeValue").addClass("disable-input");
         }
         else {
             gestValue.disabled = false;
-            gestValue.value = "";
             $("#gestationalAgeValueLabel").removeClass("disable-input");
             $("#gestationalAgeValue").removeClass("disable-input");
         }
