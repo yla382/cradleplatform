@@ -49,21 +49,26 @@
             <form id="allocationForm" action="${pageContext.request.contextPath}/submitAllocation"
                   method="post">
                 <div style="text-align:center;">
-                    <label for="firstVHT"></label><select id="firstVHT" name="firstVHT"
-                                                          class="btn-select-patient dropdown-toggle">
-                    <c:forEach items="<%=listOfVHT%>" var="vht">
-                        <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
-                    </c:forEach>
-                </select>
 
-                    <div class="divider"> &nbsp; TO &nbsp;</div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="firstVHT" class="text-direction">FROM</label>
+                            <select id="firstVHT" name="firstVHT">
+                                <c:forEach items="<%=listOfVHT%>" var="vht">
+                                    <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="secondVHT" class=text-direction">TO</label>
+                            <select id="secondVHT" name="secondVHT">
+                                <c:forEach items="<%=listOfVHT%>" var="vht">
+                                    <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
 
-                    <label for="secondVHT"></label><select id="secondVHT" name="secondVHT"
-                                                           class="btn-select-patient">
-                    <c:forEach items="<%=listOfVHT%>" var="vht">
-                        <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
-                    </c:forEach>
-                </select>
                 </div>
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
