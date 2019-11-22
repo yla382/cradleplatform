@@ -7,7 +7,6 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
     <meta charset="utf-8" />
     <title>Create Reading</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
-<<<<<<< HEAD
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/create-reading.css" />
     <link
@@ -17,54 +16,6 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
       crossorigin="anonymous"
     />
   </head>
-=======
-    <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
-    <link rel='stylesheet' href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-</head>
-
-<body>
-<%@ include file="../navbar/navbar.jspf" %>
-<div class="content-container">
-    <div class="content-header">
-        Create a new reading
-    </div>
-    <div class="content-body">
-        <div class="edit-patient-container">
-            <form action="${pageContext.request.contextPath}/reading/analysis" method="post" id="form">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col">
-                            <label for="readingId">ID number</label>
-                            <input required type="text" pattern="[0-9]{1,11}"
-                                   required title="Please enter an ID of 1 to 11 digits long" maxlength="11"
-                                   class="form-control" id="readingId" name="readingId">
-                        </div>
-                        <div class="col">
-                            <label for="firstName">First Name</label>
-                            <input required type="text" class="form-control" id="firstName" name="firstName">
-                        </div>
-                        <div class="col">
-                            <label for="lastName">Last Name</label>
-                            <input required type="text" class="form-control" id="lastName" name="lastName">
-                        </div>
-                        <div class="col">
-                            <label for="ageYears">Age</label>
-                            <input required type="number" min="0" class="form-control" id="ageYears" name="ageYears">
-                        </div>
-                    </div>
-                    <div class="row" style="width: 25%;  margin-top: 5px" >
-                        <div class="col">
-                            <label for="gestationalAgeValue">Gestational Age</label>
-                            <input required type="number" min="0" class="form-control" id="gestationalAgeValue" name="gestationalAgeValue">
-                        </div>
-                    </div>
->>>>>>> master
 
   <body>
 
