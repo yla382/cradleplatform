@@ -94,7 +94,6 @@ public class AndroidController {
 
         for(int i = 0; i < readings.size(); i++) {
             AndroidReading androidReading = new AndroidReading(readings.get(i));
-            //System.out.println(androidReading.getDateTimeTaken());
             androidReadings.add(androidReading);
         }
 
