@@ -53,15 +53,15 @@
                     <div class="row">
                         <div class="col">
                             <label for="firstName">First Name: </label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" value="<%=firstName%>"><br>
+                            <input type="text" class="form-control" id="firstName" name="firstName" value="<%=firstName%>" required="required"><br>
                         </div>
                         <div class="col">
                             <label for="lastName">Last Name: </label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" value="<%=lastName%>"><br>
+                            <input type="text" class="form-control" id="lastName" name="lastName" value="<%=lastName%>" required="required"><br>
                         </div>
                         <div class="col">
                             <label for="ageYears">Age: </label>
-                            <input type="number" class="form-control" id="ageYears" name="ageYears" value="<%=ageYears%>"><br>
+                            <input type="number" class="form-control" id="ageYears" name="ageYears" value="<%=ageYears%>" required="required"><br>
                         </div>
                         <div class="col">
                             <label for="sex">Sex: </label>
