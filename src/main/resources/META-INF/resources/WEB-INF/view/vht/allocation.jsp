@@ -50,7 +50,7 @@
                   method="post">
                 <div style="text-align:center;">
                     <label for="firstVHT"></label><select id="firstVHT" name="firstVHT"
-                                                          class="btn btn-primary dropdown-toggle btn-select btn-lg">
+                                                          class="btn-select-patient dropdown-toggle">
                     <c:forEach items="<%=listOfVHT%>" var="vht">
                         <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
                     </c:forEach>
@@ -59,7 +59,7 @@
                     <div class="divider"> &nbsp; TO &nbsp;</div>
 
                     <label for="secondVHT"></label><select id="secondVHT" name="secondVHT"
-                                                           class="btn btn-primary dropdown-toggle btn-select btn-lg">
+                                                           class="btn-select-patient">
                     <c:forEach items="<%=listOfVHT%>" var="vht">
                         <option>${vht.email} - ${vht.firstName} ${vht.lastName}</option>
                     </c:forEach>
