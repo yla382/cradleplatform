@@ -159,7 +159,7 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <div class="form-group row" id="otherSymptomsDiv">
                                             <div class="col-sm-12 row">
                                                 <label for="otherSymptoms" class="col-sm-2 col-form-label create-reading-label">OTHER SYMPTOMS</label>
                                                 <div class="col-sm-6">
@@ -227,47 +227,45 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
     crossorigin="anonymous"
   ></script>
 
-  <script>
+<script>
     document.addEventListener(
-      "DOMContentLoaded",
-      function() {
-        var backButton = document.getElementById("backButtonState");
-        if (backButton.value === "0") {
-          backButton.value = "1";
-        } else {
-          // Back button pressed
-          gestationalAgeUnitChange();
-          healthChange();
-        }
-      },
-      false
-    );
+        "DOMContentLoaded",
+        function() {
+            const backButton = document.getElementById("backButtonState");
+            if (backButton.value === "0") {
+                backButton.value = "1";
+            } else {
+                // Back button pressed
+                gestationalAgeUnitChange();
+                healthChange();
+            }
+        }, false);
 
     function healthChange() {
-      const e = document.getElementById("health");
-      const strUser = e.options[e.selectedIndex].value;
+        const e = document.getElementById("health");
+        const strUser = e.options[e.selectedIndex].value;
 
-      if (strUser === "healthy") {
-        $("#symptomsSelectorDiv input").attr("disabled", true);
-        $(".form-check-input").prop("checked", false);
-        $(".form-check-input").addClass("disable-input");
-        $(".form-check-label").addClass("disable-input");
-        $("#otherSymptoms").addClass("disable-input");
-      } else {
-        $("#symptomsSelectorDiv input").removeAttr("disabled");
-        $(".form-check-label").removeClass("disable-input");
-        $("#otherSymptoms").removeClass("disable-input");
-      }
+        if (strUser === "healthy") {
+            $("#symptomsSelectorDiv input").attr("disabled", true);
+            $(".form-check-input").prop("checked", false);
+            $("#symptomsSelectorDiv").addClass("disable-input");
+            $("#otherSymptomsDiv").addClass("disable-input");
+        }
+        else {
+            $("#symptomsSelectorDiv input").removeAttr("disabled");
+            $("#symptomsSelectorDiv").removeClass("disable-input");
+            $("#otherSymptomsDiv").removeClass("disable-input");
+        }
 
-      document.getElementById("otherSymptoms").disabled = strUser === "healthy";
+        document.getElementById("otherSymptoms").disabled = strUser === "healthy";
     }
 
     function gestationalAgeUnitChange() {
-        var e = document.getElementById("gestationalAgeUnit");
-        var strUser = e.options[e.selectedIndex].value;
-        var notPregnant = "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
+        const e = document.getElementById("gestationalAgeUnit");
+        const strUser = e.options[e.selectedIndex].value;
+        const notPregnant = "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
 
-        var gestValue = document.getElementById("gestationalAgeValue");
+        const gestValue = document.getElementById("gestationalAgeValue");
 
         if (strUser === notPregnant) {
             gestValue.disabled = true;
