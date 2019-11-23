@@ -1,5 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -10,12 +11,13 @@ import java.util.List;
 @Entity
 @Table(name = "user")               //Role = ADMIN, HEALTH WORKER, VHT
 public class User {
+
+
     public enum Role {
         VHT,
         HEALTH_WORKER,
-        ADMIN
+        ADMIN;
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -27,7 +29,7 @@ public class User {
 
     public User(User user) {
         this.userId = user.userId;
-//        this.password = user.password;
+        this.password = user.password;
 //        setEncodedPassword(user.password);
         this.firstName = user.firstName;
         this.lastName = user.lastName;
@@ -38,8 +40,8 @@ public class User {
 
     public User(User user, String password) {
         this.userId = user.userId;
-//        this.password = user.password;
-        setEncodedPassword(password);
+        this.password = user.password;
+//        setEncodedPassword(password);
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.roles = user.roles;
@@ -48,8 +50,8 @@ public class User {
     }
 
     public User(String password, String firstName, String lastName, String email, String roles, String phoneNumber) {
-//        this.password = password;
-        setEncodedPassword(password);
+        this.password = password;
+//        setEncodedPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -100,11 +102,13 @@ public class User {
         return password;
     }
 
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
 
-    private void setEncodedPassword(String password) {
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @JsonIgnore
+    public void setEncodedPassword(String password) {
         this.password = encodePassword(password);
     }
 
@@ -137,10 +141,12 @@ public class User {
         return roles;
     }
 
+    @JsonIgnore
     public void setRole(String roles) {
         this.roles = roles;
     }
 
+    @JsonIgnore
     public List<String> getRoles() {
         if(this.roles.length() > 0) {
             return Arrays.asList(this.roles.split(","));
@@ -149,23 +155,28 @@ public class User {
         }
     }
 
+    @JsonIgnore
     public String getRolesAsString() {
         return this.roles;
     }
 
-    private String encodePassword(String password) {
+    @JsonIgnore
+    public String encodePassword(String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.encode(password);
     }
 
+    @JsonIgnore
     public boolean isVHT(){
         return getRoles().stream().anyMatch(str -> str.trim().equals(Role.VHT.toString()));
     }
 
+    @JsonIgnore
     public boolean isHealthWorker(){
         return getRoles().stream().anyMatch(str -> str.trim().equals(Role.HEALTH_WORKER.toString()));
     }
 
+    @JsonIgnore
     public boolean isAdmin(){
         return getRoles().stream().anyMatch(str -> str.trim().equals(Role.ADMIN.toString()));
     }

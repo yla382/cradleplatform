@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import com.fasterxml.jackson.datatype.jsr310.deser.key.ZonedDateTimeKeyDeserializer;
 import com.google.gson.Gson;
 import com.mercury.TeamMercuryCradlePlatform.model.AndroidReading;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
@@ -32,7 +34,11 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.UUID;
@@ -84,11 +90,22 @@ public class AndroidController {
     public String getReadingsByPatientId(@PathVariable Long id) {
         Patient patient = patientRepository.findByPatientId(id);
         List<Reading> readings = readingRepository.findReadingsByPatient(patient);
+        List<AndroidReading> androidReadings = new ArrayList<>();
+
+        for(int i = 0; i < readings.size(); i++) {
+            AndroidReading androidReading = new AndroidReading(readings.get(i));
+            androidReadings.add(androidReading);
+        }
 
         ObjectMapper mapper = new ObjectMapper();
+        //JavaTimeModule module = new JavaTimeModule();
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         mapper.registerModule(new JavaTimeModule());
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        mapper.findAndRegisterModules();
         try {
-            return mapper.writeValueAsString(readings);
+            return mapper.writeValueAsString(androidReadings);
+            //return  mapper.writerWithDefaultPrettyPrinter().writeValueAsString(androidReadings);
         }
         catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -134,8 +151,9 @@ public class AndroidController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> uploadFile(@RequestPart(name = "userDataFile") MultipartFile file, HttpServletRequest request) throws IOException {
-        String pathname = "/readings";
-        File convertFile = new File(pathname + "/" + file.getOriginalFilename());
+        Path path = Paths.get(".");
+        String pathname = path.toAbsolutePath().toString() + "\\reading";
+        File convertFile = new File(pathname + "\\" + file.getOriginalFilename());
         //boolean res = convertFile.createNewFile();
         boolean res = convertFile.getParentFile().mkdirs();
         FileOutputStream fout = new FileOutputStream(convertFile);
@@ -171,7 +189,7 @@ public class AndroidController {
         AndroidReading androidReading = mapper.readValue(file, AndroidReading.class);
 
         Reading reading = new Reading(androidReading);
-        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(androidReading.getPatientFirstName(), androidReading.getPatientLastName(), androidReading.getAgeYears());
 
         if(patient != null) {
             reading.setPatient(patient);
