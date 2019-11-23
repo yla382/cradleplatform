@@ -246,18 +246,18 @@
         const prevValue = document.getElementById("hiddenGestationalUnit").value;
         let res;
 
-        if (prevValue == "GESTATIONAL_AGE_UNITS_MONTHS") {
+        if (prevValue === "GESTATIONAL_AGE_UNITS_MONTHS") {
             res = "Months";
         }
-        else if (prevValue == "GESTATIONAL_AGE_UNITS_WEEKS") {
+        else if (prevValue === "GESTATIONAL_AGE_UNITS_WEEKS") {
             res = "Weeks"
         }
         else {
             res = "Not Pregnant";
         }
 
-        gestationalAgeUnitChange();
         document.getElementById("gestationalAgeUnit").value = res;
+        gestationalAgeUnitChange();
     }
 
     function healthChange() {
