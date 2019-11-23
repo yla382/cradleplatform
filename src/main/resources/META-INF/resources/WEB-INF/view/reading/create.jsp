@@ -228,7 +228,7 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 
 <script>
     // Form validation
-    var form = document.querySelector('.needs-validation');
+    const form = document.querySelector('.needs-validation');
 
     form.addEventListener('submit', function (event) {
         if (form.checkValidity() === false) {
@@ -237,7 +237,7 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
         }
 
         form.classList.add('was-validated');
-    })
+    });
 
     document.addEventListener(
         "DOMContentLoaded",

@@ -50,7 +50,7 @@
                                                 <label for="lastName" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">LAST NAME</label>
                                                 <div class="col-sm-7">
                                                         <div class="reading-field-uneditable"><%=reading.lastName%></div>
-                                                    <input hidden required type="text" class="form-control" id="firstName" name="firstName" value="<%=reading.lastName%>">
+                                                    <input hidden required type="text" class="form-control" id="lastName" name="lastName" value="<%=reading.lastName%>">
                                                 </div>
                                         </div>
                                     </div>
@@ -59,8 +59,8 @@
                                             <div class="col-sm-6 row">
                                                 <label for="ageYears" class="col-sm-4 col-form-label create-reading-label">AGE</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" id="ageYears" class="reading-field" name="ageYears" placeholder="Age" value="<%=reading.ageYears%>">
-                                                    <input hidden required type="number" min="0" class="form-control" id="ageYears" name="ageYears" value="<%=reading.ageYears%>">
+                                                    <input type="number" id="ageYears" class="reading-field" name="ageYears" placeholder="Age" value="<%=reading.ageYears%>" required min="0" max="120">
+                                                    <input hidden required type="number" min="0" class="form-control" name="ageYears" value="<%=reading.ageYears%>">
                                                 </div>
                                             </div>
                                         </div>
@@ -168,19 +168,19 @@
                                             <div class="col-sm-4 row">
                                                 <label for="bpSystolic" class="col-sm-5 col-form-label create-reading-label">SYSTOLIC</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic" value="<%=reading.bpSystolic%>">
+                                                    <input type="number" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic" value="<%=reading.bpSystolic%>" required min="50" max="210">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4 row">
                                                     <label for="bpDiastolic" class="col-sm-5 offset-sm-1 col-form-label create-reading-label">DIASTOLIC</label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic" value="<%=reading.bpDiastolic%>">
+                                                        <input type="number" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic" value="<%=reading.bpDiastolic%>" required min="30" max="120">
                                                     </div>
                                             </div>
                                             <div class="col-sm-4 row">
                                                     <label for="heartRateBPM" class="col-sm-5 offset-sm-1 col-form-label create-reading-label">HEART RATE</label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate" value="<%=reading.heartRateBPM%>">
+                                                        <input type="number" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate" value="<%=reading.heartRateBPM%>" required min="0" max="240">
                                                     </div>
                                             </div>
                                         </div>
@@ -240,28 +240,45 @@
     );
 
     function healthChange() {
-      const e = document.getElementById("health");
-      const strUser = e.options[e.selectedIndex].value;
+        const e = document.getElementById("health");
+        const strUser = e.options[e.selectedIndex].value;
 
-      if (strUser === "healthy") {
-        $("#symptomsSelectorDiv input").attr("disabled", true);
-        $(".form-check-input").addClass("disable-input");
-        $(".form-check-label").addClass("disable-input");
-        $("#otherSymptoms").addClass("disable-input");
-      } else {
-        $("#symptomsSelectorDiv input").removeAttr("disabled");
-        $(".form-check-label").removeClass("disable-input");
-        $("#otherSymptoms").removeClass("disable-input");
-      }
+        if (strUser === "healthy") {
+            $("#symptomsSelectorDiv input").attr("disabled", true);
+            $(".form-check-input").prop("checked", false);
+            $("#symptomsSelectorDiv").addClass("disable-input");
+            $("#otherSymptomsDiv").addClass("disable-input");
+        }
+        else {
+            $("#symptomsSelectorDiv input").removeAttr("disabled");
+            $("#symptomsSelectorDiv").removeClass("disable-input");
+            $("#otherSymptomsDiv").removeClass("disable-input");
+        }
 
-      document.getElementById("otherSymptoms").disabled = strUser === "healthy";
+        document.getElementById("otherSymptoms").disabled = strUser === "healthy";
     }
 
     function gestationalAgeUnitChange() {
-      const e = document.getElementById("gestationalAgeUnit");
-      const strUser = e.options[e.selectedIndex].value;
-      document.getElementById("gestationalAgeValue").disabled =
-        strUser === "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
+        const e = document.getElementById("gestationalAgeUnit");
+        const strUser = e.options[e.selectedIndex].value;
+        const notPregnant = "<c:out value='<%=Strings.GESTATION_UNIT_NOT_PREGNANT%>'/>";
+
+        const gestValue = document.getElementById("gestationalAgeValue");
+
+        if (strUser === notPregnant) {
+            gestValue.disabled = true;
+            gestValue.value = "";
+            $("#gestationalAgeValueLabel").addClass("disable-input");
+            $("#gestationalAgeValue").addClass("disable-input");
+            $("#gestationalAgeValue").prop("required", false);
+        }
+        else {
+            gestValue.disabled = false;
+            $("#gestationalAgeValueLabel").removeClass("disable-input");
+            $("#gestationalAgeValue").removeClass("disable-input");
+            $("#gestationalAgeValue").prop("required", true);
+        }
+
     }
   </script>
 </html>
