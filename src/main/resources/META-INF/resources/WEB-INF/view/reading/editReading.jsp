@@ -67,14 +67,14 @@
                                     
                                     <div class="form-group row">
                                             <div class="col-sm-6 row">
-                                                    <label for="gestationalAgeValue" class="col-sm-4 col-form-label create-reading-label">GESTATIONAL AGE</label>
+                                                <label for="gestationalAgeValue" id="gestationalAgeValueLabel" class="col-sm-4 col-form-label create-reading-label">GESTATIONAL AGE</label>
                                                     <div class="col-sm-7">
                                                         <input type="number" id="gestationalAgeValue" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age" value="<%=
                                                         reading.gestationalAgeValue%>" min="0" required>
                                                     </div>
                                             </div>
                                             <div class="col-sm-6 row">
-                                                    <label for="gestationalAgeUnit" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">GESTATIONAL UNIT</label>
+                                                    <label for="gestationalAgeUnit" id="gestationalAgeUnitLabel" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">GESTATIONAL UNIT</label>
                                                     <div class="col-sm-7">
                                                         <input id="hiddenGestationalUnit" value="<%=reading.gestationalAgeUnit%>" hidden>
                                                             <select
@@ -82,7 +82,6 @@
                                                             id="gestationalAgeUnit"
                                                             name="gestationalAgeUnit"
                                                             onchange="gestationalAgeUnitChange()"
-                                                            onload="loadGestationalAgeUnit()"
                                                           >
                                                             <option value="Weeks">Weeks</option>
                                                             <option value="Months">Months</option>
