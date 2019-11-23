@@ -30,17 +30,17 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                             <div class="container">
                                 <form action="${pageContext.request.contextPath}/reading/analysis"
                                 method="post"
-                                id="form">
-
+                                id="form"
+                                class="needs-validation"
+                                >
                                     <div class="form-group row">
-                                            <div class="col-sm-6 row">
-                                        <label for="readingId" class="col-md-4 col-form-label create-reading-label">READING ID</label>
-                                        <div class="col-md-7">
-                                            <input type="text" id="readingId" class="reading-field" name="readingId" pattern="[0-9]{1,11}"
-                                                   title="Please enter an ID of 1 to 11 digits long" maxlength="11"
-                                                   placeholder="Reading ID" required>
+                                        <div class="col-sm-6 row">
+                                            <label for="readingId" class="col-md-4 col-form-label create-reading-label">READING ID</label>
+                                            <div class="col-md-7">
+                                                <input type="text" id="readingId" class="reading-field" name="readingId"
+                                                       minlength="1" maxlength="11" placeholder="Reading ID" required>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
 
                                     <div class="form-group row">
@@ -59,53 +59,52 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                     </div>
 
                                     <div class="form-group row">
-                                            <div class="col-sm-6 row">
-                                                <label for="ageYears" class="col-sm-4 col-form-label create-reading-label">AGE</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="ageYears" class="reading-field" name="ageYears" placeholder="Age" required>
-                                                </div>
+                                        <div class="col-sm-6 row">
+                                            <label for="ageYears" class="col-sm-4 col-form-label create-reading-label">AGE</label>
+                                            <div class="col-sm-7">
+                                                <input type="number" id="ageYears" class="reading-field" name="ageYears" placeholder="Age" required min="0" max="120">
                                             </div>
                                         </div>
+                                    </div>
                                     
                                     <div class="form-group row">
-                                            <div class="col-sm-6 row">
-                                                    <label for="gestationalAgeValue" id="gestationalAgeValueLabel" class="col-sm-4 col-form-label create-reading-label">GESTATIONAL AGE</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" id="gestationalAgeValue" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age">
-                                                        <input type="text" id="gestationalAgeValueHidden" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age" hidden>
-                                                    </div>
-                                            </div>
-                                            <div class="col-sm-6 row">
-                                                    <label for="gestationalAgeUnit" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">GESTATIONAL UNIT</label>
-                                                    <div class="col-sm-7">
-                                                            <select
-                                                            class="form-control"
-                                                            id="gestationalAgeUnit"
-                                                            name="gestationalAgeUnit"
-                                                            onchange="gestationalAgeUnitChange()"
-                                                          >
-                                                            <option value="Weeks">Weeks</option>
-                                                            <option value="Months">Months</option>
-                                                            <option value="Not Pregnant">Not Pregnant</option>
-                                                          </select>
-                                                    </div>
-                                            </div>
-                                            <div class="col-sm-6 row" style="margin-top: 20px;">
-                                                    <label for="health" class="col-sm-4 col-form-label create-reading-label">HEALTH</label>
-                                                    <div class="col-sm-7">
-                                                            <select
-                                                            class="form-control"
-                                                            id="health"
-                                                            name="health"
-                                                            onchange="healthChange()"
-                                                            required
-                                                          >
-                                                            <option value="sick">Patient is sick</option>
-                                                            <option value="healthy">Patient is healthy</option>
-                                                          </select>
-                                                    </div>
-                                            </div>
+                                        <div class="col-sm-6 row">
+                                                <label for="gestationalAgeValue" id="gestationalAgeValueLabel" class="col-sm-4 col-form-label create-reading-label">GESTATIONAL AGE</label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" id="gestationalAgeValue" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age" min="0" required>
+                                                </div>
                                         </div>
+                                        <div class="col-sm-6 row">
+                                                <label for="gestationalAgeUnit" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">GESTATIONAL UNIT</label>
+                                                <div class="col-sm-7">
+                                                        <select
+                                                        class="form-control"
+                                                        id="gestationalAgeUnit"
+                                                        name="gestationalAgeUnit"
+                                                        onchange="gestationalAgeUnitChange()"
+                                                      >
+                                                        <option value="Weeks">Weeks</option>
+                                                        <option value="Months">Months</option>
+                                                        <option value="Not Pregnant">Not Pregnant</option>
+                                                      </select>
+                                                </div>
+                                        </div>
+                                        <div class="col-sm-6 row" style="margin-top: 20px;">
+                                                <label for="health" class="col-sm-4 col-form-label create-reading-label">HEALTH</label>
+                                                <div class="col-sm-7">
+                                                        <select
+                                                        class="form-control"
+                                                        id="health"
+                                                        name="health"
+                                                        onchange="healthChange()"
+                                                        required
+                                                      >
+                                                        <option value="sick">Patient is sick</option>
+                                                        <option value="healthy">Patient is healthy</option>
+                                                      </select>
+                                                </div>
+                                        </div>
+                                    </div>
 
             
                                    
@@ -172,19 +171,19 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                                             <div class="col-sm-4 row">
                                                 <label for="bpSystolic" class="col-sm-5 col-form-label create-reading-label">SYSTOLIC</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic" required>
+                                                    <input type="number" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic" required min="50" max="210">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4 row">
                                                     <label for="bpDiastolic" class="col-sm-5 offset-sm-1 col-form-label create-reading-label">DIASTOLIC</label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic" required>
+                                                        <input type="number" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic" required min="30" max="120">
                                                     </div>
                                             </div>
                                             <div class="col-sm-4 row">
                                                     <label for="heartRateBPM" class="col-sm-5 offset-sm-1 col-form-label create-reading-label">HEART RATE</label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate" required>
+                                                        <input type="number" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate" required min="0" max="240">
                                                     </div>
                                             </div>
                                         </div>
@@ -228,6 +227,18 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
   ></script>
 
 <script>
+    // Form validation
+    var form = document.querySelector('.needs-validation');
+
+    form.addEventListener('submit', function (event) {
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        form.classList.add('was-validated');
+    })
+
     document.addEventListener(
         "DOMContentLoaded",
         function() {
@@ -272,11 +283,13 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
             gestValue.value = "";
             $("#gestationalAgeValueLabel").addClass("disable-input");
             $("#gestationalAgeValue").addClass("disable-input");
+            $("#gestationalAgeValue").prop("required", false);
         }
         else {
             gestValue.disabled = false;
             $("#gestationalAgeValueLabel").removeClass("disable-input");
             $("#gestationalAgeValue").removeClass("disable-input");
+            $("#gestationalAgeValue").prop("required", true);
         }
 
     }
