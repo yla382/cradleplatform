@@ -27,7 +27,7 @@
         
                 <div class="content-container">
                 <div class="content-header">
-                    View Referrals
+                    Referrals
                 </div>
                 <div class="content-body">
                     <div class="table-container">

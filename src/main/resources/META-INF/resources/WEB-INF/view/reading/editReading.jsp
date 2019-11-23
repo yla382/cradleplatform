@@ -11,7 +11,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>Create Reading</title>
+    <title>Edit Reading</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/edit-readings.css" />

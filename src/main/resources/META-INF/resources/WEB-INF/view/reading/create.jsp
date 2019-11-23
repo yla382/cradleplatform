@@ -23,7 +23,7 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
                 <%@ include file="../navbar/navbar.jspf" %>
                 <div class="content-container">
                     <div class="content-header">
-                        Create A New Reading
+                        Create New Reading
                     </div>
                     <div class="create-reading-container">
                         <main class="my-form">

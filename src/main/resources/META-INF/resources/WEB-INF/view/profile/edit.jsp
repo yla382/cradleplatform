@@ -11,7 +11,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Users</title>
+    <title>Edit Profile</title>
 
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
@@ -27,7 +27,7 @@
     <%@ include file="../navbar/navbar.jspf" %>
     <div class="content-container">
         <div class="content-header">
-            Edit Users
+            Edit Profile
         </div>
 
         <div class="edit-users-container">

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1"/>
-    <title>Cradle</title>
+    <title>Register</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/register-user.css"/>
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>

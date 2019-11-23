@@ -12,7 +12,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <head>
     <meta charset="utf-8" />
-    <title>AddReferral</title>
+    <title>Add Referral</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
