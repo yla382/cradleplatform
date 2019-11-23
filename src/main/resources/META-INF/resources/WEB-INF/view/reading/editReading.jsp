@@ -69,17 +69,20 @@
                                             <div class="col-sm-6 row">
                                                     <label for="gestationalAgeValue" class="col-sm-4 col-form-label create-reading-label">GESTATIONAL AGE</label>
                                                     <div class="col-sm-7">
-                                                        <input type="text" id="gestationalAgeValue" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age">
+                                                        <input type="number" id="gestationalAgeValue" class="reading-field" name="gestationalAgeValue" placeholder="Gestational Age" value="<%=
+                                                        reading.gestationalAgeValue%>" min="0" required>
                                                     </div>
                                             </div>
                                             <div class="col-sm-6 row">
                                                     <label for="gestationalAgeUnit" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">GESTATIONAL UNIT</label>
                                                     <div class="col-sm-7">
+                                                        <input id="hiddenGestationalUnit" value="<%=reading.gestationalAgeUnit%>" hidden>
                                                             <select
                                                             class="form-control"
                                                             id="gestationalAgeUnit"
                                                             name="gestationalAgeUnit"
                                                             onchange="gestationalAgeUnitChange()"
+                                                            onload="loadGestationalAgeUnit()"
                                                           >
                                                             <option value="Weeks">Weeks</option>
                                                             <option value="Months">Months</option>
@@ -227,6 +230,7 @@
     document.addEventListener(
       "DOMContentLoaded",
       function() {
+        loadGestationalAgeUnit();
         var backButton = document.getElementById("backButtonState");
         if (backButton.value === "0") {
           backButton.value = "1";
@@ -238,6 +242,24 @@
       },
       false
     );
+
+    function loadGestationalAgeUnit() {
+        const prevValue = document.getElementById("hiddenGestationalUnit").value;
+        let res;
+
+        if (prevValue == "GESTATIONAL_AGE_UNITS_MONTHS") {
+            res = "Months";
+        }
+        else if (prevValue == "GESTATIONAL_AGE_UNITS_WEEKS") {
+            res = "Weeks"
+        }
+        else {
+            res = "Not Pregnant";
+        }
+
+        gestationalAgeUnitChange();
+        document.getElementById("gestationalAgeUnit").value = res;
+    }
 
     function healthChange() {
         const e = document.getElementById("health");
