@@ -41,7 +41,7 @@
             <div class="col-sm-6">
               <div class="education-container">
                 <div class="video-header">
-                  How to use CRADLE VSA
+                  SKILLED HEALTH WORKERS
                 </div>
                 <iframe
                   class="video-container"
@@ -53,7 +53,7 @@
             <div class="col-sm-6">
               <div class="education-container">
                 <div class="video-header">
-                  How to use CRADLE VSA to detect vital signs
+                  COMMUNITY HEALTH WORKERS
                 </div>
                 <iframe
                   class="video-container"
