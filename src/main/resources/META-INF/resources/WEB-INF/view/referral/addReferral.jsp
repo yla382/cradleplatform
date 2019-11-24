@@ -85,13 +85,13 @@
             <div class="row">
                 <div class="col">
                     <label for="zoneNumber">Zone Number: </label>
-                    <input type="number" class="form-control" id="zoneNumber" name="zoneNumber" required="required"
+                    <input type="number" class="form-control" id="zoneNumber" name="zoneNumber"
                            pattern="[0-9]{1,5}">
                 </div>
                 <div class="col">
                     <label for="villageNumber">Village Number: </label>
                     <input type="number" class="form-control" id="villageNumber" name="villageNumber"
-                           required="required" pattern="[0-9]{1,5}">
+                           pattern="[0-9]{1,5}">
                 </div>
             </div>
         </div>
