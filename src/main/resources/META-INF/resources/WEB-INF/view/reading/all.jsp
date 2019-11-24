@@ -41,7 +41,6 @@
         </div>
         <div class="content-body">
             <div class="table-container">
-                <input class="form-control w-25" type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search" aria-label="Search">
                 <table id="readingsTable" class="table table-striped">
                     <thead>
                     <tr>
@@ -55,7 +54,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="<%=readingList%>" var = "reading">
-                        <tr data-toggle="collapse" data-target=".<%=i%>">
+                        <tr data-toggle="collapse" data-target=".<%=i%>" onclick="changeIcon(<%=i%>)">
                             <td>${reading.firstName} ${reading.lastName}</td>
                             <td>${reading.ageYears}</td>
                             <td>
@@ -66,13 +65,16 @@
                             </td>
                             <td>${reading.timeYYYYMMDD}</td>
                             <td></td>
-                            <td></td>
+                            <td>
+                                    <span id ="glyphicon-<%=i%>" class="glyphicon glyphicon-plus"></span>
+                            </td>
+
                         </tr>
                         <tr>
                             <td colspan="6" class="hiddenRow" style="width: 100%">
                                 <div class="collapse <%=i++%>">
-                                    <div class="content-body">
-                                        <div class="edit-patient-container" style="width: auto">
+                                    <div class="content-body" style="padding: 0;">
+                                        <div class="edit-patient-container" style="width: auto; margin: auto" >
                                             <h2> ${reading.firstName} ${reading.lastName}, ${reading.ageYears}y @${reading.gestationWeekDaysString}</h2>
                                             <p> ${reading.symptomsString}</p>
                                             <h2> ${reading.timeTakenAmPm}: ${ReadingAnalysis.analyze(reading).analysisText}</h2>
@@ -128,20 +130,24 @@
 </body>
 <script>
 
-    $(document).ready(function(){
-        $("#searchInput").on("keyup", function() {
-            const value = $(this).val().toLowerCase();
-            $("#readingsTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
 
     $('.collapse').each(function(){
         if ($(this).hasClass('in')) {
             $(this).collapse('toggle');
         }
     });
+
+    function changeIcon(i) {
+        var spans = document.getElementById('glyphicon-' + i);
+
+        if(spans.classList.contains("glyphicon-plus")){
+            spans.className = "glyphicon glyphicon-minus";
+        }
+        else{
+            spans.className = "glyphicon glyphicon-plus";
+        }
+
+    }
 
 
 </script>
