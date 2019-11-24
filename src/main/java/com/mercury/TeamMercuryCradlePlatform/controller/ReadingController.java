@@ -56,7 +56,6 @@ public class ReadingController {
         modelAndView.addObject("reading", reading);
 
         return modelAndView;
-
     }
 
     // Save the reading to the db
@@ -88,8 +87,9 @@ public class ReadingController {
         readingRepository.save(reading);
         analysisRepository.save(analysis);
 
-        if(saveByRef.equalsIgnoreCase("true")){
-            return new ModelAndView("/referral/addReferral");
+        if (saveByRef.equalsIgnoreCase("true")) {
+            return new ModelAndView("/referral/addReferral")
+                    .addObject("gender", patient.getSex());
         }
         return setUpAllReadingModel();
     }
@@ -98,7 +98,6 @@ public class ReadingController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public ModelAndView updateReadingInDB(@PathVariable(value = "id") long id, Reading reading,
                                           @RequestParam(value = "otherSymptoms", defaultValue = "")  String otherSymptoms) {
-
         System.out.println("update");
         Reading dbReading = readingRepository.findByReadingId(id);
         Analysis dbAnalysis = analysisRepository.findByReading(dbReading);
@@ -114,7 +113,6 @@ public class ReadingController {
             reading.setPatient(patient);
         }
 
-
         Analysis analysis = new Analysis(reading);
         analysis.analysisId = dbAnalysis.getAnalysisId();
         this.analysisRepository.save(analysis);
@@ -123,7 +121,7 @@ public class ReadingController {
     }
 
 
-//     View all readings
+    // View all readings
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ModelAndView getAllReadings(){
         return setUpAllReadingModel();
@@ -132,25 +130,30 @@ public class ReadingController {
     @RequestMapping(value = "/all/{id}", method = RequestMethod.GET)
     public ModelAndView getReadingsWithPatientId(@PathVariable Long id){
         List<Reading> readings = this.readingRepository.findReadingsByPatient(patientRepository.findByPatientId(id));
+
+        String title = createReadingTitle(readings);
+
         System.out.println(readings.size());
         for(Reading r : readings){
             r.symptoms = new ArrayList<>(Arrays.asList(r.symptomsString.split(",")));
         }
-        return new ModelAndView("/reading/all").addObject("readingList", readings);
+        return new ModelAndView("/reading/all")
+                .addObject("readingList", readings)
+                .addObject("title", title);
     }
 
+    private String createReadingTitle(List<Reading> readings) {
+        String firstName = readings.get(0).getFirstName();
+        String lastName = readings.get(0).getLastName();
 
-    // Save a reading after editing from the view all readings table
-//    @RequestMapping(value = "/all/edit", method = RequestMethod.POST)
-//    public ModelAndView getAllReadings(Reading reading){
-//        this.readingRepository.save(reading);
-//        return setUpAllReadingModel();
-//    }
+        return " for " + firstName + " " + lastName;
+    }
 
     // Edit a reading with the given id
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView getReadingWithId(@PathVariable long id){
-        return new ModelAndView("/reading/editReading").addObject("reading", this.readingRepository.findByReadingId(id));
+        Reading reading = this.readingRepository.findByReadingId(id);
+        return new ModelAndView("/reading/editReading").addObject("reading", reading);
     }
 
     // Delete a reading with the given id
@@ -171,5 +174,4 @@ public class ReadingController {
         }
         return new ModelAndView("/reading/all").addObject("readingList", readings);
     }
-
 }
