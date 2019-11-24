@@ -141,13 +141,13 @@
                                                 <div class="col-sm-6 row">
                                                     <label for="zoneNumber" class="col-sm-4 col-form-label create-reading-label">ZONE #</label>
                                                     <div class="col-sm-7">
-                                                        <input type="text" id="zoneNumber" class="reading-field" name="zoneNumber" placeholder="Zone Number">
+                                                        <input type="number" id="zoneNumber" class="reading-field" name="zoneNumber" placeholder="Zone Number">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 row">
                                                         <label for="lastName" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">VILLAGE #</label>
                                                         <div class="col-sm-7">
-                                                            <input type="text" id="villageNumber" class="reading-field" name="villageNumber" placeholder="Village Number">
+                                                            <input type="number" id="villageNumber" class="reading-field" name="villageNumber" placeholder="Village Number">
                                                         </div>
                                                 </div>
                                             </div>

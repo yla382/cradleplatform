@@ -145,6 +145,9 @@ public class ReadingController {
     }
 
     private String createReadingTitle(List<Reading> readings) {
+        if (readings.isEmpty()) {
+            return "";
+        }
         String firstName = readings.get(0).getFirstName();
         String lastName = readings.get(0).getLastName();
 
