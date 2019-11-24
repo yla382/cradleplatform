@@ -1,14 +1,20 @@
-<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Referral" %> <%@
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Referral" %>
+<%@ page import="com.mercury.TeamMercuryCradlePlatform.model.Sex" %>
+<%@ page import="static com.mercury.TeamMercuryCradlePlatform.model.Sex.FEMALE" %>
+<%@
 taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-  <% String firstName = (String) session.getAttribute("firstName"); String
-  lastName = (String) session.getAttribute("lastName"); Integer ageYears =
-  (Integer) session.getAttribute("ageYears"); Integer bpSystolic = (Integer)
-  session.getAttribute("bpSystolic"); Integer bpDiastolic = (Integer)
-  session.getAttribute("bpDiastolic"); Integer heartRateBPM = (Integer)
-  session.getAttribute("heartRateBPM"); String analysis = (String)
-  session.getAttribute("analysis"); %>
+  <%
+    String firstName = (String) session.getAttribute("firstName");
+    String lastName = (String) session.getAttribute("lastName");
+    Integer ageYears = (Integer) session.getAttribute("ageYears");
+    Integer bpSystolic = (Integer) session.getAttribute("bpSystolic");
+    Integer bpDiastolic = (Integer) session.getAttribute("bpDiastolic");
+    Integer heartRateBPM = (Integer) session.getAttribute("heartRateBPM");
+    String analysis = (String) session.getAttribute("analysis");
+    Sex sex = (Sex) request.getAttribute("sex");
+  %>
 
   <head>
     <meta charset="utf-8" />
@@ -112,6 +118,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div class="col">
               <label for="sex">Sex: </label>
+              <input hidden id="hiddenSex" value="<%=sex != null ? sex : FEMALE%>">
               <select class="form-control" id="sex" name="sex">
                 <option value="FEMALE">FEMALE</option>
                 <option value="MALE">MALE</option>
@@ -239,4 +246,20 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       />
     </form>
   </body>
+<script>
+  document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+        loadSex();
+      },
+      false
+  );
+
+  function loadSex() {
+    const sex = document.getElementById("hiddenSex").value;
+    let s = document.getElementById("sex");
+    s.value = sex;
+  }
+
+</script>
 </html>

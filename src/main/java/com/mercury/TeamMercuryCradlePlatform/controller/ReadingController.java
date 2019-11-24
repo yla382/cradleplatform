@@ -87,8 +87,9 @@ public class ReadingController {
         readingRepository.save(reading);
         analysisRepository.save(analysis);
 
-        if(saveByRef.equalsIgnoreCase("true")){
-            return new ModelAndView("/referral/addReferral");
+        if (saveByRef.equalsIgnoreCase("true")) {
+            return new ModelAndView("/referral/addReferral")
+                    .addObject("gender", patient.getSex());
         }
         return setUpAllReadingModel();
     }
