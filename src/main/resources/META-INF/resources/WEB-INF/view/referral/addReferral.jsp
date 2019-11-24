@@ -176,7 +176,7 @@
                                         <div class="col-sm-12 row">
                                             <label for="otherInfoMessage" class="col-sm-2 col-form-label create-reading-label">OTHER</label>
                                             <div class="col-sm-6">
-                                                <textarea rows="2" type="text" id="otherInfoMessage" class="reading-textarea" name="otherInfoMessage" placeholder="Other Symptoms"></textarea>
+                                                <textarea rows="2" type="text" id="otherInfoMessage" class="reading-textarea" name="otherInfoMessage" placeholder="Other Notes"></textarea>
                                             </div>
                                         </div>
                                     </div>
