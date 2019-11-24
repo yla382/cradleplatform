@@ -18,7 +18,6 @@ public enum ReadingAnalysis  {
     RED_UP(Strings.ANALYSIS_RED_UP, Strings.BRIEF_ADVICE_RED_UP),
     RED_DOWN(Strings.ANALYSIS_RED_DOWN, Strings.BRIEF_ADVICE_RED_DOWN);
 
-
     // Break points for determining Green/Yellow/Red Up/Down
     // source: CRADLE VSA Manual (extracted spring 2019)
     private static final int RED_SYSTOLIC = 160;

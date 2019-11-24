@@ -28,6 +28,7 @@
 </script>
 <%
     List<Reading> readingList = (List<Reading>) request.getAttribute("readingList");
+    int i = 0;
 %>
 <body>
 
@@ -46,12 +47,7 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Age</th>
-                        <th scope="col">Symptoms</th>
-                        <th scope="col">Gestational Age</th>
-                        <th scope="col">Blood Pressure</th>
-                        <th scope="col">Heart Rate</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Advice</th>
                         <th scope="col">Time Taken</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -59,41 +55,79 @@
                     </thead>
                     <tbody>
                     <c:forEach items="<%=readingList%>" var = "reading">
-                        <tr>
+                        <tr data-toggle="collapse" data-target=".<%=i%>">
                             <td>${reading.firstName} ${reading.lastName}</td>
                             <td>${reading.ageYears}</td>
-                            <td>
-                                <c:forEach items="${reading.symptoms}" var = "symptom">
-                                    ${symptom}
-                                    <br>
-                                </c:forEach>
-                            </td>
-                            <td>${reading.gestationWeekDaysString}</td>
-                            <td>${reading.bpSystolic}/${reading.bpDiastolic}</td>
-                            <td>${reading.heartRateBPM}</td>
                             <td>
                                 <img src="/images/${ReadingAnalysis.analyze(reading).trafficLightImg}.png" alt="Traffic Light">
                                 <c:if test="${not empty ReadingAnalysis.analyze(reading).arrowDirection}">
                                     <img src="/images/${ReadingAnalysis.analyze(reading).arrowDirection}.png" alt="Arrow Direction">
                                 </c:if>
                             </td>
-                            <td>
-                                    ${ReadingAnalysis.analyze(reading).briefText}
-                                <br>
-                                    ${ReadingAnalysis.analyze(reading).analysisText}
-                            </td>
                             <td>${reading.timeYYYYMMDD}</td>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/statistics/blood-pressure-graph/${reading.patientId}" method="get">
-                                    <button type="submit" class="btn-generic">Statistics</button>
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="${pageContext.request.contextPath}/reading/edit/${reading.readingId}" method="get">
-                                    <button type="submit" class="btn-generic">Edit</button>
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                </form>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="hiddenRow" style="width: 100%">
+                                <div class="collapse <%=i++%>">
+                                    <div class="content-body">
+                                        <div class="edit-patient-container" style="width: auto">
+                                            <h2> ${reading.firstName} ${reading.lastName}, ${reading.ageYears}y @${reading.gestationWeekDaysString}</h2>
+                                            <p> ${reading.symptomsString}</p>
+                                            <h2> ${reading.timeTakenAmPm}: ${ReadingAnalysis.analyze(reading).analysisText}</h2>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p> ${reading.bpDiastolic}/${reading.bpSystolic}</p>
+                                                        <p> HR: ${reading.heartRateBPM}</p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col-sm">
+                                                                <img src="/images/${ReadingAnalysis.analyze(reading).trafficLightImg}.png" alt="${ReadingAnalysis.analyze(reading).trafficLightImg}">
+                                                                <c:if test="${not empty ReadingAnalysis.analyze(reading).arrowDirection}">
+                                                                    <img src="/images/${ReadingAnalysis.analyze(reading).arrowDirection}.png" alt="Arrow Direction">
+                                                                </c:if>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h2> Advice</h2>
+                                            <p> ${ReadingAnalysis.analyze(reading).briefText}</p>
+<%--                                            <div class="custom-control custom-switch">--%>
+<%--                                                <input checked type="checkbox" class="custom-control-input" id="recheckVitalsNow">--%>
+<%--                                                <label class="custom-control-label" for="recheckVitalsNow">Recheck vitals now(after save)</label>--%>
+<%--                                            </div>--%>
+
+<%--                                            <div class="custom-control custom-switch">--%>
+<%--                                                <input type="checkbox" class="custom-control-input" id="recheckVitals15">--%>
+<%--                                                <label class="custom-control-label" for="recheckVitals15"> Recheck vitals in 15 minutes (after save)</label>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="custom-control custom-switch">--%>
+<%--                                                <input checked type="checkbox" class="custom-control-input" id="followUp">--%>
+<%--                                                <label class="custom-control-label" for="followUp"> Follow-up needed (another day)</label>--%>
+<%--                                            </div>--%>
+                                            <div class="container mt-4">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <form action="${pageContext.request.contextPath}/reading/edit/${reading.readingId}" method="get">
+                                                            <button type="submit" class="btn-generic">Edit</button>
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form action="${pageContext.request.contextPath}/statistics/blood-pressure-graph/${reading.patientId}" method="get">
+                                                            <button type="submit" class="btn-generic">Statistics</button>
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </c:forEach>
@@ -105,7 +139,6 @@
 </div>
 
 </body>
-
 <script>
 
     $(document).ready(function(){
@@ -117,9 +150,13 @@
         });
     });
 
+    $('.collapse').each(function(){
+        if ($(this).hasClass('in')) {
+            $(this).collapse('toggle');
+        }
+    });
+
+
 </script>
 
 </html>
-
-
-
