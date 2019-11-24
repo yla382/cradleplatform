@@ -129,26 +129,6 @@ public class AndroidController {
         return new ResponseEntity<>(reading, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/uploadzip", method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> uploadZip(@RequestBody MultipartFile file, HttpServletRequest request) throws IOException {
-        File zip = File.createTempFile(UUID.randomUUID().toString(), "temp");
-        FileOutputStream o = new FileOutputStream(zip);
-        IOUtils.copy(file.getInputStream(), o);
-        o.close();
-
-        String destination = "C:\\Users\\John\\Desktop";
-        try {
-            ZipFile zipFile = new ZipFile(zip);
-            zipFile.extractAll(destination);
-        } catch (ZipException e) {
-            e.printStackTrace();
-        } finally {
-            zip.delete();
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> uploadFile(@RequestPart(name = "userDataFile") MultipartFile file, HttpServletRequest request) throws IOException {
         Path path = Paths.get(".");
