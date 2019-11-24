@@ -245,8 +245,13 @@ import="com.mercury.TeamMercuryCradlePlatform.Strings" %>
 
       if (strUser === "healthy") {
         $("#symptomsSelectorDiv input").attr("disabled", true);
+        $(".form-check-input").addClass("disable-input");
+        $(".form-check-label").addClass("disable-input");
+        $("#otherSymptoms").addClass("disable-input");
       } else {
         $("#symptomsSelectorDiv input").removeAttr("disabled");
+        $(".form-check-label").removeClass("disable-input");
+        $("#otherSymptoms").removeClass("disable-input");
       }
 
       document.getElementById("otherSymptoms").disabled = strUser === "healthy";
