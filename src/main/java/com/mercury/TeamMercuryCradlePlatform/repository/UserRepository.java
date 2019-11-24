@@ -19,4 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     public ArrayList<User> findAllByRole(String role);
 
     public Boolean existsByEmail(String email);
+
+    @Query("select u from User u where u.userId <> ?1")
+    public List<User> findAllNotMe(Integer userId);
 }

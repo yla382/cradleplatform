@@ -1,6 +1,7 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
 
 import com.mercury.TeamMercuryCradlePlatform.Service.ContactService;
+import com.mercury.TeamMercuryCradlePlatform.authentication.UserLogin;
 import com.mercury.TeamMercuryCradlePlatform.model.EmailAdmin;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
 import com.mercury.TeamMercuryCradlePlatform.model.ReadingAnalysis;
@@ -9,6 +10,9 @@ import com.mercury.TeamMercuryCradlePlatform.repository.PatientRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.ReadingRepository;
 import com.mercury.TeamMercuryCradlePlatform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -113,7 +117,10 @@ public class AdminController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getAllUsers() {
-        return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Integer userId = ((UserLogin)((UsernamePasswordAuthenticationToken)authentication).getPrincipal()).getUserId();
+        return new ModelAndView("/admin/users")
+                .addObject("users", this.userRepository.findAllNotMe(userId));
     }
 
     @RequestMapping(value = "/users/contact", method = RequestMethod.GET)
