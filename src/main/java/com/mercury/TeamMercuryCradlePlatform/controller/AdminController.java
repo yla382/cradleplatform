@@ -42,18 +42,17 @@ public class AdminController {
         this.emailAdmin = emailAdmin;
         this.readingRepository = readingRepository;
         this.patientRepository = patientRepository;
-
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView viewAllReadings() {
-
         List<Reading> readings = this.readingRepository.findAll();
+
         for (Reading r : readings) {
             r.symptoms = new ArrayList<>(Arrays.asList(r.symptomsString.split(",")));
         }
-        return new ModelAndView("/reading/all").addObject("readingList", readings);
 
+        return new ModelAndView("/reading/all").addObject("readingList", readings);
     }
 
     @GetMapping("/education")
@@ -71,19 +70,19 @@ public class AdminController {
             @RequestParam String roles) {
 
         String message = "";
-        if (user.getFirstName() == "") {
+        if (user.getFirstName().equals("")) {
             message += "First name field is empty </br>";
         }
-        if (user.getLastName() == "") {
+        if (user.getLastName().equals("")) {
             message += "Last name field is empty </br>";
         }
-        if (password == "") {
+        if (password.equals("")) {
             message += "Password field is empty </br>";
         }
         if (userRepository.findByEmail(user.getEmail()) != null) {
             message += "This email is already in use </br>";
         }
-        if (user.getEmail() == "") {
+        if (user.getEmail().equals("")) {
             message += "Email field is empty </br>";
         } else {
             String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
@@ -93,11 +92,11 @@ public class AdminController {
                 message += "Email is invalid </br>";
             }
         }
-        if (user.getPhoneNumber() == "") {
+        if (user.getPhoneNumber().equals("")) {
             message += "Phone number field is empty </br>";
         }
 
-        if (message == "") {
+        if (message.equals("")) {
             User newUser = new User(user, password);
             newUser.setEncodedPassword(newUser.getPassword());
             newUser.setRole(roles);
@@ -110,7 +109,9 @@ public class AdminController {
             modelAndView.addObject("user", user);
             return modelAndView;
         } else {
-            return new ModelAndView("admin/registration").addObject("status", "error").addObject("message", message);
+            return new ModelAndView("admin/registration")
+                    .addObject("status", "error")
+                    .addObject("message", message);
         }
 
     }
@@ -118,7 +119,7 @@ public class AdminController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getAllUsers() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Integer userId = ((UserLogin)((UsernamePasswordAuthenticationToken)authentication).getPrincipal()).getUserId();
+        Integer userId = ((UserLogin) authentication.getPrincipal()).getUserId();
         return new ModelAndView("/admin/users")
                 .addObject("users", this.userRepository.findAllNotMe(userId));
     }
@@ -126,17 +127,16 @@ public class AdminController {
     @RequestMapping(value = "/users/contact", method = RequestMethod.GET)
     public ModelAndView getContactPage(@RequestParam int userId, @RequestParam String name) {
         User user = userRepository.findByUserId(userId);
-        ModelAndView modelAndView = new ModelAndView("/admin/contact");
-        modelAndView.addObject("email", user.getEmail());
-        modelAndView.addObject("phoneNumber", user.getPhoneNumber());
-        modelAndView.addObject("name", name);
-        return modelAndView;
+
+        return new ModelAndView("/admin/contact")
+            .addObject("email", user.getEmail())
+            .addObject("phoneNumber", user.getPhoneNumber())
+            .addObject("name", name);
     }
 
     @RequestMapping(value = "/submitMessage", method = RequestMethod.POST)
     public ModelAndView sendMessage(@RequestParam String email, @RequestParam String subject,
             @RequestParam String contactMethod, @RequestParam String message, @RequestParam String phoneNumber) {
-        // emailAdmin.sendEmail(email, subject, message);
         ContactService contactService = new ContactService();
         contactService.sendMessage(contactMethod, email, phoneNumber, subject, message);
 
@@ -146,19 +146,16 @@ public class AdminController {
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
     public ModelAndView getAllUsers(User user, @RequestParam(value = "roles", defaultValue = "") String roles,
             @RequestParam(value = "password") String password) {
-        System.out.println(user.getPassword());
         user.setRole(roles);
         user.setPassword(password);
 
         this.userRepository.save(user);
 
         return new ModelAndView("/admin/users").addObject("users", this.userRepository.findAll());
-
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ModelAndView getUserWithId(@PathVariable int id) {
-
         User user = this.userRepository.findByUserId(id);
 
         return new ModelAndView("/admin/editUser").addObject("postUser", user);
