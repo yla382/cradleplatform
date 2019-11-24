@@ -184,11 +184,13 @@ public class DataInit implements CommandLineRunner {
 
         Referral referral2 = new Referral("Kizza", "Alupo", 76,
                 Sex.FEMALE, "Dembe", "Rakai Health Centre", 170, 127, 139,
-                ZonedDateTime.of(LocalDate.of( 2019,6,1), LocalTime.of(4,0), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019,6,1), LocalTime.of(4,0), ZoneId.systemDefault()),
+                4, 1, "", "", "");
 
         Referral referral3 = new Referral("Kahinda", "Otafiire", 26,
                 Sex.FEMALE, "Sam", "Lira Health Centre", 180, 130, 98,
-                ZonedDateTime.of(LocalDate.of( 2019,1,12), LocalTime.of(17,49), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019,1,12), LocalTime.of(17,49), ZoneId.systemDefault()),
+                7, 2, "Emergency", "", "");
 
         List<Referral> referrals = Arrays.asList(referral1,referral2, referral3);
         referralRepository.saveAll(referrals);

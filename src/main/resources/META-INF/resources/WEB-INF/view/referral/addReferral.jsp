@@ -85,13 +85,13 @@
             <div class="row">
                 <div class="col">
                     <label for="zoneNumber">Zone Number: </label>
-                    <input type="number" class="form-control" id="zoneNumber" name="zoneNumber" required="required"
+                    <input type="number" class="form-control" id="zoneNumber" name="zoneNumber"
                            pattern="[0-9]{1,5}">
                 </div>
                 <div class="col">
                     <label for="villageNumber">Village Number: </label>
                     <input type="number" class="form-control" id="villageNumber" name="villageNumber"
-                           required="required" pattern="[0-9]{1,5}">
+                           pattern="[0-9]{1,5}">
                 </div>
             </div>
         </div>
@@ -123,17 +123,17 @@
         <%--referral reason--%>
         <div class="form-group">
             <label for="reasonOfReferral">I have referred to you this patient for this following reasons: </label>
-            <input required type="text" class="form-control" id="reasonOfReferral" name="reasonOfReferral"><br>
+            <input type="text" class="form-control" id="reasonOfReferral" name="reasonOfReferral"><br>
         </div>
         <%--action taken--%>
         <div class="form-group">
             <label for="actionAlreadyTaken">Action already taken: </label>
-            <input required type="text" class="form-control" id="actionAlreadyTaken" name="actionAlreadyTaken"><br>
+            <input type="text" class="form-control" id="actionAlreadyTaken" name="actionAlreadyTaken"><br>
         </div>
         <%--other message--%>
         <div class="form-group">
-            <label for="otherInfoMessage">Other Information and Messages: </label>
-            <input type="text" class="form-control" id="otherInfoMessage" name="otherInfoMessage"><br>
+            <label for="otherInformationMessage">Other Information and Messages: </label>
+            <input type="text" class="form-control" id="otherInformationMessage" name="otherInformationMessage"><br>
         </div>
 
         <button type="submit" value="Submit"> Submit</button>
