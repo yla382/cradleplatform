@@ -38,7 +38,7 @@
                     <div class="create-reading-container">
                         <main class="my-form">
                             <div class="container">
-                                <form action="${pageContext.request.contextPath}/reading/analysis"
+                                <form action="${pageContext.request.contextPath}/referral/confirmReferral"
                                 method="post"
                                 id="form">
 
@@ -174,9 +174,9 @@
 
                                       <div class="form-group row">
                                         <div class="col-sm-12 row">
-                                            <label for="otherInfoMessage" class="col-sm-2 col-form-label create-reading-label">OTHER</label>
+                                            <label for="otherInformationMessage" class="col-sm-2 col-form-label create-reading-label">OTHER</label>
                                             <div class="col-sm-6">
-                                                <textarea rows="2" type="text" id="otherInfoMessage" class="reading-textarea" name="otherInfoMessage" placeholder="Other Symptoms"></textarea>
+                                                <textarea rows="2" type="text" id="otherInformationMessage" class="reading-textarea" name="otherInformationMessage" placeholder="Other Symptoms"></textarea>
                                             </div>
                                         </div>
                                     </div>
