@@ -22,6 +22,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/create-referral.css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -88,7 +89,6 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="firstName"
                 name="firstName"
-                disabled
                 value="<%=firstName%>"
               /><br />
             </div>
@@ -100,7 +100,6 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="lastName"
                 name="lastName"
-                disabled
                 value="<%=lastName%>"
               /><br />
             </div>
@@ -112,7 +111,6 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="ageYears"
                 name="ageYears"
-                disabled
                 value="<%=ageYears%>"
               /><br />
             </div>
@@ -161,7 +159,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="bpSystolic"
                 name="bpSystolic"
-                disabled
+
                 value="<%=bpSystolic%>"
               />
             </div>
@@ -172,7 +170,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="bpDiastolic"
                 name="bpDiastolic"
-                disabled
+
                 value="<%=bpDiastolic%>"
               />
             </div>
@@ -183,7 +181,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="heartRateBPM"
                 name="heartRateBPM"
-                disabled
+
                 value="<%=heartRateBPM%>"
               />
             </div>
@@ -194,7 +192,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="analysis"
                 name="analysis"
-                disabled
+
                 value="<%=analysis%>"
               />
             </div>
@@ -227,7 +225,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <%--other message--%>
         <div class="form-group">
-          <label for="otherInfoMessage">Other Information and Messages: </label>
+          <label for="otherInformationMessage">Other Information and Messages: </label>
           <input
             required
             type="text"
@@ -251,6 +249,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       "DOMContentLoaded",
       function() {
         loadSex();
+        disableFields();
       },
       false
   );
@@ -259,6 +258,23 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     const sex = document.getElementById("hiddenSex").value;
     let s = document.getElementById("sex");
     s.value = sex;
+  }
+
+  function disableFields() {
+    let firstName = $("#firstName").addClass("disable-input");
+    firstName.prop("readonly", true);
+    let lastName = $("#lastName").addClass("disable-input");
+    lastName.prop("readonly", true);
+    let ageYears = $("#ageYears").addClass("disable-input");
+    ageYears.prop("readonly", true);
+    let bpSystolic = $("#bpSystolic").addClass("disable-input");
+    bpSystolic.prop("readonly", true);
+    let bpDiastolic = $("#bpDiastolic").addClass("disable-input");
+    bpDiastolic.prop("readonly", true);
+    let heartRateBPM = $("#heartRateBPM").addClass("disable-input");
+    heartRateBPM.prop("readonly", true);
+    let analysis = $("#analysis").addClass("disable-input");
+    analysis.prop("readonly", true);
   }
 
 </script>
