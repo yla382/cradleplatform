@@ -27,6 +27,8 @@
     <title>General Report</title>
     <!-- Native scripts -->
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/report-general.css"/>
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -59,21 +61,35 @@
         </div>
         <div class="content-body">
             <%--<button class="collapsible">CRADLE readings recorded</button>--%>
-            <div class="content">
+            <div class="report-container">
+
+                <div class="report-header">
+                    Cradle Readings Per Month
+                </div>
                 <canvas id="readingGraph" height="100"></canvas>
             </div>
             <%--<button class="collapsible">Referrals</button>--%>
-            <div class="content">
+            <div class="report-container">
+                <div class="report-header">
+                    Referrals Per Month
+                </div>
+
                 <canvas id="referralGraph" height="100"></canvas>
 
             </div>
             <%--<button class="collapsible">Traffic light colours recorded</button>--%>
-            <div class="content">
+            <div class="report-container">
+                <div class="report-header">
+                    Early Warning Indicators Per Month
+                </div>
                 <canvas id="trafficLightsGraph" height="100"></canvas>
 
             </div>
             <%--<button class="collapsible">Pregnant women</button>--%>
-            <div class="content">
+            <div class="report-container">
+                <div class="report-header">
+                    Pregnant Women Per Month
+                </div>
                 <canvas id="prWRefGraph" height="100"></canvas>
 
             </div>
@@ -153,7 +169,16 @@
                 borderWidth: 3
             }]
         },
-        options: {}
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        stepSize: 1
+                    }
+                }]
+            },
+        }
     });
 </script>
 <script>
@@ -183,7 +208,16 @@
                     borderWidth: 3
                 }]
         },
-        options: {}
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        stepSize: 1
+                    }
+                }]
+            },
+        }
     });
 </script>
 <script>
@@ -243,7 +277,16 @@
                     borderWidth: 3
                 }]
         },
-        options: {}
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        stepSize: 1
+                    }
+                }]
+            },
+        }
     });
 </script>
 <script>
@@ -273,7 +316,16 @@
                     borderWidth: 3
                 }]
         },
-        options: {}
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        stepSize: 1
+                    }
+                }]
+            },
+        }
     });
 </script>
 <script src="/js/report.js"></script>
