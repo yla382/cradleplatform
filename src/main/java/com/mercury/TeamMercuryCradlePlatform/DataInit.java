@@ -229,14 +229,14 @@ public class DataInit implements CommandLineRunner {
         medication2.setStartDate(LocalDate.of( 2019,8,2));
         medication2.calculateFinishDate();
 
-//        String diagnosis = "Assigning a type of diabetes to an individual often depends on the circumstances present" +
-//                " at the time of diagnosis, with individuals not necessarily fitting clearly into a single category. " +
-//                "For example, some patients cannot be clearly classified as having type 1 or type 2 diabetes. " +
-//                "Clinical presentation and disease progression may vary considerably in both types of diabetes." +
-//                "The traditional paradigms of type 2 diabetes occurring only in adults and type 1 diabetes only in children" +
-//                " are no longer accurate, as both diseases occur in both cohorts.";
-        String diagnosis = "";
-        Assessment assessment = new Assessment(diagnosis, "notes", Arrays.asList(medication1, medication2));
+        String diagnosis = "Assigning a type of diabetes to an individual often depends on the circumstances present" +
+                " at the time of diagnosis, with individuals not necessarily fitting clearly into a single category. " +
+                "For example, some patients cannot be clearly classified as having type 1 or type 2 diabetes. " +
+                "Clinical presentation and disease progression may vary considerably in both types of diabetes." +
+                "The traditional paradigms of type 2 diabetes occurring only in adults and type 1 diabetes only in children" +
+                " are no longer accurate, as both diseases occur in both cohorts.";
+
+        Assessment assessment = new Assessment(diagnosis, "Check the blood test in 3 days", Arrays.asList(medication1, medication2));
         assessment.setReferral(referral1);
         assessment.setDateCreated(LocalDate.of( 2019,8,2));
 
