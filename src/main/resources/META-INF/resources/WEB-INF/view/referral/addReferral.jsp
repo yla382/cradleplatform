@@ -227,7 +227,6 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="form-group">
           <label for="otherInformationMessage">Other Information and Messages: </label>
           <input
-            required
             type="text"
             class="form-control"
             id="otherInformationMessage"
