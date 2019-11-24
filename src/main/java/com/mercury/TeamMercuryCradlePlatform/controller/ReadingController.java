@@ -151,7 +151,8 @@ public class ReadingController {
     // Edit a reading with the given id
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView getReadingWithId(@PathVariable long id){
-        return new ModelAndView("/reading/editReading").addObject("reading", this.readingRepository.findByReadingId(id));
+        Reading reading = this.readingRepository.findByReadingId(id);
+        return new ModelAndView("/reading/editReading").addObject("reading", reading);
     }
 
     // Delete a reading with the given id

@@ -110,6 +110,7 @@
                                     <div class="form-group row" id="symptomsSelectorDiv">
                                             <div class="col-sm-6 row">
                                         <label class="col-sm-4 col-form-label create-reading-label" style="margin-top: 10px">SYMPTOMS</label>
+                                                <input hidden id="symptomsString" value="<%=reading.symptomsString%>">
                                         <div class="col-md-5 col-form-label">
                                             <div class="form-check form-check-inline">
                                                 <div class="round">
@@ -230,6 +231,7 @@
       "DOMContentLoaded",
       function() {
         loadGestationalAgeUnit();
+        loadSymptoms();
         var backButton = document.getElementById("backButtonState");
         if (backButton.value === "0") {
           backButton.value = "1";
@@ -258,6 +260,39 @@
 
         document.getElementById("gestationalAgeUnit").value = res;
         gestationalAgeUnitChange();
+    }
+
+    function loadSymptoms() {
+        const s = document.getElementById("symptomsString").value;
+        console.log(s);
+
+        if (s === "No Symptoms (patient healthy)") {
+            document.getElementById("health").value = "healthy";
+            healthChange();
+            return;
+        }
+
+        const symptoms = s.split(",");
+        let numChecked = 0;
+        for (let i = 0; i < symptoms.length; i++) {
+            console.log(symptoms[i]);
+            let symptom = symptoms[i];
+            for (let j = 1; j < 7; j++) {
+                console.log("inlineCheck" + j.toString());
+                let checkbox = document.getElementById("inlineCheck" + j.toString());
+                console.log("Checking " + "inlineCheck" + j.toString() + checkbox.value + " == " + symptom);
+                if (checkbox.value === symptom) {
+                    checkbox.checked = true;
+                    numChecked++;
+                }
+            }
+        }
+
+        if (numChecked !== symptoms.length) {
+            const otherSymptoms = document.getElementById("otherSymptoms");
+            otherSymptoms.value = symptoms[symptoms.length - 1]
+        }
+        healthChange();
     }
 
     function healthChange() {
