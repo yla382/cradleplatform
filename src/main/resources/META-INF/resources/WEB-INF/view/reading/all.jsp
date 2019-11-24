@@ -96,19 +96,6 @@
                                             </div>
                                             <h2> Advice</h2>
                                             <p> ${ReadingAnalysis.analyze(reading).briefText}</p>
-<%--                                            <div class="custom-control custom-switch">--%>
-<%--                                                <input checked type="checkbox" class="custom-control-input" id="recheckVitalsNow">--%>
-<%--                                                <label class="custom-control-label" for="recheckVitalsNow">Recheck vitals now(after save)</label>--%>
-<%--                                            </div>--%>
-
-<%--                                            <div class="custom-control custom-switch">--%>
-<%--                                                <input type="checkbox" class="custom-control-input" id="recheckVitals15">--%>
-<%--                                                <label class="custom-control-label" for="recheckVitals15"> Recheck vitals in 15 minutes (after save)</label>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="custom-control custom-switch">--%>
-<%--                                                <input checked type="checkbox" class="custom-control-input" id="followUp">--%>
-<%--                                                <label class="custom-control-label" for="followUp"> Follow-up needed (another day)</label>--%>
-<%--                                            </div>--%>
                                             <div class="container mt-4">
                                                 <div class="row">
                                                     <div class="col">
