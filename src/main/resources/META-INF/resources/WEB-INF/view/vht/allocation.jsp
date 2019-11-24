@@ -86,7 +86,7 @@
 
                 <button id="mig_confirm" type="submit" form="allocationForm" class="btn-confirm"
                         onclick="return confirmAllocation()" value="Submit">
-                    CONFIRM
+                    Confirm
                 </button>
 
             </div>
