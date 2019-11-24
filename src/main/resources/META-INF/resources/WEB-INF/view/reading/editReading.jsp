@@ -34,7 +34,7 @@
                     <div class="create-reading-container">
                         <main class="my-form">
                             <div class="container">
-                                <form action="${pageContext.request.contextPath}/reading/analysis"
+                                <form action="${pageContext.request.contextPath}/reading/update/<%=reading.readingId%>"
                                 method="post"
                                 id="form">
 

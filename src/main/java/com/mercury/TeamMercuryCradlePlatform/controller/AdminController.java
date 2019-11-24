@@ -68,52 +68,14 @@ public class AdminController {
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
     public @ResponseBody ModelAndView submitRegistration(User user, @RequestParam String password,
             @RequestParam String roles) {
+        User newUser = new User(user, password);
+        newUser.setEncodedPassword(newUser.getPassword());
+        newUser.setRole(roles);
 
-        String message = "";
-        if (user.getFirstName().equals("")) {
-            message += "First name field is empty </br>";
-        }
-        if (user.getLastName().equals("")) {
-            message += "Last name field is empty </br>";
-        }
-        if (password.equals("")) {
-            message += "Password field is empty </br>";
-        }
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            message += "This email is already in use </br>";
-        }
-        if (user.getEmail().equals("")) {
-            message += "Email field is empty </br>";
-        } else {
-            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
-                    + "A-Z]{2,7}$";
-            Pattern pat = Pattern.compile(emailRegex);
-            if (!pat.matcher(user.getEmail()).matches()) {
-                message += "Email is invalid </br>";
-            }
-        }
-        if (user.getPhoneNumber().equals("")) {
-            message += "Phone number field is empty </br>";
-        }
+        userRepository.save(newUser);
 
-        if (message.equals("")) {
-            User newUser = new User(user, password);
-            newUser.setEncodedPassword(newUser.getPassword());
-            newUser.setRole(roles);
-
-            userRepository.save(newUser);
-
-            emailAdmin.sendRegistrationEmail(password, newUser);
-            ModelAndView modelAndView = new ModelAndView("/admin/users").addObject("users",
-                    this.userRepository.findAll());
-            modelAndView.addObject("user", user);
-            return modelAndView;
-        } else {
-            return new ModelAndView("admin/registration")
-                    .addObject("status", "error")
-                    .addObject("message", message);
-        }
-
+        emailAdmin.sendRegistrationEmail(password, newUser);
+        return getAllUsers();
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
