@@ -230,8 +230,8 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             required
             type="text"
             class="form-control"
-            id="otherInfoMessage"
-            name="otherInfoMessage"
+            id="otherInformationMessage"
+            name="otherInformationMessage"
           /><br />
         </div>
 
