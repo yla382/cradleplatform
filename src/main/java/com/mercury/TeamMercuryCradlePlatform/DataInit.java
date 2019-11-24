@@ -20,17 +20,22 @@ public class DataInit implements CommandLineRunner {
     private SupervisorRepository supervisorRepository;
     private ReferralRepository referralRepository;
     private AnalysisRepository analysisRepository;
+    private AssessmentRepository assessmentRepository;
+    private MedicationRepository medicationRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public DataInit(UserRepository userRepository, PatientRepository patientRepository,
                     ReadingRepository readingRepository, SupervisorRepository supervisorRepository,
-                    ReferralRepository referralRepository, AnalysisRepository analysisRepository) {
+                    ReferralRepository referralRepository, AnalysisRepository analysisRepository,
+                    AssessmentRepository assessmentRepository, MedicationRepository medicationRepository) {
         this.userRepository = userRepository;
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
         this.supervisorRepository = supervisorRepository;
         this.referralRepository = referralRepository;
         this.analysisRepository = analysisRepository;
+        this.assessmentRepository = assessmentRepository;
+        this.medicationRepository = medicationRepository;
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -181,6 +186,7 @@ public class DataInit implements CommandLineRunner {
         Referral referral1 = new Referral("Achen", "Kakooza", 36,
                 Sex.FEMALE, "Sam", "Lira Health Centre", 178, 150, 127,
                 ZonedDateTime.of(LocalDate.of( 2019,8,2), LocalTime.of(10,23), ZoneId.systemDefault()));
+        referral1.setIsAssessed(true);
 
         Referral referral2 = new Referral("Kizza", "Alupo", 76,
                 Sex.FEMALE, "Dembe", "Rakai Health Centre", 170, 127, 139,
@@ -191,6 +197,8 @@ public class DataInit implements CommandLineRunner {
                 ZonedDateTime.of(LocalDate.of( 2019,1,12), LocalTime.of(17,49), ZoneId.systemDefault()));
 
         List<Referral> referrals = Arrays.asList(referral1,referral2, referral3);
+
+
         referralRepository.saveAll(referrals);
 
         // Check that every patient has his/her supervisor (the person who creates the first record of the patient)
@@ -211,5 +219,28 @@ public class DataInit implements CommandLineRunner {
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair5, supervisorPatientPair6,
                 supervisorPatientPair7, supervisorPatientPair8));
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair9, supervisorPatientPair10, supervisorPatientPair11));
+
+        Medication medication1 = new Medication("Penicillin", 10, "no", "mg", 5.2);
+        medication1.setStartDate(LocalDate.of( 2019,8,2));
+        medication1.calculateFinishDate();
+        Medication medication2 = new Medication("Insulin", 5, "no", "mg", 1.0);
+        medication2.setStartDate(LocalDate.of( 2019,8,2));
+        medication2.calculateFinishDate();
+
+//        String diagnosis = "Assigning a type of diabetes to an individual often depends on the circumstances present" +
+//                " at the time of diagnosis, with individuals not necessarily fitting clearly into a single category. " +
+//                "For example, some patients cannot be clearly classified as having type 1 or type 2 diabetes. " +
+//                "Clinical presentation and disease progression may vary considerably in both types of diabetes." +
+//                "The traditional paradigms of type 2 diabetes occurring only in adults and type 1 diabetes only in children" +
+//                " are no longer accurate, as both diseases occur in both cohorts.";
+        String diagnosis = "";
+        Assessment assessment = new Assessment(diagnosis, "notes", Arrays.asList(medication1, medication2));
+        assessment.setReferral(referral1);
+        assessment.setDateCreated(LocalDate.of( 2019,8,2));
+
+        assessmentRepository.save(assessment);
+        medication1.setAssessment(assessment);
+        medication2.setAssessment(assessment);
+        medicationRepository.saveAll( Arrays.asList(medication1, medication2));
     }
 }
