@@ -133,7 +133,6 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="zoneNumber"
                 name="zoneNumber"
-                required="required"
                 pattern="[0-9]{1,5}"
               />
             </div>
@@ -144,7 +143,6 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 class="form-control"
                 id="villageNumber"
                 name="villageNumber"
-                required="required"
                 pattern="[0-9]{1,5}"
               />
             </div>
