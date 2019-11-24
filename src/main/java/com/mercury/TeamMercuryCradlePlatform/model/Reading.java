@@ -104,6 +104,7 @@ public class Reading {
     @Transient transient public boolean userHasSelectedNoSymptoms;
 
 
+
     /**
      * Constructors & Factories
      */

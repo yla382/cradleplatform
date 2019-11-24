@@ -45,7 +45,7 @@
     ></script>
 </head>
 
-<body>">
+<body>
 <div class="main-container">
     <%@ include file="../navbar/navbar.jspf" %>
     <div class="content-container">
