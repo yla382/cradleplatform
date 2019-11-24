@@ -7,7 +7,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <head>
     <meta charset="utf-8" />
-    <title>ConfirmReferral</title>
+    <title>Confirm Referral</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -162,16 +162,11 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           value="<%=referral.getOtherInformationMessage()%>"
         />
 
-        <button type="button" onclick="editButton()">Edit</button>
-        <button type="submit">Save</button>
-        <input
-          type="hidden"
-          name="${_csrf.parameterName}"
-          value="${_csrf.token}"
-        />
-      </form>
-    </div>
-  </body>
+        <button type="submit"> Save </button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+</div>
+</body>
 
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -189,9 +184,13 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     crossorigin="anonymous"
   ></script>
 
-  <script>
-    function editButton() {
-      window.history.back();
-    }
-  </script>
+<%--<script>--%>
+
+
+<%--    function editButton() {--%>
+<%--        window.history.back();--%>
+<%--    }--%>
+
+<%--</script>--%>
+
 </html>

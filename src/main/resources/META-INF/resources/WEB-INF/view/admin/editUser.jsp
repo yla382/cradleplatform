@@ -6,14 +6,14 @@
 <html lang="en">
 
 <%
-    User postUser = (User)request.getAttribute("postUser");
+    User postUser = (User) request.getAttribute("postUser");
 %>
 
 <head>
     <meta charset="utf-8">
     <title>Users</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel='stylesheet' href="/css/edit-users.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -60,7 +60,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right edit-users-label">EMAIL</label>
                             <div class="col-md-6">
-                                <input required type="text" id="email" class="edit-field" name="email" value="<%=postUser.getEmail()%>">
+                                <input required type="email" id="email" class="edit-field" name="email" value="<%=postUser.getEmail()%>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -132,10 +132,15 @@
 </div>
 
 
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 <script>
 
@@ -143,7 +148,7 @@
         var checkBoxes = document.getElementsByName("roles");
         var isChecked = false;
         for (var i = 0; i < checkBoxes.length; i++) {
-            if ( checkBoxes[i].checked ) {
+            if (checkBoxes[i].checked) {
                 isChecked = true;
             }
         }
