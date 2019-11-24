@@ -77,7 +77,7 @@
     <h2>Other Messages</h2>
     <p> <%=referral.getOtherInformationMessage()%></p>
 
-
+<%--    <button type="button" onclick="editButton()"> Edit </button>--%>
     <form action="${pageContext.request.contextPath}/referral/referralSaved" method="post">
         <input type="hidden" name="firstName" value="<%=referral.getFirstName()%>"/>
         <input type="hidden" name="lastName" value="<%=referral.getLastName()%>"/>
@@ -94,7 +94,7 @@
         <input type="hidden" name="actionAlreadyTaken" value="<%=referral.getActionAlreadyTaken()%>"/>
         <input type="hidden" name="otherInformationMessage" value="<%=referral.getOtherInformationMessage()%>"/>
 
-        <button type="button" onclick="editButton()"> Edit </button>
+
         <button type="submit"> Save </button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
@@ -106,13 +106,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script>
+<%--<script>--%>
 
 
-    function editButton() {
-        window.history.back();
-    }
+<%--    function editButton() {--%>
+<%--        window.history.back();--%>
+<%--    }--%>
 
-</script>
+<%--</script>--%>
 
 </html>
