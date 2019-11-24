@@ -48,7 +48,7 @@ public class DataInit implements CommandLineRunner {
         List<User> users = Arrays.asList(admin, vht, healthWorker);
         userRepository.saveAll(users);
 
-        Patient patient1 = new Patient("48300027403","Abbor", "Kakooza","Uganda", "Lira", 29);
+        Patient patient1 = new Patient("48300027403","Abbo", "Kakooza","Uganda", "Lira", 29);
         Patient patient2 = new Patient("00159694421","Achen", "Kakooza", "Uganda", "Lira", 36);
         Patient patient3 = new Patient("39231011111","Dembe", "Kitumba", "Uganda", "Kiboga", 19);
         Patient patient4 = new Patient("32349476091","Namono", "Mbira", "Uganda", "Kiboga", 80);

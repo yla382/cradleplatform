@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 @Controller
 @RequestMapping("/reading")
 public class ReadingController {
@@ -29,7 +28,7 @@ public class ReadingController {
     private SupervisorRepository supervisorRepository;
 
     ReadingController(PatientRepository patientRepository, ReadingRepository readingRepository,
-                      AnalysisRepository analysisRepository, SupervisorRepository supervisorRepository){
+            AnalysisRepository analysisRepository, SupervisorRepository supervisorRepository) {
         this.patientRepository = patientRepository;
         this.readingRepository = readingRepository;
         this.analysisRepository = analysisRepository;
@@ -38,15 +37,13 @@ public class ReadingController {
 
     // Create a new reading
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public ModelAndView readingPage(){
+    public ModelAndView readingPage() {
         return new ModelAndView("/reading/create");
     }
 
-
     // Produce the analysis after creating a reading
     @RequestMapping(value = "/analysis", method = RequestMethod.POST)
-    public @ResponseBody ModelAndView readingAnalysisPage(
-            Reading reading,
+    public @ResponseBody ModelAndView readingAnalysisPage(Reading reading,
             @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
 
         reading.dateTimeTaken = ZonedDateTime.now();
@@ -61,23 +58,27 @@ public class ReadingController {
     // Save the reading to the db
     @RequestMapping(value = "/analysis/save", method = RequestMethod.POST)
     public ModelAndView saveReadingToDB(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken,
-                                        @RequestParam(value = "gestationalAgeUnit") String value,
-                                        @RequestParam(value = "saveByReferral") String saveByRef) {
+            @RequestParam(value = "gestationalAgeUnit") String value,
+            @RequestParam(value = "saveByReferral") String saveByRef) {
 
         // Need to manually set these fields again otherwise it saves it as null in db
         reading.gestationalAgeUnit = GestationalAgeUnit.valueOf(value);
         reading.dateTimeTaken = ZonedDateTime.parse(timeTaken);
         reading.dateUploadedToServer = ZonedDateTime.now();
 
-        // If a patient exists with the same first, last and age then link this reading to the existing patient, else create new patient
-        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
+        // If a patient exists with the same first, last and age then link this reading
+        // to the existing patient, else create new patient
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName,
+                reading.ageYears);
 
         if (patient == null) {
             patient = new Patient(reading);
             patientRepository.save(patient);
-            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                    .getPrincipal();
             String username = userDetails.getUsername();
-            SupervisorPatientPair supervisorPatientPair = new SupervisorPatientPair(username, patient.getPatientId().toString());
+            SupervisorPatientPair supervisorPatientPair = new SupervisorPatientPair(username,
+                    patient.getPatientId().toString());
             supervisorRepository.save(supervisorPatientPair);
         }
 
@@ -89,6 +90,7 @@ public class ReadingController {
 
         if (saveByRef.equalsIgnoreCase("true")) {
             return new ModelAndView("/referral/addReferral")
+                    .addObject("reading", reading)
                     .addObject("gender", patient.getSex());
         }
         return setUpAllReadingModel();
@@ -97,7 +99,7 @@ public class ReadingController {
     // Update a reading
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public ModelAndView updateReadingInDB(@PathVariable(value = "id") long id, Reading reading,
-                                          @RequestParam(value = "otherSymptoms", defaultValue = "")  String otherSymptoms) {
+            @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
         System.out.println("update");
         Reading dbReading = readingRepository.findByReadingId(id);
         Analysis dbAnalysis = analysisRepository.findByReading(dbReading);
@@ -107,7 +109,8 @@ public class ReadingController {
         reading.dateTimeTaken = dbReading.dateTimeTaken;
         reading.dateUploadedToServer = dbReading.dateUploadedToServer;
 
-        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName, reading.ageYears);
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName,
+                reading.ageYears);
 
         if (patient != null) {
             reading.setPatient(patient);
@@ -120,21 +123,20 @@ public class ReadingController {
         return setUpAllReadingModel();
     }
 
-
     // View all readings
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ModelAndView getAllReadings(){
+    public ModelAndView getAllReadings() {
         return setUpAllReadingModel();
     }
 
     @RequestMapping(value = "/all/{id}", method = RequestMethod.GET)
-    public ModelAndView getReadingsWithPatientId(@PathVariable Long id){
+    public ModelAndView getReadingsWithPatientId(@PathVariable Long id) {
         List<Reading> readings = this.readingRepository.findReadingsByPatient(patientRepository.findByPatientId(id));
 
         String title = createReadingTitle(readings);
 
         System.out.println(readings.size());
-        for(Reading r : readings){
+        for (Reading r : readings) {
             r.symptoms = new ArrayList<>(Arrays.asList(r.symptomsString.split(",")));
         }
         return new ModelAndView("/reading/all")
@@ -143,6 +145,9 @@ public class ReadingController {
     }
 
     private String createReadingTitle(List<Reading> readings) {
+        if (readings.isEmpty()) {
+            return "";
+        }
         String firstName = readings.get(0).getFirstName();
         String lastName = readings.get(0).getLastName();
 
@@ -151,14 +156,14 @@ public class ReadingController {
 
     // Edit a reading with the given id
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView getReadingWithId(@PathVariable long id){
-        Reading reading = this.readingRepository.findByReadingId(id);
-        return new ModelAndView("/reading/editReading").addObject("reading", reading);
+    public ModelAndView getReadingWithId(@PathVariable long id) {
+        return new ModelAndView("/reading/editReading").addObject("reading",
+                this.readingRepository.findByReadingId(id));
     }
 
     // Delete a reading with the given id
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public ModelAndView deleteReadingWithId(@PathVariable long id){
+    public ModelAndView deleteReadingWithId(@PathVariable long id) {
         Reading deletedReading = this.readingRepository.findByReadingId(id);
         this.analysisRepository.delete(this.analysisRepository.findByReading(deletedReading));
         this.readingRepository.delete(deletedReading);
@@ -166,10 +171,10 @@ public class ReadingController {
     }
 
     // Create a model for view all readings and pass in a List of reading objects
-    private ModelAndView setUpAllReadingModel(){
+    private ModelAndView setUpAllReadingModel() {
 
         List<Reading> readings = this.readingRepository.findAll();
-        for(Reading r : readings){
+        for (Reading r : readings) {
             r.symptoms = new ArrayList<>(Arrays.asList(r.symptomsString.split(",")));
         }
         return new ModelAndView("/reading/all").addObject("readingList", readings);
