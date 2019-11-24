@@ -41,7 +41,7 @@
             <div class="col-sm-6">
               <div class="education-container">
                 <div class="video-header">
-                  SKILLED HEALTH WORKERS
+                  Skilled Health Workers
                 </div>
                 <iframe
                   class="video-container"
@@ -53,7 +53,7 @@
             <div class="col-sm-6">
               <div class="education-container">
                 <div class="video-header">
-                  COMMUNITY HEALTH WORKERS
+                  Community Health Workers
                 </div>
                 <iframe
                   class="video-container"
