@@ -222,12 +222,18 @@ public class DataInit implements CommandLineRunner {
                 supervisorPatientPair7, supervisorPatientPair8));
         supervisorRepository.saveAll(Arrays.asList(supervisorPatientPair9, supervisorPatientPair10, supervisorPatientPair11));
 
-        Medication medication1 = new Medication("Penicillin", 10, "no", "mg", 5.2);
+        Medication medication1 = new Medication("Penicillin", 10, "No", "mg", 5.2);
         medication1.setStartDate(LocalDate.of( 2019,8,2));
         medication1.calculateFinishDate();
-        Medication medication2 = new Medication("Insulin", 5, "no", "mg", 1.0);
+        Medication medication2 = new Medication("Insulin", 5, "Swelling of your arms and legs.\n" +
+                "Weight gain.\n" +
+                "Low blood sugar (hypoglycemia)", "mg", 1.0);
         medication2.setStartDate(LocalDate.of( 2019,8,2));
         medication2.calculateFinishDate();
+        Medication medication3 = new Medication("Aspirin", 5, "rash, " +
+                "gastrointestinal ulcerations, abdominal pain, upset stomach, heartburn", "μg", 3.3);
+        medication3.setStartDate(LocalDate.of( 2019,11,24));
+        medication3.calculateFinishDate();
 
         String diagnosis = "Assigning a type of diabetes to an individual often depends on the circumstances present" +
                 " at the time of diagnosis, with individuals not necessarily fitting clearly into a single category. " +
@@ -243,6 +249,10 @@ public class DataInit implements CommandLineRunner {
         assessmentRepository.save(assessment);
         medication1.setAssessment(assessment);
         medication2.setAssessment(assessment);
-        medicationRepository.saveAll( Arrays.asList(medication1, medication2));
+
+        medication1.setPatientId(patient2.getPatientId());
+        medication2.setPatientId(patient2.getPatientId());
+        medication3.setPatientId(patient2.getPatientId());
+        medicationRepository.saveAll( Arrays.asList(medication1, medication2, medication3));
     }
 }

@@ -17,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <script src="/js/assessmentList.js"></script>
 
 </head>
@@ -32,7 +33,7 @@
 
     <div class="content-container">
         <div class="content-header">
-            View Referrals
+            View Assessments
         </div>
         <div class="content-body">
             <div class="table-container">
@@ -44,7 +45,7 @@
                         <th style="width: 10%" scope="col">PATIENT</th>
                         <th style="width: 50%" scope="col">DIAGNOSIS</th>
                         <th style="width: 30%" scope="col">NOTES</th>
-                        <th style="width: 5%" scope="col">MEDICATIONS</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,11 +56,24 @@
                         <td >${assessment.diagnosis}</td>
                         <td >${assessment.notes}</td>
                         <td >
-                                <%--                            <form>--%>
-                                <%--                                <button type="submit" class="btn-generic small" name="medications">Medications</button>--%>
-                                <%--                            </form>--%>
+                            <form action="${pageContext.request.contextPath}/assessment/medicationList/${assessment.assessmentId}" method="get">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <button type="submit" class="icon ion-3x ion-md-medkit table-icon btn-no-style" title="View Prescription List"></button>
+                            </form>
                         </td>
-                        <td></td>
+                        <td >
+                            <form action="${pageContext.request.contextPath}/assessment/printMedicationList/${assessment.assessmentId}" method="get">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <button type="submit" class="icon ion-3x ion-md-print table-icon btn-no-style" title="Print Prescription List"></button>
+                            </form>
+                        </td>
+                        <td >
+                            <form action="${pageContext.request.contextPath}/assessment/deleteAssessment/${assessment.assessmentId}" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <button style="color: darkred" type="submit" class="icon ion-3x delete ion-md-trash table-icon btn-no-style"
+                                        title="Delete Assessment" onclick="return confirm('Do you want to delete this assessment?');"></button>
+                            </form>
+                        </td>
                         </c:forEach>
                     </tbody>
                 </table>

@@ -9,8 +9,10 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel='stylesheet' href="/css/view-patients.css"/>
+    <link rel='stylesheet' href="/css/patient.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 </head>
 <script>
     function deleteRow(patientId) {
@@ -81,7 +83,13 @@
                         </td>
                         <td>
                             <form action="${pageContext.request.contextPath}/reading/all/${patient.patientId}" method="get">
-                                <button type="submit" value="submit" class="glyphicon glyphicon-signal table-icon btn-no-style" title="Readings"></button>
+                                <button type="submit" value="submit" class="icon ion-2x ion-md-book table-icon btn-no-style" title="Readings"></button>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/assessment/allMedicationList/${patient.patientId}" method="get">
+                                <button type="submit" value="submit" class="icon ion-2x ion-md-medkit table-icon btn-no-style" title="Prescriptions"></button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
                         </td>
