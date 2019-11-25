@@ -11,6 +11,7 @@
     <title>Patients</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/patient.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/readings-table.css"/>
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css"/>
     <link rel='stylesheet' href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -54,22 +55,26 @@
         </div>
         <div class="content-body">
             <div class="table-container">
-                <table id="readingsTable" class="table table-striped">
+                <table id="readingsTable" class="table">
                     <thead>
                     <tr>
+                            <th scope="col"></th>
+
                         <th scope="col">Name</th>
                         <th scope="col">Age</th>
                         <th scope="col">Status</th>
                         <th scope="col">Time Taken</th>
                         <th scope="col"></th>
-                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="<%=readingList%>" var="reading">
-                        <tr data-toggle="collapse" data-target=".<%=i%>" onclick="changeIcon(<%=i%>)">
-                            <td>${reading.firstName} ${reading.lastName}</td>
-                            <td>${reading.ageYears}</td>
+                        <tr data-toggle="collapse" data-target=".<%=i%>" onclick="changeIcon(<%=i%>)" style="border-top: 1px solid #dee2e6;">
+                            <td class="td-element">
+                                <span id="glyphicon-<%=i%>" class="glyphicon glyphicon-plus" style="font-size:25px; margin-left: 10px; color: rgb(14, 168, 130)"></span>
+                            </td>
+                            <td class="td-element">${reading.firstName} ${reading.lastName}</td>
+                            <td class="td-element">${reading.ageYears}</td>
                             <td>
                                 <img src="/images/${ReadingAnalysis.analyze(reading).trafficLightImg}.png"
                                      alt="Traffic Light">
@@ -78,81 +83,104 @@
                                          alt="Arrow Direction">
                                 </c:if>
                             </td>
-                            <td>${reading.timeYYYYMMDD}</td>
-                            <td>
+                            <td class="td-element">${reading.timeYYYYMMDD}</td>
+                            <td class="td-element">
                                 <c:if test="${reading.dateRecheckVitalsNeeded != null }">
                                     <span class="glyphicon glyphicon-warning-sign"></span>
                                     <p> Recheck vitals now</p>
                                 </c:if>
                             </td>
-                            <td>
-                                <span id="glyphicon-<%=i%>" class="glyphicon glyphicon-plus"></span>
-                            </td>
+                            
                         </tr>
                         <tr>
                             <td colspan="6" class="hiddenRow">
                                 <div class="collapse <%=i++%>">
-                                    <div class="content-body" style="padding: 0;">
-                                        <div class="edit-patient-container" style="width: 50%; margin: auto">
-                                            <h2> ${reading.firstName} ${reading.lastName}, ${reading.ageYears}y
-                                                @${reading.gestationWeekDaysString}</h2>
-                                            <p> ${reading.symptomsString}</p>
-                                            <h2> ${reading.timeTakenAmPm}: ${ReadingAnalysis.analyze(reading).analysisText}</h2>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <p> ${reading.bpSystolic}/${reading.bpDiastolic}</p>
-                                                        <p> HR: ${reading.heartRateBPM}</p>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="row">
-                                                            <div class="col-sm">
-                                                                <img src="/images/${ReadingAnalysis.analyze(reading).trafficLightImg}.png"
-                                                                     alt="${ReadingAnalysis.analyze(reading).trafficLightImg}">
-                                                                <c:if test="${not empty ReadingAnalysis.analyze(reading).arrowDirection}">
-                                                                    <img src="/images/${ReadingAnalysis.analyze(reading).arrowDirection}.png"
-                                                                         alt="Arrow Direction">
-                                                                </c:if>
-                                                            </div>
+                                    <div class="expand-container">
+                                            <div class="details-container">
+                                                <div class="form-group row">
+                                                <div class="col-sm-6">
+                                  
+                              
+                                                <div class="form-group row">
+                                                        <span class="col-sm-4 referral-label text-md-left">NAME</span>
+                                                        <span class ="col-sm-7">${reading.firstName} ${reading.lastName}</span>
+                                                </div>
+                              
+                                                <div class="form-group row">
+                                                        <span class="col-sm-4 referral-label text-md-left">AGE</span>
+                                                        <span class ="col-sm-7">${reading.ageYears}y</span>
+                                                </div>
+                              
+                                                <div class="form-group row">
+                                                        <span class="col-sm-4 referral-label text-md-left">GESTATIONAL AGE</span>
+                                                        <span class ="col-sm-7">@${reading.gestationWeekDaysString}</span>
+                                                </div>
+                                                </div>
+                              
+                                                <div class="col-sm-6">
+                                                        <div class="form-group row">
+                                                                <span class="col-sm-4 referral-label text-md-left">DIASTOLIC</span>
+                                                                <span class ="col-sm-7 ">${reading.bpSystolic}/${reading.bpDiastolic}</span>
+                                                        </div>
+                                    
+                                                        <div class="form-group row">
+                                                                <span class="col-sm-4 referral-label text-md-left">HEART RATE</span>
+                                                                <span class ="col-sm-7">${reading.heartRateBPM}</span>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                                <span class="col-sm-4 referral-label text-md-left">ADVICE</span>
+                                                                <span class ="col-sm-7 ">${ReadingAnalysis.analyze(reading).briefText}</span>
+                                                        </div>
+                                                </div>
+
+
+
+                                                
+                                                </div>
+                                                <div class="form-group row">
+                                                        <div class="col-sm-2 offset-sm-2  text-center">
+                                                            <c:if test="${reading.dateRecheckVitalsNeeded != null }">
+                                                                <form action="${pageContext.request.contextPath}/reading/retest/${reading.readingId}"
+                                                                      method="get">
+                                                                    <button type="submit" class="btn-generic">Recheck
+                                                                        vitals
+                                                                    </button>
+                                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                                           value="${_csrf.token}"/>
+                                                                </form>
+                                                            </c:if>
+                                                            <c:if test="${reading.dateRecheckVitalsNeeded == null }">
+                                                                <form action="${pageContext.request.contextPath}/reading/retest/${reading.readingId}"
+                                                                      method="get">
+                                                                    <button type="submit" class="btn-generic-disabled" disabled>Recheck
+                                                                        vitals
+                                                                    </button>
+                                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                                           value="${_csrf.token}"/>
+                                                                </form>
+                                                            </c:if>
+                                                        </div>
+                                                        <div class="col-sm-2 text-center">
+        
+                                                            <form action="${pageContext.request.contextPath}/reading/edit/${reading.readingId}"
+                                                                  method="get">
+                                                                <button type="submit" class="btn-generic">Edit</button>
+                                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                                       value="${_csrf.token}"/>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-sm-2  text-center">
+                                                            <form action="${pageContext.request.contextPath}/statistics/blood-pressure-graph/${reading.patientId}"
+                                                                  method="get">
+                                                                <button type="submit" class="btn-generic">Statistics
+                                                                </button>
+                                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                                       value="${_csrf.token}"/>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </div>
-                                            <h2> Advice</h2>
-                                            <p> ${ReadingAnalysis.analyze(reading).briefText}</p>
-                                            <div class="container mt-4">
-                                                <div class="row m-2">
-                                                    <c:if test="${reading.dateRecheckVitalsNeeded != null }">
-                                                        <form action="${pageContext.request.contextPath}/reading/retest/${reading.readingId}"
-                                                              method="get">
-                                                            <button type="submit" class="btn-generic">Recheck
-                                                                vitals
-                                                            </button>
-                                                            <input type="hidden" name="${_csrf.parameterName}"
-                                                                   value="${_csrf.token}"/>
-                                                        </form>
-                                                    </c:if>
-                                                </div>
-                                                <div class="m-2">
-
-                                                    <form action="${pageContext.request.contextPath}/reading/edit/${reading.readingId}"
-                                                          method="get">
-                                                        <button type="submit" class="btn-generic">Edit</button>
-                                                        <input type="hidden" name="${_csrf.parameterName}"
-                                                               value="${_csrf.token}"/>
-                                                    </form>
-                                                </div>
-                                                <div class="m-2">
-                                                    <form action="${pageContext.request.contextPath}/statistics/blood-pressure-graph/${reading.patientId}"
-                                                          method="get">
-                                                        <button type="submit" class="btn-generic">Statistics
-                                                        </button>
-                                                        <input type="hidden" name="${_csrf.parameterName}"
-                                                               value="${_csrf.token}"/>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    
                                     </div>
                                 </div>
                             </td>
