@@ -30,6 +30,12 @@ public class Reading {
     @Transient public static final int MANUAL_USER_ENTRY_DIASTOLIC = 2;
     @Transient public static final int MANUAL_USER_ENTRY_HEARTRATE = 4;
 
+    public ZonedDateTime getDateRecheckVitalsNeeded() {
+        return this.dateRecheckVitalsNeeded;
+    }
+
+
+
     public class WeeksAndDays {
         public final int weeks;
         public final int days;
@@ -88,7 +94,7 @@ public class Reading {
 
     // retest & follow-up
     @Transient public List<Long> retestOfPreviousReadingIds;   // oldest first
-    @Transient public ZonedDateTime dateRecheckVitalsNeeded;
+    @Column(name = "date_recheck_vitals_needed") public ZonedDateTime dateRecheckVitalsNeeded;
     @Transient private Boolean isFlaggedForFollowup;
 
     // referrals

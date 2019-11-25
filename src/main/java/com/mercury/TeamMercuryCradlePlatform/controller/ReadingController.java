@@ -86,6 +86,16 @@ public class ReadingController {
         reading.setPatient(patient);
         Analysis analysis = new Analysis(reading);
 
+        if(analysis.getYellow()){
+            reading.dateRecheckVitalsNeeded = reading.dateTimeTaken.plusMinutes(15);
+        }
+        else if(analysis.getRed()){
+            reading.dateRecheckVitalsNeeded = reading.dateTimeTaken;
+        }
+        else {
+            reading.dateRecheckVitalsNeeded = null;
+        }
+
         readingRepository.save(reading);
         analysisRepository.save(analysis);
 
@@ -170,6 +180,60 @@ public class ReadingController {
         this.readingRepository.delete(deletedReading);
         return setUpAllReadingModel();
     }
+
+    @RequestMapping(value = "/retest/{id}", method = RequestMethod.GET)
+    public ModelAndView getRetestReadingWithId(@PathVariable long id) {
+        return new ModelAndView("/reading/retest").addObject("reading",
+                this.readingRepository.findByReadingId(id));
+    }
+
+    @RequestMapping(value = "/retest/analysis", method = RequestMethod.POST)
+    public ModelAndView retestAnalysis(Reading reading,
+                                       @RequestParam(value = "otherSymptoms", defaultValue = "") String otherSymptoms) {
+        reading.setSymptomsList(otherSymptoms);
+        reading.dateTimeTaken = ZonedDateTime.now();
+        ModelAndView modelAndView = new ModelAndView("/reading/retestAnalysis");
+        modelAndView.addObject("reading", reading);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/retest/analysis/save", method = RequestMethod.POST)
+    public ModelAndView saveRetestReadingToDb(Reading reading, @RequestParam(value = "dateTimeTaken") String timeTaken,
+                                              @RequestParam(value = "gestationalAgeUnit") String value ) {
+
+        // Need to manually set these fields again otherwise it saves it as null in db
+        reading.gestationalAgeUnit = GestationalAgeUnit.valueOf(value);
+        reading.dateTimeTaken = ZonedDateTime.parse(timeTaken);
+        reading.dateUploadedToServer = ZonedDateTime.now();
+        reading.dateRecheckVitalsNeeded = null;
+
+        // If a patient exists with the same first, last and age then link this reading
+        // to the existing patient, else create new patient
+        Patient patient = patientRepository.findByFirstNameAndLastNameAndAgeYears(reading.firstName, reading.lastName,
+                reading.ageYears);
+
+        if (patient == null) {
+            patient = new Patient(reading);
+            patientRepository.save(patient);
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                    .getPrincipal();
+            String username = userDetails.getUsername();
+            SupervisorPatientPair supervisorPatientPair = new SupervisorPatientPair(username,
+                    patient.getPatientId().toString());
+            supervisorRepository.save(supervisorPatientPair);
+        }
+
+        reading.setPatient(patient);
+        Analysis analysis = new Analysis(reading);
+
+        readingRepository.save(reading);
+        analysisRepository.save(analysis);
+
+        return setUpAllReadingModel();
+    }
+
+
 
     // Create a model for view all readings and pass in a List of reading objects
     private ModelAndView setUpAllReadingModel() {
