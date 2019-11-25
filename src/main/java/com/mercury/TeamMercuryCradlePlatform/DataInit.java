@@ -41,11 +41,14 @@ public class DataInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        User admin = new User(bCryptPasswordEncoder.encode("1234"), "John", "Lee", "test@test.com", "ADMIN", "1234567890");
-        User vht = new User(bCryptPasswordEncoder.encode("1234"), "Yoon", "Lee", "test2@test.com","VHT,ADMIN,HEALTHWORKER", "9999999999");
+        User admin = new User(bCryptPasswordEncoder.encode("1234"), "John", "Lee", "test@test.com", "ADMIN", "7781234567");
+        User vht1 = new User(bCryptPasswordEncoder.encode("1234"), "Bob", "Chan", "test2@test.com","VHT", "67712903478");
+        User vht2 = new User(bCryptPasswordEncoder.encode("1234"), "Jimmy", "Nguyen", "test3@test.com","VHT", "6046046046");
+        User vht3 = new User(bCryptPasswordEncoder.encode("1234"), "Patrick", "Smith", "test4@test.com","VHT", "6045183070");
+
         User healthWorker = new User(bCryptPasswordEncoder.encode("1234"), "Megan","Fox", "test3@test.com", "ADMIN,HEALTHWORKER", "0001111111");
 
-        List<User> users = Arrays.asList(admin, vht, healthWorker);
+        List<User> users = Arrays.asList(admin, vht1, vht2, vht3, healthWorker);
         userRepository.saveAll(users);
 
         Patient patient1 = new Patient("48300027403","Abbo", "Kakooza","Uganda", "Lira", 29);
