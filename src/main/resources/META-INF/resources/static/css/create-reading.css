@@ -43,6 +43,10 @@
   font-size: 20px;
 }
 
+.btn-font-size {
+  font-size: 18px !important;
+}
+
 .btn-submit:hover {
   background-color: rgb(36, 155, 135);
   cursor: pointer;
@@ -59,6 +63,14 @@
   background: transparent;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.979);
   padding-top: 5px;
+}
+
+.side-no-border{
+  border-bottom: 0 !important;
+}
+
+.period_small {
+  font-size: 12px;
 }
 
 .reading-textarea {
