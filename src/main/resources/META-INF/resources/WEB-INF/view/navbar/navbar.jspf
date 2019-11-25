@@ -32,4 +32,8 @@
         <%} %>
         <li class="navbar-list"><a class="nav-link" href="/logout">< Sign Out ></a></li>
     </ul>
+
+    <div class="footer text-center">
+        Copyright &copy; 2019, Cradle.
+    </div>
 </div>
