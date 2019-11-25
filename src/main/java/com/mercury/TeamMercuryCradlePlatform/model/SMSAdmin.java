@@ -1,20 +1,8 @@
 package com.mercury.TeamMercuryCradlePlatform.model;
 
 import com.twilio.Twilio;
-import com.twilio.twiml.MessagingResponse;
-import com.twilio.twiml.messaging.Body;
+import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.twilio.twiml.messaging.Body;
-import com.twilio.twiml.messaging.Message;
-import com.twilio.twiml.MessagingResponse;
-import com.twilio.twiml.TwiMLException;
-
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class SMSAdmin {
     private static final String ACCOUNT_SID = "AC5da00db224e5944c1adfc31a4cc2ed39";
@@ -31,47 +19,22 @@ public class SMSAdmin {
         return "Subject: " + subject + "\n\n" + text;
     }
 
-//    public void sendText(String phoneNumber, String subject, String text) {
-//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-//        Message message = Message.creator(
-//                new PhoneNumber(phoneNumber),
-//                new PhoneNumber(TWILIO_NUMBER),
-//                createText(subject, text))
-//                .create();
-//    }
-//
-//    public void testSendText(String phoneNumber, String subject, String text) {
-//        Twilio.init(TEST_ACCOUNT_SID, TEST_AUTH_TOKEN);
-//        Message message = Message.creator(
-//                new PhoneNumber(phoneNumber),
-//                new PhoneNumber(TWILIO_NUMBER),
-//                createText(subject, text))
-//                .create();
-//    }
-
-    @RequestMapping(value = "/receive/sms", produces="application/xml")
-    public void receiveSms(HttpServletRequest request, HttpServletResponse response) {
-        Twilio.init(TEST_ACCOUNT_SID, TEST_AUTH_TOKEN);
-        String body = request.getParameter("Body");
-        System.out.println(body);
-
-        String message = "Hello world";
-
-        // Create a TwiML response and add our friendly message.
-        Body messageBody = new Body.Builder(message).build();
-        Message sms = new Message.Builder().body(messageBody).build();
-        MessagingResponse twiml = new MessagingResponse.Builder().message(sms).build();
-
-        response.setContentType("application/xml");
-
-        try {
-            response.getWriter().print(twiml.toXml());
-        } catch (TwiMLException | IOException e) {
-            e.printStackTrace();
-        }
-
+    public void sendText(String phoneNumber, String subject, String text) {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                new PhoneNumber(phoneNumber),
+                new PhoneNumber(TWILIO_NUMBER),
+                createText(subject, text))
+                .create();
     }
 
-
+    public void testSendText(String phoneNumber, String subject, String text) {
+        Twilio.init(TEST_ACCOUNT_SID, TEST_AUTH_TOKEN);
+        Message message = Message.creator(
+                new PhoneNumber(phoneNumber),
+                new PhoneNumber(TWILIO_NUMBER),
+                createText(subject, text))
+                .create();
+    }
 }
 
