@@ -8,18 +8,18 @@
         <li class="navbar-list"><a class="nav-link" href="/admin/index"><span
                 class="glyphicon glyphicon-home nav-link-icon"></span>Dashboard</a></li>
         <li class="navbar-list"><a class="nav-link" href="${pageContext.request.contextPath}/admin/users"><span
-                class="glyphicon glyphicon-search nav-link-icon"></span>View Users</a></li>
+                class="glyphicon glyphicon-search nav-link-icon"></span>Users</a></li>
         <li class="navbar-list"><a class="nav-link" href="${pageContext.request.contextPath}/patient/patientlist"><span
-        class="glyphicon glyphicon-user nav-link-icon"></span>View Patients</a></li>
+        class="glyphicon glyphicon-user nav-link-icon"></span>Patients</a></li>
         <li class="navbar-list"><a class="nav-link" href="${pageContext.request.contextPath}/referral/referralList"><span
-                class="glyphicon glyphicon-file nav-link-icon"></span>View Referrals</a></li>
+                class="glyphicon glyphicon-file nav-link-icon"></span>Referrals</a></li>
         <li class="navbar-list"><a class="nav-link" href="${pageContext.request.contextPath}/assessment/assessmentList"><span
-                class="icon ion-md-medical nav-link-icon"></span>View Assessments</a></li>
+                class="icon ion-md-medical nav-link-icon"></span>Assessments</a></li>
         <li class="navbar-list">
             <a class="nav-link" href="${pageContext.request.contextPath}/admin/registration">
                 <span class="icon ion-md-person-add nav-link-icon"></span>Create User</a>
         </li>
-        
+
         <li class="navbar-list"><a class="nav-link" href="${pageContext.request.contextPath}/reading/create"><span
                 class="icon ion-md-create nav-link-icon"></span>Create Reading</a></li>
                 <li class="navbar-list"><a class="nav-link" href="${pageContext.request.contextPath}/vht/genreport"><span class="glyphicon glyphicon-signal nav-link-icon"></span>Reports</a></li>
