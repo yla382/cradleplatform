@@ -43,11 +43,10 @@
                 <div class="video-header">
                   Skilled Health Workers
                 </div>
-                <iframe
-                  class="video-container"
-                  src="https://www.youtube.com/embed/QainNBCHKAg"
-                >
-                </iframe>
+                <div class="video-container-1">
+                  <iframe src="https://www.youtube.com/embed/QainNBCHKAg">
+                  </iframe>
+                </div>
               </div>
             </div>
             <div class="col-sm-6">
@@ -55,11 +54,10 @@
                 <div class="video-header">
                   Community Health Workers
                 </div>
-                <iframe
-                  class="video-container"
-                  src="https://www.youtube.com/embed/WvS3L5P4P2c"
-                >
-                </iframe>
+                <div class="video-container-2">
+                  <iframe src="https://www.youtube.com/embed/WvS3L5P4P2c">
+                  </iframe>
+                </div>
               </div>
             </div>
           </div>
