@@ -233,8 +233,6 @@ public class ReadingController {
         return setUpAllReadingModel();
     }
 
-
-
     // Create a model for view all readings and pass in a List of reading objects
     private ModelAndView setUpAllReadingModel() {
 
