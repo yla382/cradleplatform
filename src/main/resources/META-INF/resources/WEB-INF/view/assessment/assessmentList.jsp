@@ -62,12 +62,6 @@
                             </form>
                         </td>
                         <td >
-                            <form action="${pageContext.request.contextPath}/assessment/printMedicationList/${assessment.assessmentId}" method="get">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button type="submit" class="icon ion-3x ion-md-print table-icon btn-no-style" title="Print Prescription List"></button>
-                            </form>
-                        </td>
-                        <td >
                             <form action="${pageContext.request.contextPath}/assessment/deleteAssessment/${assessment.assessmentId}" method="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <button style="color: darkred" type="submit" class="icon ion-3x delete ion-md-trash table-icon btn-no-style"

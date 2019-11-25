@@ -1,4 +1,6 @@
 package com.mercury.TeamMercuryCradlePlatform.controller;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mercury.TeamMercuryCradlePlatform.model.Assessment;
 import com.mercury.TeamMercuryCradlePlatform.model.Medication;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
@@ -129,10 +131,5 @@ public class AssessmentController {
         allMedModel.addObject("medicationList", medicationList);
         allMedModel.addObject("patientName", patientName);
         return allMedModel;
-    }
-
-    @RequestMapping(value = "/printMedicationList/{assessmentId}" , method = RequestMethod.GET)
-    public void printMedicationList (@PathVariable Long assessmentId) {
-
     }
 }
