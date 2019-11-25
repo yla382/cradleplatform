@@ -19,8 +19,10 @@ import java.io.IOException;
 @Controller
 public class TwilioServlet {
     @RequestMapping(value="/receive/sms", method=RequestMethod.POST)
-    public String someMethod(@RequestBody String message) {
+    public String someMethod(@RequestBody String message, @RequestParam("Body") String body) {
         System.out.println(message);
+        System.out.println("THIS IS THE BODY: " + body);
+
 
         // Create a TwiML response and add our friendly message.
         Body messageBody = new Body.Builder(message).build();
