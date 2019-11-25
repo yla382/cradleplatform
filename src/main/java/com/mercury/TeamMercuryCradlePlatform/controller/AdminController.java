@@ -55,11 +55,6 @@ public class AdminController {
         return new ModelAndView("/reading/all").addObject("readingList", readings);
     }
 
-    @GetMapping("/education")
-    public String educationPage() {
-        return "admin/education";
-    }
-
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public @ResponseBody ModelAndView registrationPage() {
         return new ModelAndView("admin/registration");
