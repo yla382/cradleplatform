@@ -37,7 +37,7 @@
                     <form action="${pageContext.request.contextPath}/reading/retest/analysis"
                           method="post"
                           id="form">
-                        <input hidden required type="text" class="form-control" id="readingId" name="firstName" value="<%=reading.readingId%>">
+                        <input hidden required type="text" class="form-control" id="readingId" name="readingId" value="<%=reading.readingId%>">
                         <div class="form-group row">
                             <div class="col-sm-6 row">
                                 <label for="firstName" class="col-sm-4 col-form-label create-reading-label">FIRST NAME</label>
