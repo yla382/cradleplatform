@@ -35,10 +35,11 @@
         <div class="add-patient-container">
             <form action="${pageContext.request.contextPath}/patient/confirmPatient" method="post">
                 <div class="form-group row">
-                    <label for="attestationID" class="col-md-4 col-form-label text-md-right edit-users-label">ATTESTATION ID
+                    <label for="attestationID" class="col-md-4 col-form-label text-md-right edit-users-label">ATTESTATION
+                        ID
                     </label>
                     <div class="col-md-6">
-                        <input required type="text" pattern="NA|[0-9]{11,11}" required
+                        <input required type="text" pattern="NA|[0-9]{11,11}"
                                title="Please enter a 11 number attestation ID or enter 'NA'" maxlength="11"
                                class="edit-field" id="attestationID" name="attestationID"/>
                     </div>
@@ -64,15 +65,29 @@
                         />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="country">Country: </label>
-                    <input required type="text" class="form-control" id="country" name="country"><br>
+                <div class="form-group row">
+                    <label for="country" class="col-md-4 col-form-label text-md-right edit-users-label">COUNTRY
+                    </label>
+                    <div class="col-md-6">
+                        <input required type="text" id="country" class="edit-field" name="country"/>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="location">Location: </label>
-                    <input required type="text" class="form-control" id="location" name="location"><br>
+                <div class="form-group row">
+                    <label
+                            for="location"
+                            class="col-md-4 col-form-label text-md-right edit-users-label">LOCATION
+                    </label>
+                    <div class="col-md-6">
+                        <input
+                                required type="text"
+                                id="location"
+                                class="edit-field"
+                                name="location"
+                        />
+                    </div>
                 </div>
-                <button type="submit" value="Submit"> Create</button>
+
+                <button class="btn-save" type="submit" value="Submit">Create</button>
                 <p id="status"></p>
                 <p id="patientInfo"></p>
         </div>
