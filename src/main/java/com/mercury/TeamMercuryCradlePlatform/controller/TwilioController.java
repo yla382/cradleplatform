@@ -2,6 +2,7 @@ package com.mercury.TeamMercuryCradlePlatform.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mercury.TeamMercuryCradlePlatform.Service.ContactService;
 import com.mercury.TeamMercuryCradlePlatform.model.AndroidReading;
 import com.mercury.TeamMercuryCradlePlatform.model.Patient;
 import com.mercury.TeamMercuryCradlePlatform.model.Reading;
@@ -23,7 +24,7 @@ public class TwilioController {
     private PatientRepository patientRepository;
 
     @RequestMapping(value="/receive/sms", method=RequestMethod.POST)
-    public String someMethod(@RequestParam("Body") String body/*, @RequestParam("From") String From*/) throws IOException {
+    public String someMethod(@RequestParam("Body") String body, @RequestParam("From") String From) throws IOException {
         System.out.println("Body: " + body);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -35,7 +36,15 @@ public class TwilioController {
         }
 
         // TODO: Send reply SMS with a confirmation that message was received
+        sendConfirmationSms(From);
         return "Good job";
+    }
+
+    private void sendConfirmationSms(String phoneNumber) {
+        ContactService contactService = new ContactService();
+        String message = "Readings have been successfully uploaded!";
+
+        contactService.sendMessage("SMS", null, phoneNumber, "", message);
     }
 
     static void createReadingFromAndroid(AndroidReading androidReading, PatientRepository patientRepository, ReadingRepository readingRepository) {
