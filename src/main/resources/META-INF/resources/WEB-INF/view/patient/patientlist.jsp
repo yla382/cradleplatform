@@ -12,7 +12,8 @@
     <link rel='stylesheet' href="/css/patient.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <script>
     function deleteRow(patientId) {
@@ -94,6 +95,16 @@
                                 </form>
                             </td>
 
+
+                            <td>
+                                <form action="${pageContext.request.contextPath}/assessment/allMedicationList/${patient.patientId}"
+                                      method="get">
+                                    <button type="submit" value="submit"
+                                            class="fas fa-file-prescription table-icon btn-no-style"
+                                            title="Medication History"></button>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
