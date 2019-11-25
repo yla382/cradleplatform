@@ -80,6 +80,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
       <h2>Other Messages</h2>
       <p><%=referral.getOtherInformationMessage()%></p>
 
+
       <form
         action="${pageContext.request.contextPath}/referral/referralSaved"
         method="post"
@@ -176,4 +177,5 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+
 </html>

@@ -59,10 +59,11 @@
                         <td>${referral.sex}</td>
                         <td>${referral.referredHealthCentre}</td>
                         <td>${referral.vhtName}</td>
+                        <%if (!referralList.get(buttonCounter++).getIsAssessed()) {%>
                         <td>
                             <a href="${pageContext.request.contextPath}/referral/info/${referral.referralId}" class="glyphicon glyphicon-search table-icon" title="More Details"></a>
                         </td>
-                        <%if (!referralList.get(buttonCounter++).getIsAssessed()) {%>
+<%--                        <%if (!referralList.get(buttonCounter++).getIsAssessed()) {%>--%>
                         <td>
                             <form action="${pageContext.request.contextPath}/assessment/addAssessment/${referral.referralId}" method="get">
                                 <button type="submit" class="btn-generic small" name="close" onclick="return confirm('Do you want to finalize this referral?');">Finalize</button>
@@ -70,6 +71,7 @@
                         </td>
                     </tr>
                     <%} else {%>
+                        <td></td>
                         <td><button type="button" class="btn-generic small" style="background-color: darkred"> Closed </button></td>
                     <%}  %>
                 </c:forEach>
