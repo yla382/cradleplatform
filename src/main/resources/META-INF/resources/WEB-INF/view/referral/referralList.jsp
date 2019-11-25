@@ -72,7 +72,7 @@
                     </tr>
                     <%} else {%>
                         <td></td>
-                        <td><button type="button" class="btn-generic small" style="background-color: darkred"> Closed </button></td>
+                        <td><button type="button" class="btn-closed small" style="color: darkred"> Closed </button></td>
                     <%}  %>
                 </c:forEach>
                 </tbody>
