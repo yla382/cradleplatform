@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/reading")
@@ -241,6 +238,7 @@ public class ReadingController {
             r.symptoms = new ArrayList<>(Arrays.asList(r.symptomsString.split(",")));
         }
 
+        readings.sort(Comparator.comparing(a -> a.dateTimeTaken));
         Collections.reverse(readings);
 
         return new ModelAndView("/reading/all").addObject("readingList", readings);

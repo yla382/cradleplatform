@@ -106,37 +106,37 @@ public class DataInit implements CommandLineRunner {
                 Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION),
                 GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "8",
                 170, 127, 139,
-                ZonedDateTime.of(LocalDate.of( 2019,6,1), LocalTime.of(4,0), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019,8,3), LocalTime.of(4,0), ZoneId.systemDefault()));
 
         Reading reading8 = new Reading("Jeje", "Kony", 26,
                 Arrays.asList(Strings.SYMPTOM_ABDOMINAL_PAIN, "Leg Pain"),
                 GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "3",
                 150, 89, 100,
-                ZonedDateTime.of(LocalDate.of( 2019,2,23), LocalTime.of(5,9), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019, 10,23), LocalTime.of(5,9), ZoneId.systemDefault()));
 
         Reading reading9 = new Reading("Kahinda", "Otafiire", 26,
                 Arrays.asList(Strings.SYMPTOM_HEADACHE, Strings.SYMPTOM_BLURRED_VISION),
                 GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "7",
                 180, 130, 98,
-                ZonedDateTime.of(LocalDate.of( 2019,1,12), LocalTime.of(17,49), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019,11,12), LocalTime.of(17,49), ZoneId.systemDefault()));
 
         Reading reading10 = new Reading("Kahinda", "Otafiire", 26,
                 Arrays.asList(Strings.SYMPTOM_UNWELL, Strings.SYMPTOM_FEVERISH),
                 GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "8",
                 120, 80, 70,
-                ZonedDateTime.of(LocalDate.of( 2019,2,12), LocalTime.of(15,33), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019,11,14), LocalTime.of(15,33), ZoneId.systemDefault()));
 
         Reading reading11 = new Reading("Natukunda", "Mbira", 22,
                 Arrays.asList(Strings.SYMPTOM_UNWELL, Strings.SYMPTOM_BLURRED_VISION, Strings.SYMPTOM_ABDOMINAL_PAIN),
                 GestationalAgeUnit.GESTATIONAL_AGE_UNITS_NONE, "0",
                 118, 88, 79,
-                ZonedDateTime.of(LocalDate.of( 2019,12,12), LocalTime.of(23,29), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019,11,15), LocalTime.of(23,29), ZoneId.systemDefault()));
 
         Reading reading12 = new Reading("Abbo", "Kakooza", 29,
                 Arrays.asList(Strings.SYMPTOM_BLURRED_VISION),
                 GestationalAgeUnit.GESTATIONAL_AGE_UNITS_MONTHS, "5",
                 122, 100, 90,
-                ZonedDateTime.of(LocalDate.of( 2019,8,27), LocalTime.of(11,47), ZoneId.systemDefault()));
+                ZonedDateTime.of(LocalDate.of( 2019,11,20), LocalTime.of(11,47), ZoneId.systemDefault()));
 
         List<Reading> readings1 = Arrays.asList(reading1, reading2, reading3, reading4, reading12);
         List<Reading> readings2 = Arrays.asList(reading5, reading6);
