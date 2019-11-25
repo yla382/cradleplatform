@@ -68,7 +68,7 @@
                                     <div class="reading-field-uneditable"><%=reading.ageYears%>
                                     </div>
                                     <input hidden required type="number" min="0" class="form-control" id="ageYears"
-                                           value="<%=reading.ageYears%>">
+                                           name="ageYears" value="<%=reading.ageYears%>">
                                 </div>
                             </div>
                         </div>
