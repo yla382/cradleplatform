@@ -24,7 +24,7 @@ public class TwilioController {
     private PatientRepository patientRepository;
 
     @RequestMapping(value="/receive/sms", method=RequestMethod.POST)
-    public String someMethod(@RequestParam("Body") String body, @RequestParam("From") String From) throws IOException {
+    public void receiveSms(@RequestParam("Body") String body, @RequestParam("From") String From) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.findAndRegisterModules();
         List<AndroidReading> readingList = mapper.readValue(body, new TypeReference<List<AndroidReading>>(){});
@@ -33,9 +33,7 @@ public class TwilioController {
             createReadingFromAndroid(androidReading, patientRepository, readingRepository);
         }
 
-        // TODO: Send reply SMS with a confirmation that message was received
         sendConfirmationSms(From);
-        return "Good job";
     }
 
     private void sendConfirmationSms(String phoneNumber) {
