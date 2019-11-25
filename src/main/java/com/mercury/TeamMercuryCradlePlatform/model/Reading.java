@@ -60,7 +60,6 @@ public class Reading {
 
     public Long getPatientId() {
         return patient.getPatientId();
-
     }
 
     public void setPatient(Patient patient) {

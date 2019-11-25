@@ -2,12 +2,16 @@
 <html>
   <head>
     <meta charset="ISO-8859-1" />
-    <title>Cradle</title>
+    <title>Education Videos</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" href="/css/education.css" />
-    <link rel='stylesheet' href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -33,12 +37,31 @@
           Education
         </div>
         <div class="content-body">
-          <div class="education-container">
-            <div class="video-header">
-                How to use CRADLE VSA
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <div class="education-container">
+                <div class="video-header">
+                  Skilled Health Workers
+                </div>
+                <iframe
+                  class="video-container"
+                  src="https://www.youtube.com/embed/QainNBCHKAg"
+                >
+                </iframe>
+              </div>
             </div>
-            <iframe class="video-container" src="https://www.youtube.com/embed/QainNBCHKAg">
-            </iframe>
+            <div class="col-sm-6">
+              <div class="education-container">
+                <div class="video-header">
+                  Community Health Workers
+                </div>
+                <iframe
+                  class="video-container"
+                  src="https://www.youtube.com/embed/WvS3L5P4P2c"
+                >
+                </iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>

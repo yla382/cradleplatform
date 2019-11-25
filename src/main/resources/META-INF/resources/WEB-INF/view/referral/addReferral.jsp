@@ -38,11 +38,89 @@
                     <div class="create-reading-container">
                         <main class="my-form">
                             <div class="container">
-                                <form action="${pageContext.request.contextPath}/reading/analysis"
+                                <form action="${pageContext.request.contextPath}/referral/confirmReferral"
                                 method="post"
                                 id="form">
 
-                                    <div class="form-group row">
+                                <div class="form-group row">
+                                  <div class="col-sm-6 row">
+                                      <label for="firstName" class="col-sm-4 col-form-label create-reading-label">FIRST NAME</label>
+                                      <div class="col-sm-7">
+                                          <input hidden type="text" id="firstName" class="reading-field" name="firstName" placeholder="First Name" value="<%=firstName%>">
+                                          <div class="reading-field-readonly"><%=firstName%></div>
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6 row">
+                                          <label for="lastName" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">LAST NAME</label>
+                                          <div class="col-sm-7">
+                                              <input hidden type="text" id="lastName" class="reading-field" name="lastName" placeholder="Last Name" value="<%=lastName%>">
+                                              <div class="reading-field-readonly"><%=lastName%></div>
+                                          </div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <div class="col-sm-6 row">
+                                    <label for="ageYears" class="col-sm-4 col-form-label create-reading-label">AGE</label>
+                                    <div class="col-sm-7">
+                                        <input hidden type="text" id="ageYears" class="reading-field" name="ageYears" placeholder="Age" value="<%=ageYears%>">
+                                        <div class="reading-field-readonly"><%=ageYears%></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 row">
+                                        <label for="sex" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">SEX</label>
+                                        <div class="col-sm-7">
+                                          <select class="form-control" id="sex" name="sex">
+                                            <option value="FEMALE">FEMALE</option>
+                                            <option value="MALE">MALE</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                            </div>
+
+                              <div class="form-group row" style="margin-top: 50px">
+                                <div class="col-sm-6 row">
+                                    <label for="bpSystolic" class="col-sm-4 col-form-label create-reading-label">SYSTOLIC</label>
+                                    <div class="col-sm-7">
+                                        <input hidden type="text" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic" value="<%=bpSystolic%>">
+                                        <div class="reading-field-readonly"><%=bpSystolic%></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" style="position:absolute; right: 0;">
+                                  <div class="form-group row">
+                                          <div class="col-sm-3 text-right" style="padding-top: 30px;">
+                                                  <img src="/images/<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>">
+                                              </div>
+                                              <div class="col-sm-3" style="padding-top: 30px">
+                                                  <c:if test="<%= ReadingAnalysis.analyze(reading).getArrowDirection() != null %>">
+                                                      <img src="/images/<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>">
+                                                  </c:if>
+                                              </div>
+                                  </div>
+                                  </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <div class="col-sm-6 row">
+                                  <label for="bpDiastolic" class="col-sm-4 col-form-label create-reading-label">DIASTOLIC</label>
+                                  <div class="col-sm-7">
+                                      <input hidden type="text" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic" value="<%=bpDiastolic%>">
+                                      <div class="reading-field-readonly"><%=bpDiastolic%></div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="col-sm-6 row">
+                                <label for="heartRateBPM" class="col-sm-4 col-form-label create-reading-label">HEART RATE</label>
+                                <div class="col-sm-7">
+                                    <input hidden type="text" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate" value="<%=heartRateBPM%>">
+                                    <div class="reading-field-readonly"><%=heartRateBPM%></div>
+                                </div>
+                            </div>
+                          </div>
+
+                                    <div class="form-group row" style="margin-top: 50px">
                                         <div class="col-sm-6 row">
                                             <label for="referredHealthCentre" class="col-sm-4 col-form-label create-reading-label">HEALTH CENTRE</label>
                                             <div class="col-sm-7">
@@ -57,95 +135,23 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row" style="margin-top: 50px">
-                                        <div class="col-sm-6 row">
-                                            <label for="firstName" class="col-sm-4 col-form-label create-reading-label">FIRST NAME</label>
-                                            <div class="col-sm-7">
-                                                <input type="text" id="firstName" class="reading-field" name="firstName" placeholder="First Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 row">
-                                                <label for="lastName" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">LAST NAME</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="lastName" class="reading-field" name="lastName" placeholder="Last Name">
-                                                </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                            <div class="col-sm-6 row">
-                                                <label for="ageYears" class="col-sm-4 col-form-label create-reading-label">AGE</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="ageYears" class="reading-field" name="ageYears" placeholder="Age">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 row">
-                                                    <label for="sex" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">SEX</label>
-                                                    <div class="col-sm-7">
-                                                      <select class="form-control" id="sex" name="sex">
-                                                        <option value="FEMALE">FEMALE</option>
-                                                        <option value="MALE">MALE</option>
-                                                      </select>
-                                                    </div>
-                                                </div>
-                                        </div>
+                              
                                     
                                         <div class="form-group row">
                                                 <div class="col-sm-6 row">
                                                     <label for="zoneNumber" class="col-sm-4 col-form-label create-reading-label">ZONE #</label>
                                                     <div class="col-sm-7">
-                                                        <input type="text" id="zoneNumber" class="reading-field" name="zoneNumber" placeholder="Zone Number">
+                                                        <input type="number" id="zoneNumber" class="reading-field" name="zoneNumber" placeholder="Zone Number">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 row">
                                                         <label for="lastName" class="col-sm-4 offset-sm-1 col-form-label create-reading-label">VILLAGE #</label>
                                                         <div class="col-sm-7">
-                                                            <input type="text" id="villageNumber" class="reading-field" name="villageNumber" placeholder="Village Number">
+                                                            <input type="number" id="villageNumber" class="reading-field" name="villageNumber" placeholder="Village Number">
                                                         </div>
                                                 </div>
                                             </div>
 
-
-                                            <div class="form-group row" style="margin-top: 50px">
-                                              <div class="col-sm-6 row">
-                                                  <label for="bpSystolic" class="col-sm-4 col-form-label create-reading-label">SYSTOLIC</label>
-                                                  <div class="col-sm-7">
-                                                      <input type="text" id="bpSystolic" class="reading-field" name="bpSystolic" placeholder="Systolic">
-                                                  </div>
-                                              </div>
-                                              <div class="col-sm-6" style="position:absolute; right: 0;">
-                                                <div class="form-group row">
-                                                        <div class="col-sm-3 text-right" style="padding-top: 30px;">
-                                                                <img src="/images/<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getTrafficLightImg()%>">
-                                                            </div>
-                                                            <div class="col-sm-3" style="padding-top: 30px">
-                                                                <c:if test="<%= ReadingAnalysis.analyze(reading).getArrowDirection() != null %>">
-                                                                    <img src="/images/<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>.png" alt="<%=ReadingAnalysis.analyze(reading).getArrowDirection()%>">
-                                                                </c:if>
-                                                            </div>
-                                                </div>
-                                                </div>
-                                          </div>
-
-                                          <div class="form-group row">
-                                            <div class="col-sm-6 row">
-                                                <label for="bpDiastolic" class="col-sm-4 col-form-label create-reading-label">DIASTOLIC</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" id="bpDiastolic" class="reading-field" name="bpDiastolic" placeholder="Diastolic">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                          <div class="col-sm-6 row">
-                                              <label for="heartRateBPM" class="col-sm-4 col-form-label create-reading-label">HEART RATE</label>
-                                              <div class="col-sm-7">
-                                                  <input type="text" id="heartRateBPM" class="reading-field" name="heartRateBPM" placeholder="Heart Rate">
-                                              </div>
-                                          </div>
-                                        </div>
-                                          
- 
 
                                     <div class="form-group row" style="margin-top: 50px">
                                             <div class="col-sm-12 row">
@@ -168,9 +174,9 @@
 
                                       <div class="form-group row">
                                         <div class="col-sm-12 row">
-                                            <label for="otherInfoMessage" class="col-sm-2 col-form-label create-reading-label">OTHER</label>
+                                            <label for="otherInformationMessage" class="col-sm-2 col-form-label create-reading-label">OTHER</label>
                                             <div class="col-sm-6">
-                                                <textarea rows="2" type="text" id="otherInfoMessage" class="reading-textarea" name="otherInfoMessage" placeholder="Other Symptoms"></textarea>
+                                                <textarea rows="2" type="text" id="otherInformationMessage" class="reading-textarea" name="otherInformationMessage" placeholder="Other Notes"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -190,229 +196,13 @@
                                     </div>
                                 </form>
                             </div>
+                        </main>
                     </div>
                 </div>
                 </main>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    <form
-      action="${pageContext.request.contextPath}/referral/confirmReferral"
-      method="post"
-    >
-      <div class="container w-100" style="padding: 10px">
-        <div class="form-group">
-          <div class="row">
-            <div class="col">
-              <label for="referredHealthCentre"
-                >Health Centre referred to:
-              </label>
-              <input
-                required
-                type="text"
-                class="form-control"
-                id="referredHealthCentre"
-                name="referredHealthCentre"
-              /><br />
-            </div>
-
-            <%--vht--%>
-            <div class="col">
-              <label for="vhtName">Name of VHT: </label>
-              <input
-                required
-                type="text"
-                class="form-control"
-                id="vhtName"
-                name="vhtName"
-              /><br />
-            </div>
-          </div>
-        </div>
-
-        <%--Patient Info--%>
-        <div class="form-group">
-          <div class="row">
-            <div class="col">
-              <label for="firstName">First Name: </label>
-              <input
-                required
-                type="text"
-                class="form-control"
-                id="firstName"
-                name="firstName"
-                disabled
-                value="<%=firstName%>"
-              /><br />
-            </div>
-            <div class="col">
-              <label for="lastName">Last Name: </label>
-              <input
-                required
-                type="text"
-                class="form-control"
-                id="lastName"
-                name="lastName"
-                disabled
-                value="<%=lastName%>"
-              /><br />
-            </div>
-            <div class="col">
-              <label for="ageYears">Age: </label>
-              <input
-                required
-                type="number"
-                class="form-control"
-                id="ageYears"
-                name="ageYears"
-                disabled
-                value="<%=ageYears%>"
-              /><br />
-            </div>
-            <div class="col">
-              <label for="sex">Sex: </label>
-              <select class="form-control" id="sex" name="sex">
-                <option value="FEMALE">FEMALE</option>
-                <option value="MALE">MALE</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col">
-              <label for="zoneNumber">Zone Number: </label>
-              <input
-                type="number"
-                class="form-control"
-                id="zoneNumber"
-                name="zoneNumber"
-                required="required"
-                pattern="[0-9]{1,5}"
-              />
-            </div>
-            <div class="col">
-              <label for="villageNumber">Village Number: </label>
-              <input
-                type="number"
-                class="form-control"
-                id="villageNumber"
-                name="villageNumber"
-                required="required"
-                pattern="[0-9]{1,5}"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <div class="col">
-              <label for="bpSystolic">Blood Pressure Systolic: </label>
-              <input
-                type="number"
-                class="form-control"
-                id="bpSystolic"
-                name="bpSystolic"
-                disabled
-                value="<%=bpSystolic%>"
-              />
-            </div>
-            <div class="col">
-              <label for="bpDiastolic">Blood Pressure Diastolic: </label>
-              <input
-                type="number"
-                class="form-control"
-                id="bpDiastolic"
-                name="bpDiastolic"
-                disabled
-                value="<%=bpDiastolic%>"
-              />
-            </div>
-            <div class="col">
-              <label for="heartRateBPM">Heart Rate: </label>
-              <input
-                type="number"
-                class="form-control"
-                id="heartRateBPM"
-                name="heartRateBPM"
-                disabled
-                value="<%=heartRateBPM%>"
-              />
-            </div>
-            <div class="col">
-              <label for="analysis">Reading Analysis: </label>
-              <input
-                type="text"
-                class="form-control"
-                id="analysis"
-                name="analysis"
-                disabled
-                value="<%=analysis%>"
-              />
-            </div>
-          </div>
-        </div>
-
-        <%--referral reason--%>
-        <div class="form-group">
-          <label for="reasonOfReferral"
-            >I have referred to you this patient for this following reasons:
-          </label>
-          <input
-            required
-            type="text"
-            class="form-control"
-            id="reasonOfReferral"
-            name="reasonOfReferral"
-          /><br />
-        </div>
-        <%--action taken--%>
-        <div class="form-group">
-          <label for="actionAlreadyTaken">Action already taken: </label>
-          <input
-            required
-            type="text"
-            class="form-control"
-            id="actionAlreadyTaken"
-            name="actionAlreadyTaken"
-          /><br />
-        </div>
-        <%--other message--%>
-        <div class="form-group">
-          <label for="otherInfoMessage">Other Information and Messages: </label>
-          <input
-            required
-            type="text"
-            class="form-control"
-            id="otherInfoMessage"
-            name="otherInfoMessage"
-          /><br />
-        </div>
-
-        <button type="submit" value="Submit">Submit</button>
-      </div>
-      <input
-        type="hidden"
-        name="${_csrf.parameterName}"
-        value="${_csrf.token}"
-      />
-    </form>
-
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
