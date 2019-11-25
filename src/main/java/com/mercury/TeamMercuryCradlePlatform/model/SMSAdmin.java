@@ -31,14 +31,14 @@ public class SMSAdmin {
         return "Subject: " + subject + "\n\n" + text;
     }
 
-//    public void sendText(String phoneNumber, String subject, String text) {
-//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    public void sendText(String phoneNumber, String subject, String text) {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 //        Message message = Message.creator(
 //                new PhoneNumber(phoneNumber),
 //                new PhoneNumber(TWILIO_NUMBER),
 //                createText(subject, text))
 //                .create();
-//    }
+    }
 //
 //    public void testSendText(String phoneNumber, String subject, String text) {
 //        Twilio.init(TEST_ACCOUNT_SID, TEST_AUTH_TOKEN);
