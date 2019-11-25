@@ -94,7 +94,7 @@ body {
   background-color: rgb(243, 243, 243);
   height: 100%;
 }
-t .content-header {
+.content-header {
   font-size: 40px;
   color: rgb(36, 128, 112);
   margin-top: 40px;
