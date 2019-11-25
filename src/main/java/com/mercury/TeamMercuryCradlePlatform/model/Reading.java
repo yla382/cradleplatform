@@ -49,7 +49,7 @@ public class Reading {
     @Column(name = "reading_id") public Long readingId;
     public ZonedDateTime dateLastSaved;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade =  CascadeType.REMOVE)
     @JoinColumn(name = "patient_Id", referencedColumnName = "patient_Id")
     private Patient patient;
 

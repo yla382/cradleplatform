@@ -107,6 +107,12 @@
                                                         </form>
                                                     </div>
                                                     <div class="col">
+                                                        <form action="${pageContext.request.contextPath}/reading/delete/${reading.readingId}" method="post">
+                                                            <button type="submit" class="btn-generic">Delete</button>
+                                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col">
                                                         <form action="${pageContext.request.contextPath}/statistics/blood-pressure-graph/${reading.patientId}" method="get">
                                                             <button type="submit" class="btn-generic">Statistics</button>
                                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

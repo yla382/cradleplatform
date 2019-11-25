@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -165,7 +166,7 @@ public class ReadingController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public ModelAndView deleteReadingWithId(@PathVariable long id) {
         Reading deletedReading = this.readingRepository.findByReadingId(id);
-        this.analysisRepository.delete(this.analysisRepository.findByReading(deletedReading));
+//        this.analysisRepository.delete(this.analysisRepository.findByReading(deletedReading));
         this.readingRepository.delete(deletedReading);
         return setUpAllReadingModel();
     }
@@ -177,6 +178,9 @@ public class ReadingController {
         for (Reading r : readings) {
             r.symptoms = new ArrayList<>(Arrays.asList(r.symptomsString.split(",")));
         }
+
+        Collections.reverse(readings);
+
         return new ModelAndView("/reading/all").addObject("readingList", readings);
     }
 }
