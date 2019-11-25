@@ -58,13 +58,13 @@
                         <td >
                             <form action="${pageContext.request.contextPath}/assessment/medicationList/${assessment.assessmentId}" method="get">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button type="submit" class="icon ion-3x ion-md-medkit table-icon btn-no-style" title="View Prescription List"></button>
+                                <button type="submit" class="glyphicon glyphicon-search table-icon btn-no-style" title="View Prescription List"></button>
                             </form>
                         </td>
                         <td >
                             <form action="${pageContext.request.contextPath}/assessment/deleteAssessment/${assessment.assessmentId}" method="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <button style="color: darkred" type="submit" class="icon ion-3x delete ion-md-trash table-icon btn-no-style"
+                                <button style="color: darkred" type="submit" class="glyphicon glyphicon-trash table-icon btn-no-style"
                                         title="Delete Assessment" onclick="return confirm('Do you want to delete this assessment?');"></button>
                             </form>
                         </td>
