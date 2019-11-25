@@ -16,12 +16,10 @@
 <body>
 <div class="main-container">
     <%@ include file="../navbar/navbar.jspf" %>
-
     <div class="content-container">
         <div class="content-header">
             Edit Patient
         </div>
-
         <div class="edit-users-container">
             <form
                     action="${pageContext.request.contextPath}/patient/submitPatient"
@@ -125,7 +123,6 @@
             </form>
         </div>
     </div>
-</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
