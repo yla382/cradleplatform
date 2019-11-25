@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-12 row">
+                            <div id="otherSymptomsDiv" class="col-sm-12 row">
                                 <label for="otherSymptoms" class="col-sm-2 col-form-label create-reading-label">OTHER
                                     SYMPTOMS</label>
                                 <div class="col-sm-6">
@@ -341,6 +341,7 @@
         const strUser = e.options[e.selectedIndex].value;
 
         if (strUser === "healthy") {
+            document.getElementById("otherSymptoms").value = "";
             $("#symptomsSelectorDiv input").attr("disabled", true);
             $(".form-check-input").prop("checked", false);
             $("#symptomsSelectorDiv").addClass("disable-input");
