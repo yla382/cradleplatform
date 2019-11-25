@@ -87,7 +87,7 @@
                 </div>
                 <div class="row">
                     <div class="custom-control custom-switch">
-                        <input checked type="checkbox" class="custom-control-input" id="recheckVitalsNow">
+                        <input type="checkbox" class="custom-control-input" id="recheckVitalsNow">
                         <label class="custom-control-label" for="recheckVitalsNow">Recheck vitals now(after
                             save)</label>
                     </div>
