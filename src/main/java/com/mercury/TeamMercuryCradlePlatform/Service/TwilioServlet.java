@@ -29,11 +29,11 @@ public class TwilioServlet {
     private PatientRepository patientRepository;
 
     @RequestMapping(value="/receive/sms", method=RequestMethod.POST)
-    public String someMethod(@RequestBody String message, @RequestParam("Body") String body, @RequestParam("From") String From) throws IOException {
-        System.out.println(message);
+    public String someMethod(@RequestParam("Body") String body/*, @RequestParam("From") String From*/) throws IOException {
         System.out.println("Body: " + body);
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.findAndRegisterModules();
         List<AndroidReading> readingList = mapper.readValue(body, new TypeReference<List<AndroidReading>>(){});
 
         for (AndroidReading androidReading : readingList) {
