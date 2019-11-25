@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mercury.TeamMercuryCradlePlatform.Strings;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -105,6 +106,11 @@ public class Reading {
     @Transient transient public boolean userHasSelectedNoSymptoms;
 
 
+//    public enum Indication{
+//        GREEN,
+//        YELLOW,
+//        RED
+//    }
 
     /**
      * Constructors & Factories
@@ -464,4 +470,5 @@ public class Reading {
     public ZonedDateTime getDateTimeTaken() {
         return dateTimeTaken;
     }
+
 }

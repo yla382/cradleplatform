@@ -37,6 +37,7 @@ public enum ReadingAnalysis  {
     private final String analysisText;
     private final String briefText;
 
+
     ReadingAnalysis(String none, String none1) {
         this.analysisText = none;
         this.briefText = none1;
@@ -138,5 +139,4 @@ public enum ReadingAnalysis  {
 
         return null;
     }
-
 }

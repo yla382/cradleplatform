@@ -81,7 +81,7 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <p> ${reading.bpDiastolic}/${reading.bpSystolic}</p>
+                                                        <p> ${reading.bpSystolic}/${reading.bpDiastolic}</p>
                                                         <p> HR: ${reading.heartRateBPM}</p>
                                                     </div>
                                                     <div class="col">
@@ -138,7 +138,8 @@
     });
 
     function changeIcon(i) {
-        var spans = document.getElementById('glyphicon-' + i);
+
+        const spans = document.getElementById('glyphicon-' + i);
 
         if(spans.classList.contains("glyphicon-plus")){
             spans.className = "glyphicon glyphicon-minus";
