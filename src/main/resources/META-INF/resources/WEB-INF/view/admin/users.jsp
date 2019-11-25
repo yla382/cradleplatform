@@ -25,13 +25,13 @@
 <div class="main-container">
 
     <%@ include file="../navbar/navbar.jspf" %>
-
     <div class="content-container">
         <div class="content-header">
             View Users
         </div>
         <div class="content-body">
             <div class="table-container">
+                <input type="button" class="btn-create" onclick="location.href='${pageContext.request.contextPath}/admin/registration';" value="Create User"/>
                 <table class="table view-users-table">
                     <thead>
                     <tr>
