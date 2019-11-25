@@ -107,13 +107,6 @@ public class ReferralController {
         return modelAndView;
     }
 
-//    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-//    public ModelAndView editReferralById(@PathVariable Long id) {
-//        Referral referral = this.referralRepository.findByReferralId(id);
-//        ModelAndView modelAndView = new ModelAndView("/referral/editReferral");
-//        modelAndView.addObject("referral", referral);
-//        return modelAndView;
-//    }
 
 
 }
